@@ -48,6 +48,25 @@ function formatINR(amount) {
   }).format(amount);
 }
 
+function numberToWords(num) {
+  const a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+  const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+  
+  const inWords = (n) => {
+    if ((n = n.toString()).length > 9) return 'overflow';
+    let nArray = ('000000000' + n).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    if (!nArray) return '';
+    let str = '';
+    str += (nArray[1] != 0) ? (a[Number(nArray[1])] || b[nArray[1][0]] + ' ' + a[nArray[1][1]]) + 'Crore ' : '';
+    str += (nArray[2] != 0) ? (a[Number(nArray[2])] || b[nArray[2][0]] + ' ' + a[nArray[2][1]]) + 'Lakh ' : '';
+    str += (nArray[3] != 0) ? (a[Number(nArray[3])] || b[nArray[3][0]] + ' ' + a[nArray[3][1]]) + 'Thousand ' : '';
+    str += (nArray[4] != 0) ? (a[Number(nArray[4])] || b[nArray[4][0]] + ' ' + a[nArray[4][1]]) + 'Hundred ' : '';
+    str += (nArray[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(nArray[5])] || b[nArray[5][0]] + ' ' + a[nArray[5][1]]) : '';
+    return str.trim() + ' Rupees Only';
+  };
+  return inWords(Math.floor(num));
+}
+
 function getInitials(name) {
   return (name || "TW")
     .split(" ")
@@ -447,86 +466,239 @@ function UpiTool() {
 }
 
 function GstInvoiceTool() {
-  const [seller, setSeller] = useState({ name: "", gstin: "", address: "", state: "Maharashtra", phone: "" });
-  const [buyer, setBuyer] = useState({ name: "", gstin: "", address: "", state: "Maharashtra", phone: "" });
-  const [invoiceNo, setInvoiceNo] = useState(`INV-${new Date().getFullYear()}-001`);
-  const [invoiceDate, setInvoiceDate] = useState(today());
-  const [items, setItems] = useState([{ desc: "", qty: 1, rate: "", gst: 18 }]);
+  const [seller, setSeller] = useState({ name: "Your Business Name", gstin: "", address: "", state: "Maharashtra", bank: { name: "", acc: "", ifsc: "" } });
+  const [buyer, setBuyer] = useState({ name: "", gstin: "", address: "", state: "Maharashtra" });
+  const [invoice, setInvoice] = useState({ number: `INV-${new Date().getFullYear()}-01`, date: today(), terms: "1. Please pay within 15 days.\n2. GST will be extra as applicable." });
+  const [items, setItems] = useState([{ desc: "", hsn: "", qty: 1, rate: "", gst: 18 }]);
   const [preview, setPreview] = useState(false);
-  const addItem = () => setItems(p => [...p, { desc: "", qty: 1, rate: "", gst: 18 }]);
+
+  const addItem = () => setItems(p => [...p, { desc: "", hsn: "", qty: 1, rate: "", gst: 18 }]);
   const removeItem = (i) => setItems(p => p.filter((_, idx) => idx !== i));
   const updateItem = (i, k, v) => setItems(p => p.map((item, idx) => idx === i ? { ...item, [k]: v } : item));
+
   const isInterstate = seller.state !== buyer.state;
-  const calcItem = (item) => {
-    const base = (parseFloat(item.qty) || 0) * (parseFloat(item.rate) || 0);
-    const gstAmt = base * (item.gst / 100);
-    return { base, gstAmt, total: base + gstAmt };
+
+  const calculateTotals = () => {
+    let subtotal = 0;
+    let cgst = 0;
+    let sgst = 0;
+    let igst = 0;
+    
+    items.forEach(item => {
+      const amount = (parseFloat(item.qty) || 0) * (parseFloat(item.rate) || 0);
+      subtotal += amount;
+      const gstAmt = amount * (item.gst / 100);
+      
+      if (isInterstate) {
+        igst += gstAmt;
+      } else {
+        cgst += gstAmt / 2;
+        sgst += gstAmt / 2;
+      }
+    });
+    
+    return { subtotal, cgst, sgst, igst, total: subtotal + cgst + sgst + igst };
   };
-  const totals = items.reduce((acc, item) => {
-    const { base, gstAmt, total } = calcItem(item);
-    acc.subtotal += base;
-    acc.gst += gstAmt;
-    acc.total += total;
-    return acc;
-  }, { subtotal: 0, gst: 0, total: 0 });
+
+  const totals = calculateTotals();
 
   return (
     <div>
       {!preview ? (
-        <>
+        <div className="fade-in">
           <div className="grid-2" style={{ marginBottom: 24 }}>
             <div className="glass-card">
-              <h3>Seller Information</h3>
+              <h3>Your Business Details</h3>
               <div className="form-group"><label>Business Name</label><input value={seller.name} onChange={e => setSeller({...seller, name: e.target.value})} /></div>
-              <div className="form-group"><label>GSTIN</label><input value={seller.gstin} onChange={e => setSeller({...seller, gstin: e.target.value})} /></div>
+              <div className="form-group"><label>GSTIN</label><input value={seller.gstin} onChange={e => setSeller({...seller, gstin: e.target.value})} placeholder="27XXXXX..." /></div>
               <div className="form-group"><label>Address</label><textarea value={seller.address} onChange={e => setSeller({...seller, address: e.target.value})} /></div>
-              <div className="form-group"><label>State</label><select value={seller.state} onChange={e => setSeller({...seller, state: e.target.value})}>{["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Gujarat"].map(s => <option key={s}>{s}</option>)}</select></div>
+              <div className="form-group">
+                <label>State</label>
+                <select value={seller.state} onChange={e => setSeller({...seller, state: e.target.value})}>
+                  {["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Gujarat", "Haryana", "Uttar Pradesh"].map(s => <option key={s}>{s}</option>)}
+                </select>
+              </div>
+              <div style={{ marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 15 }}>
+                <h4>Bank Details</h4>
+                <div className="form-group"><label>Bank Name</label><input value={seller.bank.name} onChange={e => setSeller({...seller, bank: {...seller.bank, name: e.target.value}})} /></div>
+                <div className="form-group"><label>Account Number</label><input value={seller.bank.acc} onChange={e => setSeller({...seller, bank: {...seller.bank, acc: e.target.value}})} /></div>
+                <div className="form-group"><label>IFSC Code</label><input value={seller.bank.ifsc} onChange={e => setSeller({...seller, bank: {...seller.bank, ifsc: e.target.value}})} /></div>
+              </div>
             </div>
             <div className="glass-card">
-              <h3>Buyer Information</h3>
-              <div className="form-group"><label>Customer Name</label><input value={buyer.name} onChange={e => setBuyer({...buyer, name: e.target.value})} /></div>
-              <div className="form-group"><label>GSTIN</label><input value={buyer.gstin} onChange={e => setBuyer({...buyer, gstin: e.target.value})} /></div>
+              <h3>Client Information</h3>
+              <div className="form-group"><label>Client Name</label><input value={buyer.name} onChange={e => setBuyer({...buyer, name: e.target.value})} /></div>
+              <div className="form-group"><label>Client GSTIN</label><input value={buyer.gstin} onChange={e => setBuyer({...buyer, gstin: e.target.value})} /></div>
               <div className="form-group"><label>Address</label><textarea value={buyer.address} onChange={e => setBuyer({...buyer, address: e.target.value})} /></div>
-              <div className="form-group"><label>State</label><select value={buyer.state} onChange={e => setBuyer({...buyer, state: e.target.value})}>{["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Gujarat"].map(s => <option key={s}>{s}</option>)}</select></div>
+              <div className="form-group">
+                <label>Place of Supply (State)</label>
+                <select value={buyer.state} onChange={e => setBuyer({...buyer, state: e.target.value})}>
+                  {["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Gujarat", "Haryana", "Uttar Pradesh"].map(s => <option key={s}>{s}</option>)}
+                </select>
+              </div>
+              <div style={{ marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 15 }}>
+                <h4>Invoice Metadata</h4>
+                <div className="form-group"><label>Invoice Number</label><input value={invoice.number} onChange={e => setInvoice({...invoice, number: e.target.value})} /></div>
+                <div className="form-group"><label>Invoice Date</label><input type="date" value={invoice.date} onChange={e => setInvoice({...invoice, date: e.target.value})} /></div>
+              </div>
             </div>
           </div>
+
           <div className="glass-card" style={{ marginBottom: 24 }}>
+            <h3>Line Items</h3>
             <div className="table-container">
-              <table>
-                <thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>GST %</th><th>Total</th><th></th></tr></thead>
-                <tbody>{items.map((item, i) => (
-                  <tr key={i}>
-                    <td><input value={item.desc} onChange={e => updateItem(i, "desc", e.target.value)} /></td>
-                    <td><input type="number" value={item.qty} onChange={e => updateItem(i, "qty", e.target.value)} /></td>
-                    <td><input type="number" value={item.rate} onChange={e => updateItem(i, "rate", e.target.value)} /></td>
-                    <td><select value={item.gst} onChange={e => updateItem(i, "gst", +e.target.value)}>{GST_RATES.map(r => <option key={r} value={r}>{r}%</option>)}</select></td>
-                    <td>{formatINR(calcItem(item).total)}</td>
-                    <td><button onClick={() => removeItem(i)}>✕</button></td>
+              <table style={{ minWidth: 800 }}>
+                <thead>
+                  <tr>
+                    <th style={{ width: "40%" }}>Description</th>
+                    <th>HSN/SAC</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>GST %</th>
+                    <th>Amount</th>
+                    <th></th>
                   </tr>
-                ))}</tbody>
+                </thead>
+                <tbody>
+                  {items.map((item, i) => (
+                    <tr key={i}>
+                      <td><input value={item.desc} onChange={e => updateItem(i, "desc", e.target.value)} placeholder="Product or Service" /></td>
+                      <td><input value={item.hsn} onChange={e => updateItem(i, "hsn", e.target.value)} placeholder="Code" /></td>
+                      <td><input type="number" value={item.qty} onChange={e => updateItem(i, "qty", e.target.value)} /></td>
+                      <td><input type="number" value={item.rate} onChange={e => updateItem(i, "rate", e.target.value)} /></td>
+                      <td>
+                        <select value={item.gst} onChange={e => updateItem(i, "gst", +e.target.value)}>
+                          {GST_RATES.map(r => <option key={r} value={r}>{r}%</option>)}
+                        </select>
+                      </td>
+                      <td style={{ textAlign: "right", paddingRight: 20 }}>{((parseFloat(item.qty)||0) * (parseFloat(item.rate)||0)).toFixed(2)}</td>
+                      <td><button className="btn-ghost" onClick={() => removeItem(i)} style={{ color: BRAND.danger }}>✕</button></td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
-            <button className="btn-ghost" onClick={addItem} style={{ marginTop: 16 }}>+ Add Item</button>
-            <div style={{ textAlign: "right", marginTop: 20 }}>
-              <div style={{ fontSize: 24, fontWeight: 900 }}>Total: {formatINR(totals.total)}</div>
+            <button className="btn-ghost" onClick={addItem} style={{ marginTop: 16 }}>+ Add Line Item</button>
+          </div>
+
+          <div className="glass-card" style={{ marginBottom: 24 }}>
+            <div className="grid-2">
+              <div className="form-group">
+                <label>Terms & Conditions</label>
+                <textarea value={invoice.terms} onChange={e => setInvoice({...invoice, terms: e.target.value})} rows={4} />
+              </div>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 8 }}>Subtotal: {formatINR(totals.subtotal)}</div>
+                {isInterstate ? (
+                  <div style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 8 }}>IGST: {formatINR(totals.igst)}</div>
+                ) : (
+                  <>
+                    <div style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 8 }}>CGST: {formatINR(totals.cgst)}</div>
+                    <div style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 8 }}>SGST: {formatINR(totals.sgst)}</div>
+                  </>
+                )}
+                <div style={{ fontSize: 28, fontWeight: 900, color: BRAND.primary }}>Total: {formatINR(totals.total)}</div>
+              </div>
             </div>
           </div>
-          <button className="btn-primary" style={{ width: "100%" }} onClick={() => setPreview(true)}>Generate Invoice</button>
-        </>
+
+          <button className="btn-primary" style={{ width: "100%", height: 60, fontSize: 18 }} onClick={() => setPreview(true)}>Generate Professional Invoice</button>
+        </div>
       ) : (
         <div className="fade-in">
-          <button className="btn-secondary no-print" onClick={() => setPreview(false)}>← Edit</button>
-          <div style={{ background: "white", color: "black", padding: 60, marginTop: 20 }}>
-            <h1>INVOICE</h1>
-            <div style={{ display: "flex", justifyContent: "space-between", margin: "40px 0" }}>
-              <div><strong>From:</strong><br />{seller.name}<br />{seller.gstin}</div>
-              <div style={{ textAlign: "right" }}><strong>To:</strong><br />{buyer.name}<br />{buyer.gstin}</div>
+          <button className="btn-secondary no-print" onClick={() => setPreview(false)} style={{ marginBottom: 20 }}>← Back to Editor</button>
+          <button className="btn-primary no-print" onClick={() => window.print()} style={{ marginBottom: 20, marginLeft: 10 }}>Download / Print PDF</button>
+          
+          <div className="invoice-print" style={{ background: "white", color: "black", padding: 60, borderRadius: 8, boxShadow: "0 10px 40px rgba(0,0,0,0.5)", fontFamily: "serif" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "2px solid #000", paddingBottom: 30, marginBottom: 30 }}>
+              <div>
+                <h1 style={{ fontSize: 32, margin: 0, color: "#000" }}>TAX INVOICE</h1>
+                <p style={{ marginTop: 10 }}><strong>No:</strong> {invoice.number}</p>
+                <p><strong>Date:</strong> {invoice.date}</p>
+              </div>
+              <div style={{ textAlign: "right" }}>
+                <h2 style={{ margin: 0 }}>{seller.name}</h2>
+                <p style={{ maxWidth: 250, whiteSpace: "pre-wrap" }}>{seller.address}</p>
+                <p><strong>GSTIN:</strong> {seller.gstin}</p>
+                <p><strong>State:</strong> {seller.state}</p>
+              </div>
             </div>
-            <table style={{ width: "100%" }}>
-              <tr style={{ background: "#eee" }}><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr>
-              {items.map((item, i) => <tr key={i}><td>{item.desc}</td><td>{item.qty}</td><td>{item.rate}</td><td>{calcItem(item).total.toFixed(2)}</td></tr>)}
+
+            <div style={{ marginBottom: 40 }}>
+              <h4 style={{ textDecoration: "underline", marginBottom: 10 }}>BILL TO:</h4>
+              <h3 style={{ margin: 0 }}>{buyer.name}</h3>
+              <p style={{ maxWidth: 300, whiteSpace: "pre-wrap" }}>{buyer.address}</p>
+              <p><strong>GSTIN:</strong> {buyer.gstin}</p>
+              <p><strong>State:</strong> {buyer.state}</p>
+            </div>
+
+            <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 30 }}>
+              <thead>
+                <tr style={{ background: "#f5f5f5", borderBottom: "2px solid #000" }}>
+                  <th style={{ padding: 12, textAlign: "left" }}>Description</th>
+                  <th style={{ padding: 12 }}>HSN</th>
+                  <th style={{ padding: 12 }}>Qty</th>
+                  <th style={{ padding: 12 }}>Rate</th>
+                  <th style={{ padding: 12 }}>GST</th>
+                  <th style={{ padding: 12, textAlign: "right" }}>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item, i) => (
+                  <tr key={i} style={{ borderBottom: "1px solid #eee" }}>
+                    <td style={{ padding: 12 }}>{item.desc}</td>
+                    <td style={{ padding: 12, textAlign: "center" }}>{item.hsn}</td>
+                    <td style={{ padding: 12, textAlign: "center" }}>{item.qty}</td>
+                    <td style={{ padding: 12, textAlign: "center" }}>{parseFloat(item.rate).toFixed(2)}</td>
+                    <td style={{ padding: 12, textAlign: "center" }}>{item.gst}%</td>
+                    <td style={{ padding: 12, textAlign: "right" }}>{((parseFloat(item.qty)||0) * (parseFloat(item.rate)||0)).toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
-            <div style={{ textAlign: "right", marginTop: 40 }}><strong>GRAND TOTAL: {formatINR(totals.total)}</strong></div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 40 }}>
+              <div>
+                <p><strong>Amount in Words:</strong><br />{numberToWords(totals.total)}</p>
+                <div style={{ marginTop: 20, padding: 15, background: "#f9f9f9", borderRadius: 4 }}>
+                  <h5 style={{ margin: "0 0 5px" }}>BANK DETAILS</h5>
+                  <p style={{ margin: 0, fontSize: 13 }}>Bank: {seller.bank.name}<br />A/c: {seller.bank.acc}<br />IFSC: {seller.bank.ifsc}</p>
+                </div>
+                <div style={{ marginTop: 20 }}>
+                  <h5 style={{ margin: "0 0 5px" }}>TERMS & CONDITIONS</h5>
+                  <p style={{ margin: 0, fontSize: 12, whiteSpace: "pre-wrap" }}>{invoice.terms}</p>
+                </div>
+              </div>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ borderBottom: "1px solid #eee", padding: "10px 0", display: "flex", justifyContent: "space-between" }}>
+                  <span>Subtotal</span><span>{formatINR(totals.subtotal)}</span>
+                </div>
+                {isInterstate ? (
+                  <div style={{ borderBottom: "1px solid #eee", padding: "10px 0", display: "flex", justifyContent: "space-between" }}>
+                    <span>IGST</span><span>{formatINR(totals.igst)}</span>
+                  </div>
+                ) : (
+                  <>
+                    <div style={{ borderBottom: "1px solid #eee", padding: "10px 0", display: "flex", justifyContent: "space-between" }}>
+                      <span>CGST</span><span>{formatINR(totals.cgst)}</span>
+                    </div>
+                    <div style={{ borderBottom: "1px solid #eee", padding: "10px 0", display: "flex", justifyContent: "space-between" }}>
+                      <span>SGST</span><span>{formatINR(totals.sgst)}</span>
+                    </div>
+                  </>
+                )}
+                <div style={{ padding: "20px 0", display: "flex", justifyContent: "space-between", fontSize: 22, fontWeight: "bold" }}>
+                  <span>TOTAL</span><span>{formatINR(totals.total)}</span>
+                </div>
+                <div style={{ marginTop: 60 }}>
+                  <div style={{ borderBottom: "1px solid #000", width: "100%", marginBottom: 10 }}></div>
+                  <p style={{ margin: 0 }}><strong>Authorized Signatory</strong></p>
+                  <p style={{ margin: 0, fontSize: 12 }}>for {seller.name}</p>
+                </div>
+              </div>
+            </div>
+            
+            <p style={{ textAlign: "center", marginTop: 80, fontSize: 10, color: "#999" }}>Generated by ToolsWaala.in - Professional Business Kit</p>
           </div>
         </div>
       )}
