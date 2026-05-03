@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import QRCodeStyling from "qr-code-styling";
+import QRCodeStyling from "qr-code-styling/lib/qr-code-styling.js";
 
 // ============================================================
 // CONSTANTS & HELPERS
