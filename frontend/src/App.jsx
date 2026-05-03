@@ -290,10 +290,20 @@ function Navbar({ active, setPage }) {
     <nav style={{ background: "rgba(9, 9, 11, 0.8)", backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: "1px solid rgba(255,255,255,0.05)", width: "100vw" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }} onClick={() => setPage("home")}>
-          <div style={{ width: 40, height: 40, borderRadius: 10, background: BRAND.primary, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 18, color: "white", boxShadow: "0 0 20px rgba(255,107,0,0.3)" }}>TW</div>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ boxShadow: "0 0 20px rgba(255,107,0,0.4)", borderRadius: 10 }}>
+            <rect width="40" height="40" rx="10" fill="url(#grad)" />
+            <path d="M10 14H20M15 14V26" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M22 14L25 24L28 17L31 24L34 14" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            <defs>
+              <linearGradient id="grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#FF6B00" />
+                <stop offset="1" stopColor="#FFB347" />
+              </linearGradient>
+            </defs>
+          </svg>
           <div>
-            <div style={{ color: "white", fontWeight: 800, fontSize: 18, lineHeight: 1, letterSpacing: "-0.02em" }}>ToolsWaala</div>
-            <div style={{ color: BRAND.accent, fontSize: 10, lineHeight: 1.3, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Business Kit</div>
+            <div style={{ color: "white", fontWeight: 900, fontSize: 19, lineHeight: 1, letterSpacing: "-0.02em" }}>ToolsWaala</div>
+            <div style={{ color: BRAND.accent, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Business Kit</div>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
