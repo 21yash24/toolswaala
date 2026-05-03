@@ -275,11 +275,12 @@ const globalStyle = `
 const TOOLS = [
   { id: "upi", name: "UPI Payment Page", hindi: "यूपीआई पेमेंट पेज", icon: "📲", desc: "Shareable UPI payment page with QR code", color: "#4CAF50" },
   { id: "gst-invoice", name: "GST Invoice", hindi: "जीएसटी चालान", icon: "🧾", desc: "Professional GST invoice generator with PDF", color: "#FF6B00" },
+  { id: "gstin-verify", name: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", icon: "🛡️", desc: "Instantly verify GST format & extract details", color: "#3F51B5" },
   { id: "qr", name: "QR Code Generator", hindi: "क्यूआर कोड", icon: "▣", desc: "Custom QR codes for URL, UPI, WhatsApp & more", color: "#2196F3" },
   { id: "emi", name: "EMI Calculator", hindi: "ईएमआई कैलकुलेटर", icon: "🏦", desc: "Home, car, personal & business loan EMI", color: "#9C27B0" },
   { id: "gst-calc", name: "GST Calculator", hindi: "जीएसटी कैलकुलेटर", icon: "🧮", desc: "Add or remove GST instantly with HSN lookup", color: "#F44336" },
-  { id: "rent", name: "Rent Agreement", hindi: "किराया समझौता", icon: "🏠", desc: "11-month rent agreement PDF generator", color: "#FF9800" },
-  { id: "salary", name: "Salary Slip", hindi: "वेतन पर्ची", icon: "💼", desc: "Professional Indian format salary slip PDF", color: "#009688" },
+  { id: "legal", name: "Legal Hub", hindi: "कानूनी हब", icon: "⚖️", desc: "Generate Rent Agreements, NDAs & MSAs", color: "#FF9800" },
+  { id: "salary", name: "Salary Slip Engine", hindi: "वेतन पर्ची इंजन", icon: "💼", desc: "Auto-CTC breakdown with New Tax Regime TDS", color: "#009688" },
   { id: "bizname", name: "Business Name AI", hindi: "व्यापार नाम एआई", icon: "✨", desc: "AI-powered business name suggestions", color: "#E91E63" },
 ];
 
@@ -520,6 +521,118 @@ function GstInvoiceTool() {
   );
 }
 
+function GstinVerifyTool() {
+  const [gstin, setGstin] = useState("");
+  const [result, setResult] = useState(null);
+
+  const validate = () => {
+    if (!gstin) return;
+    const input = gstin.trim().toUpperCase();
+    const regex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+    
+    if (!regex.test(input)) {
+      setResult({ valid: false, message: "Invalid GSTIN Format. Must be 15 characters (e.g., 22AAAAA0000A1Z5)" });
+      return;
+    }
+
+    const stateCode = parseInt(input.substring(0, 2), 10);
+    if (stateCode < 1 || stateCode > 38) {
+      setResult({ valid: false, message: "Invalid State Code in GSTIN." });
+      return;
+    }
+
+    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let hash = 0;
+    for (let i = 0; i < 14; i++) {
+      let val = chars.indexOf(input[i]);
+      let multiplier = (i % 2 !== 0) ? 2 : 1; 
+      let prod = val * multiplier;
+      let quotient = Math.floor(prod / 36);
+      let remainder = prod % 36;
+      hash = hash + quotient + remainder;
+    }
+    let checkCode = (36 - (hash % 36)) % 36;
+    let expectedChar = chars[checkCode];
+
+    if (expectedChar !== input[14]) {
+      setResult({ valid: false, message: `Checksum failed. Expected last character to be '${expectedChar}'.` });
+      return;
+    }
+
+    const states = {
+      1: "Jammu and Kashmir", 2: "Himachal Pradesh", 3: "Punjab", 4: "Chandigarh", 5: "Uttarakhand",
+      6: "Haryana", 7: "Delhi", 8: "Rajasthan", 9: "Uttar Pradesh", 10: "Bihar", 11: "Sikkim",
+      12: "Arunachal Pradesh", 13: "Nagaland", 14: "Manipur", 15: "Mizoram", 16: "Tripura",
+      17: "Meghalaya", 18: "Assam", 19: "West Bengal", 20: "Jharkhand", 21: "Odisha", 22: "Chhattisgarh",
+      23: "Madhya Pradesh", 24: "Gujarat", 25: "Daman and Diu", 26: "Dadra and Nagar Haveli",
+      27: "Maharashtra", 28: "Andhra Pradesh (Old)", 29: "Karnataka", 30: "Goa", 31: "Lakshadweep",
+      32: "Kerala", 33: "Tamil Nadu", 34: "Puducherry", 35: "Andaman and Nicobar Islands",
+      36: "Telangana", 37: "Andhra Pradesh", 38: "Ladakh"
+    };
+
+    setResult({
+      valid: true,
+      state: states[stateCode] || "Unknown",
+      pan: input.substring(2, 12),
+      entityNum: input[12]
+    });
+  };
+
+  return (
+    <div className="grid-2">
+      <div className="glass-card">
+        <div className="form-group">
+          <label>Enter GSTIN</label>
+          <input 
+            value={gstin} 
+            onChange={e => setGstin(e.target.value.toUpperCase())} 
+            placeholder="e.g. 27AADCB2230M1Z2" 
+            maxLength={15}
+          />
+        </div>
+        <button className="btn-primary" style={{ width: "100%" }} onClick={validate}>Verify GSTIN</button>
+      </div>
+      
+      {result && (
+        <div className="result-box fade-in">
+          {result.valid ? (
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+                <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(34,197,94,0.2)", color: BRAND.success, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>✓</div>
+                <div>
+                  <h3 style={{ color: BRAND.success }}>Mathematically Valid</h3>
+                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>Checksum verification passed</div>
+                </div>
+              </div>
+              <div style={{ display: "grid", gap: 16 }}>
+                <div style={{ background: "rgba(0,0,0,0.2)", padding: 12, borderRadius: 8 }}>
+                  <div style={{ fontSize: 11, color: BRAND.textSecondary, textTransform: "uppercase" }}>PAN Number</div>
+                  <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: 1 }}>{result.pan}</div>
+                </div>
+                <div style={{ background: "rgba(0,0,0,0.2)", padding: 12, borderRadius: 8 }}>
+                  <div style={{ fontSize: 11, color: BRAND.textSecondary, textTransform: "uppercase" }}>Registered State</div>
+                  <div style={{ fontSize: 16, fontWeight: 700 }}>{result.state}</div>
+                </div>
+                <div style={{ background: "rgba(0,0,0,0.2)", padding: 12, borderRadius: 8 }}>
+                  <div style={{ fontSize: 11, color: BRAND.textSecondary, textTransform: "uppercase" }}>Entity Number</div>
+                  <div style={{ fontSize: 16, fontWeight: 700 }}>{result.entityNum} (Registration Count)</div>
+                </div>
+              </div>
+              <div style={{ marginTop: 20, fontSize: 11, color: BRAND.textSecondary, textAlign: "center" }}>Note: This verifies the mathematical structure. To check active status, visit the official portal.</div>
+            </div>
+          ) : (
+            <div style={{ textAlign: "center", color: BRAND.danger }}>
+              <div style={{ fontSize: 40, marginBottom: 10 }}>⚠️</div>
+              <h3>Invalid GSTIN</h3>
+              <p style={{ marginTop: 10, fontSize: 14 }}>{result.message}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function QrTool() {
   const [type, setType] = useState("url");
   const [input, setInput] = useState("");
@@ -580,50 +693,143 @@ function GstCalcTool() {
   );
 }
 
-function RentTool() {
-  const [landlord, setLandlord] = useState({ name: "", phone: "", address: "" });
-  const [tenant, setTenant] = useState({ name: "", phone: "", address: "" });
-  const [property, setProperty] = useState({ address: "", type: "1BHK", state: "Maharashtra" });
-  const [terms, setTerms] = useState({ rent: "", deposit: "", start: today(), duration: 11 });
+function LegalHubTool() {
+  const [docType, setDocType] = useState("rent");
   const [preview, setPreview] = useState(false);
 
-  const stampDuty = { Maharashtra: "₹500", Delhi: "₹100", Karnataka: "₹500", "Tamil Nadu": "₹500", "Uttar Pradesh": "₹200" };
-  const clauses = [
-    "The Tenant shall pay the monthly rent on or before the 5th of each month.",
-    "The security deposit shall be refunded within 30 days of vacating the property.",
-    "The Tenant shall not sub-let the premises without the Landlord's consent.",
-    "The Tenant shall pay electricity and water charges separately."
-  ];
+  // Shared state for all forms
+  const [party1, setParty1] = useState({ name: "", address: "" }); // Landlord / Disclosing Party / Client
+  const [party2, setParty2] = useState({ name: "", address: "" }); // Tenant / Receiving Party / Agency
+  const [details, setDetails] = useState({
+    amount: "",
+    duration: "11",
+    state: "Maharashtra",
+    date: today(),
+    purpose: "", // For NDA/MSA
+  });
+
+  const renderForm = () => {
+    return (
+      <div className="fade-in">
+        <div style={{ display: "flex", gap: 10, marginBottom: 24, overflowX: "auto", paddingBottom: 5 }}>
+          <button onClick={() => setDocType("rent")} className={docType === "rent" ? "btn-primary" : "btn-secondary"}>🏠 Rent Agreement</button>
+          <button onClick={() => setDocType("nda")} className={docType === "nda" ? "btn-primary" : "btn-secondary"}>🤫 Non-Disclosure (NDA)</button>
+          <button onClick={() => setDocType("msa")} className={docType === "msa" ? "btn-primary" : "btn-secondary"}>🤝 Master Service (MSA)</button>
+        </div>
+
+        <div className="grid-2" style={{ marginBottom: 24 }}>
+          <div className="glass-card">
+            <h3>{docType === "rent" ? "Landlord" : docType === "nda" ? "Disclosing Party" : "Client"}</h3>
+            <div className="form-group"><label>Full Name / Company Name</label><input value={party1.name} onChange={e => setParty1({...party1, name: e.target.value})} /></div>
+            <div className="form-group"><label>Address / Registered Office</label><textarea value={party1.address} onChange={e => setParty1({...party1, address: e.target.value})} /></div>
+          </div>
+          <div className="glass-card">
+            <h3>{docType === "rent" ? "Tenant" : docType === "nda" ? "Receiving Party" : "Service Provider"}</h3>
+            <div className="form-group"><label>Full Name / Company Name</label><input value={party2.name} onChange={e => setParty2({...party2, name: e.target.value})} /></div>
+            <div className="form-group"><label>Address / Registered Office</label><textarea value={party2.address} onChange={e => setParty2({...party2, address: e.target.value})} /></div>
+          </div>
+        </div>
+
+        <div className="glass-card" style={{ marginBottom: 24 }}>
+          <h3>Agreement Specifics</h3>
+          <div className="grid-2">
+            <div className="form-group"><label>Execution Date</label><input type="date" value={details.date} onChange={e => setDetails({...details, date: e.target.value})} /></div>
+            <div className="form-group"><label>Jurisdiction State</label><select value={details.state} onChange={e => setDetails({...details, state: e.target.value})}>{["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Gujarat", "Uttar Pradesh"].map(s => <option key={s}>{s}</option>)}</select></div>
+            
+            {docType === "rent" && (
+              <>
+                <div className="form-group"><label>Monthly Rent (₹)</label><input type="number" value={details.amount} onChange={e => setDetails({...details, amount: e.target.value})} /></div>
+                <div className="form-group"><label>Duration (Months)</label><input type="number" value={details.duration} onChange={e => setDetails({...details, duration: e.target.value})} /></div>
+              </>
+            )}
+
+            {(docType === "nda" || docType === "msa") && (
+              <div className="form-group"><label>Purpose / Scope of Work</label><input value={details.purpose} onChange={e => setDetails({...details, purpose: e.target.value})} placeholder={docType === "nda" ? "e.g., Software Development Discussions" : "e.g., Web Design Services"} /></div>
+            )}
+            {docType === "msa" && (
+               <div className="form-group"><label>Total Contract Value (₹)</label><input type="number" value={details.amount} onChange={e => setDetails({...details, amount: e.target.value})} /></div>
+            )}
+          </div>
+        </div>
+
+        <button className="btn-primary" style={{ width: "100%" }} onClick={() => setPreview(true)}>Generate Legal Draft</button>
+      </div>
+    );
+  };
+
+  const renderRent = () => (
+    <>
+      <h2 style={{ textAlign: "center", textDecoration: "underline", marginBottom: 30 }}>RENTAL AGREEMENT</h2>
+      <p>This agreement is made and executed on <strong>{details.date}</strong> at <strong>{details.state}</strong>.</p>
+      <p><strong>BETWEEN:</strong></p>
+      <p><strong>{party1.name || "[Landlord Name]"}</strong>, residing at {party1.address || "[Address]"}, hereinafter referred to as the <strong>"Landlord"</strong>.</p>
+      <p><strong>AND:</strong></p>
+      <p><strong>{party2.name || "[Tenant Name]"}</strong>, residing at {party2.address || "[Address]"}, hereinafter referred to as the <strong>"Tenant"</strong>.</p>
+      <h4 style={{ marginTop: 20 }}>1. PREMISES</h4>
+      <p>The Landlord hereby agrees to let out and the Tenant agrees to take on rent the schedule property located at {party1.address || "[Property Address]"}.</p>
+      <h4 style={{ marginTop: 20 }}>2. RENT AND DURATION</h4>
+      <p>The monthly rent shall be <strong>₹{details.amount || "[Amount]"}</strong>, payable on or before the 5th day of each calendar month. The lease is granted for a period of <strong>{details.duration}</strong> months.</p>
+      <h4 style={{ marginTop: 20 }}>3. GOVERNING LAW</h4>
+      <p>This agreement shall be governed by the laws of India and subject to the jurisdiction of the courts in <strong>{details.state}</strong>.</p>
+    </>
+  );
+
+  const renderNda = () => (
+    <>
+      <h2 style={{ textAlign: "center", textDecoration: "underline", marginBottom: 30 }}>NON-DISCLOSURE AGREEMENT</h2>
+      <p>This Non-Disclosure Agreement (the "Agreement") is entered into on <strong>{details.date}</strong>.</p>
+      <p><strong>BY AND BETWEEN:</strong></p>
+      <p><strong>{party1.name || "[Disclosing Party]"}</strong>, having its registered office at {party1.address || "[Address]"}, hereinafter referred to as the <strong>"Disclosing Party"</strong>.</p>
+      <p><strong>AND:</strong></p>
+      <p><strong>{party2.name || "[Receiving Party]"}</strong>, having its registered office at {party2.address || "[Address]"}, hereinafter referred to as the <strong>"Receiving Party"</strong>.</p>
+      <h4 style={{ marginTop: 20 }}>1. PURPOSE</h4>
+      <p>The parties intend to explore a potential business relationship concerning <strong>{details.purpose || "[Purpose of Disclosure]"}</strong> (the "Purpose"). In connection with the Purpose, the Disclosing Party may disclose certain Confidential Information to the Receiving Party.</p>
+      <h4 style={{ marginTop: 20 }}>2. OBLIGATIONS OF RECEIVING PARTY</h4>
+      <p>The Receiving Party shall hold and maintain the Confidential Information in strictest confidence for the sole and exclusive benefit of the Disclosing Party. The Receiving Party shall restrict access to Confidential Information to employees, contractors, and third parties as is reasonably required.</p>
+      <h4 style={{ marginTop: 20 }}>3. GOVERNING LAW AND JURISDICTION</h4>
+      <p>This Agreement shall be governed in accordance with the Indian Contract Act, 1872, and subject to the exclusive jurisdiction of the courts in <strong>{details.state}</strong>.</p>
+    </>
+  );
+
+  const renderMsa = () => (
+    <>
+      <h2 style={{ textAlign: "center", textDecoration: "underline", marginBottom: 30 }}>MASTER SERVICE AGREEMENT</h2>
+      <p>This Master Service Agreement (the "Agreement") is executed on <strong>{details.date}</strong>.</p>
+      <p><strong>BY AND BETWEEN:</strong></p>
+      <p><strong>{party1.name || "[Client]"}</strong>, having its registered office at {party1.address || "[Address]"}, hereinafter referred to as the <strong>"Client"</strong>.</p>
+      <p><strong>AND:</strong></p>
+      <p><strong>{party2.name || "[Service Provider]"}</strong>, having its registered office at {party2.address || "[Address]"}, hereinafter referred to as the <strong>"Service Provider"</strong>.</p>
+      <h4 style={{ marginTop: 20 }}>1. SCOPE OF SERVICES</h4>
+      <p>The Service Provider agrees to perform and deliver the services relating to <strong>{details.purpose || "[Scope of Work]"}</strong> as requested by the Client.</p>
+      <h4 style={{ marginTop: 20 }}>2. COMPENSATION AND PAYMENT TERMS</h4>
+      <p>In consideration of the services, the Client shall pay the Service Provider a total sum of <strong>₹{details.amount || "[Amount]"}</strong>. All payments shall be subject to applicable statutory deductions including Tax Deducted at Source (TDS) under the Income Tax Act, 1961.</p>
+      <h4 style={{ marginTop: 20 }}>3. INDEPENDENT CONTRACTOR</h4>
+      <p>The relationship of the Service Provider to the Client is that of an independent contractor, and nothing contained in this Agreement shall be construed to give either party the power to direct and control the day-to-day activities of the other.</p>
+      <h4 style={{ marginTop: 20 }}>4. DISPUTE RESOLUTION</h4>
+      <p>Any disputes arising out of this Agreement shall be subject to the exclusive jurisdiction of the competent courts in <strong>{details.state}</strong>.</p>
+    </>
+  );
 
   return (
     <div>
-      {!preview ? (
+      {!preview ? renderForm() : (
         <div className="fade-in">
-          <div className="grid-2" style={{ marginBottom: 24 }}>
-            <div className="glass-card">
-              <h3>Parties</h3>
-              <div className="form-group"><label>Landlord</label><input value={landlord.name} onChange={e => setLandlord({...landlord, name: e.target.value})} /></div>
-              <div className="form-group"><label>Tenant</label><input value={tenant.name} onChange={e => setTenant({...tenant, name: e.target.value})} /></div>
+          <button className="btn-secondary no-print" onClick={() => setPreview(false)} style={{ marginBottom: 20 }}>← Edit Details</button>
+          <div style={{ background: "white", color: "black", padding: 60, minHeight: 800, fontFamily: "Times New Roman, serif", lineHeight: 1.6, borderRadius: 8 }}>
+            {docType === "rent" ? renderRent() : docType === "nda" ? renderNda() : renderMsa()}
+            
+            <div style={{ marginTop: 100, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
+              <div>
+                <div style={{ borderBottom: "1px solid #000", width: "80%", marginBottom: 10 }}></div>
+                <strong>{party1.name || (docType === "rent" ? "Landlord" : docType === "nda" ? "Disclosing Party" : "Client")}</strong>
+                <div style={{ fontSize: 12, marginTop: 5 }}>Authorized Signatory</div>
+              </div>
+              <div>
+                <div style={{ borderBottom: "1px solid #000", width: "80%", marginBottom: 10 }}></div>
+                <strong>{party2.name || (docType === "rent" ? "Tenant" : docType === "nda" ? "Receiving Party" : "Service Provider")}</strong>
+                <div style={{ fontSize: 12, marginTop: 5 }}>Authorized Signatory</div>
+              </div>
             </div>
-            <div className="glass-card">
-              <h3>Property & Terms</h3>
-              <div className="form-group"><label>Rent</label><input type="number" value={terms.rent} onChange={e => setTerms({...terms, rent: e.target.value})} /></div>
-              <div className="form-group"><label>Address</label><textarea value={property.address} onChange={e => setProperty({...property, address: e.target.value})} /></div>
-            </div>
-          </div>
-          <button className="btn-primary" style={{ width: "100%" }} onClick={() => setPreview(true)}>Generate Agreement Draft</button>
-        </div>
-      ) : (
-        <div className="fade-in">
-          <button className="btn-secondary no-print" onClick={() => setPreview(false)}>← Edit</button>
-          <div style={{ background: "white", color: "black", padding: 60, marginTop: 20 }}>
-            <h1 style={{ textAlign: "center" }}>RENTAL AGREEMENT</h1>
-            <p>This agreement is made on {terms.start} between {landlord.name} (Landlord) and {tenant.name} (Tenant).</p>
-            <p>Property Address: {property.address}</p>
-            <p>Rent: {formatINR(terms.rent)} | Deposit: {formatINR(terms.deposit)} | Tenure: {terms.duration} Months</p>
-            <h3>Terms:</h3>
-            <ul>{clauses.map((c, i) => <li key={i}>{c}</li>)}</ul>
-            <div style={{ marginTop: 60, display: "flex", justifyContent: "space-between" }}><div>Landlord Signature</div><div>Tenant Signature</div></div>
           </div>
         </div>
       )}
@@ -632,42 +838,135 @@ function RentTool() {
 }
 
 function SalaryTool() {
-  const [company, setCompany] = useState({ name: "", address: "" });
-  const [emp, setEmp] = useState({ name: "", id: "", designation: "" });
-  const [earnings, setEarnings] = useState({ basic: "", hra: "", special: "" });
-  const [deductions, setDeductions] = useState({ pf: "", tax: "" });
+  const [company, setCompany] = useState({ name: "Acme India Pvt Ltd" });
+  const [emp, setEmp] = useState({ name: "", designation: "Software Engineer" });
+  const [ctc, setCtc] = useState("600000");
   const [preview, setPreview] = useState(false);
 
-  const totalEarn = (parseFloat(earnings.basic)||0) + (parseFloat(earnings.hra)||0) + (parseFloat(earnings.special)||0);
-  const totalDed = (parseFloat(deductions.pf)||0) + (parseFloat(deductions.tax)||0);
+  // Calculations based on Indian standard practices
+  const numCtc = parseFloat(ctc) || 0;
+  
+  // CTC Breakdown (Yearly)
+  const basicYearly = numCtc * 0.50; // Standard 50% basic
+  const hraYearly = basicYearly * 0.40; // Non-metro 40%
+  const employerPfYearly = Math.min(basicYearly * 0.12, 21600); // 12% of basic or capped at 1800/mo
+  const specialYearly = Math.max(0, numCtc - basicYearly - hraYearly - employerPfYearly);
+  
+  const grossYearly = basicYearly + hraYearly + specialYearly;
+
+  // Deductions (Yearly)
+  const standardDeduction = 75000; // FY 24-25 New Regime
+  const employeePfYearly = employerPfYearly; // Matching
+  const ptYearly = 2400; // ₹200/mo typical
+
+  // TDS Calculation (New Regime 24-25)
+  const taxableIncome = Math.max(0, grossYearly - standardDeduction);
+  let taxYearly = 0;
+  
+  if (taxableIncome > 300000) {
+    if (taxableIncome <= 700000) taxYearly = (taxableIncome - 300000) * 0.05;
+    else if (taxableIncome <= 1000000) taxYearly = 20000 + (taxableIncome - 700000) * 0.10;
+    else if (taxableIncome <= 1200000) taxYearly = 50000 + (taxableIncome - 1000000) * 0.15;
+    else if (taxableIncome <= 1500000) taxYearly = 80000 + (taxableIncome - 1200000) * 0.20;
+    else taxYearly = 140000 + (taxableIncome - 1500000) * 0.30;
+  }
+  
+  // Section 87A Rebate
+  if (taxableIncome <= 700000) taxYearly = 0;
+  else taxYearly = taxYearly * 1.04; // 4% Health & Education Cess
+
+  // Monthly Values for Slip
+  const basic = basicYearly / 12;
+  const hra = hraYearly / 12;
+  const special = specialYearly / 12;
+  const gross = grossYearly / 12;
+  const pf = employeePfYearly / 12;
+  const pt = ptYearly / 12;
+  const tds = taxYearly / 12;
+  const totalDeductions = pf + pt + tds;
+  const netPay = gross - totalDeductions;
 
   return (
     <div>
       {!preview ? (
         <div className="grid-2">
           <div className="glass-card">
-            <h3>Company & Employee</h3>
+            <h3>Employee Details</h3>
             <div className="form-group"><label>Company Name</label><input value={company.name} onChange={e => setCompany({...company, name: e.target.value})} /></div>
             <div className="form-group"><label>Employee Name</label><input value={emp.name} onChange={e => setEmp({...emp, name: e.target.value})} /></div>
+            <div className="form-group"><label>Designation</label><input value={emp.designation} onChange={e => setEmp({...emp, designation: e.target.value})} /></div>
           </div>
           <div className="glass-card">
-            <h3>Salary Details</h3>
-            <div className="form-group"><label>Basic Salary</label><input type="number" value={earnings.basic} onChange={e => setEarnings({...earnings, basic: e.target.value})} /></div>
-            <div className="form-group"><label>Income Tax</label><input type="number" value={deductions.tax} onChange={e => setDeductions({...deductions, tax: e.target.value})} /></div>
-            <button className="btn-primary" style={{ width: "100%", marginTop: 20 }} onClick={() => setPreview(true)}>Generate Slip</button>
+            <h3>CTC & Tax Settings</h3>
+            <div className="form-group"><label>Yearly CTC (₹)</label><input type="number" value={ctc} onChange={e => setCtc(e.target.value)} /></div>
+            <div style={{ background: "rgba(0,0,0,0.3)", padding: 16, borderRadius: 12, marginBottom: 20 }}>
+              <div style={{ fontSize: 13, color: BRAND.textSecondary, marginBottom: 12 }}>Tax Regime Settings</div>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14, marginBottom: 8 }}>
+                <span>Standard Deduction</span>
+                <span>₹75,000 (FY 24-25)</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14 }}>
+                <span>Rebate u/s 87A</span>
+                <span>Up to ₹7L Income</span>
+              </div>
+            </div>
+            <button className="btn-primary" style={{ width: "100%" }} onClick={() => setPreview(true)}>Generate Compliant Slip</button>
           </div>
         </div>
       ) : (
         <div className="fade-in">
-          <button className="btn-secondary no-print" onClick={() => setPreview(false)}>Edit</button>
-          <div style={{ background: "white", color: "black", padding: 40, marginTop: 20 }}>
-            <h2 style={{ textAlign: "center" }}>SALARY SLIP</h2>
-            <div style={{ margin: "20px 0" }}><strong>Company:</strong> {company.name}<br /><strong>Employee:</strong> {emp.name}</div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div><strong>Earnings:</strong> {formatINR(totalEarn)}</div>
-              <div><strong>Deductions:</strong> {formatINR(totalDed)}</div>
+          <button className="btn-secondary no-print" onClick={() => setPreview(false)} style={{ marginBottom: 20 }}>← Edit Details</button>
+          <div style={{ background: "white", color: "black", padding: 60, borderRadius: 8 }}>
+            <div style={{ textAlign: "center", marginBottom: 40, borderBottom: "2px solid #000", paddingBottom: 20 }}>
+              <h1 style={{ fontSize: 24, margin: 0 }}>{company.name || "[Company Name]"}</h1>
+              <p style={{ margin: "5px 0 0", color: "#555" }}>Payslip for the month of {new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
             </div>
-            <div style={{ marginTop: 20, fontSize: 24, fontWeight: 900 }}>NET PAY: {formatINR(totalEarn - totalDed)}</div>
+            
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginBottom: 40 }}>
+              <div>
+                <p><strong>Employee Name:</strong> {emp.name || "[Employee Name]"}</p>
+                <p><strong>Designation:</strong> {emp.designation}</p>
+              </div>
+              <div>
+                <p><strong>Working Days:</strong> 30</p>
+                <p><strong>Paid Days:</strong> 30</p>
+              </div>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid #000" }}>
+              {/* Earnings Column */}
+              <div style={{ borderRight: "1px solid #000" }}>
+                <div style={{ padding: "10px 15px", background: "#f5f5f5", borderBottom: "1px solid #000", fontWeight: "bold", display: "flex", justifyContent: "space-between" }}>
+                  <span>Earnings</span><span>Amount (₹)</span>
+                </div>
+                <div style={{ padding: "10px 15px", display: "flex", justifyContent: "space-between" }}><span>Basic</span><span>{basic.toFixed(2)}</span></div>
+                <div style={{ padding: "10px 15px", display: "flex", justifyContent: "space-between" }}><span>House Rent Allowance</span><span>{hra.toFixed(2)}</span></div>
+                <div style={{ padding: "10px 15px", display: "flex", justifyContent: "space-between" }}><span>Special Allowance</span><span>{special.toFixed(2)}</span></div>
+                <div style={{ padding: "10px 15px", borderTop: "1px solid #000", fontWeight: "bold", display: "flex", justifyContent: "space-between" }}>
+                  <span>Gross Earnings (A)</span><span>{gross.toFixed(2)}</span>
+                </div>
+              </div>
+              
+              {/* Deductions Column */}
+              <div>
+                <div style={{ padding: "10px 15px", background: "#f5f5f5", borderBottom: "1px solid #000", fontWeight: "bold", display: "flex", justifyContent: "space-between" }}>
+                  <span>Deductions</span><span>Amount (₹)</span>
+                </div>
+                <div style={{ padding: "10px 15px", display: "flex", justifyContent: "space-between" }}><span>Provident Fund (PF)</span><span>{pf.toFixed(2)}</span></div>
+                <div style={{ padding: "10px 15px", display: "flex", justifyContent: "space-between" }}><span>Professional Tax</span><span>{pt.toFixed(2)}</span></div>
+                <div style={{ padding: "10px 15px", display: "flex", justifyContent: "space-between" }}><span>Income Tax (TDS)</span><span>{tds.toFixed(2)}</span></div>
+                <div style={{ padding: "10px 15px", borderTop: "1px solid #000", fontWeight: "bold", display: "flex", justifyContent: "space-between" }}>
+                  <span>Total Deductions (B)</span><span>{totalDeductions.toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 20, padding: 20, background: "#f9f9f9", border: "1px solid #000", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ fontWeight: "bold", fontSize: 18 }}>NET PAY (A - B)</div>
+              <div style={{ fontWeight: "bold", fontSize: 24 }}>₹ {netPay.toFixed(2)}</div>
+            </div>
+            
+            <p style={{ textAlign: "center", marginTop: 40, fontSize: 12, color: "#666" }}>This is a computer generated document and does not require a signature.</p>
           </div>
         </div>
       )}
@@ -726,7 +1025,7 @@ function BizNameTool() {
 // ============================================================
 export default function App() {
   const [page, setPage] = useState("home");
-  const toolPages = { upi: { title: "UPI Payment Page", hindi: "पेमेंट पेज", component: <UpiTool /> }, "gst-invoice": { title: "GST Invoice", hindi: "चालान", component: <GstInvoiceTool /> }, qr: { title: "QR Generator", hindi: "क्यूआर", component: <QrTool /> }, emi: { title: "EMI Calculator", hindi: "ईएमआई", component: <EmiTool /> }, "gst-calc": { title: "GST Calculator", hindi: "जीएसटी", component: <GstCalcTool /> }, rent: { title: "Rent Agreement", hindi: "किराया", component: <RentTool /> }, salary: { title: "Salary Slip", hindi: "वेतन पर्ची", component: <SalaryTool /> }, bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> } };
+  const toolPages = { upi: { title: "UPI Payment Page", hindi: "पेमेंट पेज", component: <UpiTool /> }, "gst-invoice": { title: "GST Invoice", hindi: "चालान", component: <GstInvoiceTool /> }, "gstin-verify": { title: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", component: <GstinVerifyTool /> }, qr: { title: "QR Generator", hindi: "क्यूआर", component: <QrTool /> }, emi: { title: "EMI Calculator", hindi: "ईएमआई", component: <EmiTool /> }, "gst-calc": { title: "GST Calculator", hindi: "जीएसटी", component: <GstCalcTool /> }, legal: { title: "Legal Hub", hindi: "कानूनी दस्तावेज़", component: <LegalHubTool /> }, salary: { title: "Payroll & Salary Engine", hindi: "वेतन पर्ची", component: <SalaryTool /> }, bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> } };
 
   return (
     <>
