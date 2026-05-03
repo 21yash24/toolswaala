@@ -4,9 +4,11 @@ import os
 import json
 import httpx
 
+import google.generativeai as genai
+
 router = APIRouter()
 
-CLAUDE_API_KEY = os.getenv("CLAUDE_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 class NameRequest(BaseModel):
     industry: str
@@ -15,9 +17,11 @@ class NameRequest(BaseModel):
 
 @router.post("/ai/business-names")
 async def generate_names(request: NameRequest):
-    if not CLAUDE_API_KEY:
-        # If no API key, return 500 so frontend falls back to sample generator
-        raise HTTPException(status_code=500, detail="Claude API key not configured")
+    if not GEMINI_API_KEY:
+        raise HTTPException(status_code=500, detail="Gemini API key not configured")
+
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     prompt = f"""
     You are an expert brand naming consultant for the Indian market.
@@ -25,7 +29,7 @@ async def generate_names(request: NameRequest):
     Keywords: {request.keywords}
     Language preference: {request.language} (English, Hindi, or Hinglish)
 
-    Return ONLY a valid JSON object in this exact format, with no markdown formatting, no comments, and nothing else:
+    Return ONLY a valid JSON object in this exact format:
     {{
         "names": [
             {{
@@ -39,32 +43,10 @@ async def generate_names(request: NameRequest):
     """
 
     try:
-        async with httpx.AsyncClient() as client:
-            response = await client.post(
-                "https://api.anthropic.com/v1/messages",
-                headers={
-                    "x-api-key": CLAUDE_API_KEY,
-                    "anthropic-version": "2023-06-01",
-                    "content-type": "application/json"
-                },
-                json={
-                    "model": "claude-3-sonnet-20240229",
-                    "max_tokens": 1024,
-                    "system": "You are a specialized business name generator returning raw JSON.",
-                    "messages": [
-                        {"role": "user", "content": prompt}
-                    ]
-                },
-                timeout=15.0
-            )
-
-        response.raise_for_status()
-        result = response.json()
+        response = model.generate_content(prompt)
+        content_text = response.text.strip()
         
-        # Claude returns content in content[0]['text']
-        content_text = result["content"][0]["text"]
-        
-        # Strip potential markdown formatting if Claude disobeys
+        # Clean markdown if Gemini adds it
         if content_text.startswith("```json"):
             content_text = content_text[7:]
         if content_text.endswith("```"):
@@ -74,5 +56,5 @@ async def generate_names(request: NameRequest):
         return data
 
     except Exception as e:
-        print(f"Claude API Error: {e}")
+        print(f"Gemini API Error: {e}")
         raise HTTPException(status_code=500, detail="Failed to generate names")
