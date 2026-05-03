@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import QRCodeStyling from "qr-code-styling/lib/qr-code-styling.js";
 
 // ============================================================
 // CONSTANTS & HELPERS
@@ -282,6 +281,11 @@ const TOOLS = [
   { id: "salary", name: "Salary Slip Engine", hindi: "वेतन पर्ची इंजन", icon: "💼", desc: "Auto-CTC breakdown with New Tax Regime TDS", color: "#009688" },
   { id: "bizname", name: "Business Name AI", hindi: "व्यापार नाम एआई", icon: "✨", desc: "AI-powered business name suggestions", color: "#E91E63" },
 ];
+
+// In the head section of your HTML template:
+// <title>ToolsWaala | Professional Business Kit for India</title>
+// <meta name="description" content="Generate GST Invoices, Rent Agreements, Salary Slips, NDAs and verify GSTINs instantly with ToolsWaala." />
+// <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
 function Navbar({ active, setPage }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -661,10 +665,12 @@ function QrTool() {
   const ref = useRef(null);
 
   useEffect(() => {
-    const qr = new QRCodeStyling(options);
-    setQrCode(qr);
-    if (ref.current) {
-      qr.append(ref.current);
+    if (window.QRCodeStyling) {
+      const qr = new window.QRCodeStyling(options);
+      setQrCode(qr);
+      if (ref.current) {
+        qr.append(ref.current);
+      }
     }
   }, []);
 
