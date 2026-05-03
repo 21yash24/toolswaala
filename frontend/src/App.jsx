@@ -71,9 +71,7 @@ function addMonths(dateStr, months) {
 // ============================================================
 // STYLES (PREMIUM DARK MODE)
 // ============================================================
-const globalStyle = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
-
+const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   :root {
@@ -659,14 +657,16 @@ function QrTool() {
     cornersSquareOptions: { color: "#FF6B00", type: "extra-rounded" },
     cornersDotOptions: { color: "#FF6B00", type: "dot" }
   });
-  const [qrCode] = useState(new QRCodeStyling(options));
+  const [qrCode, setQrCode] = useState(null);
   const ref = useRef(null);
 
   useEffect(() => {
+    const qr = new QRCodeStyling(options);
+    setQrCode(qr);
     if (ref.current) {
-      qrCode.append(ref.current);
+      qr.append(ref.current);
     }
-  }, [qrCode, ref]);
+  }, []);
 
   useEffect(() => {
     if (!qrCode) return;
