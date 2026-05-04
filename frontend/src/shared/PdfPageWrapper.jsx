@@ -18,12 +18,26 @@ export default function PdfPageWrapper({ children, title, hindi }) {
       "https://unpkg.com/docx@8.5.0/build/index.umd.js"
     ];
 
+    const checkAndInitPdfJs = () => {
+      if (window.pdfjsLib) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      }
+    };
+
+    let loadedCount = 0;
     scripts.forEach(src => {
       if (!document.querySelector(`script[src="${src}"]`)) {
         const s = document.createElement("script");
         s.src = src;
         s.async = true;
+        s.onload = () => {
+          loadedCount++;
+          if (loadedCount === scripts.length) checkAndInitPdfJs();
+        };
         document.head.appendChild(s);
+      } else {
+        loadedCount++;
+        if (loadedCount === scripts.length) checkAndInitPdfJs();
       }
     });
   }, []);
