@@ -19,6 +19,15 @@ export const STUDENT_BRAND = {
   surfaceCard: "#141414",
 };
 
+export const PDF_BRAND = {
+  accent: "#1D6BE4",
+  accentDark: "#1557B7",
+  accentLight: "#E8F1FF",
+  accentGlow: "rgba(29, 107, 228, 0.3)",
+  surface: "#09090B",
+  surfaceCard: "#141414",
+};
+
 export function formatINR(n) {
   if (n === undefined || n === null || isNaN(n)) return "₹0";
   return "₹" + Math.round(n).toLocaleString("en-IN");
@@ -39,4 +48,15 @@ export const STUDENT_TOOLS = [
   { id: "sop", path: "/sop-generator", name: "SOP Generator", hindi: "एसओपी जेनरेटर", icon: "✍️", desc: "AI-powered Statement of Purpose writer", color: "#F97316" },
   { id: "scholarship", path: "/scholarship-finder", name: "Scholarship Finder", hindi: "छात्रवृत्ति खोजें", icon: "🏆", desc: "Search 35+ Indian scholarships with filters", color: "#14B8A6" },
   { id: "study-planner", path: "/study-planner", name: "Study Planner", hindi: "स्टडी प्लानर", icon: "📅", desc: "Exam countdown, schedule & daily checklist", color: "#6366F1" },
+];
+
+export const PDF_TOOLS = [
+  { id: "pdf-compress", path: "/pdf-tools/compress-pdf", name: "Compress PDF", hindi: "पीडीएफ कम्प्रेस करें", icon: "📉", desc: "Reduce PDF size without losing quality", color: "#1D6BE4" },
+  { id: "img-to-pdf", path: "/pdf-tools/image-to-pdf", name: "Image to PDF", hindi: "इमेज से पीडीएफ", icon: "🖼️", desc: "Convert JPG, PNG to professional PDF", color: "#1D6BE4" },
+  { id: "pdf-to-img", path: "/pdf-tools/pdf-to-jpg", name: "PDF to JPG", hindi: "पीडीएफ से इमेज", icon: "📸", desc: "Extract pages as high-quality images", color: "#1D6BE4" },
+  { id: "merge-pdf", path: "/pdf-tools/merge-pdf", name: "Merge PDF", hindi: "पीडीएफ मर्ज करें", icon: "📑", desc: "Combine multiple PDFs into one", color: "#1D6BE4" },
+  { id: "split-pdf", path: "/pdf-tools/split-pdf", name: "Split PDF", hindi: "पीडीएफ स्प्लिट करें", icon: "✂️", desc: "Extract pages or split into separate files", color: "#1D6BE4" },
+  { id: "img-compress", path: "/pdf-tools/compress-image", name: "Image Compressor", hindi: "इमेज कम्प्रेस करें", icon: "🖼️", desc: "Resize & compress for exam portals", color: "#1D6BE4" },
+  { id: "word-to-pdf", path: "/pdf-tools/word-to-pdf", name: "Word to PDF", hindi: "वर्ड से पीडीएफ", icon: "📄", desc: "Convert docx to PDF (Guidance Tool)", color: "#1D6BE4" },
+  { id: "watermark-pdf", path: "/pdf-tools/watermark-pdf", name: "Watermark PDF", hindi: "वाटरमार्क लगाएं", icon: "🖋️", desc: "Add text watermark to your PDF pages", color: "#1D6BE4" },
 ];

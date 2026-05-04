@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
-import { STUDENT_TOOLS } from "./shared/constants";
-import StudentPageWrapper from "./shared/StudentPageWrapper";
 import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTimer, BonafideCertificate, NocGenerator, ResumeBuilder, SopGenerator, ScholarshipFinder, StudyPlanner } from "./pages/students";
+import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS } from "./shared/constants";
+import PdfPageWrapper from "./shared/PdfPageWrapper";
+import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf } from "./pages/pdf";
 
 // ============================================================
 // CONSTANTS & HELPERS
@@ -346,6 +347,7 @@ function Navbar() {
           </div>
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Link to="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: "1px solid #1D6BE440", background: location.pathname.includes("/pdf-tools") ? "#1D6BE4" : "#1D6BE415", color: "white", textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
           <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: "1px solid #7C3AED40", background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? "#7C3AED" : "#7C3AED15", color: "white", textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
           <button className="btn-primary" style={{ padding: "8px 18px", fontSize: 13 }} onClick={() => alert("Pro plan at ₹99/month — Integration coming soon!")}>⚡ PRO</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", color: "white", width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
@@ -569,6 +571,35 @@ function HomePage() {
         <div style={{ textAlign: "center" }}>
           <Link to="/students" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 12, background: "#7C3AED", color: "white", textDecoration: "none", fontWeight: 700, fontSize: 15 }}>
             View All Student Tools →
+          </Link>
+        </div>
+      </div>
+
+      {/* PDF & File Tools Section */}
+      <div style={{ marginTop: 40, padding: "48px 32px", borderRadius: 24, background: "linear-gradient(135deg, rgba(29,107,228,0.08) 0%, rgba(29,107,228,0.02) 100%)", border: "1px solid rgba(29,107,228,0.15)" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>📄</div>
+          <h2 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: "white", fontWeight: 900, marginBottom: 8 }}>PDF & File Tools</h2>
+          <p style={{ color: BRAND.textSecondary, fontSize: 15 }}>पूरी तरह सुरक्षित — Your files never leave your browser 🔒</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16, marginBottom: 32 }}>
+          {PDF_TOOLS.slice(0, 4).map(tool => (
+            <Link key={tool.id} to={tool.path} style={{ textDecoration: "none" }}>
+              <div style={{ background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, padding: 20, display: "flex", alignItems: "center", gap: 16, transition: "border-color 0.2s, transform 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = PDF_BRAND.accent + "60"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = BRAND.border; e.currentTarget.style.transform = "translateY(0)"; }}>
+                <div style={{ width: 44, height: 44, background: `${PDF_BRAND.accent}15`, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>{tool.icon}</div>
+                <div>
+                  <div style={{ fontWeight: 700, color: "white", fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <Link to="/pdf-tools" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 12, background: PDF_BRAND.accent, color: "white", textDecoration: "none", fontWeight: 700, fontSize: 15 }}>
+            View All PDF Tools →
           </Link>
         </div>
       </div>
@@ -2325,12 +2356,30 @@ export default function App() {
             <Route path="/attendance-calculator" element={<StudentPageWrapper title="Attendance Calculator" hindi="उपस्थिति कैलकुलेटर"><AttendanceCalc /></StudentPageWrapper>} />
             <Route path="/percentage-calculator" element={<StudentPageWrapper title="Marks Calculator" hindi="प्रतिशत कैलकुलेटर"><PercentageCalc /></StudentPageWrapper>} />
             <Route path="/pomodoro-timer" element={<StudentPageWrapper title="Pomodoro Timer" hindi="पोमोडोरो टाइमर"><PomodoroTimer /></StudentPageWrapper>} />
-            <Route path="/bonafide-certificate" element={<StudentPageWrapper title="Bonafide Certificate" hindi="बोनाफाइड सर्टिफिकेट"><BonafideCertificate /></StudentPageWrapper>} />
+            <Route path="/bonafide-certificate" element={<StudentPageWrapper title="Bonafide Certificate" hindi="बोनाफाइड सर्टिफिकेट">
+              <BonafideCertificate />
+              <div style={{ marginTop: 32, padding: 20, borderRadius: 12, background: `${PDF_BRAND.accent}08`, border: `1px solid ${PDF_BRAND.accent}20`, textAlign: "center" }}>
+                <Link to="/pdf-tools/compress-pdf" style={{ color: PDF_BRAND.accent, textDecoration: "none", fontSize: 14, fontWeight: 700 }}>
+                  Need to reduce file size? Compress your PDF before uploading →
+                </Link>
+              </div>
+            </StudentPageWrapper>} />
             <Route path="/noc-generator" element={<StudentPageWrapper title="NOC Letter" hindi="एनओसी लेटर"><NocGenerator /></StudentPageWrapper>} />
             <Route path="/resume-builder" element={<StudentPageWrapper title="Resume Builder" hindi="रिज्यूमे बनाएं"><ResumeBuilder /></StudentPageWrapper>} />
             <Route path="/sop-generator" element={<StudentPageWrapper title="SOP Generator" hindi="एसओपी जेनरेटर"><SopGenerator /></StudentPageWrapper>} />
             <Route path="/scholarship-finder" element={<StudentPageWrapper title="Scholarship Finder" hindi="छात्रवृत्ति खोजें"><ScholarshipFinder /></StudentPageWrapper>} />
             <Route path="/study-planner" element={<StudentPageWrapper title="Study Planner" hindi="स्टडी प्लानर"><StudyPlanner /></StudentPageWrapper>} />
+            
+            {/* PDF & File Tools Routes */}
+            <Route path="/pdf-tools" element={<PdfHome />} />
+            <Route path="/pdf-tools/compress-pdf" element={<PdfPageWrapper title="Compress PDF" hindi="पीडीएफ कम्प्रेस करें"><PdfCompressor /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/image-to-pdf" element={<PdfPageWrapper title="Image to PDF" hindi="इमेज से पीडीएफ"><ImageToPdf /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/pdf-to-jpg" element={<PdfPageWrapper title="PDF to JPG" hindi="पीडीएफ से इमेज"><PdfToJpg /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/merge-pdf" element={<PdfPageWrapper title="Merge PDF" hindi="पीडीएफ मर्ज करें"><MergePdf /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/split-pdf" element={<PdfPageWrapper title="Split PDF" hindi="पीडीएफ स्प्लिट करें"><SplitPdf /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/compress-image" element={<PdfPageWrapper title="Image Compressor" hindi="इमेज कम्प्रेस करें"><ImageCompressor /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/word-to-pdf" element={<PdfPageWrapper title="Word to PDF" hindi="वर्ड से पीडीएफ"><WordToPdf /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/watermark-pdf" element={<PdfPageWrapper title="Watermark PDF" hindi="वाटरमार्क लगाएं"><WatermarkPdf /></PdfPageWrapper>} />
           </Routes>
         </main>
         <Footer />
