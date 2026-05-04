@@ -299,7 +299,9 @@ const TOOLS = [
   { id: "estimate", name: "Estimate Generator", hindi: "अनुमान जनरेटर", icon: "📝", desc: "Create pre-sales quotations with discounts", color: "#4CAF50" },
   { id: "legal", name: "Legal Hub", hindi: "कानूनी हब", icon: "⚖️", desc: "Generate Rent Agreements, NDAs & MSAs", color: "#FF9800" },
   { id: "salary", name: "Salary Slip Engine", hindi: "वेतन पर्ची इंजन", icon: "💼", desc: "Auto-CTC breakdown with New Tax Regime TDS", color: "#009688" },
-  { id: "bizname", name: "Business Name AI", hindi: "व्यापार नाम एआई", icon: "✨", desc: "AI-powered business name suggestions", color: "#E91E63" },
+  { id: "tax", name: "Income Tax Calculator", hindi: "आयकर कैलकुलेटर", icon: "⚖️", desc: "Compare Old vs New Tax Regimes instantly", color: "#E91E63" },
+  { id: "receipt", name: "Receipt Maker", hindi: "रसीद जनरेटर", icon: "🧾", desc: "Professional payment receipts with PDF export", color: "#FFC107" },
+  { id: "bizname", name: "Business Name AI", hindi: "व्यापार नाम एआई", icon: "✨", desc: "AI-powered business name suggestions", color: "#3F51B5" },
 ];
 
 // In the head section of your HTML template:
@@ -1603,12 +1605,232 @@ function BizNameTool() {
   );
 }
 
+function TaxCalculatorTool() {
+  const [income, setIncome] = useState(1200000);
+  const [deduction80C, setDeduction80C] = useState(150000);
+  const [hra, setHra] = useState(50000);
+  const [otherDeductions, setOtherDeductions] = useState(25000);
+
+  const calculateTax = () => {
+    // Shared
+    const cessRate = 0.04;
+
+    // --- OLD REGIME ---
+    const oldStandardDeduction = 50000;
+    const actual80C = Math.min(Number(deduction80C) || 0, 150000);
+    const actualHra = Number(hra) || 0;
+    const actualOther = Number(otherDeductions) || 0;
+    
+    let oldTaxable = (Number(income) || 0) - oldStandardDeduction - actual80C - actualHra - actualOther;
+    oldTaxable = Math.max(0, oldTaxable);
+    
+    let oldTax = 0;
+    if (oldTaxable > 1000000) {
+      oldTax = 112500 + (oldTaxable - 1000000) * 0.30;
+    } else if (oldTaxable > 500000) {
+      oldTax = 12500 + (oldTaxable - 500000) * 0.20;
+    } else if (oldTaxable > 250000) {
+      oldTax = (oldTaxable - 250000) * 0.05;
+    }
+
+    // 87A Rebate for Old Regime (up to 5L)
+    if (oldTaxable <= 500000) oldTax = 0;
+    
+    const oldFinalTax = oldTax + (oldTax * cessRate);
+
+    // --- NEW REGIME (FY 24-25) ---
+    const newStandardDeduction = 75000;
+    let newTaxable = (Number(income) || 0) - newStandardDeduction;
+    newTaxable = Math.max(0, newTaxable);
+
+    let newTax = 0;
+    if (newTaxable > 1500000) {
+      newTax = 140000 + (newTaxable - 1500000) * 0.30;
+    } else if (newTaxable > 1200000) {
+      newTax = 80000 + (newTaxable - 1200000) * 0.20;
+    } else if (newTaxable > 1000000) {
+      newTax = 50000 + (newTaxable - 1000000) * 0.15;
+    } else if (newTaxable > 700000) {
+      newTax = 20000 + (newTaxable - 700000) * 0.10;
+    } else if (newTaxable > 300000) {
+      newTax = (newTaxable - 300000) * 0.05;
+    }
+
+    // 87A Rebate for New Regime (up to 7L)
+    if (newTaxable <= 700000) newTax = 0;
+
+    const newFinalTax = newTax + (newTax * cessRate);
+
+    return {
+      oldTax: oldFinalTax,
+      newTax: newFinalTax,
+      difference: Math.abs(oldFinalTax - newFinalTax),
+      winner: oldFinalTax < newFinalTax ? "OLD" : oldFinalTax > newFinalTax ? "NEW" : "TIE",
+      oldTaxable,
+      newTaxable
+    };
+  };
+
+  const results = calculateTax();
+
+  return (
+    <div className="grid-2">
+      <div className="glass-card">
+        <h3 style={{ marginBottom: 20 }}>Income & Deductions (Yearly)</h3>
+        <div className="form-group">
+          <label>Gross Salary (CTC)</label>
+          <input type="number" value={income} onChange={e => setIncome(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <label>Section 80C Investments (Max 1.5L)</label>
+          <input type="number" value={deduction80C} onChange={e => setDeduction80C(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <label>HRA Exemption Claimed</label>
+          <input type="number" value={hra} onChange={e => setHra(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <label>Other Deductions (80D, LTA, Interest etc)</label>
+          <input type="number" value={otherDeductions} onChange={e => setOtherDeductions(e.target.value)} />
+        </div>
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {/* Recommendation Banner */}
+        <div style={{ 
+          background: results.winner === "OLD" ? "rgba(76, 175, 80, 0.1)" : results.winner === "NEW" ? "rgba(33, 150, 243, 0.1)" : "rgba(255,255,255,0.05)", 
+          border: `1px solid ${results.winner === "OLD" ? "#4CAF50" : results.winner === "NEW" ? "#2196F3" : "#fff"}`,
+          padding: 24, borderRadius: 12, textAlign: "center"
+        }}>
+          <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8, color: BRAND.textSecondary }}>Recommendation</div>
+          {results.winner === "TIE" ? (
+            <h3 style={{ margin: 0 }}>Both regimes are identical.</h3>
+          ) : (
+            <h3 style={{ margin: 0, color: results.winner === "OLD" ? "#4CAF50" : "#2196F3" }}>
+              Go with the {results.winner} Regime!
+            </h3>
+          )}
+          {results.winner !== "TIE" && (
+            <p style={{ margin: "8px 0 0", fontSize: 14 }}>You save <strong>{formatINR(results.difference)}</strong> in taxes.</p>
+          )}
+        </div>
+
+        {/* Comparison Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div className="glass-card" style={{ textAlign: "center", borderTop: `4px solid ${results.winner === "OLD" ? "#4CAF50" : "transparent"}` }}>
+            <h4 style={{ marginBottom: 16 }}>OLD REGIME</h4>
+            <div style={{ fontSize: 12, color: BRAND.textSecondary }}>Taxable Income</div>
+            <div style={{ marginBottom: 16 }}>{formatINR(results.oldTaxable)}</div>
+            <div style={{ fontSize: 12, color: BRAND.textSecondary }}>Total Tax Payable</div>
+            <div style={{ fontSize: 24, fontWeight: "bold", color: results.winner === "OLD" ? "#4CAF50" : BRAND.text }}>{formatINR(results.oldTax)}</div>
+            <div style={{ fontSize: 10, color: BRAND.textSecondary, marginTop: 8 }}>Incl. standard deduction & your 80C/HRA</div>
+          </div>
+
+          <div className="glass-card" style={{ textAlign: "center", borderTop: `4px solid ${results.winner === "NEW" ? "#2196F3" : "transparent"}` }}>
+            <h4 style={{ marginBottom: 16 }}>NEW REGIME</h4>
+            <div style={{ fontSize: 12, color: BRAND.textSecondary }}>Taxable Income</div>
+            <div style={{ marginBottom: 16 }}>{formatINR(results.newTaxable)}</div>
+            <div style={{ fontSize: 12, color: BRAND.textSecondary }}>Total Tax Payable</div>
+            <div style={{ fontSize: 24, fontWeight: "bold", color: results.winner === "NEW" ? "#2196F3" : BRAND.text }}>{formatINR(results.newTax)}</div>
+            <div style={{ fontSize: 10, color: BRAND.textSecondary, marginTop: 8 }}>Incl. ₹75k std. deduction. No 80C allowed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReceiptTool() {
+  const [receiptNo, setReceiptNo] = useState("REC-001");
+  const [date, setDate] = useState(today());
+  const [amount, setAmount] = useState(10000);
+  const [mode, setMode] = useState("UPI");
+  const [refNo, setRefNo] = useState("");
+  const [fromName, setFromName] = useState("");
+  const [forDesc, setForDesc] = useState("Web Development Services");
+  
+  const handlePrint = () => {
+    window.print();
+  };
+
+  return (
+    <div className="grid-2">
+      <div className="glass-card no-print">
+        <h3 style={{ marginBottom: 20 }}>Receipt Details</h3>
+        <div className="grid-2" style={{ gap: 16 }}>
+          <div className="form-group"><label>Receipt No.</label><input value={receiptNo} onChange={e => setReceiptNo(e.target.value)} /></div>
+          <div className="form-group"><label>Date</label><input type="date" value={date} onChange={e => setDate(e.target.value)} /></div>
+        </div>
+        
+        <div className="form-group"><label>Received From (Client Name)</label><input value={fromName} onChange={e => setFromName(e.target.value)} placeholder="e.g. Acme Corp" /></div>
+        
+        <div className="grid-2" style={{ gap: 16 }}>
+          <div className="form-group"><label>Amount (₹)</label><input type="number" value={amount} onChange={e => setAmount(e.target.value)} /></div>
+          <div className="form-group">
+            <label>Payment Mode</label>
+            <select value={mode} onChange={e => setMode(e.target.value)}>
+              <option>UPI</option>
+              <option>Bank Transfer (NEFT/RTGS)</option>
+              <option>Cash</option>
+              <option>Cheque</option>
+            </select>
+          </div>
+        </div>
+        
+        <div className="form-group"><label>Reference / Transaction No.</label><input value={refNo} onChange={e => setRefNo(e.target.value)} placeholder="Optional" /></div>
+        <div className="form-group"><label>Payment For (Description)</label><textarea value={forDesc} onChange={e => setForDesc(e.target.value)} /></div>
+        
+        <button className="btn-primary" style={{ width: "100%" }} onClick={handlePrint}>Download / Print Receipt</button>
+      </div>
+
+      <div className="glass-card print-area" style={{ background: "#fff", color: "#000", fontFamily: "Helvetica, Arial, sans-serif" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: "2px solid #eee", paddingBottom: 20, marginBottom: 20 }}>
+          <div>
+            <h1 style={{ color: BRAND.primary, margin: 0, fontSize: 32 }}>PAYMENT RECEIPT</h1>
+            <div style={{ marginTop: 8, color: "#666" }}>ToolsWaala Free Business Kit</div>
+          </div>
+          <div style={{ textAlign: "right" }}>
+            <div style={{ fontSize: 14, color: "#666" }}>Receipt No.</div>
+            <div style={{ fontSize: 18, fontWeight: "bold" }}>{receiptNo}</div>
+            <div style={{ fontSize: 14, color: "#666", marginTop: 8 }}>Date</div>
+            <div style={{ fontSize: 16 }}>{date}</div>
+          </div>
+        </div>
+
+        <div style={{ background: "rgba(255,107,0,0.05)", padding: 30, borderRadius: 12, border: "1px dashed rgba(255,107,0,0.3)", marginBottom: 30 }}>
+          <div style={{ fontSize: 20, lineHeight: 1.8 }}>
+            Received with thanks from <strong>{fromName || "[Client Name]"}</strong>, <br/>
+            a sum of <strong>{formatINR(amount)}</strong> <br/>
+            ({numberToWords(amount)} only)<br/>
+            via <strong>{mode}</strong> {refNo ? `(Ref: ${refNo})` : ""} <br/>
+            towards <strong>{forDesc || "[Description]"}</strong>.
+          </div>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginTop: 60 }}>
+          <div style={{ background: BRAND.primary, color: "#fff", padding: "10px 30px", fontSize: 24, fontWeight: "bold", borderRadius: 8 }}>
+            {formatINR(amount)}
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <div style={{ borderBottom: "1px solid #000", width: 200, marginBottom: 10 }}></div>
+            <strong>Authorized Signatory</strong>
+          </div>
+        </div>
+        
+        <div style={{ textAlign: "center", marginTop: 60, fontSize: 12, color: "#999", borderTop: "1px solid #eee", paddingTop: 20 }}>
+          This is a computer generated receipt. Generated via Toolswaala.in
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ============================================================
 // MAIN APP
 // ============================================================
 export default function App() {
   const [page, setPage] = useState("home");
-  const toolPages = { upi: { title: "UPI Payment Page", hindi: "पेमेंट पेज", component: <UpiTool /> }, "gst-invoice": { title: "GST Invoice", hindi: "चालान", component: <GstInvoiceTool /> }, estimate: { title: "Estimate Generator", hindi: "अनुमान", component: <EstimateTool /> }, "gstin-verify": { title: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", component: <GstinVerifyTool /> }, qr: { title: "QR Generator", hindi: "क्यूआर", component: <QrTool /> }, emi: { title: "EMI Calculator", hindi: "ईएमआई", component: <EmiTool /> }, "gst-calc": { title: "GST Calculator", hindi: "जीएसटी", component: <GstCalcTool /> }, legal: { title: "Legal Hub", hindi: "कानूनी दस्तावेज़", component: <LegalHubTool /> }, salary: { title: "Payroll & Salary Engine", hindi: "वेतन पर्ची", component: <SalaryTool /> }, bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> } };
+  const toolPages = { upi: { title: "UPI Payment Page", hindi: "पेमेंट पेज", component: <UpiTool /> }, "gst-invoice": { title: "GST Invoice", hindi: "चालान", component: <GstInvoiceTool /> }, estimate: { title: "Estimate Generator", hindi: "अनुमान", component: <EstimateTool /> }, "gstin-verify": { title: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", component: <GstinVerifyTool /> }, qr: { title: "QR Generator", hindi: "क्यूआर", component: <QrTool /> }, emi: { title: "EMI Calculator", hindi: "ईएमआई", component: <EmiTool /> }, "gst-calc": { title: "GST Calculator", hindi: "जीएसटी", component: <GstCalcTool /> }, legal: { title: "Legal Hub", hindi: "कानूनी दस्तावेज़", component: <LegalHubTool /> }, salary: { title: "Payroll & Salary Engine", hindi: "वेतन पर्ची", component: <SalaryTool /> }, tax: { title: "Income Tax Calculator", hindi: "आयकर", component: <TaxCalculatorTool /> }, receipt: { title: "Receipt Maker", hindi: "रसीद", component: <ReceiptTool /> }, bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> } };
 
   return (
     <>
