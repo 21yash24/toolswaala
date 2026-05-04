@@ -380,9 +380,12 @@ function Footer() {
               ))}
             </div>
           </div>
-          <div>
+          <div style={{ maxWidth: 300 }}>
             <div style={{ color: "white", fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Connect</div>
-            <p style={{ fontSize: 14, color: BRAND.textSecondary }}>📧 hello@toolswaala.in</p>
+            <p style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 12 }}>📧 hello@toolswaala.in</p>
+            <p style={{ fontSize: 12, color: BRAND.textSecondary, lineHeight: 1.5, opacity: 0.8 }}>
+              ToolsWaala is a community project. If our tools helped you, consider sharing them with your business network!
+            </p>
           </div>
         </div>
       </div>
@@ -391,16 +394,88 @@ function Footer() {
 }
 
 function PageWrapper({ title, hindi, children }) {
+  useEffect(() => {
+    // 1. Dynamic Title & Meta for SEO
+    const seoTitle = `${title} (${hindi}) | ToolsWaala - Free Business Tools India`;
+    const seoDesc = `Free professional ${title.toLowerCase()} for Indian businesses. Zero login, high-speed, and secure. Made for Bharat.`;
+    document.title = seoTitle;
+    
+    // Update meta description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.name = "description";
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.content = seoDesc;
+
+    // 2. Inject JSON-LD Structured Data
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": title,
+      "operatingSystem": "Web",
+      "applicationCategory": "BusinessApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "url": window.location.href,
+      "description": seoDesc
+    };
+    
+    let script = document.getElementById('json-ld-schema');
+    if (!script) {
+      script = document.createElement('script');
+      script.id = 'json-ld-schema';
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(schema);
+  }, [title, hindi]);
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: `ToolsWaala - ${title}`,
+        text: `Check out this free ${title} I found on ToolsWaala!`,
+        url: window.location.href,
+      }).catch(console.error);
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
+    }
+  };
+
   return (
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: "40px 24px" }} className="fade-in">
-      <div style={{ marginBottom: 40 }}>
-        <Link to="/" className="btn-ghost" style={{ marginBottom: 24 }}>← Dashboard</Link>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
-          <h1 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: "white" }}>{title}</h1>
-          <span className="hindi-label" style={{ fontSize: 16, color: BRAND.primary }}>{hindi}</span>
+      <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
+        <div style={{ flex: 1 }}>
+          <Link to="/" className="btn-ghost" style={{ marginBottom: 24, display: "inline-block" }}>← Dashboard</Link>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
+            <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)", color: "white", fontWeight: 900, letterSpacing: "-0.02em" }}>{title}</h1>
+            <span className="hindi-label" style={{ fontSize: 18, color: BRAND.primary, fontWeight: 500 }}>{hindi}</span>
+          </div>
         </div>
+        <button onClick={handleShare} className="btn-ghost" style={{ padding: "10px 20px", borderRadius: 12, border: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8, fontSize: 14 }}>
+          <span>🔗</span> Share Tool
+        </button>
       </div>
       {children}
+
+      <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
+        <h3 style={{ fontSize: 20, marginBottom: 24, color: "white" }}>Other Useful Tools</h3>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+          {TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (
+            <Link key={tool.id} to={tool.path} style={{ textDecoration: "none" }}>
+              <div className="glass-card" style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, height: "100%" }}>
+                <div style={{ fontSize: 24 }}>{tool.icon}</div>
+                <div>
+                  <div style={{ fontWeight: 600, color: "white", fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -1200,6 +1275,17 @@ function EmiTool() {
         <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: 14 }}>Monthly EMI</div>
           <div style={{ fontSize: 48, fontWeight: 900, color: BRAND.primary }}>{formatINR(emi)}</div>
+          <button 
+            onClick={() => {
+              const text = `🏦 Loan EMI Calculation:\n\nPrincipal: ${formatINR(amount)}\nInterest: ${rate}%\nTenure: ${tenure} Months\n---\nMonthly EMI: ${formatINR(emi)}\n\nCheck yours at: ${window.location.href}`;
+              navigator.clipboard.writeText(text);
+              alert("Summary copied to clipboard!");
+            }}
+            className="btn-primary" 
+            style={{ width: "100%", marginTop: 16, fontSize: 14 }}
+          >
+            📋 Copy Summary
+          </button>
         </div>
       </div>
     </div>
@@ -1936,6 +2022,17 @@ function SipCalcTool() {
             <div className="stat-card"><div className="stat-value" style={{ fontSize: 18, color: "#4CAF50" }}>{formatINR(returns)}</div><div className="stat-label">Est. Returns</div></div>
             <div className="stat-card"><div className="stat-value" style={{ fontSize: 18, color: BRAND.primary }}>{formatINR(futureValue)}</div><div className="stat-label">Total Value</div></div>
           </div>
+          <button 
+            onClick={() => {
+              const text = `📈 My SIP Investment Projection:\n\nMonthly SIP: ${formatINR(monthly)}\nPeriod: ${years} Years\nExp. Returns: ${rate}%\n---\nTotal Invested: ${formatINR(invested)}\nEst. Returns: ${formatINR(returns)}\nTotal Value: ${formatINR(futureValue)}\n\nCalculate yours at: ${window.location.href}`;
+              navigator.clipboard.writeText(text);
+              alert("Summary copied to clipboard!");
+            }}
+            className="btn-primary" 
+            style={{ width: "100%", marginTop: 8, fontSize: 14 }}
+          >
+            📋 Copy Calculation Summary
+          </button>
         </div>
       </div>
 
