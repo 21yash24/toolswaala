@@ -36,6 +36,15 @@ export default function StudentPageWrapper({ title, hindi, children }) {
     setMeta("twitter:description", seoDesc);
     setMeta("twitter:card", "summary_large_image");
 
+    // Canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = window.location.origin + window.location.pathname;
+
     const schema = {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
