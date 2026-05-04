@@ -51,10 +51,10 @@ function SemesterMode() {
     <div>
       <div style={cs}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
-          <h3 style={{ color: "white", margin: 0 }}>Semester Result <span style={{ fontSize: 13, color: BRAND.textSecondary }}>सेमेस्टर रिजल्ट</span></h3>
+          <h3 style={{ color: BRAND.text, margin: 0 }}>Semester Result <span style={{ fontSize: 13, color: BRAND.textSecondary }}>सेमेस्टर रिजल्ट</span></h3>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ fontSize: 12, color: BRAND.textSecondary }}>Pass:</span>
-            <select value={threshold} onChange={e => setThreshold(+e.target.value)} style={{ padding: "4px 8px", borderRadius: 6, border: `1px solid ${BRAND.border}`, background: "#1a1a1a", color: "white", fontSize: 13 }}>
+            <select value={threshold} onChange={e => setThreshold(+e.target.value)} style={{ padding: "4px 8px", borderRadius: 6, border: `1px solid ${BRAND.border}`, background: BRAND.surfaceCard, color: BRAND.text, fontSize: 13 }}>
               <option value={33}>33%</option><option value={35}>35%</option><option value={40}>40%</option>
             </select>
             <button onClick={addSub} style={{ background: STUDENT_BRAND.accent, color: "white", border: "none", borderRadius: 8, padding: "6px 14px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add</button>
@@ -66,9 +66,9 @@ function SemesterMode() {
           const grade = getGrade(p);
           return (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 50px 50px 40px", gap: 8, marginBottom: 12, alignItems: "center" }}>
-              <input value={sub.name} onChange={e => update(i, "name", e.target.value)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 14 }} />
-              <input type="number" min="0" value={sub.obtained} onChange={e => update(i, "obtained", +e.target.value || 0)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 14, textAlign: "center" }} />
-              <input type="number" min="1" value={sub.max} onChange={e => update(i, "max", +e.target.value || 1)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 14, textAlign: "center" }} />
+              <input value={sub.name} onChange={e => update(i, "name", e.target.value)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 14 }} />
+              <input type="number" min="0" value={sub.obtained} onChange={e => update(i, "obtained", +e.target.value || 0)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 14, textAlign: "center" }} />
+              <input type="number" min="1" value={sub.max} onChange={e => update(i, "max", +e.target.value || 1)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 14, textAlign: "center" }} />
               <span style={{ fontSize: 14, fontWeight: 700, textAlign: "center", color: pass ? "#4CAF50" : "#EF4444" }}>{p.toFixed(0)}%</span>
               <span style={{ fontSize: 12, textAlign: "center", color: BRAND.textSecondary }}>{grade.grade}</span>
               {subjects.length > 1 && <button onClick={() => removeSub(i)} style={{ background: "none", border: "none", color: "#EF4444", cursor: "pointer", fontSize: 16 }}>✕</button>}
@@ -103,7 +103,7 @@ function TargetMode() {
   return (
     <div>
       <div style={cs}>
-        <h3 style={{ color: "white", margin: "0 0 20px" }}>Target Marks <span style={{ fontSize: 13, color: BRAND.textSecondary }}>लक्ष्य अंक</span></h3>
+        <h3 style={{ color: BRAND.text, margin: "0 0 20px" }}>Target Marks <span style={{ fontSize: 13, color: BRAND.textSecondary }}>लक्ष्य अंक</span></h3>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div><label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Marks Scored So Far</label><input type="number" min="0" value={current} onChange={e => setCurrent(+e.target.value || 0)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16 }} /></div>
           <div><label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Max Marks So Far</label><input type="number" min="1" value={maxSoFar} onChange={e => setMaxSoFar(+e.target.value || 1)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16 }} /></div>
@@ -135,7 +135,7 @@ function CbseMode() {
   return (
     <div>
       <div style={cs}>
-        <h3 style={{ color: "white", margin: "0 0 20px" }}>CBSE Board Result <span style={{ fontSize: 13, color: BRAND.textSecondary }}>सीबीएसई बोर्ड</span></h3>
+        <h3 style={{ color: BRAND.text, margin: "0 0 20px" }}>CBSE Board Result <span style={{ fontSize: 13, color: BRAND.textSecondary }}>सीबीएसई बोर्ड</span></h3>
         {subjects.map((sub, i) => {
           const grade = getGrade(sub.marks);
           return (

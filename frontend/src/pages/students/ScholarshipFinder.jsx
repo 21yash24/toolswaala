@@ -34,18 +34,18 @@ export default function ScholarshipFinder() {
         ))}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
         {filtered.map((s, i) => (
           <div key={i} style={cs}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
-              <h3 style={{ fontSize: 18, color: "white", margin: 0, maxWidth: "80%" }}>{s.name}</h3>
+              <h3 style={{ fontSize: 18, color: BRAND.text, margin: 0, maxWidth: "80%" }}>{s.name}</h3>
               <div style={{ fontSize: 24 }}>🏆</div>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
               <span style={{ padding: "4px 10px", borderRadius: 6, background: "rgba(124,58,237,0.1)", color: STUDENT_BRAND.accent, fontSize: 11, fontWeight: 700 }}>{s.body}</span>
               <span style={{ padding: "4px 10px", borderRadius: 6, background: "rgba(255,255,255,0.05)", color: BRAND.textSecondary, fontSize: 11 }}>{s.level}</span>
             </div>
-            <div style={{ background: "rgba(0,0,0,0.2)", padding: 16, borderRadius: 12, marginBottom: 20 }}>
+            <div style={{ background: "rgba(0,0,0,0.05)", padding: 16, borderRadius: 12, marginBottom: 20 }}>
               <div style={{ fontSize: 13, color: BRAND.textSecondary, marginBottom: 4 }}>Scholarship Amount</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: "#4CAF50" }}>{s.amount}</div>
               <div style={{ fontSize: 12, color: BRAND.textSecondary, marginTop: 12 }}><strong>Eligibility:</strong> {s.eligibility}</div>
