@@ -229,7 +229,18 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
   @media(max-width: 768px) {
-    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .glass-card { padding: 16px !important; }
+    .result-box { padding: 16px !important; }
+    .nav-desktop-links { display: none !important; }
+    .nav-mobile-hamburger { display: flex !important; }
+    table { font-size: 12px !important; }
+    table th, table td { padding: 8px 6px !important; }
+    .form-group input, .form-group select, .form-group textarea { font-size: 16px !important; }
+    h1 { font-size: 28px !important; }
+  }
+  @media(min-width: 769px) {
+    .nav-mobile-hamburger { display: none !important; }
   }
 
   .badge {
@@ -355,21 +366,31 @@ function Navbar({ darkMode, setDarkMode }) {
           <button onClick={() => setDarkMode(!darkMode)} style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
             {darkMode ? "☀️" : "🌙"}
           </button>
-          <Link to="/" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname === "/" ? BRAND.primary : "transparent", color: location.pathname === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>💼 Business</Link>
-          <Link to="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
-          <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
+          <div className="nav-desktop-links" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <Link to="/" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname === "/" ? BRAND.primary : "transparent", color: location.pathname === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>💼 Business</Link>
+            <Link to="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
+            <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
+          </div>
+          <button className="nav-mobile-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
         </div>
       </div>
       {menuOpen && (
-        <div style={{ background: BRAND.surfaceCard, borderBottom: `1px solid ${BRAND.border}`, padding: "24px 0" }} className="fade-in">
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 8 }}>
-            {TOOLS.map(t => (
-              <Link key={t.id} to={t.path} onClick={() => setMenuOpen(false)}
-                style={{ background: activeTool === t.id ? "rgba(255,107,0,0.1)" : "transparent", border: "1px solid", borderColor: activeTool === t.id ? "rgba(255,107,0,0.2)" : "transparent", color: activeTool === t.id ? BRAND.primary : BRAND.text, padding: "12px 16px", borderRadius: 12, cursor: "pointer", textAlign: "left", fontSize: 14, fontWeight: 600, display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
-                <span style={{ fontSize: 20 }}>{t.icon}</span> {t.name}
-              </Link>
-            ))}
+        <div style={{ background: BRAND.surfaceCard, borderBottom: `1px solid ${BRAND.border}`, padding: "16px 0", maxHeight: "70vh", overflowY: "auto" }} className="fade-in">
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px" }}>
+            {/* Mobile section links */}
+            <div style={{ display: "flex", gap: 8, marginBottom: 16, overflowX: "auto", paddingBottom: 8 }}>
+              <Link to="/" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname === "/" ? BRAND.primary : "transparent", color: location.pathname === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>💼 Business</Link>
+              <Link to="/pdf-tools" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>📄 PDF Tools</Link>
+              <Link to="/students" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.includes("/students") ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>🎓 Students</Link>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 6 }}>
+              {TOOLS.map(t => (
+                <Link key={t.id} to={t.path} onClick={() => setMenuOpen(false)}
+                  style={{ background: activeTool === t.id ? "rgba(255,107,0,0.1)" : "transparent", border: "1px solid", borderColor: activeTool === t.id ? "rgba(255,107,0,0.2)" : "transparent", color: activeTool === t.id ? BRAND.primary : BRAND.text, padding: "12px 14px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+                  <span style={{ fontSize: 18 }}>{t.icon}</span> {t.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -526,7 +547,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 24 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
         {filtered.map((tool) => (
           <Link
             key={tool.id}
@@ -704,7 +725,7 @@ function GstInvoiceTool() {
               <div className="form-group">
                 <label>State</label>
                 <select value={seller.state} onChange={e => setSeller({...seller, state: e.target.value})}>
-                  {["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Gujarat", "Haryana", "Uttar Pradesh"].map(s => <option key={s}>{s}</option>)}
+                  {["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Jammu and Kashmir","Ladakh","Chandigarh","Puducherry","Dadra and Nagar Haveli","Andaman and Nicobar Islands","Lakshadweep"].map(s => <option key={s}>{s}</option>)}
                 </select>
               </div>
               <div style={{ marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 15 }}>
@@ -722,7 +743,7 @@ function GstInvoiceTool() {
               <div className="form-group">
                 <label>Place of Supply (State)</label>
                 <select value={buyer.state} onChange={e => setBuyer({...buyer, state: e.target.value})}>
-                  {["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Gujarat", "Haryana", "Uttar Pradesh"].map(s => <option key={s}>{s}</option>)}
+                  {["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Jammu and Kashmir","Ladakh","Chandigarh","Puducherry","Dadra and Nagar Haveli","Andaman and Nicobar Islands","Lakshadweep"].map(s => <option key={s}>{s}</option>)}
                 </select>
               </div>
               <div style={{ marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 15 }}>
