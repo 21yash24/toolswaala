@@ -87,12 +87,12 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   :root {
     --primary: #FF6B00;
     --primary-dark: #D45800;
-    --surface: var(--app-surface);
-    --surface-dark: var(--app-surface-card);
+    --surface: #F8FAFC;
+    --surface-dark: #FFFFFF;
     --accent: #FFB347;
-    --border: var(--app-border);
-    --text: var(--app-text);
-    --text-secondary: var(--app-text-secondary);
+    --border: rgba(0, 0, 0, 0.08);
+    --text: #0F172A;
+    --text-secondary: #64748B;
     --success: #22C55E;
     --danger: #EF4444;
     --radius: 16px;
@@ -102,8 +102,12 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   }
 
   .dark-mode {
-    --shadow: 0 10px 40px -10px rgba(0,0,0,0.8);
+    --surface: #09090B;
+    --surface-dark: #141414;
+    --text: #FAFAFA;
+    --text-secondary: #A1A1AA;
     --border: rgba(255, 255, 255, 0.08);
+    --shadow: 0 10px 40px -10px rgba(0,0,0,0.8);
   }
 
   html, body, #root {
