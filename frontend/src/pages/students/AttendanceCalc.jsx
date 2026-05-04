@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BRAND, STUDENT_BRAND } from "../../shared/constants";
 
 const cs = { background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, padding: 24 };
 const tabBtn = (active) => ({ padding: "10px 20px", borderRadius: 10, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 600, background: active ? STUDENT_BRAND.accent : "rgba(255,255,255,0.05)", color: active ? "white" : BRAND.textSecondary });
 
 export default function AttendanceCalc() {
-  const [mode, setMode] = useState("overall");
+  const [mode, setMode] = useState(() => localStorage.getItem("tw_att_mode") || "overall");
+  
+  useEffect(() => {
+    localStorage.setItem("tw_att_mode", mode);
+  }, [mode]);
+
   return (
     <div>
       <div style={{ display: "flex", gap: 8, marginBottom: 32 }}>
@@ -18,8 +23,13 @@ export default function AttendanceCalc() {
 }
 
 function OverallMode() {
-  const [total, setTotal] = useState(120);
-  const [attended, setAttended] = useState(85);
+  const [total, setTotal] = useState(() => parseInt(localStorage.getItem("tw_att_total") || "120", 10));
+  const [attended, setAttended] = useState(() => parseInt(localStorage.getItem("tw_att_attended") || "85", 10));
+
+  useEffect(() => {
+    localStorage.setItem("tw_att_total", total);
+    localStorage.setItem("tw_att_attended", attended);
+  }, [total, attended]);
 
   const pct = total > 0 ? (attended / total) * 100 : 0;
   const canBunk = total > 0 ? Math.floor((attended - 0.75 * total) / 0.75) : 0;
@@ -29,17 +39,21 @@ function OverallMode() {
   const labels = { safe: "Safe ✅ / सुरक्षित", warning: "Below Required ⚠️ / कम उपस्थिति", danger: "DETAINED RISK 🚨 / डिटेन होने का खतरा" };
 
   return (
-    <div>
+    <div className="fade-in">
+      <div style={{ ...cs, background: "rgba(124, 58, 237, 0.05)", border: `1px solid ${STUDENT_BRAND.accent}30`, marginBottom: 24, padding: "12px 24px" }}>
+        <p style={{ margin: 0, fontSize: 13, color: STUDENT_BRAND.accent, fontWeight: 600 }}>💾 Auto-Saved: Your data is stored locally in your browser.</p>
+      </div>
+
       <div style={cs}>
-        <h3 style={{ color: "white", margin: "0 0 20px" }}>Overall Attendance <span style={{ fontSize: 13, color: BRAND.textSecondary }}>कुल उपस्थिति</span></h3>
+        <h3 style={{ color: BRAND.text, margin: "0 0 20px" }}>Overall Attendance <span style={{ fontSize: 13, color: BRAND.textSecondary }}>कुल उपस्थिति</span></h3>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Total Classes Held / कुल कक्षाएं</label>
-            <input type="number" min="0" value={total} onChange={e => setTotal(+e.target.value || 0)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 18, fontWeight: 700 }} />
+            <input type="number" min="0" value={total} onChange={e => setTotal(+e.target.value || 0)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: BRAND.text, fontSize: 18, fontWeight: 700 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Classes Attended / उपस्थित</label>
-            <input type="number" min="0" value={attended} onChange={e => setAttended(+e.target.value || 0)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 18, fontWeight: 700 }} />
+            <input type="number" min="0" value={attended} onChange={e => setAttended(+e.target.value || 0)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: BRAND.text, fontSize: 18, fontWeight: 700 }} />
           </div>
         </div>
       </div>
@@ -71,17 +85,34 @@ function OverallMode() {
         </div>
       )}
 
-      <button onClick={() => { navigator.clipboard.writeText(`📊 My Attendance: ${pct.toFixed(1)}%\nAttended: ${attended}/${total}\n${canBunk > 0 ? `Can bunk ${canBunk} more!` : `Need ${mustAttend} more classes for 75%`}\n\nCheck yours: ${window.location.href}`); alert("Copied!"); }} style={{ width: "100%", marginTop: 24, background: STUDENT_BRAND.accent, color: "white", border: "none", borderRadius: 12, padding: "14px 24px", cursor: "pointer", fontSize: 15, fontWeight: 700 }}>📋 Copy & Share on WhatsApp</button>
+      <button onClick={() => { 
+        const text = `🚨 Bunk Status Report 🚨\n\nOverall Attendance: ${pct.toFixed(1)}%\n` +
+          (canBunk > 0 ? `😎 Status: Can safely bunk ${canBunk} more classes!` : `💀 Status: Danger! Need ${mustAttend} more classes.`) +
+          `\n\nCheck your bunk status at: ${window.location.href}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+      }} style={{ width: "100%", marginTop: 24, background: "#25D366", color: "white", border: "none", borderRadius: 12, padding: "14px 24px", cursor: "pointer", fontSize: 15, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+        <span style={{ fontSize: 20 }}>📲</span> Share Bunk Status on WhatsApp
+      </button>
     </div>
   );
 }
 
 function SubjectMode() {
-  const [subjects, setSubjects] = useState([
-    { name: "Maths", total: 30, attended: 25 },
-    { name: "Physics", total: 28, attended: 20 },
-    { name: "Chemistry", total: 25, attended: 22 },
-  ]);
+  const [subjects, setSubjects] = useState(() => {
+    const saved = localStorage.getItem("tw_att_subjects");
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return [
+      { name: "Maths", total: 30, attended: 25 },
+      { name: "Physics", total: 28, attended: 20 },
+      { name: "Chemistry", total: 25, attended: 22 },
+    ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tw_att_subjects", JSON.stringify(subjects));
+  }, [subjects]);
 
   const addSub = () => setSubjects([...subjects, { name: `Subject ${subjects.length + 1}`, total: 30, attended: 20 }]);
   const removeSub = (i) => setSubjects(subjects.filter((_, idx) => idx !== i));
@@ -92,19 +123,23 @@ function SubjectMode() {
   const overallPct = totalAll > 0 ? (attendedAll / totalAll) * 100 : 0;
 
   return (
-    <div>
+    <div className="fade-in">
+      <div style={{ ...cs, background: "rgba(124, 58, 237, 0.05)", border: `1px solid ${STUDENT_BRAND.accent}30`, marginBottom: 24, padding: "12px 24px" }}>
+        <p style={{ margin: 0, fontSize: 13, color: STUDENT_BRAND.accent, fontWeight: 600 }}>💾 Auto-Saved: Your subjects are stored locally in your browser.</p>
+      </div>
+
       <div style={cs}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <h3 style={{ color: "white", margin: 0 }}>Subject Tracker <span style={{ fontSize: 13, color: BRAND.textSecondary }}>विषय-वार</span></h3>
+          <h3 style={{ color: BRAND.text, margin: 0 }}>Subject Tracker <span style={{ fontSize: 13, color: BRAND.textSecondary }}>विषय-वार</span></h3>
           <button onClick={addSub} style={{ background: STUDENT_BRAND.accent, color: "white", border: "none", borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 600 }}>+ Add</button>
         </div>
         {subjects.map((sub, i) => {
           const p = sub.total > 0 ? (sub.attended / sub.total) * 100 : 0;
           return (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 60px 40px", gap: 10, marginBottom: 12, alignItems: "center" }}>
-              <input value={sub.name} onChange={e => update(i, "name", e.target.value)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 14 }} />
-              <input type="number" min="0" value={sub.total} onChange={e => update(i, "total", +e.target.value || 0)} placeholder="Total" style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 14, textAlign: "center" }} />
-              <input type="number" min="0" value={sub.attended} onChange={e => update(i, "attended", +e.target.value || 0)} placeholder="Present" style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 14, textAlign: "center" }} />
+              <input value={sub.name} onChange={e => update(i, "name", e.target.value)} style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: BRAND.text, fontSize: 14 }} />
+              <input type="number" min="0" value={sub.total} onChange={e => update(i, "total", +e.target.value || 0)} placeholder="Total" style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: BRAND.text, fontSize: 14, textAlign: "center" }} />
+              <input type="number" min="0" value={sub.attended} onChange={e => update(i, "attended", +e.target.value || 0)} placeholder="Present" style={{ padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: BRAND.text, fontSize: 14, textAlign: "center" }} />
               <span style={{ fontSize: 16, fontWeight: 700, textAlign: "center", color: p >= 75 ? "#4CAF50" : p >= 65 ? "#F59E0B" : "#EF4444" }}>{p.toFixed(0)}%</span>
               {subjects.length > 1 && <button onClick={() => removeSub(i)} style={{ background: "none", border: "none", color: "#EF4444", cursor: "pointer", fontSize: 16 }}>✕</button>}
             </div>
@@ -120,6 +155,15 @@ function SubjectMode() {
         <div style={{ fontSize: 48, fontWeight: 900, color: overallPct >= 75 ? "#4CAF50" : "#EF4444" }}>{overallPct.toFixed(1)}%</div>
         <div style={{ fontSize: 13, color: BRAND.textSecondary }}>{attendedAll} / {totalAll} classes attended</div>
       </div>
+      
+      <button onClick={() => { 
+        const text = `🚨 Aggregate Bunk Status 🚨\n\nOverall Attendance: ${overallPct.toFixed(1)}%\n` +
+          (overallPct >= 75 ? `😎 Status: Safe zone!` : `💀 Status: Danger zone!`) +
+          `\n\nCheck your bunk status at: ${window.location.href}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+      }} style={{ width: "100%", marginTop: 24, background: "#25D366", color: "white", border: "none", borderRadius: 12, padding: "14px 24px", cursor: "pointer", fontSize: 15, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+        <span style={{ fontSize: 20 }}>📲</span> Share Aggregate Status
+      </button>
     </div>
   );
 }
