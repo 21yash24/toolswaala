@@ -1,0 +1,139 @@
+import { useState, useEffect, useRef, useCallback } from "react";
+import { BRAND, STUDENT_BRAND } from "../../shared/constants";
+
+const cs = { background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, padding: 24 };
+
+export default function PomodoroTimer() {
+  const [focusMin, setFocusMin] = useState(25);
+  const [breakMin, setBreakMin] = useState(5);
+  const [longBreakMin, setLongBreakMin] = useState(15);
+  const [secondsLeft, setSecondsLeft] = useState(25 * 60);
+  const [isRunning, setIsRunning] = useState(false);
+  const [phase, setPhase] = useState("focus"); // focus | break | longBreak
+  const [sessionCount, setSessionCount] = useState(0);
+  const [task, setTask] = useState("");
+  const [todayStats, setTodayStats] = useState(() => {
+    try { const d = JSON.parse(localStorage.getItem("pomo_stats") || "{}"); return d.date === new Date().toDateString() ? d : { date: new Date().toDateString(), pomos: 0, minutes: 0 }; } catch { return { date: new Date().toDateString(), pomos: 0, minutes: 0 }; }
+  });
+
+  const intervalRef = useRef(null);
+  const audioCtxRef = useRef(null);
+
+  const totalSeconds = phase === "focus" ? focusMin * 60 : phase === "break" ? breakMin * 60 : longBreakMin * 60;
+  const progress = totalSeconds > 0 ? ((totalSeconds - secondsLeft) / totalSeconds) * 100 : 0;
+  const minutes = Math.floor(secondsLeft / 60);
+  const seconds = secondsLeft % 60;
+
+  const playBeep = useCallback(() => {
+    try {
+      if (!audioCtxRef.current) audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+      const ctx = audioCtxRef.current;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = 800;
+      osc.type = "sine";
+      gain.gain.value = 0.3;
+      osc.start();
+      osc.stop(ctx.currentTime + 0.3);
+      setTimeout(() => {
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.connect(gain2); gain2.connect(ctx.destination);
+        osc2.frequency.value = 1000; osc2.type = "sine"; gain2.gain.value = 0.3;
+        osc2.start(); osc2.stop(ctx.currentTime + 0.5);
+      }, 400);
+    } catch (e) { /* audio not supported */ }
+  }, []);
+
+  useEffect(() => {
+    if (isRunning && secondsLeft > 0) {
+      intervalRef.current = setInterval(() => setSecondsLeft(s => s - 1), 1000);
+    } else if (secondsLeft === 0 && isRunning) {
+      playBeep();
+      setIsRunning(false);
+      if (phase === "focus") {
+        const newCount = sessionCount + 1;
+        setSessionCount(newCount);
+        const newStats = { ...todayStats, pomos: todayStats.pomos + 1, minutes: todayStats.minutes + focusMin };
+        setTodayStats(newStats);
+        localStorage.setItem("pomo_stats", JSON.stringify(newStats));
+        if (newCount % 4 === 0) { setPhase("longBreak"); setSecondsLeft(longBreakMin * 60); }
+        else { setPhase("break"); setSecondsLeft(breakMin * 60); }
+      } else {
+        setPhase("focus");
+        setSecondsLeft(focusMin * 60);
+      }
+    }
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning, secondsLeft, phase, sessionCount, focusMin, breakMin, longBreakMin, playBeep, todayStats]);
+
+  const reset = () => { setIsRunning(false); setPhase("focus"); setSecondsLeft(focusMin * 60); setSessionCount(0); };
+
+  const phaseColors = { focus: "#EF4444", break: "#4CAF50", longBreak: "#3B82F6" };
+  const phaseLabels = { focus: "Focus Time 🎯", break: "Short Break ☕", longBreak: "Long Break 🌿" };
+  const currentColor = phaseColors[phase];
+
+  const circumference = 2 * Math.PI * 120;
+  const strokeDashoffset = circumference - (progress / 100) * circumference;
+
+  return (
+    <div>
+      <div style={{ ...cs, textAlign: "center", marginBottom: 24 }}>
+        <div style={{ marginBottom: 16 }}>
+          <input value={task} onChange={e => setTask(e.target.value)} placeholder="What are you studying? / क्या पढ़ रहे हो?" style={{ width: "100%", maxWidth: 400, padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15, textAlign: "center" }} />
+        </div>
+
+        <div style={{ fontSize: 16, fontWeight: 700, color: currentColor, marginBottom: 24 }}>{phaseLabels[phase]}</div>
+
+        <div style={{ position: "relative", width: 280, height: 280, margin: "0 auto 32px" }}>
+          <svg width="280" height="280" style={{ transform: "rotate(-90deg)" }}>
+            <circle cx="140" cy="140" r="120" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
+            <circle cx="140" cy="140" r="120" fill="none" stroke={currentColor} strokeWidth="8" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={strokeDashoffset} style={{ transition: "stroke-dashoffset 1s linear" }} />
+          </svg>
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center" }}>
+            <div style={{ fontSize: 64, fontWeight: 900, color: "white", fontFamily: "monospace", letterSpacing: 4 }}>
+              {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
+            </div>
+            {task && <div style={{ fontSize: 13, color: BRAND.textSecondary, marginTop: 8, maxWidth: 180, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{task}</div>}
+          </div>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "center", gap: 16 }}>
+          <button onClick={() => setIsRunning(!isRunning)} style={{ padding: "14px 40px", borderRadius: 14, border: "none", cursor: "pointer", fontSize: 18, fontWeight: 800, background: isRunning ? "rgba(255,255,255,0.1)" : currentColor, color: "white", minWidth: 140 }}>
+            {isRunning ? "⏸ Pause" : "▶ Start"}
+          </button>
+          <button onClick={reset} style={{ padding: "14px 24px", borderRadius: 14, border: `1px solid ${BRAND.border}`, cursor: "pointer", fontSize: 16, background: "none", color: BRAND.textSecondary }}>↻ Reset</button>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 24 }}>
+          {[1, 2, 3, 4].map(n => (
+            <div key={n} style={{ width: 12, height: 12, borderRadius: "50%", background: sessionCount % 4 >= n ? currentColor : "rgba(255,255,255,0.1)", transition: "background 0.3s" }} />
+          ))}
+          <span style={{ fontSize: 12, color: BRAND.textSecondary, marginLeft: 8 }}>Session {sessionCount + 1}</span>
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 24 }}>
+        <div style={{ ...cs, textAlign: "center" }}>
+          <div style={{ fontSize: 13, color: BRAND.textSecondary, marginBottom: 4 }}>🍅 Today's Pomodoros</div>
+          <div style={{ fontSize: 48, fontWeight: 900, color: STUDENT_BRAND.accent }}>{todayStats.pomos}</div>
+        </div>
+        <div style={{ ...cs, textAlign: "center" }}>
+          <div style={{ fontSize: 13, color: BRAND.textSecondary, marginBottom: 4 }}>⏱️ Focus Time Today</div>
+          <div style={{ fontSize: 48, fontWeight: 900, color: STUDENT_BRAND.accent }}>{todayStats.minutes}m</div>
+        </div>
+      </div>
+
+      <div style={cs}>
+        <h4 style={{ color: "white", margin: "0 0 16px" }}>⚙️ Settings</h4>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Focus (min)</label><input type="number" min="1" max="90" value={focusMin} onChange={e => { setFocusMin(+e.target.value || 25); if (!isRunning && phase === "focus") setSecondsLeft((+e.target.value || 25) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16, textAlign: "center" }} /></div>
+          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Break (min)</label><input type="number" min="1" max="30" value={breakMin} onChange={e => { setBreakMin(+e.target.value || 5); if (!isRunning && phase === "break") setSecondsLeft((+e.target.value || 5) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16, textAlign: "center" }} /></div>
+          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Long Break</label><input type="number" min="1" max="60" value={longBreakMin} onChange={e => { setLongBreakMin(+e.target.value || 15); if (!isRunning && phase === "longBreak") setSecondsLeft((+e.target.value || 15) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16, textAlign: "center" }} /></div>
+        </div>
+      </div>
+    </div>
+  );
+}

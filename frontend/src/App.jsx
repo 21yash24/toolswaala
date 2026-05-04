@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
+import { STUDENT_TOOLS } from "./shared/constants";
+import StudentPageWrapper from "./shared/StudentPageWrapper";
+import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTimer } from "./pages/students";
 
 // ============================================================
 // CONSTANTS & HELPERS
@@ -343,6 +346,7 @@ function Navbar() {
           </div>
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: "1px solid #7C3AED40", background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? "#7C3AED" : "#7C3AED15", color: "white", textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
           <button className="btn-primary" style={{ padding: "8px 18px", fontSize: 13 }} onClick={() => alert("Pro plan at ₹99/month — Integration coming soon!")}>⚡ PRO</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", color: "white", width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
         </div>
@@ -538,6 +542,35 @@ function HomePage() {
             </div>
           </Link>
         ))}
+      </div>
+
+      {/* Student Zone Section */}
+      <div style={{ marginTop: 80, padding: "48px 32px", borderRadius: 24, background: "linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(124,58,237,0.02) 100%)", border: "1px solid rgba(124,58,237,0.15)" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>🎓</div>
+          <h2 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: "white", fontWeight: 900, marginBottom: 8 }}>Student Zone</h2>
+          <p style={{ color: BRAND.textSecondary, fontSize: 15 }}>भारत के 40 करोड़ छात्रों के लिए — Built for India's 40 Crore Students</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16, marginBottom: 32 }}>
+          {STUDENT_TOOLS.slice(0, 4).map(tool => (
+            <Link key={tool.id} to={tool.path} style={{ textDecoration: "none" }}>
+              <div style={{ background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, padding: 20, display: "flex", alignItems: "center", gap: 16, transition: "border-color 0.2s, transform 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = tool.color + "60"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = BRAND.border; e.currentTarget.style.transform = "translateY(0)"; }}>
+                <div style={{ width: 44, height: 44, background: `${tool.color}15`, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>{tool.icon}</div>
+                <div>
+                  <div style={{ fontWeight: 700, color: "white", fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <Link to="/students" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 12, background: "#7C3AED", color: "white", textDecoration: "none", fontWeight: 700, fontSize: 15 }}>
+            View All Student Tools →
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -2286,6 +2319,12 @@ export default function App() {
                 } 
               />
             ))}
+            {/* Student Zone Routes */}
+            <Route path="/students" element={<StudentHome />} />
+            <Route path="/cgpa-calculator" element={<StudentPageWrapper title="CGPA Calculator" hindi="सीजीपीए कैलकुलेटर"><CgpaCalculator /></StudentPageWrapper>} />
+            <Route path="/attendance-calculator" element={<StudentPageWrapper title="Attendance Calculator" hindi="उपस्थिति कैलकुलेटर"><AttendanceCalc /></StudentPageWrapper>} />
+            <Route path="/percentage-calculator" element={<StudentPageWrapper title="Marks Calculator" hindi="प्रतिशत कैलकुलेटर"><PercentageCalc /></StudentPageWrapper>} />
+            <Route path="/pomodoro-timer" element={<StudentPageWrapper title="Pomodoro Timer" hindi="पोमोडोरो टाइमर"><PomodoroTimer /></StudentPageWrapper>} />
           </Routes>
         </main>
         <Footer />
