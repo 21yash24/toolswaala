@@ -102,7 +102,8 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   }
 
   .dark-mode {
-    --shadow: 0 4px 20px -2px rgba(0,0,0,0.5);
+    --shadow: 0 10px 40px -10px rgba(0,0,0,0.8);
+    --border: rgba(255, 255, 255, 0.08);
   }
 
   html, body, #root {
@@ -208,7 +209,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     font-family: inherit;
     font-size: 14px;
     color: var(--text);
-    background: rgba(0,0,0,0.2);
+    background: var(--surface-dark);
     transition: all 0.2s;
     outline: none;
   }
@@ -217,7 +218,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   .form-group textarea:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 2px rgba(255,107,0,0.2);
-    background: rgba(0,0,0,0.3);
+    background: var(--surface);
   }
   .form-group textarea { resize: vertical; min-height: 100px; }
 
@@ -249,6 +250,11 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     padding: 24px;
     box-shadow: var(--shadow);
   }
+  .dark-mode .result-box {
+    background: linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(30,30,30,0.9) 100%);
+    border: 1px solid rgba(255,107,0,0.4);
+    backdrop-filter: blur(20px);
+  }
 
   .stat-card {
     background: var(--app-surface-card);
@@ -257,6 +263,9 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     padding: 20px;
     text-align: center;
     box-shadow: var(--shadow);
+  }
+  .dark-mode .stat-card {
+    background: rgba(255,255,255,0.03);
   }
   .stat-value { font-size: 24px; font-weight: 800; color: var(--text); }
   .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
