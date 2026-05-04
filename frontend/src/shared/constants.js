@@ -2,12 +2,12 @@
 export const BRAND = {
   primary: "#FF6B00",
   primaryDark: "#D45800",
-  surface: "var(--tw-surface)",
-  surfaceCard: "var(--tw-surface-card)",
-  text: "var(--tw-text)",
-  textSecondary: "var(--tw-text-secondary)",
+  surface: "var(--app-surface)",
+  surfaceCard: "var(--app-surface-card)",
+  text: "var(--app-text)",
+  textSecondary: "var(--app-text-secondary)",
   accent: "#FFB347",
-  border: "var(--tw-border)",
+  border: "var(--app-border)",
 };
 
 export const STUDENT_BRAND = {
@@ -15,8 +15,8 @@ export const STUDENT_BRAND = {
   accentDark: "#6D28D9",
   accentLight: "#EDE9FE",
   accentGlow: "rgba(124, 58, 237, 0.3)",
-  surface: "var(--tw-surface)",
-  surfaceCard: "var(--tw-surface-card)",
+  surface: "var(--app-surface)",
+  surfaceCard: "var(--app-surface-card)",
 };
 
 export const PDF_BRAND = {
@@ -24,8 +24,8 @@ export const PDF_BRAND = {
   accentDark: "#1557B7",
   accentLight: "#E8F1FF",
   accentGlow: "rgba(29, 107, 228, 0.3)",
-  surface: "var(--tw-surface)",
-  surfaceCard: "var(--tw-surface-card)",
+  surface: "var(--app-surface)",
+  surfaceCard: "var(--app-surface-card)",
 };
 
 export function formatINR(n) {

@@ -2,21 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --tw-surface: #F8FAFC;
-  --tw-surface-card: #FFFFFF;
-  --tw-text: #0F172A;
-  --tw-text-secondary: #64748B;
-  --tw-border: rgba(0, 0, 0, 0.08);
-  --tw-glass: rgba(255, 255, 255, 0.8);
+  --app-surface: #F8FAFC;
+  --app-surface-card: #FFFFFF;
+  --app-text: #0F172A;
+  --app-text-secondary: #64748B;
+  --app-border: rgba(0, 0, 0, 0.08);
+  --app-glass: rgba(255, 255, 255, 0.8);
 }
 
 .dark-mode {
-  --tw-surface: #09090B;
-  --tw-surface-card: #141414;
-  --tw-text: #FAFAFA;
-  --tw-text-secondary: #A1A1AA;
-  --tw-border: rgba(255, 255, 255, 0.08);
-  --tw-glass: rgba(9, 9, 11, 0.6);
+  --app-surface: #09090B;
+  --app-surface-card: #141414;
+  --app-text: #FAFAFA;
+  --app-text-secondary: #A1A1AA;
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-glass: rgba(9, 9, 11, 0.6);
 }
 
 @theme {
@@ -26,8 +26,8 @@
   --color-navy: #FAFAFA;
   --color-navy-light: #E4E4E7;
   --color-navy-lighter: #A1A1AA;
-  --color-surface: var(--tw-surface);
-  --color-surface-dark: var(--tw-surface-card);
+  --color-surface: var(--app-surface);
+  --color-surface-dark: var(--app-surface-card);
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
@@ -55,8 +55,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--tw-text);
-  background: var(--tw-surface);
+  color: var(--app-text);
+  background: var(--app-surface);
   transition: background 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,14 +71,14 @@ body {
 }
 
 .glass {
-  background: var(--tw-glass);
+  background: var(--app-glass);
   backdrop-filter: blur(16px);
-  border: 1px solid var(--tw-border);
+  border: 1px solid var(--app-border);
 }
 
 .card-shadow {
   box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);
-  border: 1px solid var(--tw-border);
+  border: 1px solid var(--app-border);
 }
 
 .dark-mode .card-shadow {
@@ -86,19 +86,19 @@ body {
 }
 
 input, select, textarea {
-  background: var(--tw-surface-card);
-  border: 1px solid var(--tw-border);
-  color: var(--tw-text);
+  background: var(--app-surface-card);
+  border: 1px solid var(--app-border);
+  color: var(--app-text);
 }
 
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--tw-surface);
+  background: var(--app-surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--tw-text-secondary);
+  background: var(--app-text-secondary);
   border-radius: 3px;
   opacity: 0.3;
 }

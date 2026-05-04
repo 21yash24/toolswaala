@@ -15,7 +15,7 @@ export default function StudentHome() {
         <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: `${STUDENT_BRAND.accent}15`, border: `1px solid ${STUDENT_BRAND.accent}30`, fontSize: 13, fontWeight: 600, color: STUDENT_BRAND.accent, marginBottom: 16 }}>
           🎓 Student Zone
         </div>
-        <h1 style={{ fontSize: "clamp(32px, 8vw, 56px)", color: "white", marginBottom: 24, lineHeight: 1.1, fontWeight: 900 }}>
+        <h1 style={{ fontSize: "clamp(32px, 8vw, 56px)", color: BRAND.text, marginBottom: 24, lineHeight: 1.1, fontWeight: 900 }}>
           Built for India's <span style={{ color: STUDENT_BRAND.accent }}>40 Crore</span> Students
         </h1>
         <p style={{ fontSize: "clamp(14px, 2vw, 18px)", color: BRAND.textSecondary, maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
@@ -24,7 +24,7 @@ export default function StudentHome() {
 
         <div style={{ maxWidth: 500, margin: "40px auto 0", display: "flex", gap: 12, background: "rgba(255,255,255,0.05)", padding: 8, borderRadius: 20, border: `1px solid ${BRAND.border}` }}>
           <div style={{ paddingLeft: 16, display: "flex", alignItems: "center", color: BRAND.textSecondary }}>🔍</div>
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search tools — CGPA, Attendance, Resume..." style={{ flex: 1, background: "transparent", border: "none", color: "white", padding: "12px 0", fontSize: 15, outline: "none" }} />
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search tools — CGPA, Attendance, Resume..." style={{ flex: 1, background: "transparent", border: "none", color: BRAND.text, padding: "12px 0", fontSize: 15, outline: "none" }} />
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export default function StudentHome() {
                 <span style={{ fontSize: 20, color: BRAND.textSecondary }}>→</span>
               </div>
               <div>
-                <h3 style={{ color: "white", fontSize: 18, fontWeight: 700, marginBottom: 4 }}>{tool.name}</h3>
+                <h3 style={{ color: BRAND.text, fontSize: 18, fontWeight: 700, marginBottom: 4 }}>{tool.name}</h3>
                 <span style={{ fontSize: 13, color: tool.color, fontWeight: 500 }}>{tool.hindi}</span>
               </div>
               <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.5, margin: 0 }}>{tool.desc}</p>
