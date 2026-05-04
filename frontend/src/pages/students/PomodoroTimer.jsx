@@ -82,7 +82,7 @@ export default function PomodoroTimer() {
     <div>
       <div style={{ ...cs, textAlign: "center", marginBottom: 24 }}>
         <div style={{ marginBottom: 16 }}>
-          <input value={task} onChange={e => setTask(e.target.value)} placeholder="What are you studying? / क्या पढ़ रहे हो?" style={{ width: "100%", maxWidth: 400, padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15, textAlign: "center" }} />
+          <input value={task} onChange={e => setTask(e.target.value)} placeholder="What are you studying? / क्या पढ़ रहे हो?" style={{ width: "100%", maxWidth: 400, padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15, textAlign: "center" }} />
         </div>
 
         <div style={{ fontSize: 16, fontWeight: 700, color: currentColor, marginBottom: 24 }}>{phaseLabels[phase]}</div>
@@ -93,7 +93,7 @@ export default function PomodoroTimer() {
             <circle cx="140" cy="140" r="120" fill="none" stroke={currentColor} strokeWidth="8" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={strokeDashoffset} style={{ transition: "stroke-dashoffset 1s linear" }} />
           </svg>
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center" }}>
-            <div style={{ fontSize: 64, fontWeight: 900, color: "white", fontFamily: "monospace", letterSpacing: 4 }}>
+            <div style={{ fontSize: 64, fontWeight: 900, color: BRAND.text, fontFamily: "monospace", letterSpacing: 4 }}>
               {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
             </div>
             {task && <div style={{ fontSize: 13, color: BRAND.textSecondary, marginTop: 8, maxWidth: 180, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{task}</div>}
@@ -127,11 +127,11 @@ export default function PomodoroTimer() {
       </div>
 
       <div style={cs}>
-        <h4 style={{ color: "white", margin: "0 0 16px" }}>⚙️ Settings</h4>
+        <h4 style={{ color: BRAND.text, margin: "0 0 16px" }}>⚙️ Settings</h4>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
-          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Focus (min)</label><input type="number" min="1" max="90" value={focusMin} onChange={e => { setFocusMin(+e.target.value || 25); if (!isRunning && phase === "focus") setSecondsLeft((+e.target.value || 25) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16, textAlign: "center" }} /></div>
-          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Break (min)</label><input type="number" min="1" max="30" value={breakMin} onChange={e => { setBreakMin(+e.target.value || 5); if (!isRunning && phase === "break") setSecondsLeft((+e.target.value || 5) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16, textAlign: "center" }} /></div>
-          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Long Break</label><input type="number" min="1" max="60" value={longBreakMin} onChange={e => { setLongBreakMin(+e.target.value || 15); if (!isRunning && phase === "longBreak") setSecondsLeft((+e.target.value || 15) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 16, textAlign: "center" }} /></div>
+          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Focus (min)</label><input type="number" min="1" max="90" value={focusMin} onChange={e => { setFocusMin(+e.target.value || 25); if (!isRunning && phase === "focus") setSecondsLeft((+e.target.value || 25) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 16, textAlign: "center" }} /></div>
+          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Break (min)</label><input type="number" min="1" max="30" value={breakMin} onChange={e => { setBreakMin(+e.target.value || 5); if (!isRunning && phase === "break") setSecondsLeft((+e.target.value || 5) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 16, textAlign: "center" }} /></div>
+          <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Long Break</label><input type="number" min="1" max="60" value={longBreakMin} onChange={e => { setLongBreakMin(+e.target.value || 15); if (!isRunning && phase === "longBreak") setSecondsLeft((+e.target.value || 15) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 16, textAlign: "center" }} /></div>
         </div>
       </div>
     </div>

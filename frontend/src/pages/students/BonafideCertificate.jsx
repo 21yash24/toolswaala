@@ -60,7 +60,7 @@ export default function BonafideCertificate() {
         `}</style>
 
         <div style={{ display: "flex", gap: 12, marginBottom: 24 }} className="no-print">
-          <button onClick={() => setPreview(false)} style={{ padding: "10px 20px", borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.05)", color: BRAND.text, cursor: "pointer" }}>← Edit Details</button>
+          <button onClick={() => setPreview(false)} style={{ padding: "10px 20px", borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.03)", color: BRAND.text, cursor: "pointer" }}>← Edit Details</button>
           <button onClick={handlePrint} style={{ padding: "10px 24px", borderRadius: 10, border: "none", background: STUDENT_BRAND.accent, color: "white", cursor: "pointer", fontWeight: 700 }}>🖨️ Print / Save PDF</button>
         </div>
 
@@ -115,62 +115,62 @@ export default function BonafideCertificate() {
   return (
     <div className="fade-in">
       <div style={cs}>
-        <h3 style={{ color: "white", margin: "0 0 24px" }}>College Details <span style={{ fontSize: 13, color: BRAND.textSecondary }}>कॉलेज विवरण</span></h3>
+        <h3 style={{ color: BRAND.text, margin: "0 0 24px" }}>College Details <span style={{ fontSize: 13, color: BRAND.textSecondary }}>कॉलेज विवरण</span></h3>
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>College Name / कॉलेज का नाम</label>
-            <input value={form.collegeName} onChange={(e) => update("collegeName", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.collegeName} onChange={(e) => update("collegeName", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>College Address / कॉलेज का पता</label>
-            <input value={form.collegeAddress} onChange={(e) => update("collegeAddress", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.collegeAddress} onChange={(e) => update("collegeAddress", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Principal/HOD Name</label>
-            <input value={form.principalName} onChange={(e) => update("principalName", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.principalName} onChange={(e) => update("principalName", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
         </div>
       </div>
 
       <div style={{ ...cs, marginTop: 24 }}>
-        <h3 style={{ color: "white", margin: "0 0 24px" }}>Student Details <span style={{ fontSize: 13, color: BRAND.textSecondary }}>छात्र विवरण</span></h3>
+        <h3 style={{ color: BRAND.text, margin: "0 0 24px" }}>Student Details <span style={{ fontSize: 13, color: BRAND.textSecondary }}>छात्र विवरण</span></h3>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div style={{ gridColumn: "span 2" }}>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Full Name / पूरा नाम</label>
-            <input value={form.studentName} onChange={(e) => update("studentName", e.target.value)} placeholder="Enter your full name" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.studentName} onChange={(e) => update("studentName", e.target.value)} placeholder="Enter your full name" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Roll/Enrollment No.</label>
-            <input value={form.rollNo} onChange={(e) => update("rollNo", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.rollNo} onChange={(e) => update("rollNo", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Course & Branch</label>
-            <input value={form.course} onChange={(e) => update("course", e.target.value)} placeholder="e.g. B.Tech CS" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.course} onChange={(e) => update("course", e.target.value)} placeholder="e.g. B.Tech CS" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Current Year</label>
-            <select value={form.year} onChange={(e) => update("year", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "#1a1a1a", color: "white", fontSize: 15 }}>
+            <select value={form.year} onChange={(e) => update("year", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: BRAND.surfaceCard, color: BRAND.text, fontSize: 15 }}>
               <option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option><option>5th Year</option>
             </select>
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Current Semester</label>
-            <input value={form.semester} onChange={(e) => update("semester", e.target.value)} placeholder="e.g. 5th Sem" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.semester} onChange={(e) => update("semester", e.target.value)} placeholder="e.g. 5th Sem" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Admission Year</label>
-            <input value={form.admissionYear} onChange={(e) => update("admissionYear", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.admissionYear} onChange={(e) => update("admissionYear", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Purpose / उद्देश्य</label>
-            <select value={form.purpose} onChange={(e) => update("purpose", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "#1a1a1a", color: "white", fontSize: 15 }}>
+            <select value={form.purpose} onChange={(e) => update("purpose", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: BRAND.surfaceCard, color: BRAND.text, fontSize: 15 }}>
               {purposes.map(p => <option key={p}>{p}</option>)}
             </select>
           </div>
           {form.purpose === "Other" && (
             <div style={{ gridColumn: "span 2" }}>
               <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Specify Purpose</label>
-              <input value={form.customPurpose} onChange={(e) => update("customPurpose", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+              <input value={form.customPurpose} onChange={(e) => update("customPurpose", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
             </div>
           )}
         </div>

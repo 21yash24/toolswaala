@@ -49,7 +49,7 @@ export default function NocGenerator() {
         `}</style>
 
         <div style={{ display: "flex", gap: 12, marginBottom: 24 }} className="no-print">
-          <button onClick={() => setPreview(false)} style={{ padding: "10px 20px", borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.05)", color: BRAND.text, cursor: "pointer" }}>← Edit Details</button>
+          <button onClick={() => setPreview(false)} style={{ padding: "10px 20px", borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.03)", color: BRAND.text, cursor: "pointer" }}>← Edit Details</button>
           <button onClick={handlePrint} style={{ padding: "10px 24px", borderRadius: 10, border: "none", background: STUDENT_BRAND.accent, color: "white", cursor: "pointer", fontWeight: 700 }}>🖨️ Print / Save PDF</button>
         </div>
 
@@ -106,51 +106,51 @@ export default function NocGenerator() {
   return (
     <div className="fade-in">
       <div style={cs}>
-        <h3 style={{ color: "white", margin: "0 0 24px" }}>College & Student Info</h3>
+        <h3 style={{ color: BRAND.text, margin: "0 0 24px" }}>College & Student Info</h3>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div style={{ gridColumn: "span 2" }}>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Full Name</label>
-            <input value={form.studentName} onChange={(e) => update("studentName", e.target.value)} placeholder="Full Name" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.studentName} onChange={(e) => update("studentName", e.target.value)} placeholder="Full Name" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Roll No</label>
-            <input value={form.rollNo} onChange={(e) => update("rollNo", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.rollNo} onChange={(e) => update("rollNo", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Course</label>
-            <input value={form.course} onChange={(e) => update("course", e.target.value)} placeholder="e.g. B.E. IT" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.course} onChange={(e) => update("course", e.target.value)} placeholder="e.g. B.E. IT" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
         </div>
       </div>
 
       <div style={{ ...cs, marginTop: 24 }}>
-        <h3 style={{ color: "white", margin: "0 0 24px" }}>Organization & Purpose</h3>
+        <h3 style={{ color: BRAND.text, margin: "0 0 24px" }}>Organization & Purpose</h3>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div style={{ gridColumn: "span 2" }}>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Organization Name</label>
-            <input value={form.orgName} onChange={(e) => update("orgName", e.target.value)} placeholder="Company / University Name" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.orgName} onChange={(e) => update("orgName", e.target.value)} placeholder="Company / University Name" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div style={{ gridColumn: "span 2" }}>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Organization Address</label>
-            <input value={form.orgAddress} onChange={(e) => update("orgAddress", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.orgAddress} onChange={(e) => update("orgAddress", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Purpose</label>
-            <select value={form.purposeType} onChange={(e) => update("purposeType", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "#1a1a1a", color: "white", fontSize: 15 }}>
+            <select value={form.purposeType} onChange={(e) => update("purposeType", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: BRAND.surfaceCard, color: BRAND.text, fontSize: 15 }}>
               <option>Internship</option><option>Conference</option><option>Competition</option><option>Research Project</option><option>Other</option>
             </select>
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Duration</label>
-            <input value={form.duration} onChange={(e) => update("duration", e.target.value)} placeholder="e.g. 6 Months" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input value={form.duration} onChange={(e) => update("duration", e.target.value)} placeholder="e.g. 6 Months" style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Start Date</label>
-            <input type="date" value={form.startDate} onChange={(e) => update("startDate", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input type="date" value={form.startDate} onChange={(e) => update("startDate", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
           <div>
             <label style={{ fontSize: 13, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>End Date</label>
-            <input type="date" value={form.endDate} onChange={(e) => update("endDate", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: "white", fontSize: 15 }} />
+            <input type="date" value={form.endDate} onChange={(e) => update("endDate", e.target.value)} style={{ width: "100%", padding: 12, borderRadius: 10, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 15 }} />
           </div>
         </div>
       </div>
