@@ -338,9 +338,20 @@ const TOOLS = [
 
 function Navbar({ darkMode, setDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const activeTool = TOOLS.find(t => t.path === location.pathname)?.id;
+  
+  const allAvailableTools = [
+    ...TOOLS,
+    ...STUDENT_TOOLS,
+    ...PDF_TOOLS
+  ];
+
+  const filteredTools = search.length > 1 
+    ? allAvailableTools.filter(t => t.name.toLowerCase().includes(search.toLowerCase()) || t.hindi.includes(search))
+    : [];
 
   return (
     <nav style={{ background: BRAND.surface, backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: `1px solid ${BRAND.border}`, width: "100vw" }}>
@@ -348,20 +359,46 @@ function Navbar({ darkMode, setDarkMode }) {
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
           <div style={{ position: "relative", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Professional TW Logo - More visible 'W' */}
               <path d="M20 25H80M50 25V85" stroke="#FF6B00" strokeWidth="10" strokeLinecap="round" />
               <path d="M20 25L10 15M20 25L10 35" stroke="#FF6B00" strokeWidth="8" strokeLinecap="round" />
               <path d="M25 55L40 85L50 65L60 85L75 55" stroke={darkMode ? "white" : "#0D1B2A"} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <div>
+          <div className="nav-logo-text">
             <div style={{ display: "flex", alignItems: "center" }}>
               <span style={{ color: BRAND.text, fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Tools</span>
               <span style={{ color: BRAND.primary, fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Waala</span>
             </div>
-            <div style={{ color: BRAND.textSecondary, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginTop: 2 }}>Your Digital Toolkit</div>
           </div>
         </Link>
+
+        {/* Global Search Bar */}
+        <div style={{ flex: 1, maxWidth: 400, margin: "0 20px", position: "relative" }} className="nav-search-container">
+          <div style={{ position: "relative" }}>
+            <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", opacity: 0.5 }}>🔍</span>
+            <input 
+              type="text" 
+              placeholder="Search 40+ tools (e.g. CGPA, GST, PDF)..." 
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{ width: "100%", padding: "10px 14px 10px 40px", borderRadius: 12, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.05)", color: BRAND.text, fontSize: 13 }}
+            />
+          </div>
+          {filteredTools.length > 0 && (
+            <div style={{ position: "absolute", top: "100%", left: 0, right: 0, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}`, borderRadius: 12, marginTop: 8, boxShadow: "0 10px 30px rgba(0,0,0,0.3)", maxHeight: 300, overflowY: "auto", zIndex: 1000 }}>
+              {filteredTools.map(t => (
+                <Link key={t.id} to={t.path} onClick={() => setSearch("")} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", textDecoration: "none", borderBottom: `1px solid ${BRAND.border}` }}>
+                  <span style={{ fontSize: 20 }}>{t.icon}</span>
+                  <div>
+                    <div style={{ color: BRAND.text, fontWeight: 600, fontSize: 13 }}>{t.name}</div>
+                    <div style={{ color: BRAND.textSecondary, fontSize: 11 }}>{t.hindi}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <button onClick={() => setDarkMode(!darkMode)} style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
             {darkMode ? "☀️" : "🌙"}
@@ -520,29 +557,37 @@ function PageWrapper({ title, hindi, children }) {
 // ============================================================
 function HomePage() {
   const [search, setSearch] = useState("");
-  const filtered = TOOLS.filter(t =>
+  
+  const allTools = [
+    ...TOOLS,
+    ...STUDENT_TOOLS,
+    ...PDF_TOOLS
+  ];
+
+  const filtered = allTools.filter(t =>
     t.name.toLowerCase().includes(search.toLowerCase()) ||
-    t.desc.toLowerCase().includes(search.toLowerCase())
+    t.desc.toLowerCase().includes(search.toLowerCase()) ||
+    t.hindi.includes(search)
   );
 
   return (
     <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }} className="fade-in">
       <div style={{ textAlign: "center", marginBottom: 80 }}>
-        <div className="badge badge-orange" style={{ marginBottom: 16 }}>Made for Bharat 🇮🇳</div>
-        <h1 style={{ fontSize: "clamp(32px, 8vw, 64px)", color: BRAND.text, marginBottom: 24, lineHeight: 1.1 }}>
-          The Essential <span style={{ color: BRAND.primary }}>Business Kit</span><br/> for Modern India
+        <div className="badge badge-orange" style={{ marginBottom: 16 }}>Bharat's Digital Toolkit 🇮🇳</div>
+        <h1 style={{ fontSize: "clamp(32px, 8vw, 64px)", color: BRAND.text, marginBottom: 24, lineHeight: 1.1, fontWeight: 900 }}>
+          Every tool you need.<br/> <span style={{ color: BRAND.primary }}>Zero Login.</span> No Limits.
         </h1>
         <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: BRAND.textSecondary, maxWidth: 700, margin: "0 auto", lineHeight: 1.6 }}>
-          Zero-login business tools to help you create invoices, agreements, receipts and manage payments professionally.
+          Professional tools for Students and SMBs. Create invoices, process PDFs, and calculate CGPA instantly.
         </p>
         
-        <div style={{ maxWidth: 600, margin: "40px auto 0", display: "flex", gap: 12, background: "rgba(255,255,255,0.05)", padding: 8, borderRadius: 20, border: "1px solid var(--border)" }}>
-          <div style={{ paddingLeft: 16, display: "flex", alignItems: "center", color: BRAND.textSecondary }}>🔍</div>
+        <div style={{ maxWidth: 650, margin: "50px auto 0", display: "flex", gap: 12, background: "rgba(255,255,255,0.05)", padding: "12px 16px", borderRadius: 24, border: "2px solid var(--border)", boxShadow: "0 10px 40px rgba(0,0,0,0.2)" }}>
+          <div style={{ display: "flex", alignItems: "center", color: BRAND.textSecondary, fontSize: 24 }}>🔍</div>
           <input 
             value={search} 
             onChange={e => setSearch(e.target.value)} 
-            placeholder="Search for GST, Invoices, QR, Rental..." 
-            style={{ flex: 1, background: "transparent", border: "none", color: BRAND.text, padding: "12px 0", fontSize: 16, outline: "none" }} 
+            placeholder="Search 40+ tools (e.g. CGPA, Invoice, Compress PDF)..." 
+            style={{ flex: 1, background: "transparent", border: "none", color: BRAND.text, padding: "12px 0", fontSize: 18, outline: "none", fontWeight: 500 }} 
           />
         </div>
       </div>
@@ -1831,6 +1876,84 @@ function GstCalcTool() {
   );
 }
 
+function SipCalcTool() {
+  const [monthly, setMonthly] = useState(5000);
+  const [rate, setRate] = useState(12);
+  const [years, setYears] = useState(10);
+
+  const calculateSip = () => {
+    const P = Number(monthly);
+    const i = (Number(rate) / 100) / 12;
+    const n = Number(years) * 12;
+
+    // SIP Formula: M = P × ({[1 + i]^n – 1} / i) × (1 + i)
+    const totalValue = P * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
+    const investedAmount = P * n;
+    const wealthGained = totalValue - investedAmount;
+
+    return { totalValue, investedAmount, wealthGained, n };
+  };
+
+  const { totalValue, investedAmount, wealthGained } = calculateSip();
+
+  return (
+    <div className="grid-2">
+      <div className="glass-card">
+        <h3 style={{ marginBottom: 24 }}>SIP Details</h3>
+        <div className="form-group">
+          <label>Monthly Investment (₹)</label>
+          <input type="number" value={monthly} onChange={e => setMonthly(e.target.value)} />
+          <input type="range" min="500" max="100000" step="500" value={monthly} onChange={e => setMonthly(e.target.value)} style={{ marginTop: 10, width: "100%" }} />
+        </div>
+        <div className="form-group">
+          <label>Expected Return Rate (% p.a.)</label>
+          <input type="number" value={rate} onChange={e => setRate(e.target.value)} />
+          <input type="range" min="1" max="30" step="0.5" value={rate} onChange={e => setRate(e.target.value)} style={{ marginTop: 10, width: "100%" }} />
+        </div>
+        <div className="form-group">
+          <label>Time Period (Years)</label>
+          <input type="number" value={years} onChange={e => setYears(e.target.value)} />
+          <input type="range" min="1" max="40" value={years} onChange={e => setYears(e.target.value)} style={{ marginTop: 10, width: "100%" }} />
+        </div>
+      </div>
+
+      <div className="glass-card" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ color: BRAND.textSecondary, fontSize: 14, textTransform: "uppercase", letterSpacing: 1 }}>Total Wealth Generated</div>
+          <div style={{ fontSize: 42, fontWeight: 900, color: BRAND.primary, marginTop: 8 }}>{formatINR(totalValue)}</div>
+        </div>
+
+        <div style={{ display: "grid", gap: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", borderBottom: `1px solid ${BRAND.border}` }}>
+            <span style={{ color: BRAND.textSecondary }}>Invested Amount</span>
+            <span style={{ fontWeight: 700 }}>{formatINR(investedAmount)}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", borderBottom: `1px solid ${BRAND.border}` }}>
+            <span style={{ color: BRAND.textSecondary }}>Est. Returns</span>
+            <span style={{ fontWeight: 700, color: BRAND.success }}>+ {formatINR(wealthGained)}</span>
+          </div>
+        </div>
+
+        {/* Visual Chart */}
+        <div style={{ marginTop: 40 }}>
+          <div style={{ display: "flex", height: 40, borderRadius: 20, overflow: "hidden", background: "rgba(255,255,255,0.05)" }}>
+            <div style={{ width: `${(investedAmount / totalValue) * 100}%`, background: BRAND.primary }} title="Invested"></div>
+            <div style={{ width: `${(wealthGained / totalValue) * 100}%`, background: BRAND.success }} title="Returns"></div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: BRAND.textSecondary }}>
+              <div style={{ width: 10, height: 10, borderRadius: 2, background: BRAND.primary }}></div> Invested
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: BRAND.textSecondary }}>
+              <div style={{ width: 10, height: 10, borderRadius: 2, background: BRAND.success }}></div> Returns
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function BizNameTool() {
   const [industry, setIndustry] = useState("");
   const [keywords, setKeywords] = useState("");
@@ -1872,6 +1995,92 @@ function BizNameTool() {
           </div>
         ))}
         {loading && <div className="spinner" style={{ width: 40, height: 40, border: "4px solid rgba(255,107,0,0.1)", borderTopColor: BRAND.primary, borderRadius: "50%", margin: "40px auto" }} />}
+      </div>
+    </div>
+  );
+}
+
+function HraCalcTool() {
+  const [basic, setBasic] = useState(50000);
+  const [hra, setHra] = useState(25000);
+  const [rent, setRent] = useState(20000);
+  const [isMetro, setIsMetro] = useState(true);
+
+  const calculateHra = () => {
+    const b = Number(basic);
+    const h = Number(hra);
+    const r = Number(rent);
+    
+    // HRA Exemption is minimum of:
+    // 1. Actual HRA received
+    // 2. 50% of salary (metro) or 40% (non-metro)
+    // 3. Rent paid minus 10% of salary
+    const option1 = h;
+    const option2 = b * (isMetro ? 0.5 : 0.4);
+    const option3 = Math.max(0, r - (b * 0.1));
+    
+    const exempt = Math.min(option1, option2, option3);
+    const taxable = h - exempt;
+    
+    return { exempt, taxable };
+  };
+
+  const { exempt, taxable } = calculateHra();
+
+  return (
+    <div className="grid-2">
+      <div className="glass-card">
+        <h3>HRA Exemption Details (Monthly)</h3>
+        <div className="form-group"><label>Basic Salary</label><input type="number" value={basic} onChange={e => setBasic(e.target.value)} /></div>
+        <div className="form-group"><label>HRA Received</label><input type="number" value={hra} onChange={e => setHra(e.target.value)} /></div>
+        <div className="form-group"><label>Rent Paid</label><input type="number" value={rent} onChange={e => setRent(e.target.value)} /></div>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 15 }}>
+          <input type="checkbox" checked={isMetro} onChange={e => setIsMetro(e.target.checked)} />
+          <label style={{ margin: 0 }}>Living in Metro City?</label>
+        </div>
+      </div>
+      <div className="glass-card" style={{ display: "flex", flexDirection: "column", justifyContent: "center", textAlign: "center" }}>
+        <div style={{ color: BRAND.success, fontSize: 14, textTransform: "uppercase" }}>Exempt HRA (Tax Free)</div>
+        <div style={{ fontSize: 42, fontWeight: 900, color: BRAND.success, margin: "10px 0" }}>{formatINR(exempt)}</div>
+        <div style={{ color: BRAND.danger, fontSize: 14, textTransform: "uppercase", marginTop: 20 }}>Taxable HRA</div>
+        <div style={{ fontSize: 24, fontWeight: 700, color: BRAND.danger }}>{formatINR(taxable)}</div>
+      </div>
+    </div>
+  );
+}
+
+function FdCalcTool() {
+  const [amount, setAmount] = useState(100000);
+  const [rate, setRate] = useState(7);
+  const [years, setYears] = useState(5);
+
+  const calculateFd = () => {
+    const P = Number(amount);
+    const r = Number(rate);
+    const t = Number(years);
+    
+    // Simple compound interest for FD: A = P(1 + r/100)^t (Assuming yearly compounding for simplicity)
+    const maturityValue = P * Math.pow(1 + r / 100, t);
+    const interest = maturityValue - P;
+    
+    return { maturityValue, interest };
+  };
+
+  const { maturityValue, interest } = calculateFd();
+
+  return (
+    <div className="grid-2">
+      <div className="glass-card">
+        <h3>FD Details</h3>
+        <div className="form-group"><label>Principal Amount (₹)</label><input type="number" value={amount} onChange={e => setAmount(e.target.value)} /></div>
+        <div className="form-group"><label>Interest Rate (% p.a.)</label><input type="number" value={rate} onChange={e => setRate(e.target.value)} /></div>
+        <div className="form-group"><label>Time Period (Years)</label><input type="number" value={years} onChange={e => setYears(e.target.value)} /></div>
+      </div>
+      <div className="glass-card" style={{ display: "flex", flexDirection: "column", justifyContent: "center", textAlign: "center" }}>
+        <div style={{ color: BRAND.textSecondary, fontSize: 14 }}>Maturity Value</div>
+        <div style={{ fontSize: 42, fontWeight: 900, color: BRAND.primary, margin: "10px 0" }}>{formatINR(maturityValue)}</div>
+        <div style={{ color: BRAND.success, fontSize: 14, marginTop: 20 }}>Total Interest Earned</div>
+        <div style={{ fontSize: 24, fontWeight: 700, color: BRAND.success }}>+ {formatINR(interest)}</div>
       </div>
     </div>
   );

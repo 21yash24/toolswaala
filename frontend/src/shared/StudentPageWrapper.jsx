@@ -15,6 +15,26 @@ export default function StudentPageWrapper({ title, hindi, children }) {
       document.head.appendChild(metaDesc);
     }
     metaDesc.content = seoDesc;
+    
+    // Social Metadata (OG & Twitter)
+    const setMeta = (property, content, isProperty = true) => {
+      let meta = document.querySelector(`meta[${isProperty ? 'property' : 'name'}="${property}"]`);
+      if (!meta) {
+        meta = document.createElement("meta");
+        if (isProperty) meta.setAttribute("property", property);
+        else meta.name = property;
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    setMeta("og:title", seoTitle);
+    setMeta("og:description", seoDesc);
+    setMeta("og:url", window.location.href);
+    setMeta("og:image", "https://toolswaala.in/og-image.png");
+    setMeta("twitter:title", seoTitle);
+    setMeta("twitter:description", seoDesc);
+    setMeta("twitter:card", "summary_large_image");
 
     const schema = {
       "@context": "https://schema.org",

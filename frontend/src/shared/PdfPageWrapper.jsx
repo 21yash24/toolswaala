@@ -7,6 +7,59 @@ export default function PdfPageWrapper({ children, title, hindi }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Dynamic SEO Metadata
+    const seoTitle = `${title} (${hindi}) | ToolsWaala PDF - Free & Secure`;
+    const seoDesc = `Use our free ${title.toLowerCase()} tool. 100% browser-based, no file uploads, total privacy. The fastest way to process PDFs in India.`;
+    document.title = seoTitle;
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.content = seoDesc;
+
+    // Social Metadata (OG & Twitter)
+    const setMeta = (property, content, isProperty = true) => {
+      let meta = document.querySelector(`meta[${isProperty ? 'property' : 'name'}="${property}"]`);
+      if (!meta) {
+        meta = document.createElement("meta");
+        if (isProperty) meta.setAttribute("property", property);
+        else meta.name = property;
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    setMeta("og:title", seoTitle);
+    setMeta("og:description", seoDesc);
+    setMeta("og:url", window.location.href);
+    setMeta("og:image", "https://toolswaala.in/og-image.png");
+    setMeta("twitter:title", seoTitle);
+    setMeta("twitter:description", seoDesc);
+    setMeta("twitter:card", "summary_large_image");
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: title,
+      operatingSystem: "All",
+      applicationCategory: "BusinessApplication",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+      url: window.location.href,
+      description: seoDesc,
+    };
+    let script = document.getElementById("json-ld-schema");
+    if (!script) {
+      script = document.createElement("script");
+      script.id = "json-ld-schema";
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(schema);
+
     // Add external scripts for PDF processing
     const scripts = [
       "https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js",
@@ -40,7 +93,7 @@ export default function PdfPageWrapper({ children, title, hindi }) {
         if (loadedCount === scripts.length) checkAndInitPdfJs();
       }
     });
-  }, []);
+  }, [title, hindi]);
 
   return (
     <div className="fade-in">
