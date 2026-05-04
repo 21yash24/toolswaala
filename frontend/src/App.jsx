@@ -1463,6 +1463,8 @@ function SalaryTool() {
       )}
     </div>
   );
+}
+
 function GstCalcTool() {
   const [amount, setAmount] = useState("");
   const [gstRate, setGstRate] = useState(18);
