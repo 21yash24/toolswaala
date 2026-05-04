@@ -87,18 +87,22 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   :root {
     --primary: #FF6B00;
     --primary-dark: #D45800;
-    --surface: #09090B;
-    --surface-dark: #141414;
+    --surface: var(--app-surface);
+    --surface-dark: var(--app-surface-card);
     --accent: #FFB347;
-    --border: rgba(255, 255, 255, 0.08);
-    --text: #FAFAFA;
-    --text-secondary: #A1A1AA;
+    --border: var(--app-border);
+    --text: var(--app-text);
+    --text-secondary: var(--app-text-secondary);
     --success: #22C55E;
     --danger: #EF4444;
     --radius: 16px;
     --radius-sm: 8px;
-    --shadow: 0 4px 20px -2px rgba(0,0,0,0.5);
+    --shadow: 0 4px 20px -2px rgba(0,0,0,0.1);
     --shadow-hover: 0 8px 30px -4px rgba(255,107,0,0.2);
+  }
+
+  .dark-mode {
+    --shadow: 0 4px 20px -2px rgba(0,0,0,0.5);
   }
 
   html, body, #root {
@@ -145,8 +149,8 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
   .btn-secondary {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
+    background: var(--surface-dark);
+    color: var(--text);
     border: 1px solid var(--border);
     padding: 11px 24px;
     border-radius: var(--radius-sm);
@@ -158,7 +162,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     gap: 8px;
     text-decoration: none;
   }
-  .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary); }
+  .btn-secondary:hover { background: var(--surface); border-color: var(--primary); }
 
   .btn-ghost {
     background: transparent;
@@ -174,7 +178,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     gap: 8px;
     text-decoration: none;
   }
-  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: rgba(255,107,0,0.05); }
+  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: var(--surface-dark); }
 
   .glass-card {
     background: var(--surface-dark);
@@ -239,29 +243,30 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
   .result-box {
-    background: linear-gradient(135deg, rgba(20,20,20,0.8) 0%, rgba(30,30,30,0.8) 100%);
-    border: 1px solid rgba(255,107,0,0.3);
+    background: var(--app-surface-card);
+    border: 1px solid var(--primary);
     border-radius: var(--radius);
     padding: 24px;
-    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
   }
 
   .stat-card {
-    background: rgba(255,255,255,0.03);
+    background: var(--app-surface-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 20px;
     text-align: center;
+    box-shadow: var(--shadow);
   }
-  .stat-value { font-size: 24px; font-weight: 800; color: white; }
+  .stat-value { font-size: 24px; font-weight: 800; color: var(--text); }
   .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
 
   .table-container { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; background: rgba(0,0,0,0.1); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--app-surface-card); }
   table th {
     text-align: left;
     padding: 14px 16px;
-    background: rgba(255,255,255,0.05);
+    background: var(--app-surface);
     color: var(--text-secondary);
     font-weight: 600;
     font-size: 11px;
@@ -271,7 +276,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   }
   table td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--text); }
   table tr:last-child td { border-bottom: none; }
-  table tr:hover td { background: rgba(255,255,255,0.02); }
+  table tr:hover td { background: var(--app-surface); }
 
   @media print {
     .no-print { display: none !important; }
