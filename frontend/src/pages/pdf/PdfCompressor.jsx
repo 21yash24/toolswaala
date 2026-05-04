@@ -146,7 +146,7 @@ export default function PdfCompressor() {
           >
             <input type="file" ref={fileInputRef} onChange={handleFile} accept=".pdf" style={{ display: "none" }} />
             <div style={{ fontSize: 48, marginBottom: 16 }}>{file ? "📄" : "📥"}</div>
-            <h3 style={{ color: "white", marginBottom: 8 }}>{file ? file.name : "Drop your PDF here or click to browse"}</h3>
+            <h3 style={{ color: BRAND.text, marginBottom: 8 }}>{file ? file.name : "Drop your PDF here or click to browse"}</h3>
             <p style={{ color: BRAND.textSecondary, fontSize: 14 }}>{file ? formatSize(file.size) : "Maximum file size: 20MB"}</p>
           </div>
 
@@ -203,18 +203,18 @@ export default function PdfCompressor() {
         <div style={cs} className="fade-in">
           <div style={{ textAlign: "center", marginBottom: 32 }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
-            <h3 style={{ color: "white", marginBottom: 8 }}>Compression Complete!</h3>
+            <h3 style={{ color: BRAND.text, marginBottom: 8 }}>Compression Complete!</h3>
             <p style={{ color: BRAND.textSecondary }}>File processed locally — never uploaded to any server.</p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 32 }}>
-            <div style={{ background: "rgba(255,255,255,0.03)", padding: 20, borderRadius: 16, textAlign: "center" }}>
+            <div style={{ background: "rgba(0,0,0,0.02)", padding: 20, borderRadius: 16, textAlign: "center" }}>
               <div style={{ fontSize: 12, color: BRAND.textSecondary, marginBottom: 4 }}>Original</div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: "white" }}>{formatSize(result.originalSize)}</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: BRAND.text }}>{formatSize(result.originalSize)}</div>
             </div>
             <div style={{ background: `${PDF_BRAND.accent}10`, padding: 20, borderRadius: 16, textAlign: "center", border: `1px solid ${PDF_BRAND.accent}20` }}>
               <div style={{ fontSize: 12, color: PDF_BRAND.accent, marginBottom: 4 }}>Compressed ({result.saved}% saved)</div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: "white" }}>{formatSize(result.compressedSize)}</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: BRAND.text }}>{formatSize(result.compressedSize)}</div>
             </div>
           </div>
 
@@ -226,14 +226,14 @@ export default function PdfCompressor() {
       )}
 
       <div style={{ marginTop: 60 }}>
-        <h2 style={{ color: "white", fontSize: 24, marginBottom: 24 }}>Frequently Asked Questions</h2>
+        <h2 style={{ color: BRAND.text, fontSize: 24, marginBottom: 24 }}>Frequently Asked Questions</h2>
         <div style={{ display: "grid", gap: 24 }}>
           <div>
-            <h4 style={{ color: "white", marginBottom: 8 }}>Which mode should I choose?</h4>
+            <h4 style={{ color: BRAND.text, marginBottom: 8 }}>Which mode should I choose?</h4>
             <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6 }}>Use <strong>Fast Mode</strong> for text documents (like resumes or essays) to keep them clear and selectable. Use <strong>Deep Mode</strong> for scanned documents, photos, or when Fast Mode doesn't reduce the file size enough.</p>
           </div>
           <div>
-            <h4 style={{ color: "white", marginBottom: 8 }}>Is it safe to compress my PDF here?</h4>
+            <h4 style={{ color: BRAND.text, marginBottom: 8 }}>Is it safe to compress my PDF here?</h4>
             <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6 }}>Yes. Unlike other websites, ToolsWaala uses 100% browser-side processing. Your files never leave your computer.</p>
           </div>
         </div>

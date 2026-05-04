@@ -97,7 +97,7 @@ export default function SplitPdf() {
         >
           <input type="file" ref={fileInputRef} onChange={handleFile} accept=".pdf" style={{ display: "none" }} />
           <div style={{ fontSize: 32, marginBottom: 12 }}>✂️</div>
-          <h3 style={{ color: "white", marginBottom: 4 }}>{file ? file.name : "Select PDF File"}</h3>
+          <h3 style={{ color: BRAND.text, marginBottom: 4 }}>{file ? file.name : "Select PDF File"}</h3>
           <p style={{ color: BRAND.textSecondary, fontSize: 13 }}>{pageCount ? `${pageCount} Total Pages` : "Split your PDF into parts"}</p>
         </div>
 
@@ -124,7 +124,7 @@ export default function SplitPdf() {
             {mode === "Extract" && (
               <div style={{ marginBottom: 24 }}>
                 <label style={{ display: "block", color: BRAND.textSecondary, fontSize: 13, marginBottom: 8 }}>Enter Page Range / पेज रेंज चुनें</label>
-                <input value={range} onChange={e => setRange(e.target.value)} placeholder="e.g. 1-3, 5, 8-10" style={{ width: "100%", padding: "12px", borderRadius: 10, background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: "white", outline: "none" }} />
+                <input value={range} onChange={e => setRange(e.target.value)} placeholder="e.g. 1-3, 5, 8-10" style={{ width: "100%", padding: "12px", borderRadius: 10, background: "rgba(0,0,0,0.02)", border: `1px solid ${BRAND.border}`, color: BRAND.text, outline: "none" }} />
                 <div style={{ fontSize: 11, color: BRAND.textSecondary, marginTop: 6 }}>Format: 1-3, 5 (for pages 1, 2, 3 and 5)</div>
               </div>
             )}

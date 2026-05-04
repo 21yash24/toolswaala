@@ -77,7 +77,7 @@ export default function PdfToJpg() {
         >
           <input type="file" ref={fileInputRef} onChange={handleFile} accept=".pdf" style={{ display: "none" }} />
           <div style={{ fontSize: 32, marginBottom: 12 }}>📸</div>
-          <h3 style={{ color: "white", marginBottom: 4 }}>{file ? file.name : "Select PDF File"}</h3>
+          <h3 style={{ color: BRAND.text, marginBottom: 4 }}>{file ? file.name : "Select PDF File"}</h3>
           <p style={{ color: BRAND.textSecondary, fontSize: 13 }}>{pdfDoc ? `${pdfDoc.numPages} Pages Found` : "Extract each page as an image"}</p>
         </div>
 
@@ -130,7 +130,7 @@ export default function PdfToJpg() {
       </div>
       
       <div style={{ marginTop: 40, padding: 24, borderRadius: 16, background: "rgba(255,255,255,0.02)", border: `1px solid ${BRAND.border}` }}>
-        <h4 style={{ color: "white", marginBottom: 12 }}>🔒 100% Secure</h4>
+        <h4 style={{ color: BRAND.text, marginBottom: 12 }}>🔒 100% Secure</h4>
         <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6, margin: 0 }}>
           Your PDF is rendered directly in your browser. We never see your content. Once processed, you'll get a ZIP file containing all pages as individual JPG images.
         </p>

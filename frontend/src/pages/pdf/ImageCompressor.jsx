@@ -100,7 +100,7 @@ export default function ImageCompressor() {
           >
             <input type="file" ref={fileInputRef} onChange={handleFile} accept="image/*" style={{ display: "none" }} />
             <div style={{ fontSize: 48, marginBottom: 16 }}>🖼️</div>
-            <h3 style={{ color: "white" }}>Select Photo or Signature</h3>
+            <h3 style={{ color: BRAND.text }}>Select Photo or Signature</h3>
             <p style={{ color: BRAND.textSecondary }}>Recommended for NEET, JEE, UPSC, and CUET portals</p>
           </div>
         ) : (
@@ -115,11 +115,11 @@ export default function ImageCompressor() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 24 }}>
                 <div>
                   <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Max Size (KB)</label>
-                  <input type="number" value={settings.targetSize} onChange={e => setSettings({...settings, targetSize: parseInt(e.target.value)})} style={{ width: "100%", padding: 12, borderRadius: 8, background: "#1a1a1a", border: `1px solid ${BRAND.border}`, color: "white" }} />
+                  <input type="number" value={settings.targetSize} onChange={e => setSettings({...settings, targetSize: parseInt(e.target.value)})} style={{ width: "100%", padding: 12, borderRadius: 8, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}`, color: BRAND.text }} />
                 </div>
                 <div>
                   <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Max Width (px)</label>
-                  <input type="number" value={settings.width || ""} onChange={e => setSettings({...settings, width: parseInt(e.target.value) || null})} placeholder="Original" style={{ width: "100%", padding: 12, borderRadius: 8, background: "#1a1a1a", border: `1px solid ${BRAND.border}`, color: "white" }} />
+                  <input type="number" value={settings.width || ""} onChange={e => setSettings({...settings, width: parseInt(e.target.value) || null})} placeholder="Original" style={{ width: "100%", padding: 12, borderRadius: 8, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}`, color: BRAND.text }} />
                 </div>
               </div>
 
@@ -130,7 +130,7 @@ export default function ImageCompressor() {
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
                       <div style={{ fontSize: 12, color: "#81C784" }}>Ready to Download</div>
-                      <div style={{ fontSize: 18, fontWeight: 700, color: "white" }}>{(result.size / 1024).toFixed(1)} KB</div>
+                      <div style={{ fontSize: 18, fontWeight: 700, color: BRAND.text }}>{(result.size / 1024).toFixed(1)} KB</div>
                     </div>
                     <button onClick={download} style={{ padding: "10px 20px", borderRadius: 8, background: "#4CAF50", color: "white", border: "none", fontWeight: 700, cursor: "pointer" }}>Download ↓</button>
                   </div>

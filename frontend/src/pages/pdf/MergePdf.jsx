@@ -70,7 +70,7 @@ export default function MergePdf() {
         >
           <input type="file" ref={fileInputRef} onChange={handleFiles} accept=".pdf" multiple style={{ display: "none" }} />
           <div style={{ fontSize: 32, marginBottom: 12 }}>📑</div>
-          <h3 style={{ color: "white", marginBottom: 4 }}>Add PDF Files</h3>
+          <h3 style={{ color: BRAND.text, marginBottom: 4 }}>Add PDF Files</h3>
           <p style={{ color: BRAND.textSecondary, fontSize: 13 }}>Combine marksheets, certificates, or NOCs into one file</p>
         </div>
 
@@ -78,15 +78,15 @@ export default function MergePdf() {
           <div style={{ marginTop: 32 }}>
             <div style={{ display: "grid", gap: 10, marginBottom: 32 }}>
               {files.map((f, idx) => (
-                <div key={f.id} style={{ display: "flex", alignItems: "center", gap: 16, padding: "16px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}` }}>
+                <div key={f.id} style={{ display: "flex", alignItems: "center", gap: 16, padding: "16px", borderRadius: 12, background: "rgba(0,0,0,0.02)", border: `1px solid ${BRAND.border}` }}>
                   <div style={{ fontSize: 20 }}>📄</div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ color: "white", fontSize: 14, fontWeight: 600 }}>{f.file.name}</div>
+                    <div style={{ color: BRAND.text, fontSize: 14, fontWeight: 600 }}>{f.file.name}</div>
                     <div style={{ color: BRAND.textSecondary, fontSize: 12 }}>{(f.file.size / 1024 / 1024).toFixed(2)} MB</div>
                   </div>
                   <div style={{ display: "flex", gap: 8 }}>
-                    <button onClick={() => move(idx, -1)} disabled={idx === 0} style={{ padding: "8px", borderRadius: 6, border: "none", background: "rgba(255,255,255,0.05)", color: "white", cursor: "pointer", opacity: idx === 0 ? 0.3 : 1 }}>↑</button>
-                    <button onClick={() => move(idx, 1)} disabled={idx === files.length - 1} style={{ padding: "8px", borderRadius: 6, border: "none", background: "rgba(255,255,255,0.05)", color: "white", cursor: "pointer", opacity: idx === files.length - 1 ? 0.3 : 1 }}>↓</button>
+                    <button onClick={() => move(idx, -1)} disabled={idx === 0} style={{ padding: "8px", borderRadius: 6, border: "none", background: "rgba(0,0,0,0.03)", color: "white", cursor: "pointer", opacity: idx === 0 ? 0.3 : 1 }}>↑</button>
+                    <button onClick={() => move(idx, 1)} disabled={idx === files.length - 1} style={{ padding: "8px", borderRadius: 6, border: "none", background: "rgba(0,0,0,0.03)", color: "white", cursor: "pointer", opacity: idx === files.length - 1 ? 0.3 : 1 }}>↓</button>
                     <button onClick={() => removeFile(f.id)} style={{ padding: "8px", borderRadius: 6, border: "none", background: "rgba(239,68,68,0.1)", color: "#EF4444", cursor: "pointer" }}>✕</button>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ export default function MergePdf() {
       </div>
 
       <div style={{ marginTop: 40, padding: 24, borderRadius: 16, background: `${PDF_BRAND.accent}05`, border: `1px solid ${PDF_BRAND.accent}20` }}>
-        <h4 style={{ color: "white", marginBottom: 12 }}>🔒 Privacy Guaranteed</h4>
+        <h4 style={{ color: BRAND.text, marginBottom: 12 }}>🔒 Privacy Guaranteed</h4>
         <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6, margin: 0 }}>
           Unlike other tools, ToolsWaala never uploads your PDFs. The merging process happens entirely in your RAM using pdf-lib. No server ever sees your files.
         </p>

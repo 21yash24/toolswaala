@@ -92,7 +92,7 @@ export default function PdfToWord() {
         >
           <input type="file" ref={fileInputRef} onChange={handleFile} accept=".pdf" style={{ display: "none" }} />
           <div style={{ fontSize: 32, marginBottom: 12 }}>📝</div>
-          <h3 style={{ color: "white", marginBottom: 4 }}>{file ? file.name : "Upload PDF File"}</h3>
+          <h3 style={{ color: BRAND.text, marginBottom: 4 }}>{file ? file.name : "Upload PDF File"}</h3>
           <p style={{ color: BRAND.textSecondary, fontSize: 13 }}>Extract text to a Word document</p>
         </div>
 
@@ -121,7 +121,7 @@ export default function PdfToWord() {
       </div>
 
       <div style={{ marginTop: 40, padding: 24, borderRadius: 16, background: "rgba(255,255,255,0.02)", border: `1px solid ${BRAND.border}` }}>
-        <h4 style={{ color: "white", marginBottom: 12 }}>🔒 100% Private (Text Extraction)</h4>
+        <h4 style={{ color: BRAND.text, marginBottom: 12 }}>🔒 100% Private (Text Extraction)</h4>
         <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6, margin: 0 }}>
           Most PDF to Word converters upload your file to their server. We process the file completely inside your browser. Because of this, we perform a "Text Extraction" which grabs all text data but does not preserve complex layouts, images, or tables. Perfect for getting raw text quickly and securely!
         </p>

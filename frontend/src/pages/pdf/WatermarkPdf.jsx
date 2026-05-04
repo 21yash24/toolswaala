@@ -78,7 +78,7 @@ export default function WatermarkPdf() {
         >
           <input type="file" ref={fileInputRef} onChange={handleFile} accept=".pdf" style={{ display: "none" }} />
           <div style={{ fontSize: 32, marginBottom: 12 }}>🖋️</div>
-          <h3 style={{ color: "white" }}>{file ? file.name : "Select PDF for Watermark"}</h3>
+          <h3 style={{ color: BRAND.text }}>{file ? file.name : "Select PDF for Watermark"}</h3>
         </div>
 
         {file && (
@@ -86,11 +86,11 @@ export default function WatermarkPdf() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 24 }}>
               <div style={{ gridColumn: "span 2" }}>
                 <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Watermark Text</label>
-                <input value={settings.text} onChange={e => setSettings({...settings, text: e.target.value})} style={{ width: "100%", padding: 12, borderRadius: 8, background: "#1a1a1a", border: `1px solid ${BRAND.border}`, color: "white" }} />
+                <input value={settings.text} onChange={e => setSettings({...settings, text: e.target.value})} style={{ width: "100%", padding: 12, borderRadius: 8, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}`, color: BRAND.text }} />
               </div>
               <div>
                 <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Font Color</label>
-                <input type="color" value={settings.color} onChange={e => setSettings({...settings, color: e.target.value})} style={{ width: "100%", height: 42, padding: 4, borderRadius: 8, background: "#1a1a1a", border: `1px solid ${BRAND.border}` }} />
+                <input type="color" value={settings.color} onChange={e => setSettings({...settings, color: e.target.value})} style={{ width: "100%", height: 42, padding: 4, borderRadius: 8, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}` }} />
               </div>
               <div>
                 <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Opacity ({Math.round(settings.opacity * 100)}%)</label>

@@ -80,7 +80,7 @@ export default function ImageToPdf() {
         >
           <input type="file" ref={fileInputRef} onChange={handleFiles} accept="image/*" multiple style={{ display: "none" }} />
           <div style={{ fontSize: 32, marginBottom: 12 }}>🖼️</div>
-          <h3 style={{ color: "white", marginBottom: 4 }}>Add Images</h3>
+          <h3 style={{ color: BRAND.text, marginBottom: 4 }}>Add Images</h3>
           <p style={{ color: BRAND.textSecondary, fontSize: 13 }}>Perfect for scanning documents, IDs, or assignments</p>
         </div>
 
@@ -99,21 +99,21 @@ export default function ImageToPdf() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 32 }}>
               <div>
                 <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Page Size</label>
-                <select value={options.pageSize} onChange={e => setOptions({...options, pageSize: e.target.value})} style={{ width: "100%", padding: 10, borderRadius: 8, background: "#1a1a1a", color: "white", border: `1px solid ${BRAND.border}` }}>
+                <select value={options.pageSize} onChange={e => setOptions({...options, pageSize: e.target.value})} style={{ width: "100%", padding: 10, borderRadius: 8, background: BRAND.surfaceCard, color: BRAND.text, border: `1px solid ${BRAND.border}` }}>
                   <option value="a4">A4</option>
                   <option value="letter">Letter</option>
                 </select>
               </div>
               <div>
                 <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Orientation</label>
-                <select value={options.orientation} onChange={e => setOptions({...options, orientation: e.target.value})} style={{ width: "100%", padding: 10, borderRadius: 8, background: "#1a1a1a", color: "white", border: `1px solid ${BRAND.border}` }}>
+                <select value={options.orientation} onChange={e => setOptions({...options, orientation: e.target.value})} style={{ width: "100%", padding: 10, borderRadius: 8, background: BRAND.surfaceCard, color: BRAND.text, border: `1px solid ${BRAND.border}` }}>
                   <option value="p">Portrait</option>
                   <option value="l">Landscape</option>
                 </select>
               </div>
               <div>
                 <label style={{ fontSize: 12, color: BRAND.textSecondary, display: "block", marginBottom: 6 }}>Margin (mm)</label>
-                <select value={options.margin} onChange={e => setOptions({...options, margin: parseInt(e.target.value)})} style={{ width: "100%", padding: 10, borderRadius: 8, background: "#1a1a1a", color: "white", border: `1px solid ${BRAND.border}` }}>
+                <select value={options.margin} onChange={e => setOptions({...options, margin: parseInt(e.target.value)})} style={{ width: "100%", padding: 10, borderRadius: 8, background: BRAND.surfaceCard, color: BRAND.text, border: `1px solid ${BRAND.border}` }}>
                   <option value="0">None</option>
                   <option value="5">Small (5mm)</option>
                   <option value="10">Normal (10mm)</option>
@@ -143,7 +143,7 @@ export default function ImageToPdf() {
       </div>
 
       <div style={{ marginTop: 40, padding: 24, borderRadius: 16, background: "rgba(255,255,255,0.02)", border: `1px solid ${BRAND.border}` }}>
-        <h4 style={{ color: "white", marginBottom: 12 }}>💡 Student Tip</h4>
+        <h4 style={{ color: BRAND.text, marginBottom: 12 }}>💡 Student Tip</h4>
         <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6, margin: 0 }}>
           Perfect for submitting scanned documents, mark sheets, ID proof, or phone-clicked assignments to college portals. Use "Normal" margin for a professional look.
         </p>

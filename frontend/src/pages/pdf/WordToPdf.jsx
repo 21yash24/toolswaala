@@ -68,7 +68,7 @@ export default function WordToPdf() {
         >
           <input type="file" ref={fileInputRef} onChange={handleFile} accept=".docx" style={{ display: "none" }} />
           <div style={{ fontSize: 32, marginBottom: 12 }}>📄</div>
-          <h3 style={{ color: "white", marginBottom: 4 }}>{file ? file.name : "Upload Word Document (.docx)"}</h3>
+          <h3 style={{ color: BRAND.text, marginBottom: 4 }}>{file ? file.name : "Upload Word Document (.docx)"}</h3>
           <p style={{ color: BRAND.textSecondary, fontSize: 13 }}>Convert Word documents to PDF locally</p>
         </div>
 
@@ -108,7 +108,7 @@ export default function WordToPdf() {
       </div>
 
       <div style={{ marginTop: 40, padding: 24, borderRadius: 16, background: "rgba(255,255,255,0.02)", border: `1px solid ${BRAND.border}` }}>
-        <h4 style={{ color: "white", marginBottom: 12 }}>🔒 100% Secure Conversion</h4>
+        <h4 style={{ color: BRAND.text, marginBottom: 12 }}>🔒 100% Secure Conversion</h4>
         <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6, margin: 0 }}>
           Unlike other websites, we convert your Word document to PDF entirely in your browser using local rendering. Note: Complex layouts (like headers, footers, and complex tables) might look different than the original Word file.
         </p>
