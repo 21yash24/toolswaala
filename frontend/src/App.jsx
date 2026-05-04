@@ -1247,6 +1247,114 @@ function SalaryTool() {
       )}
     </div>
   );
+function GstCalcTool() {
+  const [amount, setAmount] = useState("");
+  const [gstRate, setGstRate] = useState(18);
+  const [calcMode, setCalcMode] = useState("ADD"); // "ADD" or "REMOVE"
+
+  const calculateGst = () => {
+    const baseAmount = parseFloat(amount) || 0;
+    const rate = parseFloat(gstRate) || 0;
+    
+    if (calcMode === "ADD") {
+      const gstAmount = baseAmount * (rate / 100);
+      const netAmount = baseAmount;
+      const totalAmount = baseAmount + gstAmount;
+      return { gstAmount, netAmount, totalAmount, cgst: gstAmount / 2, sgst: gstAmount / 2 };
+    } else {
+      const totalAmount = baseAmount;
+      const netAmount = baseAmount / (1 + (rate / 100));
+      const gstAmount = totalAmount - netAmount;
+      return { gstAmount, netAmount, totalAmount, cgst: gstAmount / 2, sgst: gstAmount / 2 };
+    }
+  };
+
+  const { gstAmount, netAmount, totalAmount, cgst, sgst } = calculateGst();
+
+  return (
+    <div className="grid-2">
+      <div className="glass-card">
+        <div style={{ display: "flex", gap: 10, marginBottom: 24, background: "rgba(255,255,255,0.05)", padding: 6, borderRadius: 12 }}>
+          <button 
+            style={{ flex: 1, padding: "10px", borderRadius: 8, border: "none", cursor: "pointer", fontWeight: "bold", background: calcMode === "ADD" ? BRAND.primary : "transparent", color: calcMode === "ADD" ? "#fff" : BRAND.textSecondary }}
+            onClick={() => setCalcMode("ADD")}
+          >
+            Add GST (Exclusive)
+          </button>
+          <button 
+            style={{ flex: 1, padding: "10px", borderRadius: 8, border: "none", cursor: "pointer", fontWeight: "bold", background: calcMode === "REMOVE" ? BRAND.primary : "transparent", color: calcMode === "REMOVE" ? "#fff" : BRAND.textSecondary }}
+            onClick={() => setCalcMode("REMOVE")}
+          >
+            Remove GST (Inclusive)
+          </button>
+        </div>
+
+        <div className="form-group">
+          <label>Amount (₹)</label>
+          <input 
+            type="number" 
+            placeholder="e.g. 10000" 
+            value={amount} 
+            onChange={(e) => setAmount(e.target.value)} 
+            style={{ fontSize: 24, fontWeight: "bold", padding: "16px", textAlign: "right" }}
+          />
+        </div>
+
+        <div className="form-group" style={{ marginTop: 24 }}>
+          <label>GST Rate</label>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
+            {[3, 5, 12, 18, 28].map(rate => (
+              <button
+                key={rate}
+                onClick={() => setGstRate(rate)}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: 20,
+                  border: `1px solid ${gstRate === rate ? BRAND.primary : "rgba(255,255,255,0.1)"}`,
+                  background: gstRate === rate ? "rgba(255,107,0,0.1)" : "transparent",
+                  color: gstRate === rate ? BRAND.primary : BRAND.text,
+                  cursor: "pointer",
+                  fontWeight: "bold"
+                }}
+              >
+                {rate}%
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="glass-card" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <h3 style={{ textAlign: "center", marginBottom: 30, color: BRAND.textSecondary }}>Calculation Summary</h3>
+        
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 15, paddingBottom: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+          <span style={{ fontSize: 16, color: BRAND.textSecondary }}>Net Amount (Base)</span>
+          <span style={{ fontSize: 18, fontWeight: "bold" }}>{formatINR(netAmount)}</span>
+        </div>
+        
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 15 }}>
+          <span style={{ fontSize: 16, color: BRAND.textSecondary }}>Total GST Amount</span>
+          <span style={{ fontSize: 18, fontWeight: "bold" }}>{formatINR(gstAmount)}</span>
+        </div>
+        
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20, padding: "10px 15px", background: "rgba(0,0,0,0.2)", borderRadius: 8 }}>
+          <div style={{ textAlign: "center", flex: 1, borderRight: "1px solid rgba(255,255,255,0.05)" }}>
+            <div style={{ fontSize: 12, color: BRAND.textSecondary, marginBottom: 4 }}>CGST ({(gstRate/2).toFixed(1)}%)</div>
+            <div style={{ fontWeight: "bold" }}>{formatINR(cgst)}</div>
+          </div>
+          <div style={{ textAlign: "center", flex: 1 }}>
+            <div style={{ fontSize: 12, color: BRAND.textSecondary, marginBottom: 4 }}>SGST ({(gstRate/2).toFixed(1)}%)</div>
+            <div style={{ fontWeight: "bold" }}>{formatINR(sgst)}</div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: "auto", background: "rgba(255,107,0,0.1)", padding: 24, borderRadius: 12, textAlign: "center", border: `1px solid rgba(255,107,0,0.2)` }}>
+          <div style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: 1, color: BRAND.primary, marginBottom: 8 }}>Total Gross Amount</div>
+          <div style={{ fontSize: 36, fontWeight: 900, color: "#fff" }}>{formatINR(totalAmount)}</div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function BizNameTool() {
