@@ -7,6 +7,7 @@ export default function PdfCompressor() {
   const [file, setFile] = useState(null);
   const [level, setLevel] = useState("Medium");
   const [processing, setProcessing] = useState(false);
+  const [progress, setProgress] = useState("");
   const [result, setResult] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -25,30 +26,68 @@ export default function PdfCompressor() {
   const compressPdf = async () => {
     if (!file) return;
     setProcessing(true);
+    setProgress("Loading document...");
     
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await window.PDFLib.PDFDocument.load(arrayBuffer);
+      const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const numPages = pdf.numPages;
+
+      const { jsPDF } = window.jspdf;
+      const newPdf = new jsPDF("p", "mm", "a4");
       
-      // Basic compression: structural re-encoding
-      // pdf-lib doesn't have native image compression, but saving it can clean up resources.
-      const compressedBytes = await pdfDoc.save({ useObjectStreams: true });
+      // Determine scale based on level
+      const scale = level === "Light" ? 2.0 : level === "Medium" ? 1.5 : 1.0;
+      const imageQuality = level === "Light" ? 0.8 : level === "Medium" ? 0.6 : 0.4;
+
+      for (let i = 1; i <= numPages; i++) {
+        setProgress(`Compressing page ${i} of ${numPages}...`);
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale });
+        
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        await page.render({ canvasContext: context, viewport }).promise;
+        
+        const imgData = canvas.toDataURL("image/jpeg", imageQuality);
+        
+        if (i > 1) newPdf.addPage();
+        
+        const pdfWidth = newPdf.internal.pageSize.getWidth();
+        const pdfHeight = newPdf.internal.pageSize.getHeight();
+        
+        newPdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+      }
+
+      setProgress("Finalizing file...");
+      const blob = newPdf.output("blob");
       
-      const blob = new Blob([compressedBytes], { type: "application/pdf" });
-      const compressedSize = blob.size;
+      let compressedSize = blob.size;
+      let finalBlob = blob;
+
+      // Fallback: if somehow it's larger (rare with flattening), just use original
+      if (compressedSize > file.size) {
+        compressedSize = file.size;
+        finalBlob = file;
+        alert("This PDF is already highly optimized. Returning original file.");
+      }
       
       setResult({
-        blob,
+        blob: finalBlob,
         name: `compressed_${file.name}`,
         originalSize: file.size,
         compressedSize: compressedSize,
-        saved: Math.round(((file.size - compressedSize) / file.size) * 100)
+        saved: Math.max(0, Math.round(((file.size - compressedSize) / file.size) * 100))
       });
     } catch (e) {
       console.error(e);
-      alert("Failed to compress PDF. Some PDFs are already highly optimized.");
+      alert("Failed to compress PDF. Some encrypted PDFs cannot be processed.");
     } finally {
       setProcessing(false);
+      setProgress("");
     }
   };
 
@@ -92,6 +131,9 @@ export default function PdfCompressor() {
 
           {file && (
             <div style={{ marginTop: 32 }}>
+              <div style={{ padding: 12, borderRadius: 8, background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.2)", marginBottom: 20 }}>
+                <span style={{ fontSize: 12, color: "#EF4444" }}>⚠️ Note: This aggressively compresses the file by converting pages to images. Selectable text will be flattened.</span>
+              </div>
               <label style={{ display: "block", color: BRAND.textSecondary, fontSize: 13, marginBottom: 16 }}>Compression Level / कम्प्रेशन लेवल</label>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 24 }}>
                 {["Light", "Medium", "Strong"].map(l => (
@@ -124,11 +166,11 @@ export default function PdfCompressor() {
                   border: "none", 
                   fontWeight: 800, 
                   fontSize: 16,
-                  cursor: "pointer",
+                  cursor: processing ? "not-allowed" : "pointer",
                   opacity: processing ? 0.7 : 1
                 }}
               >
-                {processing ? "Compressing PDF..." : "Compress PDF →"}
+                {processing ? progress || "Compressing PDF..." : "Compress PDF →"}
               </button>
             </div>
           )}
@@ -164,12 +206,12 @@ export default function PdfCompressor() {
         <h2 style={{ color: "white", fontSize: 24, marginBottom: 24 }}>Frequently Asked Questions</h2>
         <div style={{ display: "grid", gap: 24 }}>
           <div>
-            <h4 style={{ color: "white", marginBottom: 8 }}>Is it safe to compress my PDF here?</h4>
-            <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6 }}>Yes. Unlike other websites, ToolsWaala uses 100% browser-side processing. Your files never leave your computer. The compression happens entirely in your browser's memory and is cleared once you close the tab.</p>
+            <h4 style={{ color: "white", marginBottom: 8 }}>How does this aggressive compression work?</h4>
+            <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6 }}>Unlike our old compressor, this tool actually flattens your PDF pages into high-efficiency JPEG images before rebuilding the PDF. This guarantees massive file size reductions, especially for documents containing many large photos or complex graphics.</p>
           </div>
           <div>
-            <h4 style={{ color: "white", marginBottom: 8 }}>Why did my file size not decrease significantly?</h4>
-            <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6 }}>If your PDF already contains highly optimized images or has been compressed before, further reduction might be minimal. Our tool focuses on structural optimization and cleaning up redundant data.</p>
+            <h4 style={{ color: "white", marginBottom: 8 }}>Will I lose selectable text?</h4>
+            <p style={{ color: BRAND.textSecondary, fontSize: 14, lineHeight: 1.6 }}>Yes. Because we flatten the PDF to ensure the smallest possible file size (vital for exam portal uploads), any selectable text will become an image. If you need to edit the text later, keep your original file.</p>
           </div>
         </div>
       </div>
