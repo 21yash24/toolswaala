@@ -331,20 +331,28 @@ function Navbar() {
     <nav style={{ background: "rgba(9, 9, 11, 0.8)", backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: "1px solid rgba(255,255,255,0.05)", width: "100vw" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ boxShadow: "0 0 20px rgba(255,107,0,0.4)", borderRadius: 10 }}>
-            <rect width="40" height="40" rx="10" fill="url(#grad)" />
-            <path d="M10 14H20M15 14V26" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M22 14L25 24L28 17L31 24L34 14" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-            <defs>
-              <linearGradient id="grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#FF6B00" />
-                <stop offset="1" stopColor="#FFB347" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <div style={{ position: "relative", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Cog / Gear Background */}
+              <path d="M50 20L55 5H45L50 20ZM80 50L95 55V45L80 50ZM50 80L45 95H55L50 80ZM20 50L5 45V55L20 50ZM71.2 28.8L81.8 18.2L74.7 11.1L64.1 21.7L71.2 28.8ZM71.2 71.2L64.1 78.3L71.2 85.4L81.8 74.8L71.2 71.2ZM28.8 71.2L18.2L81.8L11.1 74.7L21.7 64.1L28.8 71.2ZM28.8 28.8L21.7 21.7L11.1 28.8L18.2 39.4L28.8 28.8Z" fill="#FF6B00" opacity="0.2" />
+              <circle cx="50" cy="50" r="25" stroke="#FF6B00" strokeWidth="6" opacity="0.3" />
+              
+              {/* Stylized 'W' with Wrench tips */}
+              <path d="M25 35L42 75L50 55L58 75L75 35" stroke="#FF6B00" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="25" cy="35" r="5" fill="#FF6B00" />
+              <circle cx="75" cy="35" r="5" fill="#FF6B00" />
+              
+              {/* Tool Accents */}
+              <path d="M42 75L35 68" stroke="#FF6B00" strokeWidth="4" strokeLinecap="round" />
+              <path d="M58 75L65 68" stroke="#FF6B00" strokeWidth="4" strokeLinecap="round" />
+            </svg>
+          </div>
           <div>
-            <div style={{ color: "white", fontWeight: 900, fontSize: 19, lineHeight: 1, letterSpacing: "-0.02em" }}>ToolsWaala</div>
-            <div style={{ color: BRAND.accent, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Business Kit</div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <span style={{ color: "white", fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Tools</span>
+              <span style={{ color: BRAND.primary, fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Waala</span>
+            </div>
+            <div style={{ color: BRAND.textSecondary, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginTop: 2 }}>The Ultimate Kit</div>
           </div>
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
