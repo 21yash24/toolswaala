@@ -74,7 +74,23 @@ export default function StudentPageWrapper({ title, hindi, children }) {
 
       {children}
 
-      <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
+      {/* SEO FAQ Section */}
+      <div style={{ marginTop: 60, padding: 32, borderRadius: 20, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}` }}>
+        <h2 style={{ fontSize: 20, color: BRAND.text, marginBottom: 24 }}>❓ Frequently Asked Questions</h2>
+        {[
+          { q: `Is this ${title} free to use?`, a: `Yes! ToolsWaala's ${title} is 100% free. No login, no signup, no hidden charges. Made for Indian students.` },
+          { q: `Does this tool work on mobile?`, a: `Yes! ToolsWaala is fully responsive and works perfectly on Android phones, iPhones, tablets and desktops.` },
+          { q: `Is my data saved?`, a: `Yes, your data is automatically saved in your browser's local storage. It will be there when you come back tomorrow!` },
+          { q: `Can I share my results?`, a: `Yes! Use the WhatsApp share button to share your results with friends and classmates.` },
+        ].map((faq, i) => (
+          <div key={i} style={{ marginBottom: 20 }}>
+            <h3 style={{ fontSize: 15, color: BRAND.text, marginBottom: 6 }}>{faq.q}</h3>
+            <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.6, margin: 0 }}>{faq.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: 40, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
         <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>More Student Tools</h3>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
           {STUDENT_TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (

@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://toolswaala.in/</loc><priority>1.0</priority></url>
-  <url><loc>https://toolswaala.in/students</loc><priority>0.9</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools</loc><priority>0.9</priority></url>
+  <url><loc>https://toolswaala.in/</loc><lastmod>2026-05-04</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://toolswaala.in/students</loc><lastmod>2026-05-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools</loc><lastmod>2026-05-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   
   <!-- Business Tools -->
-  <url><loc>https://toolswaala.in/upi-payment</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/gst-invoice</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/gstin-verify</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/qr-generator</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/emi-calculator</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/gst-calculator</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/estimate-generator</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/legal-hub</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/salary-slip</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/tax-calculator</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/receipt-maker</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/business-name</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/sip-calculator</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/hra-calculator</loc><priority>0.8</priority></url>
-  <url><loc>https://toolswaala.in/fd-calculator</loc><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/upi-payment</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/gst-invoice</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/gstin-verify</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/qr-generator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/emi-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/gst-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/estimate-generator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/legal-hub</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/salary-slip</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/tax-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/receipt-maker</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/business-name</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/sip-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/hra-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/fd-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Student Tools -->
-  <url><loc>https://toolswaala.in/cgpa-calculator</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/attendance-calculator</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/percentage-calculator</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pomodoro-timer</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/bonafide-certificate</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/noc-generator</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/resume-builder</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/sop-generator</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/scholarship-finder</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/study-planner</loc><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/cgpa-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/attendance-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/percentage-calculator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/pomodoro-timer</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/bonafide-certificate</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/noc-generator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/resume-builder</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/sop-generator</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/scholarship-finder</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/study-planner</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- PDF Tools -->
-  <url><loc>https://toolswaala.in/pdf-tools/compress-pdf</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/image-to-pdf</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/pdf-to-jpg</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/merge-pdf</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/split-pdf</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/compress-image</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/word-to-pdf</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/pdf-to-word</loc><priority>0.7</priority></url>
-  <url><loc>https://toolswaala.in/pdf-tools/watermark-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/compress-pdf</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/image-to-pdf</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/pdf-to-jpg</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/merge-pdf</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/split-pdf</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/compress-image</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/word-to-pdf</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/pdf-to-word</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toolswaala.in/pdf-tools/watermark-pdf</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

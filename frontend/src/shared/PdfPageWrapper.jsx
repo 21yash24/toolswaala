@@ -62,50 +62,73 @@ export default function PdfPageWrapper({ children, title, hindi }) {
           <span style={{ color: BRAND.text }}>{title}</span>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40 }}>
-          <main>
-            <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
-              <div>
-                <h1 style={{ fontSize: "clamp(28px, 5vw, 42px)", color: BRAND.text, marginBottom: 12, fontWeight: 900 }}>{title}</h1>
-                <div style={{ color: PDF_BRAND.accent, fontSize: 18, fontWeight: 600 }}>{hindi}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 40 }}>
+          <style>{`
+            @media(min-width: 1024px) {
+              .pdf-layout { grid-template-columns: 1fr 320px !important; }
+            }
+          `}</style>
+          <div className="pdf-layout" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 40 }}>
+            <main>
+              <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
+                <div>
+                  <h1 style={{ fontSize: "clamp(24px, 5vw, 42px)", color: BRAND.text, marginBottom: 12, fontWeight: 900 }}>{title}</h1>
+                  <div style={{ color: PDF_BRAND.accent, fontSize: 16, fontWeight: 600 }}>{hindi}</div>
+                </div>
+                <div style={{ display: "flex", gap: 10 }}>
+                  <a 
+                    href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} tool on ToolsWaala! 📄\n\n${window.location.href}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+                  >
+                    <span style={{ fontSize: 18 }}>📲</span> WhatsApp
+                  </a>
+                </div>
               </div>
-              <div style={{ display: "flex", gap: 10 }}>
-                <a 
-                  href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} tool on ToolsWaala! 📄\n\n${window.location.href}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
-                >
-                  <span style={{ fontSize: 18 }}>📲</span> WhatsApp
-                </a>
-              </div>
-            </div>
-            {children}
-          </main>
+              {children}
 
-          <aside className="no-print">
-            <div style={{ background: BRAND.surfaceCard, borderRadius: 20, border: `1px solid ${BRAND.border}`, padding: 24, position: "sticky", top: 100 }}>
-              <h3 style={{ color: BRAND.text, fontSize: 16, marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ color: PDF_BRAND.accent }}>📄</span> Other PDF Tools
-              </h3>
-              <div style={{ display: "grid", gap: 12 }}>
-                {PDF_TOOLS.filter(t => t.path !== location.pathname).map(tool => (
-                  <Link key={tool.id} to={tool.path} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, textDecoration: "none", transition: "border-color 0.2s" }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = PDF_BRAND.accent + "40"}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = BRAND.border}>
-                    <span style={{ fontSize: 20 }}>{tool.icon}</span>
-                    <div style={{ fontSize: 14, color: BRAND.text, fontWeight: 500 }}>{tool.name}</div>
-                  </Link>
+              {/* SEO FAQ Section — helps Google rank this page for long-tail queries */}
+              <div style={{ marginTop: 60, padding: 32, borderRadius: 20, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}` }}>
+                <h2 style={{ fontSize: 20, color: BRAND.text, marginBottom: 24 }}>❓ Frequently Asked Questions</h2>
+                {[
+                  { q: `Is this ${title} tool free?`, a: `Yes, ToolsWaala's ${title} is 100% free. No login, no limits, no hidden charges.` },
+                  { q: `Is my file safe?`, a: `Your files are processed entirely in your browser using JavaScript. Nothing is uploaded to any server. Your data stays on your device.` },
+                  { q: `Can I use this on mobile?`, a: `Yes! ToolsWaala works perfectly on Android, iPhone, tablets, and desktop browsers.` },
+                  { q: `What is the file size limit?`, a: `Most tools support files up to 50MB. For larger files, try our Pro plan.` },
+                ].map((faq, i) => (
+                  <div key={i} style={{ marginBottom: 20 }}>
+                    <h3 style={{ fontSize: 15, color: BRAND.text, marginBottom: 6 }}>{faq.q}</h3>
+                    <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.6, margin: 0 }}>{faq.a}</p>
+                  </div>
                 ))}
               </div>
-              
-              <div style={{ marginTop: 32, padding: 20, borderRadius: 16, background: `${PDF_BRAND.accent}08`, border: `1px solid ${PDF_BRAND.accent}20` }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: PDF_BRAND.accent, marginBottom: 8 }}>⚡ Upgrade to Pro</div>
-                <p style={{ fontSize: 12, color: BRAND.textSecondary, margin: 0, lineHeight: 1.5 }}>Unlock batch processing, 100MB file limits, and ad-free experience.</p>
-                <button style={{ width: "100%", marginTop: 16, padding: "10px", borderRadius: 8, border: "none", background: PDF_BRAND.accent, color: "white", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Go Pro for ₹99/mo</button>
+            </main>
+
+            <aside className="no-print">
+              <div style={{ background: BRAND.surfaceCard, borderRadius: 20, border: `1px solid ${BRAND.border}`, padding: 24, position: "sticky", top: 100 }}>
+                <h3 style={{ color: BRAND.text, fontSize: 16, marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{ color: PDF_BRAND.accent }}>📄</span> Other PDF Tools
+                </h3>
+                <div style={{ display: "grid", gap: 12 }}>
+                  {PDF_TOOLS.filter(t => t.path !== location.pathname).map(tool => (
+                    <Link key={tool.id} to={tool.path} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, textDecoration: "none", transition: "border-color 0.2s" }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = PDF_BRAND.accent + "40"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = BRAND.border}>
+                      <span style={{ fontSize: 20 }}>{tool.icon}</span>
+                      <div style={{ fontSize: 14, color: BRAND.text, fontWeight: 500 }}>{tool.name}</div>
+                    </Link>
+                  ))}
+                </div>
+                
+                <div style={{ marginTop: 32, padding: 20, borderRadius: 16, background: `${PDF_BRAND.accent}08`, border: `1px solid ${PDF_BRAND.accent}20` }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: PDF_BRAND.accent, marginBottom: 8 }}>⚡ Upgrade to Pro</div>
+                  <p style={{ fontSize: 12, color: BRAND.textSecondary, margin: 0, lineHeight: 1.5 }}>Unlock batch processing, 100MB file limits, and ad-free experience.</p>
+                  <button style={{ width: "100%", marginTop: 16, padding: "12px", borderRadius: 10, border: "none", background: PDF_BRAND.accent, color: "white", fontWeight: 700, fontSize: 13, cursor: "pointer", transition: "transform 0.2s" }} onMouseEnter={e => e.currentTarget.style.transform="scale(1.02)"} onMouseLeave={e => e.currentTarget.style.transform="scale(1)"}>Go Pro for ₹99/mo</button>
+                </div>
               </div>
-            </div>
-          </aside>
+            </aside>
+          </div>
         </div>
       </div>
     </div>
