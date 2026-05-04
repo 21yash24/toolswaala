@@ -54,6 +54,17 @@ export default function CgpaCalculator() {
       {tab === 1 && <CgpaTab />}
       {tab === 2 && <ConvertTab />}
       {tab === 3 && <TargetTab />}
+
+      <div style={{ ...cs, marginTop: 40, background: "rgba(0,0,0,0.03)", border: `1px dashed ${BRAND.border}` }}>
+        <h4 style={{ color: BRAND.text, marginBottom: 12, display: "flex", alignItems: "center", gap: 8 }}>
+          🛡️ University Compliance Note
+        </h4>
+        <p style={{ fontSize: 13, color: BRAND.textSecondary, lineHeight: 1.6 }}>
+          Our formulas are based on the **latest UGC & AICTE guidelines (NEP 2020)** and specific university notifications. 
+          However, some autonomous colleges may use custom multipliers. **Rule of Thumb:** Check the back page of your official 
+          mark sheet for the conversion formula before applying for government jobs or foreign universities.
+        </p>
+      </div>
     </div>
   );
 }

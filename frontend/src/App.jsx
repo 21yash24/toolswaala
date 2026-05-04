@@ -682,11 +682,19 @@ function GstInvoiceTool() {
   const [items, setItems] = useState([{ desc: "", hsn: "", qty: 1, rate: "", gst: 18 }]);
   const [preview, setPreview] = useState(false);
 
+  const [qrCode, setQrCode] = useState("");
+  const [bankUpi, setBankUpi] = useState("");
+
   const addItem = () => setItems(p => [...p, { desc: "", hsn: "", qty: 1, rate: "", gst: 18 }]);
   const removeItem = (i) => setItems(p => p.filter((_, idx) => idx !== i));
   const updateItem = (i, k, v) => setItems(p => p.map((item, idx) => idx === i ? { ...item, [k]: v } : item));
 
   const isInterstate = seller.state !== buyer.state;
+
+  const validateGstin = (gstin) => {
+    const reg = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+    return reg.test(gstin);
+  };
 
   const calculateTotals = () => {
     let subtotal = 0;
@@ -707,10 +715,24 @@ function GstInvoiceTool() {
       }
     });
     
-    return { subtotal, cgst, sgst, igst, total: subtotal + cgst + sgst + igst };
+    const exactTotal = subtotal + cgst + sgst + igst;
+    const roundedTotal = Math.round(exactTotal);
+    const roundingOff = roundedTotal - exactTotal;
+    
+    return { subtotal, cgst, sgst, igst, total: roundedTotal, roundingOff };
   };
 
   const totals = calculateTotals();
+
+  const generateUpiQr = () => {
+    if (!bankUpi) {
+      alert("Please enter a UPI ID (e.g., yourname@okaxis) to generate QR");
+      return;
+    }
+    // Simple UPI deep link: upi://pay?pa=VPA&pn=NAME&am=AMOUNT&cu=INR
+    const url = `upi://pay?pa=${bankUpi}&pn=${encodeURIComponent(seller.name)}&am=${totals.total}&cu=INR`;
+    setQrCode(url);
+  };
 
   return (
     <div>
@@ -720,7 +742,7 @@ function GstInvoiceTool() {
             <div className="glass-card">
               <h3>Your Business Details</h3>
               <div className="form-group"><label>Business Name</label><input value={seller.name} onChange={e => setSeller({...seller, name: e.target.value})} /></div>
-              <div className="form-group"><label>GSTIN</label><input value={seller.gstin} onChange={e => setSeller({...seller, gstin: e.target.value})} placeholder="27XXXXX..." /></div>
+              <div className="form-group"><label>GSTIN {seller.gstin && !validateGstin(seller.gstin) && <span style={{ color: BRAND.danger, fontSize: 10 }}>(Invalid Format)</span>}</label><input value={seller.gstin} onChange={e => setSeller({...seller, gstin: e.target.value.toUpperCase()})} placeholder="27XXXXX..." /></div>
               <div className="form-group"><label>Address</label><textarea value={seller.address} onChange={e => setSeller({...seller, address: e.target.value})} /></div>
               <div className="form-group">
                 <label>State</label>
@@ -729,7 +751,8 @@ function GstInvoiceTool() {
                 </select>
               </div>
               <div style={{ marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 15 }}>
-                <h4>Bank Details</h4>
+                <h4>Bank & Payment</h4>
+                <div className="form-group"><label>UPI ID (For Payment QR)</label><input value={bankUpi} onChange={e => setBankUpi(e.target.value)} placeholder="e.g. name@okaxis" /></div>
                 <div className="form-group"><label>Bank Name</label><input value={seller.bank.name} onChange={e => setSeller({...seller, bank: {...seller.bank, name: e.target.value}})} /></div>
                 <div className="form-group"><label>Account Number</label><input value={seller.bank.acc} onChange={e => setSeller({...seller, bank: {...seller.bank, acc: e.target.value}})} /></div>
                 <div className="form-group"><label>IFSC Code</label><input value={seller.bank.ifsc} onChange={e => setSeller({...seller, bank: {...seller.bank, ifsc: e.target.value}})} /></div>
@@ -807,6 +830,7 @@ function GstInvoiceTool() {
                     <div style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 8 }}>SGST: {formatINR(totals.sgst)}</div>
                   </>
                 )}
+                {totals.roundingOff !== 0 && <div style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 8 }}>Rounding Off: {formatINR(totals.roundingOff)}</div>}
                 <div style={{ fontSize: 28, fontWeight: 900, color: BRAND.primary }}>Total: {formatINR(totals.total)}</div>
               </div>
             </div>
@@ -870,9 +894,17 @@ function GstInvoiceTool() {
             <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 40 }}>
               <div>
                 <p><strong>Amount in Words:</strong><br />{numberToWords(totals.total)}</p>
-                <div style={{ marginTop: 20, padding: 15, background: "#f9f9f9", borderRadius: 4 }}>
-                  <h5 style={{ margin: "0 0 5px" }}>BANK DETAILS</h5>
-                  <p style={{ margin: 0, fontSize: 13 }}>Bank: {seller.bank.name}<br />A/c: {seller.bank.acc}<br />IFSC: {seller.bank.ifsc}</p>
+                <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
+                   <div style={{ flex: 1, padding: 15, background: "#f9f9f9", borderRadius: 4 }}>
+                    <h5 style={{ margin: "0 0 5px" }}>BANK DETAILS</h5>
+                    <p style={{ margin: 0, fontSize: 13 }}>Bank: {seller.bank.name}<br />A/c: {seller.bank.acc}<br />IFSC: {seller.bank.ifsc}</p>
+                  </div>
+                  {bankUpi && (
+                    <div style={{ textAlign: "center" }}>
+                      <img src={`https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=${encodeURIComponent(`upi://pay?pa=${bankUpi}&pn=${seller.name}&am=${totals.total}&cu=INR`)}`} alt="Payment QR" style={{ border: "1px solid #eee", padding: 5 }} />
+                      <div style={{ fontSize: 9, marginTop: 4, fontWeight: "bold" }}>SCAN TO PAY</div>
+                    </div>
+                  )}
                 </div>
                 <div style={{ marginTop: 20 }}>
                   <h5 style={{ margin: "0 0 5px" }}>TERMS & CONDITIONS</h5>
@@ -896,6 +928,11 @@ function GstInvoiceTool() {
                       <span>SGST</span><span>{formatINR(totals.sgst)}</span>
                     </div>
                   </>
+                )}
+                {totals.roundingOff !== 0 && (
+                  <div style={{ borderBottom: "1px solid #eee", padding: "10px 0", display: "flex", justifyContent: "space-between" }}>
+                    <span>Rounding Off</span><span>{formatINR(totals.roundingOff)}</span>
+                  </div>
                 )}
                 <div style={{ padding: "20px 0", display: "flex", justifyContent: "space-between", fontSize: 22, fontWeight: "bold" }}>
                   <span>TOTAL</span><span>{formatINR(totals.total)}</span>
@@ -1432,7 +1469,9 @@ function LegalHubTool() {
             {docType === "rent" && (
               <>
                 <div className="form-group"><label>Monthly Rent (₹)</label><input type="number" value={details.amount} onChange={e => setDetails({...details, amount: e.target.value})} /></div>
+                <div className="form-group"><label>Security Deposit (₹)</label><input type="number" value={details.deposit} onChange={e => setDetails({...details, deposit: e.target.value})} /></div>
                 <div className="form-group"><label>Duration (Months)</label><input type="number" value={details.duration} onChange={e => setDetails({...details, duration: e.target.value})} /></div>
+                <div className="form-group"><label>Notice Period (Months)</label><input type="number" value={details.notice} onChange={e => setDetails({...details, notice: e.target.value})} /></div>
               </>
             )}
 
@@ -1462,7 +1501,13 @@ function LegalHubTool() {
       <p>The Landlord hereby agrees to let out and the Tenant agrees to take on rent the schedule property located at {party1.address || "[Property Address]"}.</p>
       <h4 style={{ marginTop: 20 }}>2. RENT AND DURATION</h4>
       <p>The monthly rent shall be <strong>₹{details.amount || "[Amount]"}</strong>, payable on or before the 5th day of each calendar month. The lease is granted for a period of <strong>{details.duration}</strong> months.</p>
-      <h4 style={{ marginTop: 20 }}>3. GOVERNING LAW</h4>
+      <h4 style={{ marginTop: 20 }}>3. SECURITY DEPOSIT</h4>
+      <p>The Tenant has paid a sum of <strong>₹{details.deposit || "0"}</strong> as interest-free security deposit to the Landlord, which shall be refunded at the time of vacating the premises after adjusting any dues.</p>
+      <h4 style={{ marginTop: 20 }}>4. MAINTENANCE & UTILITIES</h4>
+      <p>The Tenant shall pay for the electricity, water, and monthly maintenance charges as applicable to the building/society.</p>
+      <h4 style={{ marginTop: 20 }}>5. TERMINATION</h4>
+      <p>Either party may terminate this agreement by giving <strong>{details.notice || "1"}</strong> month(s) prior notice in writing.</p>
+      <h4 style={{ marginTop: 20 }}>6. GOVERNING LAW</h4>
       <p>This agreement shall be governed by the laws of India and subject to the jurisdiction of the courts in <strong>{details.state}</strong>.</p>
     </>
   );
@@ -1532,8 +1577,9 @@ function LegalHubTool() {
 
 function SalaryTool() {
   const [company, setCompany] = useState({ name: "Acme India Pvt Ltd" });
-  const [emp, setEmp] = useState({ name: "", designation: "Software Engineer" });
+  const [emp, setEmp] = useState({ name: "", designation: "Software Engineer", id: "", pan: "" });
   const [ctc, setCtc] = useState("600000");
+  const [isMetro, setIsMetro] = useState(false);
   const [preview, setPreview] = useState(false);
 
   // Calculations based on Indian standard practices
@@ -1541,7 +1587,7 @@ function SalaryTool() {
   
   // CTC Breakdown (Yearly)
   const basicYearly = numCtc * 0.50; // Standard 50% basic
-  const hraYearly = basicYearly * 0.40; // Non-metro 40%
+  const hraYearly = basicYearly * (isMetro ? 0.50 : 0.40); // Metro 50%, Non-metro 40%
   const employerPfYearly = Math.min(basicYearly * 0.12, 21600); // 12% of basic or capped at 1800/mo
   const specialYearly = Math.max(0, numCtc - basicYearly - hraYearly - employerPfYearly);
   
@@ -1587,11 +1633,17 @@ function SalaryTool() {
             <h3>Employee Details</h3>
             <div className="form-group"><label>Company Name</label><input value={company.name} onChange={e => setCompany({...company, name: e.target.value})} /></div>
             <div className="form-group"><label>Employee Name</label><input value={emp.name} onChange={e => setEmp({...emp, name: e.target.value})} /></div>
+            <div className="form-group"><label>Employee ID</label><input value={emp.id} onChange={e => setEmp({...emp, id: e.target.value})} placeholder="e.g. EMP101" /></div>
+            <div className="form-group"><label>PAN Number</label><input value={emp.pan} onChange={e => setEmp({...emp, pan: e.target.value.toUpperCase()})} placeholder="ABCDE1234F" /></div>
             <div className="form-group"><label>Designation</label><input value={emp.designation} onChange={e => setEmp({...emp, designation: e.target.value})} /></div>
           </div>
           <div className="glass-card">
             <h3>CTC & Tax Settings</h3>
             <div className="form-group"><label>Yearly CTC (₹)</label><input type="number" value={ctc} onChange={e => setCtc(e.target.value)} /></div>
+            <div className="form-group" style={{ display: "flex", alignItems: "center", gap: 10, margin: "10px 0" }}>
+              <input type="checkbox" checked={isMetro} onChange={e => setIsMetro(e.target.checked)} style={{ width: 20, height: 20 }} />
+              <label style={{ margin: 0 }}>Working in Metro City? (Mumbai/Delhi/Kolkata/Chennai)</label>
+            </div>
             <div style={{ background: "rgba(0,0,0,0.3)", padding: 16, borderRadius: 12, marginBottom: 20 }}>
               <div style={{ fontSize: 13, color: BRAND.textSecondary, marginBottom: 12 }}>Tax Regime Settings</div>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14, marginBottom: 8 }}>
@@ -1618,9 +1670,11 @@ function SalaryTool() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginBottom: 40 }}>
               <div>
                 <p><strong>Employee Name:</strong> {emp.name || "[Employee Name]"}</p>
+                <p><strong>Employee ID:</strong> {emp.id || "N/A"}</p>
                 <p><strong>Designation:</strong> {emp.designation}</p>
               </div>
               <div>
+                <p><strong>PAN:</strong> {emp.pan || "N/A"}</p>
                 <p><strong>Working Days:</strong> 30</p>
                 <p><strong>Paid Days:</strong> 30</p>
               </div>
