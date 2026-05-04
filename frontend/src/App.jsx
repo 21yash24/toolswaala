@@ -331,20 +331,15 @@ function Navbar() {
     <nav style={{ background: "rgba(9, 9, 11, 0.8)", backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: "1px solid rgba(255,255,255,0.05)", width: "100vw" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
-          <div style={{ position: "relative", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Cog / Gear Background */}
-              <path d="M50 20L55 5H45L50 20ZM80 50L95 55V45L80 50ZM50 80L45 95H55L50 80ZM20 50L5 45V55L20 50ZM71.2 28.8L81.8 18.2L74.7 11.1L64.1 21.7L71.2 28.8ZM71.2 71.2L64.1 78.3L71.2 85.4L81.8 74.8L71.2 71.2ZM28.8 71.2L18.2L81.8L11.1 74.7L21.7 64.1L28.8 71.2ZM28.8 28.8L21.7 21.7L11.1 28.8L18.2 39.4L28.8 28.8Z" fill="#FF6B00" opacity="0.2" />
-              <circle cx="50" cy="50" r="25" stroke="#FF6B00" strokeWidth="6" opacity="0.3" />
+          <div style={{ position: "relative", width: 48, height: 48, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* T as a Wrench */}
+              <path d="M20 30H75M35 30V85" stroke="#FF6B00" strokeWidth="12" strokeLinecap="round" />
+              <path d="M20 30C20 22 15 20 10 20C5 20 5 30 10 30H20" fill="#FF6B00" />
+              <path d="M20 30L12 22M20 30L12 38" stroke="white" strokeWidth="3" strokeLinecap="round" />
               
-              {/* Stylized 'W' with Wrench tips */}
-              <path d="M25 35L42 75L50 55L58 75L75 35" stroke="#FF6B00" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="25" cy="35" r="5" fill="#FF6B00" />
-              <circle cx="75" cy="35" r="5" fill="#FF6B00" />
-              
-              {/* Tool Accents */}
-              <path d="M42 75L35 68" stroke="#FF6B00" strokeWidth="4" strokeLinecap="round" />
-              <path d="M58 75L65 68" stroke="#FF6B00" strokeWidth="4" strokeLinecap="round" />
+              {/* Interlocked W */}
+              <path d="M45 45L55 85L65 65L75 85L85 45" stroke="#0D1B2A" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <div>
@@ -352,7 +347,7 @@ function Navbar() {
               <span style={{ color: "white", fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Tools</span>
               <span style={{ color: BRAND.primary, fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Waala</span>
             </div>
-            <div style={{ color: BRAND.textSecondary, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginTop: 2 }}>The Ultimate Kit</div>
+            <div style={{ color: BRAND.textSecondary, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginTop: 2 }}>Your Digital Toolkit</div>
           </div>
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
