@@ -306,6 +306,9 @@ const TOOLS = [
   { id: "tax", path: "/tax-calculator", name: "Income Tax Calculator", hindi: "आयकर कैलकुलेटर", icon: "⚖️", desc: "Compare Old vs New Tax Regimes instantly", color: "#E91E63" },
   { id: "receipt", path: "/receipt-maker", name: "Receipt Maker", hindi: "रसीद जनरेटर", icon: "🧾", desc: "Professional payment receipts with PDF export", color: "#FFC107" },
   { id: "bizname", path: "/business-name", name: "Business Name AI", hindi: "व्यापार नाम एआई", icon: "✨", desc: "AI-powered business name suggestions", color: "#3F51B5" },
+  { id: "sip", path: "/sip-calculator", name: "SIP Calculator", hindi: "एसआईपी कैलकुलेटर", icon: "📈", desc: "Estimate mutual fund SIP returns with visual chart", color: "#00BCD4" },
+  { id: "hra", path: "/hra-calculator", name: "HRA Calculator", hindi: "एचआरए कैलकुलेटर", icon: "🏠", desc: "Calculate House Rent Allowance tax exemption", color: "#8BC34A" },
+  { id: "fd", path: "/fd-calculator", name: "FD Calculator", hindi: "एफडी कैलकुलेटर", icon: "🏦", desc: "Fixed Deposit maturity & interest calculator", color: "#FF5722" },
 ];
 
 // In the head section of your HTML template:
@@ -1862,6 +1865,286 @@ function ReceiptTool() {
 }
 
 // ============================================================
+// SIP CALCULATOR
+// ============================================================
+function SipCalcTool() {
+  const [monthly, setMonthly] = useState(5000);
+  const [years, setYears] = useState(10);
+  const [rate, setRate] = useState(12);
+
+  const n = years * 12;
+  const i = Math.pow(1 + rate / 100, 1 / 12) - 1;
+  const futureValue = i > 0 ? monthly * ((Math.pow(1 + i, n) - 1) / i) * (1 + i) : monthly * n;
+  const invested = monthly * n;
+  const returns = futureValue - invested;
+  const investedPct = futureValue > 0 ? (invested / futureValue) * 100 : 50;
+
+  return (
+    <div>
+      <div className="grid-2">
+        <div className="glass-card">
+          <h3 style={{ marginBottom: 24 }}>Investment Details</h3>
+          <div className="form-group">
+            <label>Monthly Investment (₹)</label>
+            <input type="range" min="500" max="100000" step="500" value={monthly} onChange={e => setMonthly(+e.target.value)} style={{ width: "100%", accentColor: BRAND.primary }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: BRAND.textSecondary, marginTop: 4 }}>
+              <span>₹500</span>
+              <span style={{ color: BRAND.primary, fontWeight: 700, fontSize: 18 }}>{formatINR(monthly)}</span>
+              <span>₹1L</span>
+            </div>
+          </div>
+          <div className="form-group">
+            <label>Investment Period (Years)</label>
+            <input type="range" min="1" max="30" value={years} onChange={e => setYears(+e.target.value)} style={{ width: "100%", accentColor: BRAND.primary }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: BRAND.textSecondary, marginTop: 4 }}>
+              <span>1 yr</span>
+              <span style={{ color: BRAND.primary, fontWeight: 700, fontSize: 18 }}>{years} yrs</span>
+              <span>30 yrs</span>
+            </div>
+          </div>
+          <div className="form-group">
+            <label>Expected Return Rate (% p.a.)</label>
+            <input type="range" min="1" max="30" step="0.5" value={rate} onChange={e => setRate(+e.target.value)} style={{ width: "100%", accentColor: BRAND.primary }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: BRAND.textSecondary, marginTop: 4 }}>
+              <span>1%</span>
+              <span style={{ color: BRAND.primary, fontWeight: 700, fontSize: 18 }}>{rate}%</span>
+              <span>30%</span>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="result-box" style={{ textAlign: "center" }}>
+            <div style={{ position: "relative", width: 180, height: 180, margin: "0 auto 24px" }}>
+              <svg viewBox="0 0 36 36" style={{ width: 180, height: 180, transform: "rotate(-90deg)" }}>
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#00BCD4" strokeWidth="3" strokeDasharray={`${investedPct} ${100 - investedPct}`} strokeLinecap="round" />
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke={BRAND.primary} strokeWidth="3" strokeDasharray={`${100 - investedPct} ${investedPct}`} strokeDashoffset={`-${investedPct}`} strokeLinecap="round" />
+              </svg>
+              <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center" }}>
+                <div style={{ fontSize: 10, color: BRAND.textSecondary }}>Total Value</div>
+                <div style={{ fontSize: 18, fontWeight: 800 }}>{formatINR(futureValue)}</div>
+              </div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center", gap: 24, fontSize: 13 }}>
+              <span><span style={{ display: "inline-block", width: 10, height: 10, borderRadius: "50%", background: "#00BCD4", marginRight: 6 }}></span>Invested</span>
+              <span><span style={{ display: "inline-block", width: 10, height: 10, borderRadius: "50%", background: BRAND.primary, marginRight: 6 }}></span>Returns</span>
+            </div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+            <div className="stat-card"><div className="stat-value" style={{ fontSize: 18 }}>{formatINR(invested)}</div><div className="stat-label">Invested</div></div>
+            <div className="stat-card"><div className="stat-value" style={{ fontSize: 18, color: "#4CAF50" }}>{formatINR(returns)}</div><div className="stat-label">Est. Returns</div></div>
+            <div className="stat-card"><div className="stat-value" style={{ fontSize: 18, color: BRAND.primary }}>{formatINR(futureValue)}</div><div className="stat-label">Total Value</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="glass-card" style={{ marginTop: 32 }}>
+        <h3 style={{ marginBottom: 16 }}>What is a SIP Calculator?</h3>
+        <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>A Systematic Investment Plan (SIP) calculator helps you estimate the future value of your mutual fund investments made through regular monthly contributions. SIPs allow you to invest a fixed amount at regular intervals, harnessing the power of compounding to grow your wealth over time.</p>
+        <h4 style={{ marginTop: 20, marginBottom: 8 }}>How it works</h4>
+        <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>The formula used is: <strong>M = P × ((1+i)ⁿ - 1) / i × (1+i)</strong> where P is the monthly investment, i is the monthly rate of return, and n is the total number of payments. The annual return rate is converted to a monthly compounding rate for accurate results.</p>
+        <h4 style={{ marginTop: 20, marginBottom: 8 }}>Frequently Asked Questions</h4>
+        <div style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>
+          <p><strong>Q: Is the SIP return guaranteed?</strong><br/>A: No. SIP returns are market-linked and the calculator provides estimates based on your expected return rate.</p>
+          <p style={{ marginTop: 12 }}><strong>Q: What is a good SIP amount to start with?</strong><br/>A: You can start with as little as ₹500/month. Experts recommend investing 15-20% of your monthly income.</p>
+          <p style={{ marginTop: 12 }}><strong>Q: Can I change my SIP amount?</strong><br/>A: Yes, most mutual fund platforms allow you to increase or decrease your SIP amount at any time.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// HRA CALCULATOR
+// ============================================================
+function HraCalcTool() {
+  const [basicSalary, setBasicSalary] = useState(600000);
+  const [hraReceived, setHraReceived] = useState(240000);
+  const [rentPaid, setRentPaid] = useState(180000);
+  const [isMetro, setIsMetro] = useState(true);
+
+  const condition1 = hraReceived;
+  const condition2 = (isMetro ? 0.5 : 0.4) * basicSalary;
+  const condition3 = Math.max(0, rentPaid - 0.1 * basicSalary);
+  const exempt = Math.min(condition1, condition2, condition3);
+  const taxable = Math.max(0, hraReceived - exempt);
+
+  const conditions = [
+    { label: "Actual HRA Received", value: condition1, formula: "As received from employer" },
+    { label: `${isMetro ? "50%" : "40%"} of Basic Salary`, value: condition2, formula: `${isMetro ? "50%" : "40%"} × ₹${(basicSalary / 100000).toFixed(1)}L` },
+    { label: "Rent Paid − 10% of Basic", value: condition3, formula: `₹${(rentPaid / 1000).toFixed(0)}K − 10% × ₹${(basicSalary / 100000).toFixed(1)}L` },
+  ];
+  const minIdx = conditions.findIndex(c => c.value === exempt);
+
+  return (
+    <div>
+      <div className="grid-2">
+        <div className="glass-card">
+          <h3 style={{ marginBottom: 24 }}>Salary & Rent Details (Yearly)</h3>
+          <div className="form-group"><label>Basic Salary (Annual)</label><input type="number" value={basicSalary} onChange={e => setBasicSalary(+e.target.value || 0)} /></div>
+          <div className="form-group"><label>HRA Received (Annual)</label><input type="number" value={hraReceived} onChange={e => setHraReceived(+e.target.value || 0)} /></div>
+          <div className="form-group"><label>Total Rent Paid (Annual)</label><input type="number" value={rentPaid} onChange={e => setRentPaid(+e.target.value || 0)} /></div>
+          <div className="form-group">
+            <label>City Type</label>
+            <div style={{ display: "flex", gap: 12 }}>
+              <button className={isMetro ? "btn-primary" : "btn-ghost"} onClick={() => setIsMetro(true)} style={{ flex: 1 }}>Metro (50%)</button>
+              <button className={!isMetro ? "btn-primary" : "btn-ghost"} onClick={() => setIsMetro(false)} style={{ flex: 1 }}>Non-Metro (40%)</button>
+            </div>
+            <div style={{ fontSize: 11, color: BRAND.textSecondary, marginTop: 8 }}>Metro: Delhi, Mumbai, Kolkata, Chennai</div>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="result-box" style={{ textAlign: "center", padding: 32 }}>
+            <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 1, color: BRAND.textSecondary, marginBottom: 8 }}>HRA Exempt from Tax</div>
+            <div style={{ fontSize: 36, fontWeight: 800, color: "#4CAF50" }}>{formatINR(exempt)}</div>
+            <div style={{ fontSize: 14, color: BRAND.textSecondary, marginTop: 8 }}>Taxable HRA: <strong style={{ color: "#EF4444" }}>{formatINR(taxable)}</strong></div>
+          </div>
+          <div style={{ fontSize: 13, color: BRAND.textSecondary, marginBottom: 8, fontWeight: 600 }}>Section 10(13A) — Minimum of 3 conditions:</div>
+          {conditions.map((c, i) => (
+            <div key={i} className="glass-card" style={{ padding: 16, borderLeft: i === minIdx ? "4px solid #4CAF50" : "4px solid transparent", background: i === minIdx ? "rgba(76,175,80,0.05)" : undefined }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 14 }}>{c.label}</div>
+                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{c.formula}</div>
+                </div>
+                <div style={{ fontWeight: 800, fontSize: 18, color: i === minIdx ? "#4CAF50" : BRAND.text }}>{formatINR(c.value)}{i === minIdx && " ✓"}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="glass-card" style={{ marginTop: 32 }}>
+        <h3 style={{ marginBottom: 16 }}>What is HRA Exemption?</h3>
+        <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>House Rent Allowance (HRA) is a component of salary received by salaried employees who live in rented accommodation. Under Section 10(13A) of the Income Tax Act, a portion of the HRA can be claimed as tax exempt. The exempt amount is the <strong>minimum</strong> of three conditions calculated above.</p>
+        <h4 style={{ marginTop: 20, marginBottom: 8 }}>Who can claim HRA?</h4>
+        <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>Only salaried individuals who receive HRA as part of their salary and pay rent for their accommodation. Self-employed individuals cannot claim HRA but can claim deduction under Section 80GG.</p>
+        <h4 style={{ marginTop: 20, marginBottom: 8 }}>FAQs</h4>
+        <div style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>
+          <p><strong>Q: Can I claim HRA if I have a home loan?</strong><br/>A: Yes, you can claim both HRA and home loan interest deduction (Section 24b) if the rented property and owned property are in different cities.</p>
+          <p style={{ marginTop: 12 }}><strong>Q: Is HRA available under the New Tax Regime?</strong><br/>A: No, HRA exemption is NOT available under the New Tax Regime (Section 115BAC). It is only available under the Old Regime.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// FD CALCULATOR
+// ============================================================
+function FdCalcTool() {
+  const [principal, setPrincipal] = useState(100000);
+  const [rate, setRate] = useState(7);
+  const [tenureYears, setTenureYears] = useState(5);
+  const [tenureMonths, setTenureMonths] = useState(0);
+  const [compounding, setCompounding] = useState(4);
+
+  const totalYears = tenureYears + tenureMonths / 12;
+  const maturity = principal * Math.pow(1 + (rate / 100) / compounding, compounding * totalYears);
+  const interest = maturity - principal;
+
+  const compoundingOptions = [
+    { value: 12, label: "Monthly" },
+    { value: 4, label: "Quarterly" },
+    { value: 2, label: "Half-Yearly" },
+    { value: 1, label: "Yearly" },
+  ];
+
+  const tenureComparisons = [1, 2, 3, 5, 7, 10].map(y => {
+    const mat = principal * Math.pow(1 + (rate / 100) / compounding, compounding * y);
+    return { years: y, maturity: mat, interest: mat - principal };
+  });
+
+  const principalPct = maturity > 0 ? (principal / maturity) * 100 : 50;
+
+  return (
+    <div>
+      <div className="grid-2">
+        <div className="glass-card">
+          <h3 style={{ marginBottom: 24 }}>FD Details</h3>
+          <div className="form-group">
+            <label>Principal Amount (₹)</label>
+            <input type="number" value={principal} onChange={e => setPrincipal(+e.target.value || 0)} />
+          </div>
+          <div className="form-group">
+            <label>Interest Rate (% p.a.)</label>
+            <input type="range" min="1" max="15" step="0.1" value={rate} onChange={e => setRate(+e.target.value)} style={{ width: "100%", accentColor: BRAND.primary }} />
+            <div style={{ textAlign: "center", color: BRAND.primary, fontWeight: 700, fontSize: 18, marginTop: 4 }}>{rate}%</div>
+          </div>
+          <div className="grid-2" style={{ gap: 12 }}>
+            <div className="form-group"><label>Years</label><input type="number" min="0" max="30" value={tenureYears} onChange={e => setTenureYears(+e.target.value || 0)} /></div>
+            <div className="form-group"><label>Months</label><input type="number" min="0" max="11" value={tenureMonths} onChange={e => setTenureMonths(+e.target.value || 0)} /></div>
+          </div>
+          <div className="form-group">
+            <label>Compounding Frequency</label>
+            <select value={compounding} onChange={e => setCompounding(+e.target.value)}>
+              {compoundingOptions.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="result-box" style={{ textAlign: "center" }}>
+            <div style={{ position: "relative", width: 180, height: 180, margin: "0 auto 24px" }}>
+              <svg viewBox="0 0 36 36" style={{ width: 180, height: 180, transform: "rotate(-90deg)" }}>
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#FF5722" strokeWidth="3" strokeDasharray={`${principalPct} ${100 - principalPct}`} strokeLinecap="round" />
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4CAF50" strokeWidth="3" strokeDasharray={`${100 - principalPct} ${principalPct}`} strokeDashoffset={`-${principalPct}`} strokeLinecap="round" />
+              </svg>
+              <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center" }}>
+                <div style={{ fontSize: 10, color: BRAND.textSecondary }}>Maturity</div>
+                <div style={{ fontSize: 18, fontWeight: 800 }}>{formatINR(maturity)}</div>
+              </div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center", gap: 24, fontSize: 13 }}>
+              <span><span style={{ display: "inline-block", width: 10, height: 10, borderRadius: "50%", background: "#FF5722", marginRight: 6 }}></span>Principal</span>
+              <span><span style={{ display: "inline-block", width: 10, height: 10, borderRadius: "50%", background: "#4CAF50", marginRight: 6 }}></span>Interest</span>
+            </div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+            <div className="stat-card"><div className="stat-value" style={{ fontSize: 18 }}>{formatINR(principal)}</div><div className="stat-label">Principal</div></div>
+            <div className="stat-card"><div className="stat-value" style={{ fontSize: 18, color: "#4CAF50" }}>{formatINR(interest)}</div><div className="stat-label">Interest</div></div>
+            <div className="stat-card"><div className="stat-value" style={{ fontSize: 18, color: BRAND.primary }}>{formatINR(maturity)}</div><div className="stat-label">Maturity</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="glass-card" style={{ marginTop: 32 }}>
+        <h4 style={{ marginBottom: 16 }}>Tenure Comparison @ {rate}% p.a.</h4>
+        <div className="table-container">
+          <table>
+            <thead><tr><th>Tenure</th><th>Maturity Amount</th><th>Interest Earned</th></tr></thead>
+            <tbody>
+              {tenureComparisons.map(row => (
+                <tr key={row.years} style={{ background: row.years === tenureYears && tenureMonths === 0 ? "rgba(255,107,0,0.05)" : undefined }}>
+                  <td>{row.years} {row.years === 1 ? "Year" : "Years"}</td>
+                  <td style={{ fontWeight: 600 }}>{formatINR(row.maturity)}</td>
+                  <td style={{ color: "#4CAF50" }}>{formatINR(row.interest)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="glass-card" style={{ marginTop: 32 }}>
+        <h3 style={{ marginBottom: 16 }}>What is a Fixed Deposit (FD)?</h3>
+        <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>A Fixed Deposit is a financial instrument where you deposit a lump sum amount for a fixed period at a predetermined interest rate. FDs are offered by banks and NBFCs in India and are considered one of the safest investment options.</p>
+        <h4 style={{ marginTop: 20, marginBottom: 8 }}>FD Interest Calculation Formula</h4>
+        <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}><strong>A = P × (1 + r/n)^(n×t)</strong> where P is principal, r is annual interest rate, n is compounding frequency per year, and t is tenure in years. Most Indian banks compound quarterly by default.</p>
+        <h4 style={{ marginTop: 20, marginBottom: 8 }}>FAQs</h4>
+        <div style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>
+          <p><strong>Q: Is FD interest taxable?</strong><br/>A: Yes, FD interest is taxable. Banks deduct TDS at 10% if interest exceeds ₹40,000/year (₹50,000 for senior citizens).</p>
+          <p style={{ marginTop: 12 }}><strong>Q: What is the best FD tenure?</strong><br/>A: It depends on your financial goals. Longer tenures usually offer slightly higher rates, but lock your money for longer.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
 // MAIN APP
 // ============================================================
 // ============================================================
@@ -1880,7 +2163,10 @@ export default function App() {
     salary: { title: "Payroll & Salary Engine", hindi: "वेतन पर्ची", component: <SalaryTool /> }, 
     tax: { title: "Income Tax Calculator", hindi: "आयकर", component: <TaxCalculatorTool /> }, 
     receipt: { title: "Receipt Maker", hindi: "रसीद", component: <ReceiptTool /> }, 
-    bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> } 
+    bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> },
+    sip: { title: "SIP Calculator", hindi: "एसआईपी कैलकुलेटर", component: <SipCalcTool /> },
+    hra: { title: "HRA Calculator", hindi: "एचआरए कैलकुलेटर", component: <HraCalcTool /> },
+    fd: { title: "FD Calculator", hindi: "एफडी कैलकुलेटर", component: <FdCalcTool /> }
   };
 
   return (
