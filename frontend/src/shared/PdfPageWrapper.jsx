@@ -64,9 +64,21 @@ export default function PdfPageWrapper({ children, title, hindi }) {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40 }}>
           <main>
-            <div style={{ marginBottom: 40 }}>
-              <h1 style={{ fontSize: "clamp(28px, 5vw, 42px)", color: BRAND.text, marginBottom: 12, fontWeight: 900 }}>{title}</h1>
-              <div style={{ color: PDF_BRAND.accent, fontSize: 18, fontWeight: 600 }}>{hindi}</div>
+            <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
+              <div>
+                <h1 style={{ fontSize: "clamp(28px, 5vw, 42px)", color: BRAND.text, marginBottom: 12, fontWeight: 900 }}>{title}</h1>
+                <div style={{ color: PDF_BRAND.accent, fontSize: 18, fontWeight: 600 }}>{hindi}</div>
+              </div>
+              <div style={{ display: "flex", gap: 10 }}>
+                <a 
+                  href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} tool on ToolsWaala! 📄\n\n${window.location.href}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+                >
+                  <span style={{ fontSize: 18 }}>📲</span> WhatsApp
+                </a>
+              </div>
             </div>
             {children}
           </main>

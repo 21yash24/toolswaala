@@ -57,9 +57,19 @@ export default function StudentPageWrapper({ title, hindi, children }) {
             <span style={{ fontSize: 18, color: STUDENT_BRAND.accent, fontWeight: 500 }}>{hindi}</span>
           </div>
         </div>
-        <button onClick={handleShare} style={{ padding: "10px 20px", borderRadius: 12, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: BRAND.text, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 14 }}>
-          🔗 Share
-        </button>
+        <div style={{ display: "flex", gap: 10 }}>
+          <a 
+            href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} on ToolsWaala! 🎓\n\n${window.location.href}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+          >
+            <span style={{ fontSize: 18 }}>📲</span> WhatsApp
+          </a>
+          <button onClick={handleShare} style={{ padding: "10px 18px", borderRadius: 12, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.03)", color: BRAND.text, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 500 }}>
+            🔗 Share
+          </button>
+        </div>
       </div>
 
       {children}
