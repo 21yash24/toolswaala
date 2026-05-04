@@ -14,13 +14,14 @@ const GRADES = [
 
 const UNIVERSITIES = [
   { name: "Generic (×9.5)", formula: c => c * 9.5, reverse: p => p / 9.5 },
-  { name: "VTU", formula: c => (c - 0.75) * 10, reverse: p => p / 10 + 0.75 },
-  { name: "Mumbai University", formula: c => 7.25 * c + 11, reverse: p => (p - 11) / 7.25 },
-  { name: "Anna University", formula: c => c * 10 - 7.5, reverse: p => (p + 7.5) / 10 },
-  { name: "KTU (Kerala)", formula: c => 10 * c - 3.75, reverse: p => (p + 3.75) / 10 },
-  { name: "AKTU", formula: c => (c - 0.75) * 10, reverse: p => p / 10 + 0.75 },
+  { name: "Mumbai University", formula: c => (7.1 * c) + 11, reverse: p => (p - 11) / 7.1 },
+  { name: "VTU (Karnataka)", formula: c => (c - 0.75) * 10, reverse: p => p / 10 + 0.75 },
+  { name: "Anna University", formula: c => c * 10, reverse: p => p / 10 },
+  { name: "AKTU (UPTU)", formula: c => (c - 0.75) * 10, reverse: p => p / 10 + 0.75 },
+  { name: "KTU (Kerala)", formula: c => (c * 10) - 3.75, reverse: p => (p + 3.75) / 10 },
+  { name: "SPPU (Pune Univ)", formula: c => (c >= 6.0) ? (c - 0.75) * 10 : c * 8.8, reverse: p => (p >= 52.5) ? p / 10 + 0.75 : p / 8.8 },
   { name: "Delhi University", formula: c => c * 9.5, reverse: p => p / 9.5 },
-  { name: "CBSE (÷9.5)", formula: c => c * 9.5, reverse: p => p / 9.5 },
+  { name: "CBSE / AICTE", formula: c => c * 9.5, reverse: p => p / 9.5 },
 ];
 
 const tabStyle = (active) => ({
