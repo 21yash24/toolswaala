@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 
 // ============================================================
 // CONSTANTS & HELPERS
@@ -146,6 +147,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     align-items: center;
     justify-content: center;
     gap: 8px;
+    text-decoration: none;
   }
   .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(255,107,0,0.5); }
   .btn-primary:active { transform: translateY(0); }
@@ -163,6 +165,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
   }
   .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary); }
 
@@ -178,6 +181,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
   }
   .btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: rgba(255,107,0,0.05); }
 
@@ -290,18 +294,18 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
 // NAVIGATION
 // ============================================================
 const TOOLS = [
-  { id: "upi", name: "UPI Payment Page", hindi: "यूपीआई पेमेंट पेज", icon: "📲", desc: "Shareable UPI payment page with QR code", color: "#4CAF50" },
-  { id: "gst-invoice", name: "GST Invoice", hindi: "जीएसटी चालान", icon: "🧾", desc: "Professional GST invoice generator with PDF", color: "#FF6B00" },
-  { id: "gstin-verify", name: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", icon: "🛡️", desc: "Instantly verify GST format & extract details", color: "#3F51B5" },
-  { id: "qr", name: "QR Code Generator", hindi: "क्यूआर कोड", icon: "▣", desc: "Custom QR codes for URL, UPI, WhatsApp & more", color: "#2196F3" },
-  { id: "emi", name: "EMI Calculator", hindi: "ईएमआई कैलकुलेटर", icon: "🏦", desc: "Home, car, personal & business loan EMI", color: "#9C27B0" },
-  { id: "gst-calc", name: "GST Calculator", hindi: "जीएसटी कैलकुलेटर", icon: "🧮", desc: "Add or remove GST instantly with HSN lookup", color: "#F44336" },
-  { id: "estimate", name: "Estimate Generator", hindi: "अनुमान जनरेटर", icon: "📝", desc: "Create pre-sales quotations with discounts", color: "#4CAF50" },
-  { id: "legal", name: "Legal Hub", hindi: "कानूनी हब", icon: "⚖️", desc: "Generate Rent Agreements, NDAs & MSAs", color: "#FF9800" },
-  { id: "salary", name: "Salary Slip Engine", hindi: "वेतन पर्ची इंजन", icon: "💼", desc: "Auto-CTC breakdown with New Tax Regime TDS", color: "#009688" },
-  { id: "tax", name: "Income Tax Calculator", hindi: "आयकर कैलकुलेटर", icon: "⚖️", desc: "Compare Old vs New Tax Regimes instantly", color: "#E91E63" },
-  { id: "receipt", name: "Receipt Maker", hindi: "रसीद जनरेटर", icon: "🧾", desc: "Professional payment receipts with PDF export", color: "#FFC107" },
-  { id: "bizname", name: "Business Name AI", hindi: "व्यापार नाम एआई", icon: "✨", desc: "AI-powered business name suggestions", color: "#3F51B5" },
+  { id: "upi", path: "/upi-payment", name: "UPI Payment Page", hindi: "यूपीआई पेमेंट पेज", icon: "📲", desc: "Shareable UPI payment page with QR code", color: "#4CAF50" },
+  { id: "gst-invoice", path: "/gst-invoice", name: "GST Invoice", hindi: "जीएसटी चालान", icon: "🧾", desc: "Professional GST invoice generator with PDF", color: "#FF6B00" },
+  { id: "gstin-verify", path: "/gstin-verify", name: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", icon: "🛡️", desc: "Instantly verify GST format & extract details", color: "#3F51B5" },
+  { id: "qr", path: "/qr-generator", name: "QR Code Generator", hindi: "क्यूआर कोड", icon: "▣", desc: "Custom QR codes for URL, UPI, WhatsApp & more", color: "#2196F3" },
+  { id: "emi", path: "/emi-calculator", name: "EMI Calculator", hindi: "ईएमआई कैलकुलेटर", icon: "🏦", desc: "Home, car, personal & business loan EMI", color: "#9C27B0" },
+  { id: "gst-calc", path: "/gst-calculator", name: "GST Calculator", hindi: "जीएसटी कैलकुलेटर", icon: "🧮", desc: "Add or remove GST instantly with HSN lookup", color: "#F44336" },
+  { id: "estimate", path: "/estimate-generator", name: "Estimate Generator", hindi: "अनुमान जनरेटर", icon: "📝", desc: "Create pre-sales quotations with discounts", color: "#4CAF50" },
+  { id: "legal", path: "/legal-hub", name: "Legal Hub", hindi: "कानूनी हब", icon: "⚖️", desc: "Generate Rent Agreements, NDAs & MSAs", color: "#FF9800" },
+  { id: "salary", path: "/salary-slip", name: "Salary Slip Engine", hindi: "वेतन पर्ची इंजन", icon: "💼", desc: "Auto-CTC breakdown with New Tax Regime TDS", color: "#009688" },
+  { id: "tax", path: "/tax-calculator", name: "Income Tax Calculator", hindi: "आयकर कैलकुलेटर", icon: "⚖️", desc: "Compare Old vs New Tax Regimes instantly", color: "#E91E63" },
+  { id: "receipt", path: "/receipt-maker", name: "Receipt Maker", hindi: "रसीद जनरेटर", icon: "🧾", desc: "Professional payment receipts with PDF export", color: "#FFC107" },
+  { id: "bizname", path: "/business-name", name: "Business Name AI", hindi: "व्यापार नाम एआई", icon: "✨", desc: "AI-powered business name suggestions", color: "#3F51B5" },
 ];
 
 // In the head section of your HTML template:
@@ -309,12 +313,16 @@ const TOOLS = [
 // <meta name="description" content="Generate GST Invoices, Rent Agreements, Salary Slips, NDAs and verify GSTINs instantly with ToolsWaala." />
 // <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
-function Navbar({ active, setPage }) {
+function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const activeTool = TOOLS.find(t => t.path === location.pathname)?.id;
+
   return (
     <nav style={{ background: "rgba(9, 9, 11, 0.8)", backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: "1px solid rgba(255,255,255,0.05)", width: "100vw" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }} onClick={() => setPage("home")}>
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ boxShadow: "0 0 20px rgba(255,107,0,0.4)", borderRadius: 10 }}>
             <rect width="40" height="40" rx="10" fill="url(#grad)" />
             <path d="M10 14H20M15 14V26" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -330,7 +338,7 @@ function Navbar({ active, setPage }) {
             <div style={{ color: "white", fontWeight: 900, fontSize: 19, lineHeight: 1, letterSpacing: "-0.02em" }}>ToolsWaala</div>
             <div style={{ color: BRAND.accent, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Business Kit</div>
           </div>
-        </div>
+        </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <button className="btn-primary" style={{ padding: "8px 18px", fontSize: 13 }} onClick={() => alert("Pro plan at ₹99/month — Integration coming soon!")}>⚡ PRO</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", color: "white", width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
@@ -340,10 +348,10 @@ function Navbar({ active, setPage }) {
         <div style={{ background: "rgba(20, 20, 20, 0.95)", backdropFilter: "blur(30px)", borderBottom: "1px solid rgba(255,255,255,0.1)", padding: "24px 0" }} className="fade-in">
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 8 }}>
             {TOOLS.map(t => (
-              <button key={t.id} onClick={() => { setPage(t.id); setMenuOpen(false); }}
-                style={{ background: active === t.id ? "rgba(255,107,0,0.1)" : "transparent", border: "1px solid", borderColor: active === t.id ? "rgba(255,107,0,0.2)" : "transparent", color: active === t.id ? BRAND.primary : BRAND.text, padding: "12px 16px", borderRadius: 12, cursor: "pointer", textAlign: "left", fontSize: 14, fontWeight: 600, display: "flex", alignItems: "center", gap: 12 }}>
+              <Link key={t.id} to={t.path} onClick={() => setMenuOpen(false)}
+                style={{ background: activeTool === t.id ? "rgba(255,107,0,0.1)" : "transparent", border: "1px solid", borderColor: activeTool === t.id ? "rgba(255,107,0,0.2)" : "transparent", color: activeTool === t.id ? BRAND.primary : BRAND.text, padding: "12px 16px", borderRadius: 12, cursor: "pointer", textAlign: "left", fontSize: 14, fontWeight: 600, display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
                 <span style={{ fontSize: 20 }}>{t.icon}</span> {t.name}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
@@ -352,7 +360,7 @@ function Navbar({ active, setPage }) {
   );
 }
 
-function Footer({ setPage }) {
+function Footer() {
   return (
     <footer style={{ background: "#050505", borderTop: "1px solid rgba(255,255,255,0.05)", padding: "80px 24px 40px", marginTop: "auto" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -365,7 +373,7 @@ function Footer({ setPage }) {
             <div style={{ color: "white", fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Popular Tools</div>
             <div style={{ display: "grid", gap: 12 }}>
               {TOOLS.slice(0, 5).map(t => (
-                <button key={t.id} onClick={() => { setPage(t.id); window.scrollTo(0,0); }} style={{ background: "none", border: "none", color: BRAND.textSecondary, cursor: "pointer", fontSize: 14, textAlign: "left" }}>{t.name}</button>
+                <Link key={t.id} to={t.path} style={{ background: "none", border: "none", color: BRAND.textSecondary, cursor: "pointer", fontSize: 14, textAlign: "left", textDecoration: "none" }}>{t.name}</Link>
               ))}
             </div>
           </div>
@@ -379,11 +387,11 @@ function Footer({ setPage }) {
   );
 }
 
-function PageWrapper({ title, hindi, children, setPage }) {
+function PageWrapper({ title, hindi, children }) {
   return (
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: "40px 24px" }} className="fade-in">
       <div style={{ marginBottom: 40 }}>
-        <button onClick={() => setPage("home")} className="btn-ghost" style={{ marginBottom: 24 }}>← Dashboard</button>
+        <Link to="/" className="btn-ghost" style={{ marginBottom: 24 }}>← Dashboard</Link>
         <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
           <h1 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: "white" }}>{title}</h1>
           <span className="hindi-label" style={{ fontSize: 16, color: BRAND.primary }}>{hindi}</span>
@@ -397,7 +405,7 @@ function PageWrapper({ title, hindi, children, setPage }) {
 // ============================================================
 // HOME PAGE
 // ============================================================
-function HomePage({ setPage }) {
+function HomePage() {
   const [search, setSearch] = useState("");
   const filtered = TOOLS.filter(t =>
     t.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -405,24 +413,52 @@ function HomePage({ setPage }) {
   );
 
   return (
-    <div className="fade-in">
-      <div style={{ padding: "100px 24px", textAlign: "center" }}>
-        <h1 style={{ fontSize: "clamp(32px, 7vw, 64px)", marginBottom: 20 }}>Modernize Your <span style={{ color: BRAND.primary }}>Business</span></h1>
-        <p style={{ color: BRAND.textSecondary, marginBottom: 40 }}>Professional-grade tools for Indian entrepreneurs. 100% Free.</p>
-        <div style={{ maxWidth: 500, margin: "0 auto", display: "flex", gap: 12, background: "rgba(255,255,255,0.05)", padding: 8, borderRadius: 16 }}>
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search tools..." style={{ flex: 1, background: "transparent", border: "none" }} />
-          <button className="btn-primary">Search</button>
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }} className="fade-in">
+      <div style={{ textAlign: "center", marginBottom: 80 }}>
+        <div className="badge badge-orange" style={{ marginBottom: 16 }}>Made for Bharat 🇮🇳</div>
+        <h1 style={{ fontSize: "clamp(32px, 8vw, 64px)", color: "white", marginBottom: 24, lineHeight: 1.1 }}>
+          The Essential <span style={{ color: BRAND.primary }}>Business Kit</span><br/> for Modern India
+        </h1>
+        <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: BRAND.textSecondary, maxWidth: 700, margin: "0 auto", lineHeight: 1.6 }}>
+          Zero-login business tools to help you create invoices, agreements, receipts and manage payments professionally.
+        </p>
+        
+        <div style={{ maxWidth: 600, margin: "40px auto 0", display: "flex", gap: 12, background: "rgba(255,255,255,0.05)", padding: 8, borderRadius: 20, border: "1px solid var(--border)" }}>
+          <div style={{ paddingLeft: 16, display: "flex", alignItems: "center", color: BRAND.textSecondary }}>🔍</div>
+          <input 
+            value={search} 
+            onChange={e => setSearch(e.target.value)} 
+            placeholder="Search for GST, Invoices, QR, Rental..." 
+            style={{ flex: 1, background: "transparent", border: "none", color: "white", padding: "12px 0", fontSize: 16, outline: "none" }} 
+          />
         </div>
       </div>
-      <div style={{ maxWidth: 1200, margin: "0 auto 100px", padding: "0 24px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
-        {filtered.map(tool => (
-          <div key={tool.id} onClick={() => setPage(tool.id)} className="glass-card" style={{ cursor: "pointer" }}>
-            <div style={{ fontSize: 40, marginBottom: 20 }}>{tool.icon}</div>
-            <h3 style={{ marginBottom: 8 }}>{tool.name}</h3>
-            <p className="hindi-label" style={{ marginBottom: 12, color: BRAND.primary }}>{tool.hindi}</p>
-            <p style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 20 }}>{tool.desc}</p>
-            <span style={{ color: BRAND.primary, fontWeight: 800 }}>Start Now →</span>
-          </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 24 }}>
+        {filtered.map((tool) => (
+          <Link
+            key={tool.id}
+            to={tool.path}
+            style={{ textDecoration: "none", display: "block" }}
+          >
+            <div className="glass-card" style={{ height: "100%", display: "flex", flexDirection: "column", gap: 20 }}>
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+                <div style={{ width: 56, height: 56, background: `${tool.color}15`, borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, border: `1px solid ${tool.color}30` }}>
+                  {tool.icon}
+                </div>
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: tool.color, boxShadow: `0 0 10px ${tool.color}` }} />
+              </div>
+              <div>
+                <h3 style={{ fontSize: 20, color: "white", marginBottom: 4 }}>{tool.name}</h3>
+                <span className="hindi-label" style={{ marginBottom: 12 }}>{tool.hindi}</span>
+                <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.5 }}>{tool.desc}</p>
+              </div>
+              <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: 8, color: tool.color, fontWeight: 700, fontSize: 13 }}>
+                GET STARTED 
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -1828,20 +1864,58 @@ function ReceiptTool() {
 // ============================================================
 // MAIN APP
 // ============================================================
+// ============================================================
+// MAIN APP
+// ============================================================
 export default function App() {
-  const [page, setPage] = useState("home");
-  const toolPages = { upi: { title: "UPI Payment Page", hindi: "पेमेंट पेज", component: <UpiTool /> }, "gst-invoice": { title: "GST Invoice", hindi: "चालान", component: <GstInvoiceTool /> }, estimate: { title: "Estimate Generator", hindi: "अनुमान", component: <EstimateTool /> }, "gstin-verify": { title: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", component: <GstinVerifyTool /> }, qr: { title: "QR Generator", hindi: "क्यूआर", component: <QrTool /> }, emi: { title: "EMI Calculator", hindi: "ईएमआई", component: <EmiTool /> }, "gst-calc": { title: "GST Calculator", hindi: "जीएसटी", component: <GstCalcTool /> }, legal: { title: "Legal Hub", hindi: "कानूनी दस्तावेज़", component: <LegalHubTool /> }, salary: { title: "Payroll & Salary Engine", hindi: "वेतन पर्ची", component: <SalaryTool /> }, tax: { title: "Income Tax Calculator", hindi: "आयकर", component: <TaxCalculatorTool /> }, receipt: { title: "Receipt Maker", hindi: "रसीद", component: <ReceiptTool /> }, bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> } };
+  const toolPages = { 
+    upi: { title: "UPI Payment Page", hindi: "पेमेंट पेज", component: <UpiTool /> }, 
+    "gst-invoice": { title: "GST Invoice", hindi: "चालान", component: <GstInvoiceTool /> }, 
+    estimate: { title: "Estimate Generator", hindi: "अनुमान", component: <EstimateTool /> }, 
+    "gstin-verify": { title: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", component: <GstinVerifyTool /> }, 
+    qr: { title: "QR Generator", hindi: "क्यूआर", component: <QrTool /> }, 
+    emi: { title: "EMI Calculator", hindi: "ईएमआई", component: <EmiTool /> }, 
+    "gst-calc": { title: "GST Calculator", hindi: "जीएसटी", component: <GstCalcTool /> }, 
+    legal: { title: "Legal Hub", hindi: "कानूनी दस्तावेज़", component: <LegalHubTool /> }, 
+    salary: { title: "Payroll & Salary Engine", hindi: "वेतन पर्ची", component: <SalaryTool /> }, 
+    tax: { title: "Income Tax Calculator", hindi: "आयकर", component: <TaxCalculatorTool /> }, 
+    receipt: { title: "Receipt Maker", hindi: "रसीद", component: <ReceiptTool /> }, 
+    bizname: { title: "AI Business Names", hindi: "बिज़नेस नाम", component: <BizNameTool /> } 
+  };
 
   return (
-    <>
+    <BrowserRouter>
       <style>{globalStyle}</style>
+      <ScrollToTop />
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", width: "100vw", overflowX: "hidden" }}>
-        <Navbar active={page} setPage={setPage} />
+        <Navbar />
         <main style={{ flex: 1 }}>
-          {page === "home" ? <HomePage setPage={setPage} /> : toolPages[page] ? <PageWrapper title={toolPages[page].title} hindi={toolPages[page].hindi} setPage={setPage}>{toolPages[page].component}</PageWrapper> : null}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            {TOOLS.map(t => (
+              <Route 
+                key={t.id} 
+                path={t.path} 
+                element={
+                  <PageWrapper title={toolPages[t.id].title} hindi={toolPages[t.id].hindi}>
+                    {toolPages[t.id].component}
+                  </PageWrapper>
+                } 
+              />
+            ))}
+          </Routes>
         </main>
-        <Footer setPage={setPage} />
+        <Footer />
       </div>
-    </>
+    </BrowserRouter>
   );
+}
+
+// Scroll restoration helper
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
 }
