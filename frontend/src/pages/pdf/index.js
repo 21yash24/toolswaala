@@ -7,3 +7,4 @@ export { default as SplitPdf } from "./SplitPdf";
 export { default as ImageCompressor } from "./ImageCompressor";
 export { default as WordToPdf } from "./WordToPdf";
 export { default as WatermarkPdf } from "./WatermarkPdf";
+export { default as PdfToWord } from "./PdfToWord";

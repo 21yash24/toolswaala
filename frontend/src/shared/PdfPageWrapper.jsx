@@ -12,7 +12,10 @@ export default function PdfPageWrapper({ children, title, hindi }) {
       "https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js",
+      "https://unpkg.com/docx@8.5.0/build/index.umd.js"
     ];
 
     scripts.forEach(src => {

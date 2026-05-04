@@ -4,7 +4,7 @@ import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTi
 import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS } from "./shared/constants";
 import StudentPageWrapper from "./shared/StudentPageWrapper";
 import PdfPageWrapper from "./shared/PdfPageWrapper";
-import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf } from "./pages/pdf";
+import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf, PdfToWord } from "./pages/pdf";
 
 // ============================================================
 // CONSTANTS & HELPERS
@@ -2380,6 +2380,7 @@ export default function App() {
             <Route path="/pdf-tools/split-pdf" element={<PdfPageWrapper title="Split PDF" hindi="पीडीएफ स्प्लिट करें"><SplitPdf /></PdfPageWrapper>} />
             <Route path="/pdf-tools/compress-image" element={<PdfPageWrapper title="Image Compressor" hindi="इमेज कम्प्रेस करें"><ImageCompressor /></PdfPageWrapper>} />
             <Route path="/pdf-tools/word-to-pdf" element={<PdfPageWrapper title="Word to PDF" hindi="वर्ड से पीडीएफ"><WordToPdf /></PdfPageWrapper>} />
+            <Route path="/pdf-tools/pdf-to-word" element={<PdfPageWrapper title="PDF to Word" hindi="पीडीएफ से वर्ड"><PdfToWord /></PdfPageWrapper>} />
             <Route path="/pdf-tools/watermark-pdf" element={<PdfPageWrapper title="Watermark PDF" hindi="वाटरमार्क लगाएं"><WatermarkPdf /></PdfPageWrapper>} />
           </Routes>
         </main>

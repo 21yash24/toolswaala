@@ -57,6 +57,7 @@ export const PDF_TOOLS = [
   { id: "merge-pdf", path: "/pdf-tools/merge-pdf", name: "Merge PDF", hindi: "पीडीएफ मर्ज करें", icon: "📑", desc: "Combine multiple PDFs into one", color: "#1D6BE4" },
   { id: "split-pdf", path: "/pdf-tools/split-pdf", name: "Split PDF", hindi: "पीडीएफ स्प्लिट करें", icon: "✂️", desc: "Extract pages or split into separate files", color: "#1D6BE4" },
   { id: "img-compress", path: "/pdf-tools/compress-image", name: "Image Compressor", hindi: "इमेज कम्प्रेस करें", icon: "🖼️", desc: "Resize & compress for exam portals", color: "#1D6BE4" },
-  { id: "word-to-pdf", path: "/pdf-tools/word-to-pdf", name: "Word to PDF", hindi: "वर्ड से पीडीएफ", icon: "📄", desc: "Convert docx to PDF (Guidance Tool)", color: "#1D6BE4" },
+  { id: "word-to-pdf", path: "/pdf-tools/word-to-pdf", name: "Word to PDF", hindi: "वर्ड से पीडीएफ", icon: "📄", desc: "Convert docx to PDF entirely in browser", color: "#1D6BE4" },
+  { id: "pdf-to-word", path: "/pdf-tools/pdf-to-word", name: "PDF to Word", hindi: "पीडीएफ से वर्ड", icon: "📝", desc: "Extract PDF text to Word document locally", color: "#1D6BE4" },
   { id: "watermark-pdf", path: "/pdf-tools/watermark-pdf", name: "Watermark PDF", hindi: "वाटरमार्क लगाएं", icon: "🖋️", desc: "Add text watermark to your PDF pages", color: "#1D6BE4" },
 ];
