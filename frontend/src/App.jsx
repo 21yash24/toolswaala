@@ -1,24 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTimer, BonafideCertificate, NocGenerator, ResumeBuilder, SopGenerator, ScholarshipFinder, StudyPlanner } from "./pages/students";
-import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS } from "./shared/constants";
+import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS, BRAND } from "./shared/constants";
 import StudentPageWrapper from "./shared/StudentPageWrapper";
 import PdfPageWrapper from "./shared/PdfPageWrapper";
 import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf, PdfToWord } from "./pages/pdf";
-
-// ============================================================
-// CONSTANTS & HELPERS
-// ============================================================
-const BRAND = {
-  primary: "#FF6B00",
-  primaryDark: "#D45800",
-  surface: "#09090B",
-  surfaceCard: "#141414",
-  text: "#FAFAFA",
-  textSecondary: "#A1A1AA",
-  accent: "#FFB347",
-  border: "rgba(255, 255, 255, 0.08)",
-};
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "";
 
