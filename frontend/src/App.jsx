@@ -321,44 +321,43 @@ const TOOLS = [
 // <meta name="description" content="Generate GST Invoices, Rent Agreements, Salary Slips, NDAs and verify GSTINs instantly with ToolsWaala." />
 // <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
-function Navbar() {
+function Navbar({ darkMode, setDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const activeTool = TOOLS.find(t => t.path === location.pathname)?.id;
 
   return (
-    <nav style={{ background: "rgba(9, 9, 11, 0.8)", backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: "1px solid rgba(255,255,255,0.05)", width: "100vw" }}>
+    <nav style={{ background: BRAND.surface, backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: `1px solid ${BRAND.border}`, width: "100vw" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
-          <div style={{ position: "relative", width: 48, height: 48, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* T as a Wrench */}
-              <path d="M20 30H75M35 30V85" stroke="#FF6B00" strokeWidth="12" strokeLinecap="round" />
-              <path d="M20 30C20 22 15 20 10 20C5 20 5 30 10 30H20" fill="#FF6B00" />
-              <path d="M20 30L12 22M20 30L12 38" stroke="white" strokeWidth="3" strokeLinecap="round" />
-              
-              {/* Interlocked W */}
-              <path d="M45 45L55 85L65 65L75 85L85 45" stroke="#0D1B2A" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+          <div style={{ position: "relative", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Professional TW Logo - More visible 'W' */}
+              <path d="M20 25H80M50 25V85" stroke="#FF6B00" strokeWidth="10" strokeLinecap="round" />
+              <path d="M20 25L10 15M20 25L10 35" stroke="#FF6B00" strokeWidth="8" strokeLinecap="round" />
+              <path d="M25 55L40 85L50 65L60 85L75 55" stroke={darkMode ? "white" : "#0D1B2A"} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <div>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <span style={{ color: "white", fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Tools</span>
+              <span style={{ color: BRAND.text, fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Tools</span>
               <span style={{ color: BRAND.primary, fontWeight: 900, fontSize: 24, lineHeight: 1, letterSpacing: "-0.04em" }}>Waala</span>
             </div>
             <div style={{ color: BRAND.textSecondary, fontSize: 10, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginTop: 2 }}>Your Digital Toolkit</div>
           </div>
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link to="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: "1px solid #1D6BE440", background: location.pathname.includes("/pdf-tools") ? "#1D6BE4" : "#1D6BE415", color: "white", textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
-          <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: "1px solid #7C3AED40", background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? "#7C3AED" : "#7C3AED15", color: "white", textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
-          <button className="btn-primary" style={{ padding: "8px 18px", fontSize: 13 }} onClick={() => alert("Pro plan at ₹99/month — Integration coming soon!")}>⚡ PRO</button>
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", color: "white", width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
+          <button onClick={() => setDarkMode(!darkMode)} style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
+            {darkMode ? "☀️" : "🌙"}
+          </button>
+          <Link to="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
+          <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
         </div>
       </div>
       {menuOpen && (
-        <div style={{ background: "rgba(20, 20, 20, 0.95)", backdropFilter: "blur(30px)", borderBottom: "1px solid rgba(255,255,255,0.1)", padding: "24px 0" }} className="fade-in">
+        <div style={{ background: BRAND.surfaceCard, borderBottom: `1px solid ${BRAND.border}`, padding: "24px 0" }} className="fade-in">
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 8 }}>
             {TOOLS.map(t => (
               <Link key={t.id} to={t.path} onClick={() => setMenuOpen(false)}
@@ -2316,6 +2315,20 @@ function FdCalcTool() {
 // MAIN APP
 // ============================================================
 export default function App() {
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved ? saved === "dark" : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
+
   const toolPages = { 
     upi: { title: "UPI Payment Page", hindi: "पेमेंट पेज", component: <UpiTool /> }, 
     "gst-invoice": { title: "GST Invoice", hindi: "चालान", component: <GstInvoiceTool /> }, 
@@ -2339,7 +2352,7 @@ export default function App() {
       <style>{globalStyle}</style>
       <ScrollToTop />
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", width: "100vw", overflowX: "hidden" }}>
-        <Navbar />
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<HomePage />} />

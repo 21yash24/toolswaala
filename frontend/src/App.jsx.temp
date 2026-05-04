@@ -1,0 +1,69 @@
+import { useState, useEffect, useRef, useCallback } from "react";
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
+import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTimer, BonafideCertificate, NocGenerator, ResumeBuilder, SopGenerator, ScholarshipFinder, StudyPlanner } from "./pages/students";
+import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS, BRAND } from "./shared/constants";
+import StudentPageWrapper from "./shared/StudentPageWrapper";
+import PdfPageWrapper from "./shared/PdfPageWrapper";
+import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf, PdfToWord } from "./pages/pdf";
+
+// ============================================================
+// HELPERS
+// ============================================================
+const API_BASE_URL = import.meta.env.VITE_API_URL || "";
+const GST_RATES = [0, 5, 12, 18, 28];
+
+function Navbar({ darkMode, setDarkMode }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const activeTool = TOOLS.find(t => t.path === location.pathname)?.id;
+
+  return (
+    <nav style={{ background: BRAND.surface, backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: `1px solid ${BRAND.border}`, width: "100vw" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
+          <div style={{ position: "relative", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Professional TW Logo - More visible 'W' */}
+              <path d="M20 25H80M50 25V85" stroke="#FF6B00" strokeWidth="10" strokeLinecap="round" />
+              <path d="M20 25L10 15M20 25L10 35" stroke="#FF6B00" strokeWidth="8" strokeLinecap="round" />
+              <path d="M25 55L40 85L50 65L60 85L75 55" stroke={darkMode ? "white" : "#0D1B2A"} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <div className="no-mobile">
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <span style={{ color: BRAND.text, fontWeight: 900, fontSize: 22, lineHeight: 1, letterSpacing: "-0.04em" }}>Tools</span>
+              <span style={{ color: BRAND.primary, fontWeight: 900, fontSize: 22, lineHeight: 1, letterSpacing: "-0.04em" }}>Waala</span>
+            </div>
+            <div style={{ color: BRAND.textSecondary, fontSize: 9, lineHeight: 1.4, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", marginTop: 2 }}>The Ultimate Kit</div>
+          </div>
+        </Link>
+        
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <button onClick={() => setDarkMode(!darkMode)} style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 36, height: 36, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>
+            {darkMode ? "☀️" : "🌙"}
+          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }} className="no-mobile">
+            <Link to="/pdf-tools" style={{ padding: "8px 16px", fontSize: 12, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
+            <Link to="/students" style={{ padding: "8px 16px", fontSize: 12, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.includes("/students") ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
+          </div>
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 36, height: 36, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{menuOpen ? "✕" : "☰"}</button>
+        </div>
+      </div>
+      {menuOpen && (
+        <div style={{ background: BRAND.surfaceCard, borderBottom: `1px solid ${BRAND.border}`, padding: "24px 0" }} className="fade-in">
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 8 }}>
+            {TOOLS.map(t => (
+              <Link key={t.id} to={t.path} onClick={() => setMenuOpen(false)}
+                style={{ background: activeTool === t.id ? `${BRAND.primary}15` : "transparent", color: activeTool === t.id ? BRAND.primary : BRAND.text, padding: "10px 14px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+                <span style={{ fontSize: 18 }}>{t.icon}</span> {t.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+// ... rest of the file ...
+// (I will use multi_replace to avoid overwriting the whole 2400 lines)
