@@ -1165,24 +1165,6 @@ function EmiTool() {
   );
 }
 
-function GstCalcTool() {
-  const [amount, setAmount] = useState("");
-  const [gstRate, setGstRate] = useState(18);
-  const [mode, setMode] = useState("add");
-  const numAmount = parseFloat(amount) || 0;
-  const base = mode === "add" ? numAmount : numAmount / (1 + gstRate / 100);
-  const gst = base * (gstRate / 100);
-  return (
-    <div className="grid-2">
-      <div className="glass-card">
-        <div className="form-group"><label>Amount</label><input type="number" value={amount} onChange={e => setAmount(e.target.value)} /></div>
-        <div className="form-group"><label>Rate</label><div style={{ display: "flex", gap: 10 }}>{GST_RATES.map(r => <button key={r} onClick={() => setGstRate(r)} style={{ padding: 10, background: gstRate === r ? BRAND.primary : "transparent", border: "1px solid rgba(255,255,255,0.1)" }}>{r}%</button>)}</div></div>
-        <div style={{ display: "flex", gap: 10 }}><button onClick={() => setMode("add")} className="btn-secondary">Add</button><button onClick={() => setMode("remove")} className="btn-secondary">Remove</button></div>
-      </div>
-      <div className="result-box"><div style={{ fontSize: 32 }}>Total: {formatINR(mode === "add" ? numAmount + gst : base)}</div><div style={{ fontSize: 14, marginTop: 10 }}>GST: {formatINR(gst)}</div></div>
-    </div>
-  );
-}
 
 function LegalHubTool() {
   const [docType, setDocType] = useState("rent");
