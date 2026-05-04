@@ -65,7 +65,7 @@ export default function PdfPageWrapper({ children, title, hindi }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40 }}>
           <main>
             <div style={{ marginBottom: 40 }}>
-              <h1 style={{ fontSize: "clamp(28px, 5vw, 42px)", color: "white", marginBottom: 12, fontWeight: 900 }}>{title}</h1>
+              <h1 style={{ fontSize: "clamp(28px, 5vw, 42px)", color: BRAND.text, marginBottom: 12, fontWeight: 900 }}>{title}</h1>
               <div style={{ color: PDF_BRAND.accent, fontSize: 18, fontWeight: 600 }}>{hindi}</div>
             </div>
             {children}
@@ -73,7 +73,7 @@ export default function PdfPageWrapper({ children, title, hindi }) {
 
           <aside className="no-print">
             <div style={{ background: BRAND.surfaceCard, borderRadius: 20, border: `1px solid ${BRAND.border}`, padding: 24, position: "sticky", top: 100 }}>
-              <h3 style={{ color: "white", fontSize: 16, marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
+              <h3 style={{ color: BRAND.text, fontSize: 16, marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{ color: PDF_BRAND.accent }}>📄</span> Other PDF Tools
               </h3>
               <div style={{ display: "grid", gap: 12 }}>
@@ -82,7 +82,7 @@ export default function PdfPageWrapper({ children, title, hindi }) {
                     onMouseEnter={e => e.currentTarget.style.borderColor = PDF_BRAND.accent + "40"}
                     onMouseLeave={e => e.currentTarget.style.borderColor = BRAND.border}>
                     <span style={{ fontSize: 20 }}>{tool.icon}</span>
-                    <div style={{ fontSize: 14, color: "white", fontWeight: 500 }}>{tool.name}</div>
+                    <div style={{ fontSize: 14, color: BRAND.text, fontWeight: 500 }}>{tool.name}</div>
                   </Link>
                 ))}
               </div>

@@ -53,7 +53,7 @@ export default function StudentPageWrapper({ title, hindi, children }) {
             ← Student Zone
           </Link>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
-            <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)", color: "white", fontWeight: 900, letterSpacing: "-0.02em" }}>{title}</h1>
+            <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)", color: BRAND.text, fontWeight: 900, letterSpacing: "-0.02em" }}>{title}</h1>
             <span style={{ fontSize: 18, color: STUDENT_BRAND.accent, fontWeight: 500 }}>{hindi}</span>
           </div>
         </div>
@@ -65,14 +65,14 @@ export default function StudentPageWrapper({ title, hindi, children }) {
       {children}
 
       <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
-        <h3 style={{ fontSize: 20, marginBottom: 24, color: "white" }}>More Student Tools</h3>
+        <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>More Student Tools</h3>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
           {STUDENT_TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (
             <Link key={tool.id} to={tool.path} style={{ textDecoration: "none" }}>
               <div style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, transition: "border-color 0.2s" }}>
                 <div style={{ fontSize: 24 }}>{tool.icon}</div>
                 <div>
-                  <div style={{ fontWeight: 600, color: "white", fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontWeight: 600, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
                   <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
                 </div>
               </div>

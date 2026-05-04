@@ -337,6 +337,7 @@ function Navbar({ darkMode, setDarkMode }) {
           <button onClick={() => setDarkMode(!darkMode)} style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
             {darkMode ? "☀️" : "🌙"}
           </button>
+          <Link to="/" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname === "/" ? BRAND.primary : "transparent", color: location.pathname === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>💼 Business</Link>
           <Link to="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
           <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
@@ -360,15 +361,15 @@ function Navbar({ darkMode, setDarkMode }) {
 
 function Footer() {
   return (
-    <footer style={{ background: "#050505", borderTop: "1px solid rgba(255,255,255,0.05)", padding: "80px 24px 40px", marginTop: "auto" }}>
+    <footer style={{ background: BRAND.surfaceCard, borderTop: `1px solid ${BRAND.border}`, padding: "80px 24px 40px", marginTop: "auto" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 60, marginBottom: 60 }}>
           <div>
-            <div style={{ color: "white", fontWeight: 800, fontSize: 20, marginBottom: 20 }}>ToolsWaala</div>
+            <div style={{ color: BRAND.text, fontWeight: 800, fontSize: 20, marginBottom: 20 }}>ToolsWaala</div>
             <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>Professional tools for Indian shopkeepers, freelancers, and small business owners.</p>
           </div>
           <div>
-            <div style={{ color: "white", fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Popular Tools</div>
+            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Popular Tools</div>
             <div style={{ display: "grid", gap: 12 }}>
               {TOOLS.slice(0, 5).map(t => (
                 <Link key={t.id} to={t.path} style={{ background: "none", border: "none", color: BRAND.textSecondary, cursor: "pointer", fontSize: 14, textAlign: "left", textDecoration: "none" }}>{t.name}</Link>
@@ -376,7 +377,7 @@ function Footer() {
             </div>
           </div>
           <div style={{ maxWidth: 300 }}>
-            <div style={{ color: "white", fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Connect</div>
+            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Connect</div>
             <p style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 12 }}>📧 hello@toolswaala.in</p>
             <p style={{ fontSize: 12, color: BRAND.textSecondary, lineHeight: 1.5, opacity: 0.8 }}>
               ToolsWaala is a community project. If our tools helped you, consider sharing them with your business network!
@@ -445,7 +446,7 @@ function PageWrapper({ title, hindi, children }) {
         <div style={{ flex: 1 }}>
           <Link to="/" className="btn-ghost" style={{ marginBottom: 24, display: "inline-block" }}>← Dashboard</Link>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
-            <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)", color: "white", fontWeight: 900, letterSpacing: "-0.02em" }}>{title}</h1>
+            <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)", color: BRAND.text, fontWeight: 900, letterSpacing: "-0.02em" }}>{title}</h1>
             <span className="hindi-label" style={{ fontSize: 18, color: BRAND.primary, fontWeight: 500 }}>{hindi}</span>
           </div>
         </div>
@@ -456,14 +457,14 @@ function PageWrapper({ title, hindi, children }) {
       {children}
 
       <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
-        <h3 style={{ fontSize: 20, marginBottom: 24, color: "white" }}>Other Useful Tools</h3>
+        <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>Other Useful Tools</h3>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
           {TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (
             <Link key={tool.id} to={tool.path} style={{ textDecoration: "none" }}>
               <div className="glass-card" style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, height: "100%" }}>
                 <div style={{ fontSize: 24 }}>{tool.icon}</div>
                 <div>
-                  <div style={{ fontWeight: 600, color: "white", fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontWeight: 600, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
                   <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
                 </div>
               </div>
@@ -489,7 +490,7 @@ function HomePage() {
     <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }} className="fade-in">
       <div style={{ textAlign: "center", marginBottom: 80 }}>
         <div className="badge badge-orange" style={{ marginBottom: 16 }}>Made for Bharat 🇮🇳</div>
-        <h1 style={{ fontSize: "clamp(32px, 8vw, 64px)", color: "white", marginBottom: 24, lineHeight: 1.1 }}>
+        <h1 style={{ fontSize: "clamp(32px, 8vw, 64px)", color: BRAND.text, marginBottom: 24, lineHeight: 1.1 }}>
           The Essential <span style={{ color: BRAND.primary }}>Business Kit</span><br/> for Modern India
         </h1>
         <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: BRAND.textSecondary, maxWidth: 700, margin: "0 auto", lineHeight: 1.6 }}>
@@ -502,7 +503,7 @@ function HomePage() {
             value={search} 
             onChange={e => setSearch(e.target.value)} 
             placeholder="Search for GST, Invoices, QR, Rental..." 
-            style={{ flex: 1, background: "transparent", border: "none", color: "white", padding: "12px 0", fontSize: 16, outline: "none" }} 
+            style={{ flex: 1, background: "transparent", border: "none", color: BRAND.text, padding: "12px 0", fontSize: 16, outline: "none" }} 
           />
         </div>
       </div>
@@ -522,7 +523,7 @@ function HomePage() {
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: tool.color, boxShadow: `0 0 10px ${tool.color}` }} />
               </div>
               <div>
-                <h3 style={{ fontSize: 20, color: "white", marginBottom: 4 }}>{tool.name}</h3>
+                <h3 style={{ fontSize: 20, color: BRAND.text, marginBottom: 4 }}>{tool.name}</h3>
                 <span className="hindi-label" style={{ marginBottom: 12 }}>{tool.hindi}</span>
                 <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.5 }}>{tool.desc}</p>
               </div>
@@ -539,7 +540,7 @@ function HomePage() {
       <div style={{ marginTop: 80, padding: "48px 32px", borderRadius: 24, background: "linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(124,58,237,0.02) 100%)", border: "1px solid rgba(124,58,237,0.15)" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>🎓</div>
-          <h2 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: "white", fontWeight: 900, marginBottom: 8 }}>Student Zone</h2>
+          <h2 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: BRAND.text, fontWeight: 900, marginBottom: 8 }}>Student Zone</h2>
           <p style={{ color: BRAND.textSecondary, fontSize: 15 }}>भारत के 40 करोड़ छात्रों के लिए — Built for India's 40 Crore Students</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16, marginBottom: 32 }}>
@@ -550,7 +551,7 @@ function HomePage() {
                 onMouseLeave={e => { e.currentTarget.style.borderColor = BRAND.border; e.currentTarget.style.transform = "translateY(0)"; }}>
                 <div style={{ width: 44, height: 44, background: `${tool.color}15`, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>{tool.icon}</div>
                 <div>
-                  <div style={{ fontWeight: 700, color: "white", fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontWeight: 700, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
                   <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
                 </div>
               </div>
@@ -568,7 +569,7 @@ function HomePage() {
       <div style={{ marginTop: 40, padding: "48px 32px", borderRadius: 24, background: "linear-gradient(135deg, rgba(29,107,228,0.08) 0%, rgba(29,107,228,0.02) 100%)", border: "1px solid rgba(29,107,228,0.15)" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>📄</div>
-          <h2 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: "white", fontWeight: 900, marginBottom: 8 }}>PDF & File Tools</h2>
+          <h2 style={{ fontSize: "clamp(24px, 4vw, 36px)", color: BRAND.text, fontWeight: 900, marginBottom: 8 }}>PDF & File Tools</h2>
           <p style={{ color: BRAND.textSecondary, fontSize: 15 }}>पूरी तरह सुरक्षित — Your files never leave your browser 🔒</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16, marginBottom: 32 }}>
@@ -579,7 +580,7 @@ function HomePage() {
                 onMouseLeave={e => { e.currentTarget.style.borderColor = BRAND.border; e.currentTarget.style.transform = "translateY(0)"; }}>
                 <div style={{ width: 44, height: 44, background: `${PDF_BRAND.accent}15`, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>{tool.icon}</div>
                 <div>
-                  <div style={{ fontWeight: 700, color: "white", fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontWeight: 700, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
                   <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
                 </div>
               </div>
