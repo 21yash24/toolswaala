@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTimer, BonafideCertificate, NocGenerator, ResumeBuilder, SopGenerator, ScholarshipFinder, StudyPlanner } from "./pages/students";
 import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS } from "./shared/constants";
+import StudentPageWrapper from "./shared/StudentPageWrapper";
 import PdfPageWrapper from "./shared/PdfPageWrapper";
 import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf } from "./pages/pdf";
 
