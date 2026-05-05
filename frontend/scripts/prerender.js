@@ -4,6 +4,22 @@ import path from 'path';
 const distDir = path.resolve('dist');
 const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
+// Blog Data (Manual sync for now or we could import it if we use ESM in node)
+const BLOG_POSTS = [
+  { slug: "cgpa-to-percentage-guide-2025", title: "CGPA to Percentage: Complete Guide for All Universities 2025", metaDesc: "Convert CGPA to percentage for Mumbai University, AKTU, CBSE and more. Learn the exact formulas for 2025 applications." },
+  { slug: "75-percent-attendance-rule-guide", title: "75% Attendance Rule — How Many Classes Can You Miss?", metaDesc: "Calculate how many more classes you can skip to stay above the 75% attendance threshold. Complete guide for college students." },
+  { slug: "how-to-make-bonafide-certificate-online", title: "How to Make a Bonafide Certificate Online Free", metaDesc: "Step-by-step guide to generating a bonafide certificate for students. Free online generator and PDF download." },
+  { slug: "ats-resume-for-freshers-guide", title: "ATS Resume for Freshers: What Actually Gets You Shortlisted", metaDesc: "How to pass ATS filters with your first resume. Free tips and ATS-friendly resume templates for freshers." },
+  { slug: "sop-writing-guide-ms-applications", title: "SOP Writing Guide for MS Applications to US/Canada/UK", metaDesc: "Learn how to write a winning Statement of Purpose for foreign universities. Free structure and AI draft generator." },
+  { slug: "gst-invoice-format-india-2025", title: "GST Invoice Format India 2025 — Every Field Explained", metaDesc: "A complete guide to mandatory fields in a GST invoice for Indian SMBs. Stay compliant and ensure your customers get ITC." },
+  { slug: "emi-calculator-india-loan-guide", title: "EMI Calculator India — Home, Car & Personal Loan", metaDesc: "Compare different types of loans in India and calculate your monthly EMI instantly with our free tool." },
+  { slug: "new-tax-regime-vs-old-tax-regime-2025", title: "New Tax Regime vs Old Tax Regime 2025 — Which Saves More?", metaDesc: "Detailed comparison of Indian tax regimes for FY 2025-26. Find out which regime saves you more money." },
+  { slug: "upi-payment-page-for-small-business", title: "UPI Payment Page for Small Business — Free Setup Guide", metaDesc: "Setup a professional payment link for your business. No fees, no gateway, direct bank transfer." },
+  { slug: "rent-agreement-format-india-guide", title: "Rent Agreement Format India — What's Legally Required", metaDesc: "What to include in your rental contract. Free rent agreement format for Indian homeowners and tenants." },
+  { slug: "compress-pdf-without-losing-quality", title: "Compress PDF Without Losing Quality — Free Online Guide", metaDesc: "How to reduce PDF size for email and portal uploads. Free browser-side tool for 100% privacy." },
+  { slug: "convert-image-to-pdf-on-mobile", title: "How to Convert Image to PDF on Mobile — No App Needed", metaDesc: "Combine multiple JPG/PNG images into a single PDF. Free, fast and works on all mobile browsers." }
+];
+
 const routes = [
   // Business Tools
   { path: '/upi-payment', title: 'Free UPI Payment Page Generator | ToolsWaala', desc: 'Create a shareable UPI payment page with QR code. No app needed. Works with PhonePe, GPay, Paytm.' },
@@ -49,7 +65,17 @@ const routes = [
   // Module pages
   { path: '/students', title: 'Free Student Tools India — CGPA, Resume, Scholarship | ToolsWaala', desc: '15+ free tools for Indian students. CGPA calculator, resume builder, scholarship finder, and more.' },
   { path: '/pdf-tools', title: 'Free PDF Tools Online — No Upload, 100% Private | ToolsWaala', desc: '9 free PDF tools. Compress, merge, split, convert. Your files never leave your browser.' },
+  { path: '/blog', title: 'ToolsWaala Blog — Expert Guides for Students & SMBs | ToolsWaala', desc: 'Learn how to master your digital workflow with expert guides on taxation, PDF management, and student life.' },
 ];
+
+// Add Blog Posts to routes
+BLOG_POSTS.forEach(post => {
+  routes.push({
+    path: `/blog/${post.slug}`,
+    title: `${post.title} | ToolsWaala Blog`,
+    desc: post.metaDesc
+  });
+});
 
 // Pre-render meta tags for each route
 routes.forEach(route => {
@@ -75,7 +101,11 @@ const today = new Date().toISOString().split('T')[0];
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 sitemap += `  <url><loc>https://toolswaala.in/</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>\n`;
 routes.forEach(r => {
-  const prio = r.path.includes('pdf-tools/') ? '0.8' : '0.9';
+  let prio = '0.9';
+  if (r.path.includes('pdf-tools/')) prio = '0.8';
+  if (r.path.includes('/blog/')) prio = '0.7';
+  if (r.path === '/blog' || r.path === '/students' || r.path === '/pdf-tools') prio = '0.9';
+  
   sitemap += `  <url><loc>https://toolswaala.in${r.path}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${prio}</priority></url>\n`;
 });
 sitemap += `</urlset>`;

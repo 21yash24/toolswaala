@@ -5,6 +5,7 @@ import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS, STUDENT_BRAND, BRAND } from "./sha
 import StudentPageWrapper from "./shared/StudentPageWrapper";
 import PdfPageWrapper from "./shared/PdfPageWrapper";
 import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf, PdfToWord } from "./pages/pdf";
+import { BlogHome, BlogPost } from "./pages/blog";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "";
 
@@ -403,9 +404,10 @@ function Navbar({ darkMode, setDarkMode }) {
           <button onClick={() => setDarkMode(!darkMode)} style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
             {darkMode ? "☀️" : "🌙"}
           </button>
-          <div className="nav-desktop-links" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="nav-desktop-links" style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <Link to="/" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname === "/" ? BRAND.primary : "transparent", color: location.pathname === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>💼 Business</Link>
             <Link to="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</Link>
+            <Link to="/blog" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname.startsWith("/blog") ? BRAND.primary : "transparent", color: location.pathname.startsWith("/blog") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📝 Blog</Link>
             <Link to="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => location.pathname.includes(p)) ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</Link>
           </div>
           <button className="nav-mobile-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
@@ -418,6 +420,7 @@ function Navbar({ darkMode, setDarkMode }) {
             <div style={{ display: "flex", gap: 8, marginBottom: 16, overflowX: "auto", paddingBottom: 8 }}>
               <Link to="/" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname === "/" ? BRAND.primary : "transparent", color: location.pathname === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>💼 Business</Link>
               <Link to="/pdf-tools" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: location.pathname.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: location.pathname.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>📄 PDF Tools</Link>
+              <Link to="/blog" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: location.pathname.startsWith("/blog") ? BRAND.primary : "transparent", color: location.pathname.startsWith("/blog") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>📝 Blog</Link>
               <Link to="/students" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: location.pathname.includes("/students") ? STUDENT_BRAND.accent : "transparent", color: location.pathname.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>🎓 Students</Link>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 6 }}>
@@ -2520,6 +2523,10 @@ export default function App() {
             <Route path="/pdf-tools/word-to-pdf" element={<PdfPageWrapper title="Word to PDF" hindi="वर्ड से पीडीएफ"><WordToPdf /></PdfPageWrapper>} />
             <Route path="/pdf-tools/pdf-to-word" element={<PdfPageWrapper title="PDF to Word" hindi="पीडीएफ से वर्ड"><PdfToWord /></PdfPageWrapper>} />
             <Route path="/pdf-tools/watermark-pdf" element={<PdfPageWrapper title="Watermark PDF" hindi="वाटरमार्क लगाएं"><WatermarkPdf /></PdfPageWrapper>} />
+
+            {/* Blog Routes */}
+            <Route path="/blog" element={<BlogHome />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </main>
         <Footer />

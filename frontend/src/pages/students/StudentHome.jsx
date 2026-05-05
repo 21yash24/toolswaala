@@ -1,16 +1,30 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BRAND, STUDENT_BRAND, STUDENT_TOOLS } from "../../shared/constants";
+import { BRAND, STUDENT_BRAND, STUDENT_TOOLS, TOOLS, PDF_TOOLS } from "../../shared/constants";
 
 export default function StudentHome() {
   const [search, setSearch] = useState("");
   const filtered = STUDENT_TOOLS.filter(t =>
     t.name.toLowerCase().includes(search.toLowerCase()) ||
-    t.desc.toLowerCase().includes(search.toLowerCase())
+    t.desc.toLowerCase().includes(search.toLowerCase()) ||
+    (t.hindi && t.hindi.includes(search))
   );
 
+  const crossTools = [
+    { ...TOOLS.find(t => t.id === "emi"), label: "For Education Loans" },
+    { ...TOOLS.find(t => t.id === "tax"), label: "For your first job" },
+    { ...PDF_TOOLS.find(t => t.id === "pdf-compress"), label: "For exam uploads" },
+  ];
+
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }} className="fade-in">
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px 80px" }} className="fade-in">
+      {/* Breadcrumb / Module Switcher */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 40, overflowX: "auto", whiteSpace: "nowrap", paddingBottom: 8 }}>
+        <Link to="/" style={{ color: BRAND.textSecondary, textDecoration: "none", fontSize: 14 }}>All Tools</Link>
+        <span style={{ color: BRAND.border }}>/</span>
+        <span style={{ color: STUDENT_BRAND.accent, fontWeight: 700, fontSize: 14 }}>Student Zone</span>
+      </div>
+
       <div style={{ textAlign: "center", marginBottom: 80 }}>
         <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: `${STUDENT_BRAND.accent}15`, border: `1px solid ${STUDENT_BRAND.accent}30`, fontSize: 13, fontWeight: 600, color: STUDENT_BRAND.accent, marginBottom: 16 }}>
           🎓 Student Zone
@@ -51,11 +65,32 @@ export default function StudentHome() {
         ))}
       </div>
 
-      <div style={{ textAlign: "center", marginTop: 80 }}>
-        <Link to="/" style={{ color: BRAND.primary, textDecoration: "none", fontSize: 16, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 28px", borderRadius: 12, border: `1px solid ${BRAND.primary}30`, background: `${BRAND.primary}08` }}>
-          🏢 Switch to Business Tools →
+      {/* Cross-Module Recommendations */}
+      <div style={{ marginTop: 100, padding: "48px 32px", borderRadius: 24, background: "rgba(255,255,255,0.02)", border: `1px solid ${BRAND.border}` }}>
+        <h2 style={{ fontSize: 24, color: BRAND.text, marginBottom: 8, fontWeight: 800 }}>Students also use these Business tools →</h2>
+        <p style={{ color: BRAND.textSecondary, marginBottom: 32, fontSize: 15 }}>Complement your studies with professional financial and document tools.</p>
+        
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
+          {crossTools.map(tool => (
+            <Link key={tool.id} to={tool.path} style={{ textDecoration: "none" }}>
+              <div className="glass-card" style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, border: `1px solid ${BRAND.border}` }}>
+                <div style={{ fontSize: 24 }}>{tool.icon}</div>
+                <div>
+                  <div style={{ fontWeight: 700, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
+                  <div style={{ fontSize: 12, color: BRAND.primary }}>{tool.label}</div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ textAlign: "center", marginTop: 60 }}>
+        <Link to="/" style={{ color: BRAND.textSecondary, textDecoration: "none", fontSize: 14, fontWeight: 500 }}>
+          ← Back to All Tools
         </Link>
       </div>
     </div>
   );
 }
+
