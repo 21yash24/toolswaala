@@ -11,6 +11,10 @@ const routes = [
   { path: '/gst-invoice', title: 'Free GST Invoice Maker | ToolsWaala', desc: 'Generate free, professional GST invoices in seconds with UPI QR codes.' },
   { path: '/legal', title: 'Legal Agreement Hub | ToolsWaala', desc: 'Draft rent agreements, NDA, and employment contracts instantly online.' },
   { path: '/salary', title: 'Free Salary Slip Generator | ToolsWaala', desc: 'Create professional salary slips for your employees in 1 minute.' },
+  { path: '/scholarship-finder', title: 'Best Scholarship Finder India | ToolsWaala', desc: 'Find and apply for 30+ latest government and private scholarships with verified deadlines.' },
+  { path: '/word-counter', title: 'Free Word & Character Counter | ToolsWaala', desc: 'Count words, characters and reading time instantly in your browser.' },
+  { path: '/age-calculator', title: 'Exact Age Calculator | ToolsWaala', desc: 'Calculate your exact age in years, months, and days instantly.' },
+  { path: '/youtube-thumbnail-downloader', title: 'YouTube HD Thumbnail Downloader | ToolsWaala', desc: 'Download high-quality YouTube video thumbnails instantly for free.' },
   { path: '/pdf-tools/compress-pdf', title: 'Compress PDF Free | ToolsWaala', desc: 'Reduce PDF file size without losing quality entirely in your browser.' },
   { path: '/pdf-tools/merge-pdf', title: 'Merge PDF Files | ToolsWaala', desc: 'Combine multiple PDF documents into one.' }
 ];
