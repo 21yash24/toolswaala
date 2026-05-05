@@ -9,4 +9,5 @@ export { default as ResumeBuilder } from "./ResumeBuilder";
 export { default as SopGenerator } from "./SopGenerator";
 export { default as ScholarshipFinder } from "./ScholarshipFinder";
 export { default as StudyPlanner } from "./StudyPlanner";
+export { default as JobFinder } from "./JobFinder";
 export * from "./ViralTools";

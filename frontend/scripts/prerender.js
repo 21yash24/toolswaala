@@ -15,6 +15,7 @@ const routes = [
   { path: '/word-counter', title: 'Free Word & Character Counter | ToolsWaala', desc: 'Count words, characters and reading time instantly in your browser.' },
   { path: '/age-calculator', title: 'Exact Age Calculator | ToolsWaala', desc: 'Calculate your exact age in years, months, and days instantly.' },
   { path: '/youtube-thumbnail-downloader', title: 'YouTube HD Thumbnail Downloader | ToolsWaala', desc: 'Download high-quality YouTube video thumbnails instantly for free.' },
+  { path: '/job-finder', title: 'Latest Govt & Private Jobs India | ToolsWaala', desc: 'Track Sarkari Naukri, Admit Cards, Exam Results, and Private Jobs/Internships for freshers in one place.' },
   { path: '/pdf-tools/compress-pdf', title: 'Compress PDF Free | ToolsWaala', desc: 'Reduce PDF file size without losing quality entirely in your browser.' },
   { path: '/pdf-tools/merge-pdf', title: 'Merge PDF Files | ToolsWaala', desc: 'Combine multiple PDF documents into one.' }
 ];

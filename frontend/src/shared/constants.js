@@ -51,6 +51,7 @@ export const STUDENT_TOOLS = [
   { id: "word-counter", path: "/word-counter", name: "Word Counter", hindi: "वर्ड काउंटर", icon: "📝", desc: "Count words, characters, and reading time", color: "#F43F5E" },
   { id: "age-calculator", path: "/age-calculator", name: "Age Calculator", hindi: "आयु कैलकुलेटर", icon: "🎂", desc: "Calculate exact age in years, months, and days", color: "#8B5CF6" },
   { id: "yt-thumbnail", path: "/youtube-thumbnail-downloader", name: "YT Thumbnail Downloader", hindi: "थंबनेल डाउनलोडर", icon: "▶️", desc: "Download high-quality YouTube video thumbnails", color: "#EF4444" },
+  { id: "jobs", path: "/job-finder", name: "Job Finder", hindi: "जॉब फाइंडर", icon: "💼", desc: "Latest Sarkari Naukri, Private Jobs & Internships", color: "#3B82F6" },
 ];
 
 export const PDF_TOOLS = [
