@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BRAND, STUDENT_BRAND } from "../../shared/constants";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const cs = { background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, padding: 24 };
 
@@ -26,8 +30,17 @@ export default function PomodoroTimer() {
   const [phase, setPhase] = useState("focus"); // focus | break | longBreak
   const [sessionCount, setSessionCount] = useState(0);
   const [task, setTask] = useState("");
+  const [history, setHistory] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("pomo_history") || "[]"); } catch { return []; }
+  });
+  
   const [todayStats, setTodayStats] = useState(() => {
-    try { const d = JSON.parse(localStorage.getItem("pomo_stats") || "{}"); return d.date === new Date().toDateString() ? d : { date: new Date().toDateString(), pomos: 0, minutes: 0 }; } catch { return { date: new Date().toDateString(), pomos: 0, minutes: 0 }; }
+    const todayDate = new Date().toDateString();
+    try {
+      const h = JSON.parse(localStorage.getItem("pomo_history") || "[]");
+      const today = h.find(d => d.date === todayDate);
+      return today || { date: todayDate, pomos: 0, minutes: 0 };
+    } catch { return { date: todayDate, pomos: 0, minutes: 0 }; }
   });
   const [showLofi, setShowLofi] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(MOTIVATIONAL_QUOTES[0]);
@@ -77,9 +90,18 @@ export default function PomodoroTimer() {
       if (phase === "focus") {
         const newCount = sessionCount + 1;
         setSessionCount(newCount);
+        
+        const todayDate = new Date().toDateString();
         const newStats = { ...todayStats, pomos: todayStats.pomos + 1, minutes: todayStats.minutes + focusMin };
         setTodayStats(newStats);
-        localStorage.setItem("pomo_stats", JSON.stringify(newStats));
+        
+        setHistory(prev => {
+          const filtered = prev.filter(d => d.date !== todayDate);
+          const newHistory = [...filtered, newStats].slice(-7); // Keep last 7 active days
+          localStorage.setItem("pomo_history", JSON.stringify(newHistory));
+          return newHistory;
+        });
+
         if (newCount % 4 === 0) { setPhase("longBreak"); setSecondsLeft(longBreakMin * 60); }
         else { setPhase("break"); setSecondsLeft(breakMin * 60); }
       } else {
@@ -98,6 +120,23 @@ export default function PomodoroTimer() {
 
   const circumference = 2 * Math.PI * 120;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
+
+  const chartData = {
+    labels: history.length > 0 ? history.map(d => { const dt = new Date(d.date); return `${dt.getDate()}/${dt.getMonth()+1}`; }) : [new Date().getDate() + "/" + (new Date().getMonth()+1)],
+    datasets: [{
+      label: 'Focus Minutes',
+      data: history.length > 0 ? history.map(d => d.minutes) : [todayStats.minutes],
+      backgroundColor: STUDENT_BRAND.accent,
+      borderRadius: 6,
+    }]
+  };
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.05)" } }, x: { grid: { display: false } } }
+  };
 
   return (
     <div>
@@ -172,6 +211,13 @@ export default function PomodoroTimer() {
         <div style={{ ...cs, textAlign: "center" }}>
           <div style={{ fontSize: 13, color: BRAND.textSecondary, marginBottom: 4 }}>⏱️ Focus Time Today</div>
           <div style={{ fontSize: 48, fontWeight: 900, color: STUDENT_BRAND.accent }}>{todayStats.minutes}m</div>
+        </div>
+      </div>
+
+      <div style={{ ...cs, marginBottom: 24 }}>
+        <h4 style={{ color: BRAND.text, margin: "0 0 16px" }}>📈 Your Focus History (Last 7 Days)</h4>
+        <div style={{ height: 200, width: "100%" }}>
+          <Bar data={chartData} options={chartOptions} />
         </div>
       </div>
 
