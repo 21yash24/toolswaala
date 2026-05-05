@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://toolswaala.in/sitemap.xml
+
+# ToolsWaala - Bharat's Digital Toolkit
+# 38+ Free Tools for Students & SMBs
+# No login. No uploads. 100% Privacy.
