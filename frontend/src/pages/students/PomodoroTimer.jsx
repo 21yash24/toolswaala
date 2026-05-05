@@ -3,6 +3,20 @@ import { BRAND, STUDENT_BRAND } from "../../shared/constants";
 
 const cs = { background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, padding: 24 };
 
+const MOTIVATIONAL_QUOTES = [
+  "Focus on being productive instead of busy.",
+  "The secret of getting ahead is getting started.",
+  "Don't stop when you're tired. Stop when you're done.",
+  "Small daily improvements are the key to staggering long-term results.",
+  "Discipline is choosing between what you want now and what you want most."
+];
+
+const BREAK_QUOTES = [
+  "Take a deep breath. You're doing great.",
+  "Stretch, hydrate, and relax your eyes.",
+  "A good break makes for better focus."
+];
+
 export default function PomodoroTimer() {
   const [focusMin, setFocusMin] = useState(25);
   const [breakMin, setBreakMin] = useState(5);
@@ -15,6 +29,13 @@ export default function PomodoroTimer() {
   const [todayStats, setTodayStats] = useState(() => {
     try { const d = JSON.parse(localStorage.getItem("pomo_stats") || "{}"); return d.date === new Date().toDateString() ? d : { date: new Date().toDateString(), pomos: 0, minutes: 0 }; } catch { return { date: new Date().toDateString(), pomos: 0, minutes: 0 }; }
   });
+  const [showLofi, setShowLofi] = useState(false);
+  const [currentQuote, setCurrentQuote] = useState(MOTIVATIONAL_QUOTES[0]);
+
+  useEffect(() => {
+    const quotes = phase === "focus" ? MOTIVATIONAL_QUOTES : BREAK_QUOTES;
+    setCurrentQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+  }, [phase, isRunning]);
 
   const intervalRef = useRef(null);
   const audioCtxRef = useRef(null);
@@ -113,7 +134,35 @@ export default function PomodoroTimer() {
           ))}
           <span style={{ fontSize: 12, color: BRAND.textSecondary, marginLeft: 8 }}>Session {sessionCount + 1}</span>
         </div>
+        
+        <div style={{ marginTop: 24, fontStyle: "italic", color: BRAND.textSecondary, fontSize: 14 }}>
+          "{currentQuote}"
+        </div>
       </div>
+
+      <div style={{ ...cs, marginBottom: 24, padding: "16px 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: BRAND.text }}>🎧 Lofi Study Beats</div>
+          <div style={{ fontSize: 12, color: BRAND.textSecondary }}>Play background music to boost focus</div>
+        </div>
+        <button onClick={() => setShowLofi(!showLofi)} style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${BRAND.primary}40`, background: showLofi ? BRAND.primary : "transparent", color: showLofi ? "white" : BRAND.primary, cursor: "pointer", fontWeight: 600 }}>
+          {showLofi ? "Close Player" : "Open Player"}
+        </button>
+      </div>
+
+      {showLofi && (
+        <div style={{ marginBottom: 24, borderRadius: 16, overflow: "hidden", border: `1px solid ${BRAND.border}` }}>
+          <iframe 
+            width="100%" 
+            height="160" 
+            src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1" 
+            title="Lofi Girl Radio" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen>
+          </iframe>
+        </div>
+      )}
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 24 }}>
         <div style={{ ...cs, textAlign: "center" }}>
