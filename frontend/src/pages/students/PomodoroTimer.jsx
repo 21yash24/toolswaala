@@ -22,14 +22,29 @@ const BREAK_QUOTES = [
 ];
 
 export default function PomodoroTimer() {
-  const [focusMin, setFocusMin] = useState(25);
-  const [breakMin, setBreakMin] = useState(5);
-  const [longBreakMin, setLongBreakMin] = useState(15);
-  const [secondsLeft, setSecondsLeft] = useState(25 * 60);
-  const [isRunning, setIsRunning] = useState(false);
-  const [phase, setPhase] = useState("focus"); // focus | break | longBreak
-  const [sessionCount, setSessionCount] = useState(0);
-  const [task, setTask] = useState("");
+  const savedState = JSON.parse(localStorage.getItem("pomo_current_state") || "null");
+  const now = Date.now();
+  let initialSecondsLeft = 25 * 60;
+  let initialIsRunning = false;
+  
+  if (savedState) {
+    initialSecondsLeft = savedState.secondsLeft;
+    initialIsRunning = savedState.isRunning;
+    // If it was running, subtract the time elapsed while the page was closed
+    if (initialIsRunning && savedState.lastUpdated) {
+      const elapsedSeconds = Math.floor((now - savedState.lastUpdated) / 1000);
+      initialSecondsLeft = Math.max(0, initialSecondsLeft - elapsedSeconds);
+    }
+  }
+
+  const [focusMin, setFocusMin] = useState(savedState?.focusMin || 25);
+  const [breakMin, setBreakMin] = useState(savedState?.breakMin || 5);
+  const [longBreakMin, setLongBreakMin] = useState(savedState?.longBreakMin || 15);
+  const [secondsLeft, setSecondsLeft] = useState(initialSecondsLeft);
+  const [isRunning, setIsRunning] = useState(initialIsRunning);
+  const [phase, setPhase] = useState(savedState?.phase || "focus"); // focus | break | longBreak
+  const [sessionCount, setSessionCount] = useState(savedState?.sessionCount || 0);
+  const [task, setTask] = useState(savedState?.task || "");
   const [history, setHistory] = useState(() => {
     try { return JSON.parse(localStorage.getItem("pomo_history") || "[]"); } catch { return []; }
   });
@@ -49,6 +64,12 @@ export default function PomodoroTimer() {
     const quotes = phase === "focus" ? MOTIVATIONAL_QUOTES : BREAK_QUOTES;
     setCurrentQuote(quotes[Math.floor(Math.random() * quotes.length)]);
   }, [phase, isRunning]);
+
+  // Persist current timer state
+  useEffect(() => {
+    const stateToSave = { focusMin, breakMin, longBreakMin, secondsLeft, isRunning, phase, sessionCount, task, lastUpdated: Date.now() };
+    localStorage.setItem("pomo_current_state", JSON.stringify(stateToSave));
+  }, [focusMin, breakMin, longBreakMin, secondsLeft, isRunning, phase, sessionCount, task]);
 
   const intervalRef = useRef(null);
   const audioCtxRef = useRef(null);
