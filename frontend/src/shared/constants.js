@@ -48,6 +48,9 @@ export const STUDENT_TOOLS = [
   { id: "sop", path: "/sop-generator", name: "SOP Generator", hindi: "एसओपी जेनरेटर", icon: "✍️", desc: "AI-powered Statement of Purpose writer", color: "#F97316" },
   { id: "scholarship", path: "/scholarship-finder", name: "Scholarship Finder", hindi: "छात्रवृत्ति खोजें", icon: "🏆", desc: "Search 35+ Indian scholarships with filters", color: "#14B8A6" },
   { id: "study-planner", path: "/study-planner", name: "Study Planner", hindi: "स्टडी प्लानर", icon: "📅", desc: "Exam countdown, schedule & daily checklist", color: "#6366F1" },
+  { id: "word-counter", path: "/word-counter", name: "Word Counter", hindi: "वर्ड काउंटर", icon: "📝", desc: "Count words, characters, and reading time", color: "#F43F5E" },
+  { id: "age-calculator", path: "/age-calculator", name: "Age Calculator", hindi: "आयु कैलकुलेटर", icon: "🎂", desc: "Calculate exact age in years, months, and days", color: "#8B5CF6" },
+  { id: "yt-thumbnail", path: "/youtube-thumbnail-downloader", name: "YT Thumbnail Downloader", hindi: "थंबनेल डाउनलोडर", icon: "▶️", desc: "Download high-quality YouTube video thumbnails", color: "#EF4444" },
 ];
 
 export const PDF_TOOLS = [

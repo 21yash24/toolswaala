@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
-import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTimer, BonafideCertificate, NocGenerator, ResumeBuilder, SopGenerator, ScholarshipFinder, StudyPlanner } from "./pages/students";
+import { StudentHome, CgpaCalculator, AttendanceCalc, PercentageCalc, PomodoroTimer, BonafideCertificate, NocGenerator, ResumeBuilder, SopGenerator, ScholarshipFinder, StudyPlanner, WordCounter, AgeCalculator, YtThumbnailDownloader } from "./pages/students";
 import { PDF_TOOLS, PDF_BRAND, STUDENT_TOOLS, STUDENT_BRAND, BRAND } from "./shared/constants";
 import StudentPageWrapper from "./shared/StudentPageWrapper";
 import PdfPageWrapper from "./shared/PdfPageWrapper";
@@ -2511,6 +2511,9 @@ export default function App() {
             <Route path="/sop-generator" element={<StudentPageWrapper title="SOP Generator" hindi="एसओपी जेनरेटर"><SopGenerator /></StudentPageWrapper>} />
             <Route path="/scholarship-finder" element={<StudentPageWrapper title="Scholarship Finder" hindi="छात्रवृत्ति खोजें"><ScholarshipFinder /></StudentPageWrapper>} />
             <Route path="/study-planner" element={<StudentPageWrapper title="Study Planner" hindi="स्टडी प्लानर"><StudyPlanner /></StudentPageWrapper>} />
+            <Route path="/word-counter" element={<StudentPageWrapper title="Word Counter" hindi="वर्ड काउंटर"><WordCounter /></StudentPageWrapper>} />
+            <Route path="/age-calculator" element={<StudentPageWrapper title="Age Calculator" hindi="आयु कैलकुलेटर"><AgeCalculator /></StudentPageWrapper>} />
+            <Route path="/youtube-thumbnail-downloader" element={<StudentPageWrapper title="YT Thumbnail Downloader" hindi="थंबनेल डाउनलोडर"><YtThumbnailDownloader /></StudentPageWrapper>} />
             
             {/* PDF & File Tools Routes */}
             <Route path="/pdf-tools" element={<PdfHome />} />
