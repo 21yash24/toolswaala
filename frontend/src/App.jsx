@@ -436,29 +436,38 @@ function Navbar({ darkMode, setDarkMode }) {
 }
 
 function Footer() {
+  const fs = { fontSize: 13, color: BRAND.textSecondary, textDecoration: "none", display: "block", marginBottom: 10 };
   return (
     <footer style={{ background: BRAND.surfaceCard, borderTop: `1px solid ${BRAND.border}`, padding: "80px 24px 40px", marginTop: "auto" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 60, marginBottom: 60 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 40, marginBottom: 60 }}>
           <div>
-            <div style={{ color: BRAND.text, fontWeight: 800, fontSize: 20, marginBottom: 20 }}>ToolsWaala</div>
-            <p style={{ fontSize: 14, color: BRAND.textSecondary, lineHeight: 1.8 }}>Professional tools for Indian shopkeepers, freelancers, and small business owners.</p>
+            <div style={{ color: BRAND.text, fontWeight: 800, fontSize: 20, marginBottom: 16 }}>ToolsWaala</div>
+            <p style={{ fontSize: 13, color: BRAND.textSecondary, lineHeight: 1.7, marginBottom: 16 }}>Bharat ka Digital Toolkit. Free tools for students, businesses, and professionals. No login. No data stored. Ever.</p>
+            <p style={{ fontSize: 12, color: BRAND.textSecondary }}>📧 hello@toolswaala.in</p>
           </div>
           <div>
-            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Popular Tools</div>
-            <div style={{ display: "grid", gap: 12 }}>
-              {TOOLS.slice(0, 5).map(t => (
-                <Link key={t.id} to={t.path} style={{ background: "none", border: "none", color: BRAND.textSecondary, cursor: "pointer", fontSize: 14, textAlign: "left", textDecoration: "none" }}>{t.name}</Link>
-              ))}
-            </div>
+            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 20, fontSize: 13 }}>💼 Business Tools</div>
+            {[{n:"GST Invoice",p:"/gst-invoice"},{n:"EMI Calculator",p:"/emi-calculator"},{n:"Income Tax",p:"/tax-calculator"},{n:"Salary Slip",p:"/salary-slip"},{n:"Legal Hub",p:"/legal-hub"},{n:"SIP Calculator",p:"/sip-calculator"}].map(t=>(
+              <Link key={t.p} to={t.p} style={fs}>{t.n}</Link>
+            ))}
           </div>
-          <div style={{ maxWidth: 300 }}>
-            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 24, fontSize: 14 }}>Connect</div>
-            <p style={{ fontSize: 14, color: BRAND.textSecondary, marginBottom: 12 }}>📧 hello@toolswaala.in</p>
-            <p style={{ fontSize: 12, color: BRAND.textSecondary, lineHeight: 1.5, opacity: 0.8 }}>
-              ToolsWaala is a community project. If our tools helped you, consider sharing them with your business network!
-            </p>
+          <div>
+            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 20, fontSize: 13 }}>🎓 Student Tools</div>
+            {[{n:"CGPA Calculator",p:"/cgpa-calculator"},{n:"Attendance Calc",p:"/attendance-calculator"},{n:"Resume Builder",p:"/resume-builder"},{n:"Scholarship Finder",p:"/scholarship-finder"},{n:"Job Finder",p:"/job-finder"},{n:"Pomodoro Timer",p:"/pomodoro-timer"}].map(t=>(
+              <Link key={t.p} to={t.p} style={fs}>{t.n}</Link>
+            ))}
           </div>
+          <div>
+            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 20, fontSize: 13 }}>📄 PDF Tools</div>
+            {PDF_TOOLS.map(t=>(
+              <Link key={t.id} to={t.path} style={fs}>{t.name}</Link>
+            ))}
+          </div>
+        </div>
+        <div style={{ borderTop: `1px solid ${BRAND.border}`, paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+          <p style={{ fontSize: 12, color: BRAND.textSecondary, margin: 0 }}>Made with ❤️ in India | © {new Date().getFullYear()} ToolsWaala</p>
+          <p style={{ fontSize: 11, color: BRAND.textSecondary, margin: 0, opacity: 0.7 }}>🔒 No data stored. No login. No uploads to server. 100% Private.</p>
         </div>
       </div>
     </footer>
