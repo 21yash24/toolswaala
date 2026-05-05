@@ -335,7 +335,11 @@ function Navbar({ darkMode, setDarkMode }) {
   ];
 
   const filteredTools = search.length > 1 
-    ? allAvailableTools.filter(t => t.name.toLowerCase().includes(search.toLowerCase()) || t.hindi.includes(search))
+    ? allAvailableTools.filter(t => 
+        t.name.toLowerCase().includes(search.toLowerCase()) || 
+        t.hindi.includes(search) ||
+        (t.keywords && t.keywords.some(k => k.toLowerCase().includes(search.toLowerCase())))
+      )
     : [];
 
   return (
@@ -582,7 +586,11 @@ function HomePage() {
 
   const filtered = allTools.filter(t => {
     const matchCat = category === "all" || t.module === category;
-    const matchSearch = !search || t.name.toLowerCase().includes(search.toLowerCase()) || t.desc.toLowerCase().includes(search.toLowerCase()) || t.hindi.includes(search);
+    const matchSearch = !search || 
+      t.name.toLowerCase().includes(search.toLowerCase()) || 
+      t.desc.toLowerCase().includes(search.toLowerCase()) || 
+      t.hindi.includes(search) ||
+      (t.keywords && t.keywords.some(k => k.toLowerCase().includes(search.toLowerCase())));
     return matchCat && matchSearch;
   });
 

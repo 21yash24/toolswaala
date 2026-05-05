@@ -7,7 +7,8 @@ export default function PdfHome() {
   const filtered = PDF_TOOLS.filter(t =>
     t.name.toLowerCase().includes(search.toLowerCase()) ||
     t.desc.toLowerCase().includes(search.toLowerCase()) ||
-    (t.hindi && t.hindi.includes(search))
+    (t.hindi && t.hindi.includes(search)) ||
+    (t.keywords && t.keywords.some(k => k.toLowerCase().includes(search.toLowerCase())))
   );
 
   const crossTools = [
