@@ -6,6 +6,8 @@ const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
 // Blog Data (Manual sync for now or we could import it if we use ESM in node)
 const BLOG_POSTS = [
+  { slug: "smart-student-bunking-guide-75-percent-attendance", title: "The Smart Student’s Guide to Bunking: How to Maintain 75% Attendance Like a Pro", metaDesc: "Calculated bunking for college students. Learn the 75% rule math and how to use our tracker to never get detained." },
+  { slug: "top-fully-funded-scholarships-for-indian-students-2025", title: "Top 10 Fully Funded Scholarships for Indian Students to Study Abroad in 2024-25", metaDesc: "Complete list of fully funded scholarships for Indian students. Cover tuition and living costs for US, UK, and Europe. Apply now for 2025." },
   { slug: "cgpa-to-percentage-guide-2025", title: "CGPA to Percentage: Complete Guide for All Universities 2025", metaDesc: "Convert CGPA to percentage for Mumbai University, AKTU, CBSE and more. Learn the exact formulas for 2025 applications." },
   { slug: "75-percent-attendance-rule-guide", title: "75% Attendance Rule — How Many Classes Can You Miss?", metaDesc: "Calculate how many more classes you can skip to stay above the 75% attendance threshold. Complete guide for college students." },
   { slug: "how-to-make-bonafide-certificate-online", title: "How to Make a Bonafide Certificate Online Free", metaDesc: "Step-by-step guide to generating a bonafide certificate for students. Free online generator and PDF download." },

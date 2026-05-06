@@ -6,6 +6,7 @@ import StudentPageWrapper from "./shared/StudentPageWrapper";
 import PdfPageWrapper from "./shared/PdfPageWrapper";
 import { PdfHome, PdfCompressor, ImageToPdf, PdfToJpg, MergePdf, SplitPdf, ImageCompressor, WordToPdf, WatermarkPdf, PdfToWord } from "./pages/pdf";
 import { BlogHome, BlogPost } from "./pages/blog";
+import ViralToast from "./shared/ViralToast";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "";
 
@@ -2522,6 +2523,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
+        <ViralToast />
       </div>
     </BrowserRouter>
   );
