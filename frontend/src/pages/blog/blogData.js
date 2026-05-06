@@ -1,5 +1,76 @@
 export const BLOG_POSTS = [
   {
+    id: "smart-bunking-guide-75-rule",
+    slug: "smart-student-bunking-guide-75-percent-attendance",
+    title: "The Smart Student’s Guide to Bunking: How to Maintain 75% Attendance Like a Pro",
+    date: "May 6, 2026",
+    author: "ToolsWaala Team",
+    excerpt: "Bunking is an art, but getting detained is a tragedy. Learn the calculated way to skip classes while staying on the safe side of the 75% rule.",
+    category: "Students",
+    content: `
+      <h2>Why 75% is the Magic Number</h2>
+      <p>Most Indian universities have a strict 75% attendance criteria. While we don't encourage missing classes, we know that sometimes you need that extra time for a startup idea, a competition, or just a mental health break.</p>
+      
+      <h3>The Strategy:</h3>
+      <p>The key is not to bunk randomly, but to bunk <strong>mathematically</strong>. You need to know exactly how many "bullets" (bunks) you have left in your magazine before the semester ends.</p>
+
+      <h3>Common Bunking Mistakes:</h3>
+      <ul>
+        <li><strong>Bunking early in the semester:</strong> You never know when you'll actually get sick later.</li>
+        <li><strong>Missing lab sessions:</strong> Labs usually carry more weightage and are harder to compensate for.</li>
+        <li><strong>Not tracking:</strong> Guessing your attendance is the fastest way to get a 'detained' list notice.</li>
+      </ul>
+
+      <div style="margin: 40px 0; padding: 24px; background: rgba(236,72,153,0.1); border-radius: 16px; border: 1px solid rgba(236,72,153,0.2);">
+        <h4 style="margin-top:0; color: #EC4899;">Bunk with Confidence!</h4>
+        <p>Our Attendance Tracker now features a "Bunk Mode". It tells you exactly how many classes you can safely miss today to stay at 75%.</p>
+        <a href="/attendance-calculator" style="color: #EC4899; font-weight: 700; text-decoration: none;">Track Your Bunks Now →</a>
+      </div>
+
+      <h2>Pro Tip: The Streak Method</h2>
+      <p>Try to attend classes in streaks. Building a 5-day attendance streak gives you a "buffer" that allows for a guilt-free bunk on a Friday. Use our streak tracker to keep yourself motivated!</p>
+    `,
+    metaTitle: "Smart Bunking Guide: How to Maintain 75% Attendance in College",
+    metaDesc: "Calculated bunking for college students. Learn the 75% rule math and how to use our tracker to never get detained."
+  },
+  {
+    id: "study-abroad-scholarships-2025",
+    slug: "top-fully-funded-scholarships-for-indian-students-2025",
+    title: "Top 10 Fully Funded Scholarships for Indian Students to Study Abroad in 2024-25",
+    date: "May 6, 2026",
+    author: "ToolsWaala Team",
+    excerpt: "Dreaming of Oxford, Harvard, or MIT? We've curated the ultimate list of fully-funded scholarships that cover tuition, flights, and living expenses for Indian students.",
+    category: "Students",
+    content: `
+      <h2>The Dream of International Education</h2>
+      <p>Studying abroad is a life-changing experience, but the cost can be overwhelming. However, many students don't realize that there are billions of dollars in scholarship funds specifically reserved for talented Indian students.</p>
+      
+      <h3>1. Chevening Scholarship (UK)</h3>
+      <p>Fully funded by the UK government, this covers tuition fees, a monthly living allowance, and return flights to the UK for a one-year Master’s degree.</p>
+
+      <h3>2. Fulbright-Nehru Master’s Fellowship (USA)</h3>
+      <p>Designed for outstanding Indians to pursue a master’s degree at select US colleges and universities.</p>
+
+      <h3>3. Erasmus Mundus (Europe)</h3>
+      <p>A prestigious, integrated, international study program, jointly delivered by an international consortium of higher education institutions.</p>
+
+      <div style="margin: 40px 0; padding: 24px; background: rgba(124,58,237,0.1); border-radius: 16px; border: 1px solid rgba(124,58,237,0.2);">
+        <h4 style="margin-top:0">Find Your Match!</h4>
+        <p>Our Scholarship Finder now has a dedicated "Study Abroad" filter. Browse 50+ international opportunities verified for 2024-25.</p>
+        <a href="/scholarship-finder" style="color: #7C3AED; font-weight: 700; text-decoration: none;">Explore International Scholarships →</a>
+      </div>
+
+      <h2>How to Increase Your Chances?</h2>
+      <ul>
+        <li><strong>Start Early:</strong> Most applications close 8-12 months before the course starts.</li>
+        <li><strong>Strong SOP:</strong> Your Statement of Purpose is 50% of your application weightage.</li>
+        <li><strong>Verify Eligibility:</strong> Don't waste time on scholarships you don't qualify for.</li>
+      </ul>
+    `,
+    metaTitle: "Top 10 Fully Funded Study Abroad Scholarships for Indians 2025",
+    metaDesc: "Complete list of fully funded scholarships for Indian students. Cover tuition and living costs for US, UK, and Europe. Apply now for 2025."
+  },
+  {
     id: "cgpa-to-percentage",
     slug: "cgpa-to-percentage-guide-2025",
     title: "CGPA to Percentage: Complete Guide for All Universities 2025",
