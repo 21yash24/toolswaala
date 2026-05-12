@@ -250,6 +250,39 @@ export default function PomodoroTimer() {
           <div><label style={{ fontSize: 12, color: BRAND.textSecondary }}>Long Break</label><input type="number" min="1" max="60" value={longBreakMin} onChange={e => { setLongBreakMin(+e.target.value || 15); if (!isRunning && phase === "longBreak") setSecondsLeft((+e.target.value || 15) * 60); }} style={{ width: "100%", padding: 10, borderRadius: 8, border: `1px solid ${BRAND.border}`, background: "rgba(0,0,0,0.02)", color: BRAND.text, fontSize: 16, textAlign: "center" }} /></div>
         </div>
       </div>
+
+      {/* SEO & AdSense Content Block */}
+      <div style={{ marginTop: 40, padding: 24, background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, color: BRAND.textSecondary, lineHeight: 1.8 }}>
+        <h2 style={{ color: BRAND.text, fontSize: 24, marginBottom: 16 }}>What is the Pomodoro Technique?</h2>
+        <p style={{ marginBottom: 16 }}>
+          The Pomodoro Technique is a highly effective time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. Each interval is known as a <em>pomodoro</em>, from the Italian word for 'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student.
+        </p>
+        
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>How to use this Pomodoro Timer</h3>
+        <ol style={{ marginBottom: 16, paddingLeft: 20 }}>
+          <li style={{ marginBottom: 8 }}><strong>Decide on the task:</strong> Enter your current study topic or work task in the text box.</li>
+          <li style={{ marginBottom: 8 }}><strong>Start the Timer:</strong> Click start to begin your 25-minute focus session. Do not switch tabs or check your phone.</li>
+          <li style={{ marginBottom: 8 }}><strong>Take a Short Break:</strong> When the timer rings, take a 5-minute break. Stand up, stretch, and grab a glass of water.</li>
+          <li style={{ marginBottom: 8 }}><strong>Take a Long Break:</strong> After completing four consecutive pomodoros, the timer will automatically trigger a 15-minute long break to let your brain rest and consolidate information.</li>
+        </ol>
+
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>Why does Pomodoro work for students?</h3>
+        <p style={{ marginBottom: 16 }}>
+          Human attention spans are naturally limited. Attempting to study for 4 hours straight usually results in diminishing returns, brain fog, and burnout. The Pomodoro method forces you to take breaks <em>before</em> you get tired, ensuring that your focus remains at peak levels. It also creates a sense of urgency—knowing you only have 25 minutes makes you less likely to procrastinate on Instagram or Reddit.
+        </p>
+
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>Frequently Asked Questions (FAQs)</h3>
+        <div style={{ marginBottom: 16 }}>
+          <strong style={{ color: BRAND.text }}>Q: Can I change the 25-minute timer?</strong>
+          <p>A: Yes! Use the Settings section below the chart to customize your Focus, Short Break, and Long Break durations. Some students prefer the "50/10" method (50 minutes focus, 10 minutes break) for deeper subjects like Mathematics or Coding.</p>
+          
+          <strong style={{ color: BRAND.text }}>Q: Does the timer run in the background?</strong>
+          <p>A: Yes, our tool uses a timestamp-based system. If you accidentally close the tab or switch to another app, the timer will calculate the missed seconds and update automatically when you return.</p>
+
+          <strong style={{ color: BRAND.text }}>Q: Why Lofi Music?</strong>
+          <p>A: Lofi (Low Fidelity) hip-hop beats lack sudden tempo changes and distracting lyrics. Research shows that listening to ambient or lofi music masks background noise and stimulates the brain's focus centers without demanding active attention.</p>
+        </div>
+      </div>
     </div>
   );
 }

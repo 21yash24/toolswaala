@@ -65,6 +65,42 @@ export default function CgpaCalculator() {
           mark sheet for the conversion formula before applying for government jobs or foreign universities.
         </p>
       </div>
+
+      {/* SEO & AdSense Content Block */}
+      <div style={{ marginTop: 40, padding: 24, background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, color: BRAND.textSecondary, lineHeight: 1.8 }}>
+        <h2 style={{ color: BRAND.text, fontSize: 24, marginBottom: 16 }}>What is CGPA and How is it Calculated?</h2>
+        <p style={{ marginBottom: 16 }}>
+          Cumulative Grade Point Average (CGPA) is an educational grading system used in schools and colleges across India to measure overall academic performance. Instead of raw marks or percentages, students are awarded grades (like O, A+, A, B) which correspond to specific grade points (10, 9, 8, etc.). The CGPA is the average of Grade Points obtained in all subjects across all semesters, excluding additional subjects.
+        </p>
+        
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>How to convert CGPA to Percentage (The 9.5 Rule)</h3>
+        <p style={{ marginBottom: 16 }}>
+          For a long time, the Central Board of Secondary Education (CBSE) and AICTE established a standard multiplier of <strong>9.5</strong> to convert CGPA into an approximate percentage. The formula is simple:
+          <br/><br/>
+          <strong>Percentage (%) = CGPA × 9.5</strong>
+          <br/><br/>
+          For example, if a student secures a CGPA of 8.4, their estimated percentage would be 8.4 × 9.5 = 79.8%. However, with the National Education Policy (NEP) 2020 and autonomous universities, this multiplier can vary. Mumbai University uses a 7.1 multiplier with an addition of 11, while APJ Abdul Kalam Technical University (AKTU) uses a formula of (CGPA - 0.75) × 10. Our calculator automatically applies the correct university-specific formula for you.
+        </p>
+
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>SGPA vs CGPA: What is the difference?</h3>
+        <p style={{ marginBottom: 16 }}>
+          <strong>SGPA (Semester Grade Point Average)</strong> is the academic performance of a student in a single semester. It is calculated by multiplying the grade points secured in each subject by the credits assigned to that subject, summing them up, and dividing by the total credits for that semester.
+          <br/><br/>
+          <strong>CGPA</strong> is the cumulative performance over the entire course. It is calculated by taking the weighted average of the SGPAs of all completed semesters.
+        </p>
+
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>Frequently Asked Questions (FAQs)</h3>
+        <div style={{ marginBottom: 16 }}>
+          <strong style={{ color: BRAND.text }}>Q: Is 8.5 CGPA good for placements?</strong>
+          <p>A: Yes, an 8.5 CGPA is considered excellent and easily clears the cutoff for almost all top-tier tech companies (like Google, Microsoft, Amazon) as well as mass recruiters (TCS, Infosys, Wipro). It also strengthens your profile for MS/PhD applications abroad.</p>
+          
+          <strong style={{ color: BRAND.text }}>Q: How do I improve my CGPA?</strong>
+          <p>A: The best way to improve your CGPA is to focus on high-credit subjects (like core subjects and labs) rather than low-credit electives. Use our "Target CGPA Planner" tab to see exactly what SGPA you need in your upcoming semesters to hit your dream CGPA.</p>
+
+          <strong style={{ color: BRAND.text }}>Q: Does backlogs affect CGPA?</strong>
+          <p>A: When you fail a subject, it negatively impacts your SGPA for that semester. However, once you clear the backlog, the new grade replaces the old one (in most Indian universities), and your CGPA is recalculated. Check your specific university guidelines regarding asterisk (*) marks on transcripts.</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -82,6 +82,40 @@ export default function AttendanceCalc() {
         <button style={tabBtn(mode === "subject")} onClick={() => setMode("subject")}>📚 Subject-wise</button>
       </div>
       {mode === "daily" ? <DailyMode /> : mode === "overall" ? <OverallMode /> : <SubjectMode />}
+
+      {/* SEO & AdSense Content Block */}
+      <div style={{ marginTop: 40, padding: 24, background: BRAND.surfaceCard, borderRadius: 16, border: `1px solid ${BRAND.border}`, color: BRAND.textSecondary, lineHeight: 1.8 }}>
+        <h2 style={{ color: BRAND.text, fontSize: 24, marginBottom: 16 }}>The 75% Attendance Rule Explained</h2>
+        <p style={{ marginBottom: 16 }}>
+          In most Indian universities, engineering colleges, and medical schools, the University Grants Commission (UGC) mandates a minimum of <strong>75% attendance</strong> to be eligible to sit for end-semester examinations. Falling below this threshold often results in being detained or debarred from exams, leading to a year-back or summer semester.
+        </p>
+        
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>How to Calculate Safe Bunks</h3>
+        <p style={{ marginBottom: 16 }}>
+          A "safe bunk" is a class you can skip without your overall attendance dropping below the required 75%. To calculate this manually, you need to know your total conducted classes and your total attended classes. The mathematical formula is:
+          <br/><br/>
+          <strong>Safe Bunks = (Total Attended - (0.75 × Total Conducted)) / 0.75</strong>
+          <br/><br/>
+          If this number is negative, it means you are already in the danger zone and must attend the next few classes consecutively to bring your percentage up. Our Attendance Bunk Calculator automates this math for you instantly.
+        </p>
+
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>Why tracking Subject-wise is crucial</h3>
+        <p style={{ marginBottom: 16 }}>
+          Many students make the mistake of only tracking their <em>overall</em> aggregate attendance. However, most strict autonomous universities (like VIT, SRM, Manipal) and state boards (like AKTU, VTU) require a minimum of 75% attendance in <strong>each individual subject</strong>. Bunking too many math classes while attending all your lab sessions might keep your overall average high, but you will still be detained in math. Use our "Subject-wise" tab to prevent this.
+        </p>
+
+        <h3 style={{ color: BRAND.text, fontSize: 20, marginTop: 24, marginBottom: 12 }}>Frequently Asked Questions (FAQs)</h3>
+        <div style={{ marginBottom: 16 }}>
+          <strong style={{ color: BRAND.text }}>Q: Are medical leaves counted as present?</strong>
+          <p>A: In most colleges, submitting a valid medical certificate gives you a relaxation of up to 10-15%, meaning your required cutoff drops from 75% to 65% or 60%. However, these days are still technically marked as "Absent" on the official portal.</p>
+          
+          <strong style={{ color: BRAND.text }}>Q: Does proxy attendance actually work?</strong>
+          <p>A: While a "proxy" (having a friend mark you present) might temporarily boost your numbers, biometric attendance and randomized roll calls have made this risky. If caught, professors often cancel the attendance of the entire class or issue a disciplinary warning. It's better to bunk mathematically!</p>
+
+          <strong style={{ color: BRAND.text }}>Q: How does the Daily Streak work?</strong>
+          <p>A: Our tool rewards consistency. By attending college consecutively, you build an attendance streak. Hitting higher tiers (Bronze, Silver, Gold, Diamond) acts as a psychological buffer, so when you actually need to take a day off for an interview, hackathon, or illness, you don't have to stress about the 75% rule.</p>
+        </div>
+      </div>
     </div>
   );
 }
