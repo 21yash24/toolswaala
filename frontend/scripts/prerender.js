@@ -79,7 +79,7 @@ BLOG_POSTS.forEach(post => {
   });
 });
 
-// Pre-render meta tags for each route
+// Pre-render meta tags AND body content for each route
 routes.forEach(route => {
   const dir = path.join(distDir, route.path.slice(1));
   fs.mkdirSync(dir, { recursive: true });
@@ -95,8 +95,77 @@ routes.forEach(route => {
   // Add canonical
   html = html.replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="https://toolswaala.in${route.path}"`);
   
+  // CRITICAL: Inject real content inside <div id="root"> so Googlebot sees text
+  const seoContent = generateSeoContent(route);
+  html = html.replace('<div id="root"></div>', `<div id="root">${seoContent}</div>`);
+  
   fs.writeFileSync(path.join(dir, 'index.html'), html);
 });
+
+// Also inject content into the main index.html (homepage)
+let homeHtml = indexHtml;
+const homeContent = `
+<div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+  <h1>ToolsWaala — Free Online Tools for Indian Students & Small Businesses</h1>
+  <p>ToolsWaala is India's most comprehensive free toolkit with 38+ online tools. No login required, no file uploads, 100% privacy. Built for college students, freelancers, and small business owners.</p>
+  <h2>Student Tools</h2>
+  <ul>
+    <li><a href="/cgpa-calculator">CGPA to Percentage Calculator</a> — Convert CGPA for all Indian universities</li>
+    <li><a href="/attendance-calculator">Attendance & Bunk Calculator</a> — Track the 75% attendance rule</li>
+    <li><a href="/resume-builder">Free Resume Builder</a> — ATS-friendly resumes for freshers</li>
+    <li><a href="/sop-generator">SOP Generator</a> — AI Statement of Purpose for MS/MBA</li>
+    <li><a href="/scholarship-finder">Scholarship Finder</a> — 35+ Indian & international scholarships</li>
+    <li><a href="/pomodoro-timer">Pomodoro Timer</a> — Focus timer with lofi beats</li>
+    <li><a href="/study-planner">Study Planner</a> — Exam countdown & weekly timetable</li>
+    <li><a href="/word-counter">Word Counter</a> — Count words, characters, readability score</li>
+    <li><a href="/age-calculator">Age Calculator</a> — Exact age with zodiac & birthday countdown</li>
+    <li><a href="/job-finder">Job Finder</a> — Sarkari Naukri, private jobs & internships</li>
+  </ul>
+  <h2>Business Tools</h2>
+  <ul>
+    <li><a href="/gst-invoice">GST Invoice Generator</a> — Professional invoices with HSN codes</li>
+    <li><a href="/emi-calculator">EMI Calculator</a> — Home, car & personal loan EMI</li>
+    <li><a href="/tax-calculator">Income Tax Calculator</a> — Old vs New regime comparison</li>
+    <li><a href="/upi-payment">UPI Payment Page</a> — Shareable payment link with QR</li>
+    <li><a href="/sip-calculator">SIP Calculator</a> — Mutual fund return estimator</li>
+  </ul>
+  <h2>PDF & File Tools</h2>
+  <ul>
+    <li><a href="/pdf-tools/compress-pdf">Compress PDF</a> — Reduce file size without quality loss</li>
+    <li><a href="/pdf-tools/image-to-pdf">Image to PDF</a> — Convert JPG/PNG to PDF</li>
+    <li><a href="/pdf-tools/merge-pdf">Merge PDF</a> — Combine multiple PDFs</li>
+  </ul>
+  <p>All tools work entirely in your browser. Your data never leaves your device.</p>
+</div>`;
+homeHtml = homeHtml.replace('<div id="root"></div>', `<div id="root">${homeContent}</div>`);
+fs.writeFileSync(path.join(distDir, 'index.html'), homeHtml);
+
+function generateSeoContent(route) {
+  const cleanTitle = route.title.replace(' | ToolsWaala', '').replace(' | ToolsWaala Blog', '');
+  
+  // Generate rich content based on the page type
+  let extra = '';
+  if (route.path.includes('/blog/')) {
+    const blog = BLOG_POSTS.find(b => route.path.includes(b.slug));
+    if (blog) extra = `<p>${blog.metaDesc}</p><p><a href="/blog">← Back to all articles on ToolsWaala Blog</a></p>`;
+  } else if (route.path === '/students') {
+    extra = '<p>Explore 15+ free tools designed for Indian college students including CGPA calculator, attendance tracker, resume builder, scholarship finder, SOP generator, and study planner. No login needed.</p><ul><li><a href="/cgpa-calculator">CGPA Calculator</a></li><li><a href="/attendance-calculator">Attendance Calculator</a></li><li><a href="/resume-builder">Resume Builder</a></li><li><a href="/scholarship-finder">Scholarship Finder</a></li><li><a href="/pomodoro-timer">Pomodoro Timer</a></li><li><a href="/job-finder">Job Finder</a></li></ul>';
+  } else if (route.path === '/pdf-tools') {
+    extra = '<p>9 free PDF tools that work 100% in your browser. No file uploads to any server. Compress, merge, split, convert PDFs with complete privacy.</p><ul><li><a href="/pdf-tools/compress-pdf">Compress PDF</a></li><li><a href="/pdf-tools/image-to-pdf">Image to PDF</a></li><li><a href="/pdf-tools/merge-pdf">Merge PDF</a></li><li><a href="/pdf-tools/split-pdf">Split PDF</a></li></ul>';
+  } else if (route.path === '/cgpa-calculator') {
+    extra = '<p>Calculate your CGPA and convert to percentage using the exact formula for your university — Mumbai University, VTU, Anna University, AKTU, SPPU, CBSE, and more. Also includes SGPA calculator and Target CGPA planner. Free for all Indian college students.</p>';
+  } else if (route.path === '/attendance-calculator') {
+    extra = '<p>Track your college attendance and calculate exactly how many classes you can bunk while staying above the 75% attendance threshold mandated by UGC. Features daily log with streak tracking, subject-wise monitoring, and a quick calculator. Never get detained again.</p>';
+  } else if (route.path === '/resume-builder') {
+    extra = '<p>Build a professional, ATS-friendly resume optimized for Indian job portals like Naukri and LinkedIn. Step-by-step guided builder with AI-powered bullet point improvement. Download as PDF. Designed specifically for freshers and engineering students.</p>';
+  } else if (route.path === '/scholarship-finder') {
+    extra = '<p>Search and filter 35+ verified scholarships for Indian students including government schemes, merit-based awards, and fully-funded study abroad opportunities. Filter by category, eligibility, and amount. Updated for 2025.</p>';
+  } else if (route.path === '/job-finder') {
+    extra = '<p>Find the latest Sarkari Naukri notifications, private sector jobs, and internship opportunities for freshers across India. Track admit cards, exam results, and application deadlines all in one place.</p>';
+  }
+  
+  return `<div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif"><h1>${cleanTitle}</h1><p>${route.desc}</p>${extra}<p>Free online tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free digital toolkit for students and businesses. No login required.</p></div>`;
+}
 
 // Generate sitemap.xml
 const today = new Date().toISOString().split('T')[0];
