@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { HomePage } from '../react-pages/HomePage';
+import HomePage from '../components/HomePage.astro';
 
 const title = "ToolsWaala | Free Tools for Students & SMBs in India";
 const description = "Free GST invoices, CGPA calculator, PDF compressor, resume builder & 38+ tools. Zero login. No uploads. Made for India.";
 ---
 
 <Layout title={title} description={description} currentPath="/">
-  <HomePage client:only="react" />
+  <HomePage />
 
   <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif" id="seo-content">
     <h1>ToolsWaala — Free Online Tools for Indian Students & Small Businesses</h1>
