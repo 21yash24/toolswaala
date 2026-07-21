@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PdfPageWrapper from '../../shared/PdfPageWrapper';
+import { PdfCompressor } from '../../react-pages/pdf';
+
+const title = "Compress PDF Free Online — No Upload";
+const description = "Reduce PDF file size without losing quality. 100% browser-based, no file uploads.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/compress-pdf">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to compress PDF below 1MB?","acceptedAnswer":{"@type":"Answer","text":"Our compressor reduces size by 50-80% by optimizing images and removing metadata. Works entirely in your browser."}},{"@type":"Question","name":"Does compressing PDF reduce quality?","acceptedAnswer":{"@type":"Answer","text":"Our smart compression keeps text sharp. Image-heavy PDFs may have slight quality reduction."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"Compress PDF Free Online — No Upload","item":"https://toolswaala.in/pdf-tools/compress-pdf"}]}</script>
+
+  <PdfPageWrapper title={title} hindi="पीडीएफ कम्प्रेस करें" client:load>
+    <PdfCompressor client:only="react" />
+  </PdfPageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/pdf-tools">PDF Tools</a> &gt; Compress PDF Free Online — No Upload</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    
+    <h2>Frequently Asked Questions</h2><h3>How to compress PDF below 1MB?</h3><p>Our compressor reduces size by 50-80% by optimizing images and removing metadata. Works entirely in your browser.</p><h3>Does compressing PDF reduce quality?</h3><p>Our smart compression keeps text sharp. Image-heavy PDFs may have slight quality reduction.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

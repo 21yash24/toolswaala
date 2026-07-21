@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { BonafideCertificate } from '../react-pages/students';
+
+const title = "Bonafide Certificate Generator Free";
+const description = "Generate print-ready bonafide certificates online. No login needed.";
+
+const faqs = [
+  {
+    "q": "What is a Bonafide Certificate?",
+    "a": "A bonafide certificate is a document issued by an institution certifying that a student or employee belongs to that organization for a specific duration."
+  },
+  {
+    "q": "What is the format of a bonafide certificate?",
+    "a": "It contains the institution's header, candidate's name, roll number, course details, purpose of certificate, and the principal's or registrar's signature."
+  }
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+});
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/bonafide-certificate">
+  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Bonafide Certificate Generator Free","item":"https://toolswaala.in/bonafide-certificate"}]}</script>
+
+  <PageWrapper title={title} hindi="बोनाफाइड सर्टिफिकेट" client:load>
+    <BonafideCertificate client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Bonafide Certificate Generator Free</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    
+    
+    <h2>Frequently Asked Questions</h2>
+    {faqs.map(faq => (
+      <h3>{faq.q}</h3>
+      <p>{faq.a}</p>
+    ))}
+    
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

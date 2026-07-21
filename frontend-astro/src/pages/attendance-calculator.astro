@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { AttendanceCalc } from '../react-pages/students';
+
+const title = "Attendance & Bunk Calculator — 75% Rule";
+const description = "Track attendance, calculate bunk count and check 75% rule. Free for students.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/attendance-calculator">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many classes can I bunk with 75% attendance?","acceptedAnswer":{"@type":"Answer","text":"Use the formula: Safe Bunks = (Attended - 0.75 x Total) / 0.75. Our calculator does this math instantly for you."}},{"@type":"Question","name":"What happens if attendance falls below 75%?","acceptedAnswer":{"@type":"Answer","text":"Most Indian universities will debar you from end-semester exams. This can lead to a year-back or supplementary exams."}},{"@type":"Question","name":"Is 75% attendance mandatory in all colleges?","acceptedAnswer":{"@type":"Answer","text":"The UGC mandates 75% for central universities. Autonomous colleges like VIT, SRM, Manipal follow this strictly."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Attendance & Bunk Calculator — 75% Rule","item":"https://toolswaala.in/attendance-calculator"}]}</script>
+
+  <PageWrapper title={title} hindi="उपस्थिति कैलकुलेटर" client:load>
+    <AttendanceCalc client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Attendance & Bunk Calculator — 75% Rule</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>College Attendance Tracker</h2><p>Track the UGC 75% mandate. Daily log, subject-wise monitoring, safe bunk calculator.</p><p>Related: <a href="/cgpa-calculator">CGPA Calculator</a> | <a href="/study-planner">Study Planner</a></p>
+    <h2>Frequently Asked Questions</h2><h3>How many classes can I bunk with 75% attendance?</h3><p>Use the formula: Safe Bunks = (Attended - 0.75 x Total) / 0.75. Our calculator does this math instantly for you.</p><h3>What happens if attendance falls below 75%?</h3><p>Most Indian universities will debar you from end-semester exams. This can lead to a year-back or supplementary exams.</p><h3>Is 75% attendance mandatory in all colleges?</h3><p>The UGC mandates 75% for central universities. Autonomous colleges like VIT, SRM, Manipal follow this strictly.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

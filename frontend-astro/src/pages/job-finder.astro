@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { JobFinder } from '../react-pages/students';
+
+const title = "Latest Govt & Private Jobs India 2025";
+const description = "Track Sarkari Naukri, admit cards, exam results, and private jobs for freshers.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/job-finder">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to find the latest Sarkari Naukri?","acceptedAnswer":{"@type":"Answer","text":"Our Job Finder is updated daily with the latest government jobs, SSC, UPSC, and Bank PO vacancies."}},{"@type":"Question","name":"Are these jobs verified?","acceptedAnswer":{"@type":"Answer","text":"Yes, we only list jobs from official government portals and verified company career pages."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Latest Govt & Private Jobs India 2025","item":"https://toolswaala.in/job-finder"}]}</script>
+
+  <PageWrapper title={title} hindi="जॉब फाइंडर" client:load>
+    <JobFinder client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Latest Govt & Private Jobs India 2025</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>Latest Jobs India 2025</h2><p>SSC, UPSC, Railway, Banking, TCS, Infosys, Wipro. Internships for engineering and MBA students.</p><p>Related: <a href="/resume-builder">Resume Builder</a> | <a href="/scholarship-finder">Scholarship Finder</a></p>
+    <h2>Frequently Asked Questions</h2><h3>How to find the latest Sarkari Naukri?</h3><p>Our Job Finder is updated daily with the latest government jobs, SSC, UPSC, and Bank PO vacancies.</p><h3>Are these jobs verified?</h3><p>Yes, we only list jobs from official government portals and verified company career pages.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

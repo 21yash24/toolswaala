@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { ResumeBuilder } from '../react-pages/students';
+
+const title = "Free Resume Builder for Freshers — ATS Friendly";
+const description = "Build ATS-friendly resumes for freshers. Free download as PDF. No login.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/resume-builder">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is ATS and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"ATS (Applicant Tracking System) is software used by companies to filter resumes. Our builder creates ATS-compatible resumes."}},{"@type":"Question","name":"Should freshers have a one-page resume?","acceptedAnswer":{"@type":"Answer","text":"Yes. For freshers with less than 2 years experience, a single-page resume is ideal."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Free Resume Builder for Freshers — ATS Friendly","item":"https://toolswaala.in/resume-builder"}]}</script>
+
+  <PageWrapper title={title} hindi="रिज्यूमे बनाएं" client:load>
+    <ResumeBuilder client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Free Resume Builder for Freshers — ATS Friendly</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>ATS Resume Builder for Freshers</h2><p>85% of companies use ATS to filter resumes. Our builder creates compatible formats for Naukri and LinkedIn.</p><p>Related: <a href="/sop-generator">SOP Generator</a> | <a href="/job-finder">Job Finder</a></p>
+    <h2>Frequently Asked Questions</h2><h3>What is ATS and why does it matter?</h3><p>ATS (Applicant Tracking System) is software used by companies to filter resumes. Our builder creates ATS-compatible resumes.</p><h3>Should freshers have a one-page resume?</h3><p>Yes. For freshers with less than 2 years experience, a single-page resume is ideal.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

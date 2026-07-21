@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { FdCalcTool } from '../react-pages/BusinessTools';
+
+const title = "FD Calculator — Fixed Deposit Interest Calculator";
+const description = "Calculate fixed deposit maturity amount and interest for all major Indian banks.";
+
+const faqs = [
+  {
+    "q": "How is FD interest calculated in India?",
+    "a": "Fixed Deposit (FD) interest is usually compounded quarterly. The formula used is: A = P(1 + r/n)^(nt), where A is maturity amount, P is principal, r is annual interest rate, n is compounding frequency per year, and t is tenure."
+  },
+  {
+    "q": "Is FD interest taxable?",
+    "a": "Yes, interest earned on Fixed Deposits is fully taxable as per your income tax slab. Banks deduct TDS at 10% if interest exceeds Rs. 40,000 (Rs. 50,000 for senior citizens) in a financial year."
+  }
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+});
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/fd-calculator">
+  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"FD Calculator — Fixed Deposit Interest Calculator","item":"https://toolswaala.in/fd-calculator"}]}</script>
+
+  <PageWrapper title={title} hindi="एफडी कैलकुलेटर" client:load>
+    <FdCalcTool client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; FD Calculator — Fixed Deposit Interest Calculator</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    
+    
+    <h2>Frequently Asked Questions</h2>
+    {faqs.map(faq => (
+      <h3>{faq.q}</h3>
+      <p>{faq.a}</p>
+    ))}
+    
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

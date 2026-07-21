@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --app-surface: #F8FAFC;
+  --app-surface-card: #FFFFFF;
+  --app-text: #0F172A;
+  --app-text-secondary: #64748B;
+  --app-border: rgba(0, 0, 0, 0.08);
+  --app-glass: rgba(255, 255, 255, 0.8);
+}
+
+.dark-mode {
+  --app-surface: #09090B;
+  --app-surface-card: #141414;
+  --app-text: #FAFAFA;
+  --app-text-secondary: #A1A1AA;
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-glass: rgba(9, 9, 11, 0.6);
+}
+
+@theme {
+  --color-saffron: #FF6B00;
+  --color-saffron-light: #FF8533;
+  --color-saffron-dark: #E05E00;
+  --color-navy: #FAFAFA;
+  --color-navy-light: #E4E4E7;
+  --color-navy-lighter: #A1A1AA;
+  --color-surface: var(--app-surface);
+  --color-surface-dark: var(--app-surface-card);
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --font-sans: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
+}
+/* rest remains same */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--app-text);
+  background: var(--app-surface);
+  transition: background 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hindi {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 0.75em;
+  opacity: 0.5;
+  display: block;
+  margin-top: 2px;
+}
+
+.glass {
+  background: var(--app-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--app-border);
+}
+
+.card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);
+  border: 1px solid var(--app-border);
+}
+
+.dark-mode .card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(0,0,0,0.5);
+}
+
+input, select, textarea {
+  background: var(--app-surface-card);
+  border: 1px solid var(--app-border);
+  color: var(--app-text);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--app-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--app-text-secondary);
+  border-radius: 3px;
+  opacity: 0.3;
+}

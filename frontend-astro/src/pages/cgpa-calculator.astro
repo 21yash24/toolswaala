@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CgpaCalculator } from '../react-pages/students';
+import PageWrapper from '../components/PageWrapper';
+import universities from '../data/universities.json';
+
+const title = "CGPA to Percentage Calculator 2025";
+const description = "Calculate CGPA and convert to percentage for all Indian universities. Free SGPA calculator.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/cgpa-calculator">
+  <!-- Structured Data -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How to convert CGPA to percentage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply your CGPA by 9.5 for CBSE boards. For universities like Mumbai University, VTU, AKTU, Anna University, and SPPU, use the specific multiplier set by your university. Our calculator supports 20+ Indian universities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good CGPA for placements?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most companies require a minimum CGPA of 6.0-7.0 (57%-66.5%) for campus placements. Top companies like Google, Microsoft, and Amazon typically look for 7.5+ CGPA."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <PageWrapper title="CGPA Calculator" hindi="सीजीपीए कैलकुलेटर" client:load>
+    <CgpaCalculator client:only="react" />
+  </PageWrapper>
+
+  <!-- SEO Content block pushed statically to HTML bottom -->
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; CGPA to Percentage Calculator 2025</nav>
+    <h1>CGPA to Percentage Calculator 2025</h1>
+    <p>Calculate CGPA and convert to percentage for all Indian universities. Free SGPA calculator.</p>
+    <h2>University-Specific CGPA Calculators</h2>
+    <p>Check out our dedicated calculators with official formulas for top Indian universities and boards:</p>
+    <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; list-style: none; padding: 0;">
+      {universities.map(uni => (
+        <li>
+          <a href={`/${uni.id}-cgpa-calculator`} style="color: #7C3AED; text-decoration: none; font-weight: 500;">
+            {uni.name} CGPA Calculator
+          </a>
+        </li>
+      ))}
+    </ul>
+    <h2>Frequently Asked Questions</h2>
+    <h3>How to convert CGPA to percentage?</h3>
+    <p>Multiply your CGPA by 9.5 for CBSE boards. For universities like Mumbai University, VTU, AKTU, Anna University, and SPPU, use the specific multiplier set by your university.</p>
+    <h3>What is a good CGPA for placements?</h3>
+    <p>Most companies require a minimum CGPA of 6.0-7.0 (57%-66.5%) for campus placements.</p>
+  </div>
+</Layout>

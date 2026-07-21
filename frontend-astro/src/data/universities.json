@@ -1,0 +1,66 @@
+[
+  {
+    "id": "mumbai-university",
+    "name": "Mumbai University (MU)",
+    "idx": 1,
+    "desc": "Calculate your Mumbai University (MU) CGPA to percentage using the official formula: Percentage = (7.1 × CGPA) + 11.",
+    "faq1": "The formula used by Mumbai University is: Percentage = (7.1 × CGPA) + 11",
+    "faq2": "A CGPA of 7.0 is equivalent to 60.7% in Mumbai University."
+  },
+  {
+    "id": "vtu",
+    "name": "VTU (Karnataka)",
+    "idx": 2,
+    "desc": "Convert VTU CGPA to percentage instantly using the official VTU grading formula.",
+    "faq1": "VTU uses the formula: Percentage = (CGPA - 0.75) × 10",
+    "faq2": "For campus placements, VTU students usually need above 6.75 CGPA (60%)."
+  },
+  {
+    "id": "anna-university",
+    "name": "Anna University",
+    "idx": 3,
+    "desc": "Anna University CGPA to percentage converter for engineering students in Tamil Nadu.",
+    "faq1": "Anna University uses absolute grading. The formula is: Percentage = CGPA × 10",
+    "faq2": "A CGPA of 8.0 equals exactly 80%."
+  },
+  {
+    "id": "aktu",
+    "name": "AKTU (UPTU)",
+    "idx": 4,
+    "desc": "Check your AKTU B.Tech CGPA to percentage conversion online.",
+    "faq1": "AKTU (formerly UPTU) uses: Percentage = (CGPA - 0.75) × 10",
+    "faq2": "AKTU follows a strict grading system for engineering where 6.75 CGPA is First Class."
+  },
+  {
+    "id": "ktu",
+    "name": "KTU (Kerala)",
+    "idx": 5,
+    "desc": "Kerala Technological University (KTU) CGPA to percentage calculator.",
+    "faq1": "KTU uses the formula: Percentage = (CGPA × 10) - 3.75",
+    "faq2": "A CGPA of 7.0 in KTU equals 66.25%."
+  },
+  {
+    "id": "sppu",
+    "name": "Pune University (SPPU)",
+    "idx": 6,
+    "desc": "Pune University (Savitribai Phule Pune University) CGPA to percentage calculator.",
+    "faq1": "For CGPA >= 6.0, SPPU uses Percentage = (CGPA - 0.75) × 10. Otherwise, it uses CGPA × 8.8.",
+    "faq2": "SPPU's formula has variations depending on the pattern (2015 vs 2019)."
+  },
+  {
+    "id": "delhi-university",
+    "name": "Delhi University",
+    "idx": 7,
+    "desc": "Delhi University (DU) CGPA to percentage conversion.",
+    "faq1": "DU officially uses the formula: Percentage = CGPA × 9.5",
+    "faq2": "To get above 90%, you need a DU CGPA of at least 9.48."
+  },
+  {
+    "id": "cbse",
+    "name": "CBSE Board",
+    "idx": 8,
+    "desc": "CBSE Class 10th and 12th CGPA to Percentage Calculator.",
+    "faq1": "CBSE uses the standard formula: Percentage = CGPA × 9.5",
+    "faq2": "To score 95%, you need a perfect 10 CGPA."
+  }
+]

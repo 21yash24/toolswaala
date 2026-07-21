@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { EmiTool } from '../react-pages/BusinessTools';
+
+const title = "EMI Calculator India — Home, Car & Personal Loan";
+const description = "Calculate EMI for home loan, car loan, personal loan instantly with amortization schedule.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/emi-calculator">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is EMI calculated?","acceptedAnswer":{"@type":"Answer","text":"EMI = [P x R x (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, N is number of installments."}},{"@type":"Question","name":"What is a good EMI to salary ratio?","acceptedAnswer":{"@type":"Answer","text":"Banks recommend total EMI should not exceed 40-50% of your monthly take-home salary."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"EMI Calculator India — Home, Car & Personal Loan","item":"https://toolswaala.in/emi-calculator"}]}</script>
+
+  <PageWrapper title={title} hindi="ईएमआई" client:load>
+    <EmiTool client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; EMI Calculator India — Home, Car & Personal Loan</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>EMI Calculator India</h2><p>Home, car, personal, education loans. Full amortization schedule. SBI, HDFC, ICICI rates.</p><p>Related: <a href="/sip-calculator">SIP Calculator</a> | <a href="/fd-calculator">FD Calculator</a></p>
+    <h2>Frequently Asked Questions</h2><h3>How is EMI calculated?</h3><p>EMI = [P x R x (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, N is number of installments.</p><h3>What is a good EMI to salary ratio?</h3><p>Banks recommend total EMI should not exceed 40-50% of your monthly take-home salary.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

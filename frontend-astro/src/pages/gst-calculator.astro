@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { GstCalcTool } from '../react-pages/BusinessTools';
+
+const title = "GST Calculator Online — Add or Remove GST";
+const description = "Calculate GST inclusive and exclusive amounts instantly with HSN code lookup.";
+
+const faqs = [
+  {
+    "q": "How to calculate GST in India?",
+    "a": "To calculate GST, use: GST Amount = (Original Cost x GST%) / 100. For Net Price including GST: Net Price = Original Cost + GST Amount. To remove GST: Original Cost - (Original Cost * (100 / (100 + GST%)))."
+  },
+  {
+    "q": "What are the CGST, SGST, and IGST components?",
+    "a": "CGST (Central GST) and SGST (State GST) are applied on intra-state transactions and are shared equally. IGST (Integrated GST) is applied on inter-state transactions and collected by the Central Government."
+  }
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+});
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/gst-calculator">
+  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"GST Calculator Online — Add or Remove GST","item":"https://toolswaala.in/gst-calculator"}]}</script>
+
+  <PageWrapper title={title} hindi="जीएसटी" client:load>
+    <GstCalcTool client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; GST Calculator Online — Add or Remove GST</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>GST Calculator</h2><p>Add or remove GST. All slabs: 5%, 12%, 18%, 28%. HSN code lookup.</p><p>Related: <a href="/gst-invoice">GST Invoice</a></p>
+    
+    <h2>Frequently Asked Questions</h2>
+    {faqs.map(faq => (
+      <h3>{faq.q}</h3>
+      <p>{faq.a}</p>
+    ))}
+    
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

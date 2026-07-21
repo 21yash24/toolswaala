@@ -1,0 +1,79 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { BRAND } from '../../shared/constants';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const bcSchema = `<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://toolswaala.in/blog"},{"@type":"ListItem","position":3,"name":"${entry.data.title.replace(/"/g, '\\"')}","item":"https://toolswaala.in/blog/${entry.id}"}]}</script>\n`;
+
+const articleSchema = `<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"Article","headline":"${entry.data.title.replace(/"/g, '\\"')}","description":"${entry.data.description.replace(/"/g, '\\"')}","author":{"@type":"Person","name":"${entry.data.author}"},"datePublished":"${entry.data.pubDate}"}</script>\n`;
+---
+
+<Layout title={`${entry.data.title} | ToolsWaala Blog`} description={entry.data.description} currentPath={`/blog/${entry.id}`}>
+  <Fragment set:html={bcSchema} />
+  <Fragment set:html={articleSchema} />
+  
+  <div style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif;">
+    <nav style="font-size: 14px; margin-bottom: 24px; color: var(--app-text-secondary);">
+      <a href="/" style="color: var(--app-text-secondary); text-decoration: none;">Home</a> &gt; 
+      <a href="/blog" style="color: var(--app-text-secondary); text-decoration: none;">Blog</a> &gt; 
+      {entry.data.title}
+    </nav>
+    
+    <div style={`display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 700; margin-bottom: 24px; ${
+      entry.data.category === 'Students' 
+        ? 'background: rgba(124,58,237,0.1); color: #7C3AED' 
+        : entry.data.category === 'Business' 
+        ? 'background: rgba(255,107,0,0.1); color: #FF6B00' 
+        : 'background: rgba(236,72,153,0.1); color: #EC4899'
+    }`}>
+      {entry.data.category}
+    </div>
+    
+    <h1 style="font-size: 40px; margin: 0 0 16px 0; font-weight: 800; line-height: 1.2; letter-spacing: -1px; color: var(--app-text);">
+      {entry.data.title}
+    </h1>
+    
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 48px; border-bottom: 1px solid var(--app-border); padding-bottom: 24px;">
+      <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--app-border); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+        ✍️
+      </div>
+      <div>
+        <div style="font-weight: 600; font-size: 14px; color: var(--app-text);">{entry.data.author}</div>
+        <div style="font-size: 13px; color: var(--app-text-secondary);">{entry.data.pubDate}</div>
+      </div>
+    </div>
+    
+    <article style="font-size: 17px; line-height: 1.8; color: var(--app-text);">
+      <Content />
+    </article>
+    
+    <div style="margin-top: 60px; padding: 32px; background: var(--app-surface-card); border-radius: 20px; border: 1px solid var(--app-border); text-align: center;">
+      <h3 style="margin-top: 0; font-size: 24px;">Enjoyed this guide?</h3>
+      <p style="color: var(--app-text-secondary); margin-bottom: 24px;">Check out our suite of 38+ free tools designed specifically for Indians.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="/students" style="padding: 12px 24px; background: rgba(124,58,237,0.1); color: #7C3AED; border-radius: 12px; font-weight: 600; text-decoration: none;">Student Tools →</a>
+        <a href="/business-tools" style="padding: 12px 24px; background: rgba(255,107,0,0.1); color: #FF6B00; border-radius: 12px; font-weight: 600; text-decoration: none;">Business Tools →</a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  article h2 { font-size: 28px; margin-top: 48px; margin-bottom: 24px; letter-spacing: -0.5px; }
+  article h3 { font-size: 22px; margin-top: 32px; margin-bottom: 16px; }
+  article p { margin-bottom: 24px; }
+  article ul, article ol { margin-bottom: 24px; padding-left: 24px; }
+  article li { margin-bottom: 8px; }
+  article a { color: #7C3AED; text-decoration: none; font-weight: 500; }
+  article a:hover { text-decoration: underline; }
+</style>
