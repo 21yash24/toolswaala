@@ -125,6 +125,18 @@ const PAGE_FAQS = {
     { q: 'How to compress PDF below 1MB?', a: 'Our compressor reduces size by 50-80% by optimizing images and removing metadata. Works entirely in your browser.' },
     { q: 'Does compressing PDF reduce quality?', a: 'Our smart compression keeps text sharp. Image-heavy PDFs may have slight quality reduction.' },
   ],
+  '/job-finder': [
+    { q: 'How to find the latest Sarkari Naukri?', a: 'Our Job Finder is updated daily with the latest government jobs, SSC, UPSC, and Bank PO vacancies.' },
+    { q: 'Are these jobs verified?', a: 'Yes, we only list jobs from official government portals and verified company career pages.' }
+  ],
+  '/word-counter': [
+    { q: 'Does this word counter include spaces?', a: 'Our word counter provides character counts both with and without spaces, making it perfect for essays and social media.' },
+    { q: 'What is a good readability score?', a: 'A Flesch-Kincaid score between 60 and 70 is considered standard and easily understood by 13- to 15-year-old students.' }
+  ],
+  '/age-calculator': [
+    { q: 'How accurate is the age calculator?', a: 'It calculates your exact age down to the days, weeks, and hours based on your date of birth.' },
+    { q: 'Can I find my exact age for government exams?', a: 'Yes, government exams often require your exact age as of a specific cut-off date. You can calculate that here.' }
+  ],
 };
 
 const PAGE_CONTENT = {
@@ -201,9 +213,9 @@ routes.forEach(route => {
   // Add canonical
   html = html.replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="https://toolswaala.in${route.path}"`);
   
-  // CRITICAL: Inject real content inside <div id="root"> so Googlebot sees text
+  // CRITICAL: Inject real content outside <div id="root"> so it doesn't disappear when React loads!
   const seoContent = generateSeoContent(route);
-  html = html.replace('<div id="root"></div>', `<div id="root">${seoContent}</div>`);
+  html = html.replace('<div id="root"></div>', `<div id="root"></div>\n  <div id="seo-content">${seoContent}</div>`);
   
   fs.writeFileSync(path.join(dir, 'index.html'), html);
 });
@@ -267,7 +279,7 @@ const homeContent = `
   <h3>Who is ToolsWaala for?</h3>
   <p>ToolsWaala is designed for Indian college students, freelancers, small business owners, and anyone who needs quick digital tools without the hassle of downloading apps or creating accounts.</p>
 </div>`;
-homeHtml = homeHtml.replace('<div id="root"></div>', `<div id="root">${homeContent}</div>`);
+homeHtml = homeHtml.replace('<div id="root"></div>', `<div id="root"></div>\n<div id="seo-content">${homeContent}</div>`);
 fs.writeFileSync(path.join(distDir, 'index.html'), homeHtml);
 // Generate sitemap.xml
 const today = new Date().toISOString().split('T')[0];
