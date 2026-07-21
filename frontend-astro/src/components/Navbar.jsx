@@ -43,7 +43,7 @@ export default function Navbar({ currentPath = "/" }) {
             <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M20 25H80M50 25V85" stroke="#FF6B00" strokeWidth="10" strokeLinecap="round" />
               <path d="M20 25L10 15M20 25L10 35" stroke="#FF6B00" strokeWidth="8" strokeLinecap="round" />
-              <path d="M25 55L40 85L50 65L60 85L75 55" stroke={darkMode ? "white" : "#0D1B2A"} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M25 55L40 85L50 65L60 85L75 55" stroke="var(--app-text)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <div className="nav-logo-text">
