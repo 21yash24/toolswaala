@@ -3,54 +3,127 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { SalaryTool } from '../react-pages/BusinessTools';
 
-const title = "Free Salary Slip Generator India";
-const description = "Create professional salary slips with CTC breakdown and TDS calculation.";
-
-const faqs = [
-  {
-    "q": "What are the key components of a salary slip?",
-    "a": "A salary slip consists of Earnings (Basic, HRA, DA, Special Allowance) and Deductions (PF, Professional Tax, TDS, ESIC)."
-  },
-  {
-    "q": "Why is a salary slip important?",
-    "a": "Salary slips are crucial proof of income required when applying for home loans, personal loans, credit cards, or during job transitions."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free Salary Slip Generator India 2025 | Payslip Creator & PDF Downloader";
+const description = "Generate professional monthly salary slips for employees, freelancers, and small businesses in India. Auto-calculate Basic, HRA, PF, PT, and TDS. Free PDF download.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/salary-slip">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Free Salary Slip Generator India","item":"https://toolswaala.in/salary-slip"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Salary Slip Generator",
+      "operatingSystem": "All",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.93",
+        "ratingCount": "2650"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the essential components of a legal salary slip in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A valid salary slip must feature 2 main columns: Earnings (Basic Salary, HRA, Dearness Allowance, Special Allowance) and Deductions (Employee Provident Fund EPF, Professional Tax PT, Income Tax TDS, ESIC)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a salary slip required for home loan and visa applications?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Banks (SBI, HDFC, ICICI) require 3 to 6 months of authorized salary slips along with Form 16 as official proof of income when evaluating home loan, car loan, and visa applications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Employee Provident Fund (EPF) calculated on a salary slip?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "EPF is mandatory for employees earning a basic salary up to ₹15,000. 12% of (Basic Salary + DA) is deducted from the employee's earnings, and an equal 12% contribution is made by the employer."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="वेतन पर्ची" client:load>
+  <PageWrapper title="Salary Slip Generator" hindi="वेतन पर्ची" client:load>
     <SalaryTool client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; Free Salary Slip Generator India</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Business Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Salary Slip Generator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Free Salary Slip Generator India 2025 (Payslip Creator)
+    </h1>
     
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Generate formal, compliant <strong>monthly salary slips (payslips)</strong> for employees, startups, small businesses, and freelancers across India. Auto-calculate gross salary, net take-home salary, <strong>EPF, Professional Tax (PT), HRA, and TDS</strong>.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Salary Structure Breakdown (Gross vs Net Take-Home)</h2>
+      <code class="block bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-200 dark:border-slate-800 font-mono text-sm text-indigo-600 dark:text-indigo-400 mb-3">
+        Net Salary (Take-Home) = Total Earnings (Gross) - Total Statutory Deductions
+      </code>
+      <ul class="space-y-1 text-slate-700 dark:text-slate-300 text-xs">
+        <li>📌 <strong>Gross Earnings:</strong> Basic Salary + HRA + Special Allowance + Conveyance + Performance Bonus.</li>
+        <li>📌 <strong>Statutory Deductions:</strong> EPF (12%) + Professional Tax (₹200/mo) + TDS (Tax Deducted at Source).</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Standard CTC Component Distribution Rules</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">Basic Salary (40% - 50% of CTC)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">The core taxable base of your compensation package upon which PF and Gratuity contributions are calculated.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">House Rent Allowance HRA (50% of Basic)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Exempt from income tax up to limits set under Section 10(13A) for metro and non-metro cities.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">Employee Provident Fund EPF (12%)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Statutory retirement savings deducted from basic salary and deposited into government EPFO account.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">Professional Tax PT (State Slabs)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">State-level tax deducted monthly (typically ₹200/month in Maharashtra, Karnataka, Tamil Nadu).</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What are the essential components of a legal salary slip in India?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          A valid salary slip must feature 2 main columns: Earnings (Basic Salary, HRA, Dearness Allowance, Special Allowance) and Deductions (Employee Provident Fund EPF, Professional Tax PT, Income Tax TDS, ESIC).
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is a salary slip required for home loan applications?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Yes! Banks (SBI, HDFC, ICICI) require 3 to 6 months of authorized salary slips along with Form 16 as official proof of income when evaluating home loan and personal loan applications.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>

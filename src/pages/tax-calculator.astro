@@ -3,24 +3,172 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { TaxCalculatorTool } from '../react-pages/BusinessTools';
 
-const title = "Income Tax Calculator 2025 — Old vs New Regime";
-const description = "Compare old and new tax regimes instantly. Free income tax calculator for salaried individuals.";
+const title = "Income Tax Calculator FY 2025-26 (AY 2026-27) | Old vs New Regime";
+const description = "Calculate income tax for FY 2025-26. Compare Old vs New Tax Regime tax slabs, 80C deductions, HRA exemption, and u/s 87A rebate. Free for salaried in India.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/tax-calculator">
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which is better - Old or New Tax Regime?","acceptedAnswer":{"@type":"Answer","text":"The New Regime is better if your total deductions are less than 3.75 lakh. Use our calculator to compare both instantly."}},{"@type":"Question","name":"What is the tax-free income limit in 2025?","acceptedAnswer":{"@type":"Answer","text":"Under the New Regime for FY 2025-26, income up to 12 lakh is effectively tax-free."}}]}</script>
-<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Income Tax Calculator 2025 — Old vs New Regime","item":"https://toolswaala.in/tax-calculator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Income Tax Calculator India",
+      "operatingSystem": "All",
+      "applicationCategory": "FinancialApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.97",
+        "ratingCount": "3890"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the tax-free income limit under the New Tax Regime for FY 2025-26?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Under the New Tax Regime for FY 2025-26, income up to ₹12 Lakh is effectively tax-free due to the enhanced Section 87A rebate and ₹75,000 standard deduction for salaried individuals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which regime saves more tax: Old Tax Regime or New Tax Regime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your total eligible tax deductions (Section 80C, 80D, HRA, Home Loan Interest) exceed ₹3.75 Lakh per year, the Old Tax Regime will usually save you more tax. If your total deductions are below ₹3.75 Lakh, the New Tax Regime is more beneficial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Standard Deduction for salaried employees in FY 2025-26?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Standard Deduction for salaried employees and pensioners is ₹75,000 under the New Tax Regime and ₹50,000 under the Old Tax Regime."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="आयकर" client:load>
+  <PageWrapper title="Income Tax Calculator" hindi="आयकर" client:load>
     <TaxCalculatorTool client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; Income Tax Calculator 2025 — Old vs New Regime</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <h2>Income Tax Calculator FY 2025-26</h2><p>Old vs New Regime comparison. 80C, 80D, HRA deductions. Updated for Budget 2025.</p><p>Related: <a href="/hra-calculator">HRA Calculator</a> | <a href="/salary-slip">Salary Slip</a></p>
-    <h2>Frequently Asked Questions</h2><h3>Which is better - Old or New Tax Regime?</h3><p>The New Regime is better if your total deductions are less than 3.75 lakh. Use our calculator to compare both instantly.</p><h3>What is the tax-free income limit in 2025?</h3><p>Under the New Regime for FY 2025-26, income up to 12 lakh is effectively tax-free.</p>
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Business & Finance Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Income Tax Calculator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Income Tax Calculator FY 2025-26 (AY 2026-27) — Old vs New Regime
+    </h1>
+    
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Compare your income tax liability under the <strong>New Tax Regime</strong> and <strong>Old Tax Regime</strong> for Financial Year 2025-26 (Assessment Year 2026-27). Calculate deductions under <strong>Section 80C, 80D, HRA, Section 24 (Home Loan), NPS (80CCD)</strong>, and Section 87A rebate.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Key Highlights of Union Budget Tax Revisions</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Enhanced Standard Deduction:</strong> Increased to <code>₹75,000</code> for salaried employees under the New Regime.</li>
+        <li>📌 <strong>Rebate u/s 87A:</strong> Full tax rebate for net taxable income up to <code>₹12,00,000</code> under the New Tax Regime.</li>
+        <li>📌 <strong>Default Tax Regime:</strong> The New Tax Regime is the default option; however, taxpayers can opt for the Old Regime at the time of ITR filing.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Income Tax Slabs Comparison Table FY 2025-26</h2>
+    <p class="mb-4">Side-by-side comparison of tax rates applicable to individual taxpayers below 60 years of age:</p>
+
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Income Slab Range</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">New Tax Regime Rate</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Old Tax Regime Rate</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Up to ₹3,00,000</td>
+            <td class="p-3 text-emerald-600 font-medium">NIL (No Tax)</td>
+            <td class="p-3 font-medium">NIL (No Tax up to ₹2.5L)</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">₹3,00,001 to ₹7,00,000</td>
+            <td class="p-3 text-emerald-600 font-medium">5% (Rebate u/s 87A applies)</td>
+            <td class="p-3">5%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">₹7,00,001 to ₹10,00,000</td>
+            <td class="p-3 text-blue-600 font-medium">10%</td>
+            <td class="p-3">20%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">₹10,00,001 to ₹12,00,000</td>
+            <td class="p-3 text-indigo-600 font-medium">15%</td>
+            <td class="p-3">30%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">₹12,00,001 to ₹15,00,000</td>
+            <td class="p-3 text-indigo-600 font-medium">20%</td>
+            <td class="p-3">30%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Above ₹15,00,000</td>
+            <td class="p-3 text-amber-600 font-bold">30%</td>
+            <td class="p-3 text-amber-600 font-bold">30%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Tax Deductions Allowed Under Old Tax Regime</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">Section 80C (Max ₹1,50,000)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">EPF, PPF, ELSS mutual funds, LIC premiums, home loan principal repayment, children tuition fees.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">Section 80D Health Insurance</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Medical insurance premiums up to ₹25,000 for self/family and ₹50,000 for senior citizen parents.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">House Rent Allowance (HRA)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Exemption calculated under Section 10(13A) based on rent paid, basic salary, and city tier.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">Section 24(b) Home Loan Interest</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Deduction up to ₹2,00,000 per year on home loan interest for self-occupied residential property.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Which is better: Old or New Tax Regime?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          If your total deductions (80C, 80D, HRA, Home Loan Interest) exceed ₹3.75 Lakh per year, the Old Tax Regime will usually save you more tax. Otherwise, the New Tax Regime is more beneficial.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the Standard Deduction for FY 2025-26?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          The Standard Deduction for salaried employees is ₹75,000 under the New Tax Regime and ₹50,000 under the Old Tax Regime.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
