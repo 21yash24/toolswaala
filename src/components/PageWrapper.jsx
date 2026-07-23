@@ -29,23 +29,7 @@ export default function PageWrapper({ title, hindi, children }) {
         </button>
       </div>
       {children}
-
-      <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
-        <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>Other Useful Tools</h3>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-          {TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (
-            <a key={tool.id} href={tool.path} style={{ textDecoration: "none" }}>
-              <div className="glass-card" style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, height: "100%" }}>
-                <div style={{ fontSize: 24 }}>{tool.icon}</div>
-                <div>
-                  <div style={{ fontWeight: 600, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
-                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
+

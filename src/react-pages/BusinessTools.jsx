@@ -535,23 +535,6 @@ export function PageWrapper({ title, hindi, children }) {
         </button>
       </div>
       {children}
-
-      <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
-        <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>Other Useful Tools</h3>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-          {TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (
-            <a key={tool.id} href={tool.path} style={{ textDecoration: "none" }}>
-              <div className="glass-card" style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, height: "100%" }}>
-                <div style={{ fontSize: 24 }}>{tool.icon}</div>
-                <div>
-                  <div style={{ fontWeight: 600, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
-                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
@@ -573,22 +556,22 @@ export function UpiTool() {
     window.location.href = deepLinks[app] || payUrl;
   };
   return (
-    <div className="grid-2">
+    <div style={generated ? {} : { maxWidth: 580, margin: "0 auto" }} className={generated ? "grid-2" : ""}>
       <div className="glass-card">
-        <div className="form-group"><label>Display Name</label><input value={form.name} onChange={e => update("name", e.target.value)} /></div>
-        <div className="form-group"><label>UPI ID</label><input value={form.upiId} onChange={e => update("upiId", e.target.value)} /></div>
-        <div className="form-group"><label>Amount</label><input type="number" value={form.amount} onChange={e => update("amount", e.target.value)} /></div>
-        <button className="btn-primary" style={{ width: "100%" }} onClick={generate}>Generate Page</button>
+        <div className="form-group"><label>Display Name</label><input value={form.name} onChange={e => update("name", e.target.value)} placeholder="e.g. Yash Store" /></div>
+        <div className="form-group"><label>UPI ID</label><input value={form.upiId} onChange={e => update("upiId", e.target.value)} placeholder="e.g. 9876543210@paytm or store@okicici" /></div>
+        <div className="form-group"><label>Amount (Optional)</label><input type="number" value={form.amount} onChange={e => update("amount", e.target.value)} placeholder="e.g. 500" /></div>
+        <button className="btn-primary" style={{ width: "100%", marginTop: 8 }} onClick={generate}>Generate Payment Page</button>
       </div>
       {generated && (
         <div className="result-box fade-in">
           <div style={{ textAlign: "center" }}>
-            <div style={{ width: 60, height: 60, borderRadius: 12, background: BRAND.primary, margin: "0 auto 20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{getInitials(form.name)}</div>
+            <div style={{ width: 60, height: 60, borderRadius: 12, background: BRAND.primary, margin: "0 auto 20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, color: "white", fontWeight: 800 }}>{getInitials(form.name)}</div>
             <h2>{form.name}</h2>
-            <p>{form.upiId}</p>
-            {form.amount && <div style={{ fontSize: 32, fontWeight: 900, margin: "20px 0" }}>{formatINR(form.amount)}</div>}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-              {["phonepe", "gpay", "paytm", "bhim"].map(app => <button key={app} onClick={() => openPayment(app)} className="btn-secondary">{app.toUpperCase()}</button>)}
+            <p style={{ color: BRAND.textSecondary, fontSize: 14 }}>{form.upiId}</p>
+            {form.amount && <div style={{ fontSize: 32, fontWeight: 900, margin: "20px 0", color: BRAND.primary }}>{formatINR(form.amount)}</div>}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 20 }}>
+              {["phonepe", "gpay", "paytm", "bhim"].map(app => <button key={app} onClick={() => openPayment(app)} className="btn-secondary" style={{ justifyContent: "center" }}>{app.toUpperCase()}</button>)}
             </div>
           </div>
         </div>
