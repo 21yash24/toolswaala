@@ -67,7 +67,7 @@ const description = "Create shareable UPI payment links & QR codes for small bus
 
   <!-- Comprehensive SEO Content Block -->
   <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
-    <nav class="text-sm text-slate-500 mb-6">
+    <nav class="text-sm text-slate-500 dark:text-slate-400 mb-6">
       <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Business & Payment Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">UPI Payment Page</span>
     </nav>
 
@@ -76,50 +76,50 @@ const description = "Create shareable UPI payment links & QR codes for small bus
     </h1>
     
     <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
-      Create instant, shareable <strong>UPI payment links and printable QR codes</strong> for your Instagram shop, freelancing invoices, local store counter, or coaching fees. Receive 100% direct bank deposits with <strong>0% MDR gateway commissions</strong>.
+      Create instant, shareable <strong class="text-slate-900 dark:text-white">UPI payment links and printable QR codes</strong> for your Instagram shop, freelancing invoices, local store counter, or coaching fees. Receive 100% direct bank deposits with <strong class="text-amber-600 dark:text-amber-400">0% MDR gateway commissions</strong>.
     </p>
 
-    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
-      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">NPCI Standard UPI Deep Link Specification</h2>
-      <p class="text-slate-700 dark:text-slate-300 text-sm mb-3">
+    <div class="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 mb-8 shadow-sm">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-amber-400 mb-3">NPCI Standard UPI Deep Link Specification</h2>
+      <p class="text-slate-700 dark:text-slate-200 text-sm mb-3">
         ToolsWaala constructs standardized Unified Payments Interface (UPI) deep links adhering to National Payments Corporation of India (NPCI) guidelines:
       </p>
-      <code class="block bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-200 dark:border-slate-800 font-mono text-xs text-indigo-600 dark:text-indigo-400 mb-3">
+      <code class="block bg-slate-900 dark:bg-slate-950 p-4 rounded-xl border border-slate-700 dark:border-slate-800 font-mono text-xs text-amber-300 dark:text-amber-300 overflow-x-auto mb-4">
         upi://pay?pa=yourvpa@upi&pn=BusinessName&am=500.00&cu=INR&tn=Invoice101
       </code>
-      <ul class="space-y-1 text-slate-700 dark:text-slate-300 text-xs">
-        <li>📌 <strong>pa (Payee Address):</strong> Your VPA / UPI ID (e.g. <code>9876543210@paytm</code> or <code>store@okicici</code>).</li>
-        <li>📌 <strong>pn (Payee Name):</strong> Recipient display name registered with your bank.</li>
-        <li>📌 <strong>am (Amount):</strong> Transaction amount in INR (optional).</li>
-        <li>📌 <strong>tn (Transaction Note):</strong> Invoice reference or order description.</li>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-200 text-xs">
+        <li>📌 <strong class="text-slate-900 dark:text-white">pa (Payee Address):</strong> Your VPA / UPI ID (e.g. <code class="bg-slate-200 dark:bg-slate-900 px-1.5 py-0.5 rounded text-amber-600 dark:text-amber-400 font-mono">9876543210@paytm</code> or <code class="bg-slate-200 dark:bg-slate-900 px-1.5 py-0.5 rounded text-amber-600 dark:text-amber-400 font-mono">store@okicici</code>).</li>
+        <li>📌 <strong class="text-slate-900 dark:text-white">pn (Payee Name):</strong> Recipient display name registered with your bank.</li>
+        <li>📌 <strong class="text-slate-900 dark:text-white">am (Amount):</strong> Transaction amount in INR (optional).</li>
+        <li>📌 <strong class="text-slate-900 dark:text-white">tn (Transaction Note):</strong> Invoice reference or order description.</li>
       </ul>
     </div>
 
     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Comparison: Direct UPI Link vs Payment Gateway</h2>
     <div class="overflow-x-auto mb-10">
-      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
-        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
           <tr>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Feature Parameter</th>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">ToolsWaala Free UPI Generator</th>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Traditional Payment Gateways</th>
+            <th class="p-3.5 border-b border-slate-200 dark:border-slate-700">Feature Parameter</th>
+            <th class="p-3.5 border-b border-slate-200 dark:border-slate-700">ToolsWaala Free UPI Generator</th>
+            <th class="p-3.5 border-b border-slate-200 dark:border-slate-700">Traditional Payment Gateways</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700/80">
           <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">Transaction MDR Fee</td>
-            <td class="p-3 text-emerald-600 font-bold">0% (100% Free)</td>
-            <td class="p-3 text-red-500">2.0% + 18% GST per transaction</td>
+            <td class="p-3.5 font-semibold text-slate-900 dark:text-slate-100">Transaction MDR Fee</td>
+            <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-bold">0% (100% Free)</td>
+            <td class="p-3.5 text-rose-500 dark:text-rose-400">2.0% + 18% GST per transaction</td>
           </tr>
           <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">Settlement Time</td>
-            <td class="p-3 text-emerald-600 font-bold">Instant (Real-Time Bank Transfer)</td>
-            <td class="p-3 text-amber-600">T+1 or T+2 Business Days</td>
+            <td class="p-3.5 font-semibold text-slate-900 dark:text-slate-100">Settlement Time</td>
+            <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-bold">Instant (Real-Time Bank Transfer)</td>
+            <td class="p-3.5 text-amber-600 dark:text-amber-400">T+1 or T+2 Business Days</td>
           </tr>
           <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">Setup / KYC Requirement</td>
-            <td class="p-3 text-emerald-600 font-bold">No KYC / No Merchant Onboarding</td>
-            <td class="p-3 text-red-500">Strict Business Document KYC Verification</td>
+            <td class="p-3.5 font-semibold text-slate-900 dark:text-slate-100">Setup / KYC Requirement</td>
+            <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-bold">No KYC / No Merchant Onboarding</td>
+            <td class="p-3.5 text-rose-500 dark:text-rose-400">Strict Business Document KYC Verification</td>
           </tr>
         </tbody>
       </table>
@@ -127,13 +127,13 @@ const description = "Create shareable UPI payment links & QR codes for small bus
 
     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
     <div class="space-y-6">
-      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+      <div class="bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
         <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Are there any payment gateway commission fees (MDR)?</h3>
         <p class="text-slate-600 dark:text-slate-300 text-sm">
           Zero fees! ToolsWaala generates direct NPCI UPI deep links. Money transfers directly from customer bank account to your bank account with 0% MDR fees.
         </p>
       </div>
-      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+      <div class="bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
         <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Are UPI payment QRs safe?</h3>
         <p class="text-slate-600 dark:text-slate-300 text-sm">
           Yes, they are completely safe. They only contain public routing information (like your UPI ID). They cannot access or deduct money from your bank account.

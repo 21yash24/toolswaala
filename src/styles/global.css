@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
   --app-surface: #F8FAFC;
   --app-surface-card: #FFFFFF;
   --app-text: #0F172A;
-  --app-text-secondary: #64748B;
-  --app-border: rgba(0, 0, 0, 0.08);
-  --app-glass: rgba(255, 255, 255, 0.8);
+  --app-text-secondary: #475569;
+  --app-border: rgba(0, 0, 0, 0.12);
+  --app-glass: rgba(255, 255, 255, 0.85);
 }
 
-.dark-mode {
+.dark, .dark-mode, html.dark {
   --app-surface: #09090B;
-  --app-surface-card: #141414;
-  --app-text: #FAFAFA;
-  --app-text-secondary: #A1A1AA;
-  --app-border: rgba(255, 255, 255, 0.08);
-  --app-glass: rgba(9, 9, 11, 0.6);
+  --app-surface-card: #18181B;
+  --app-text: #F8FAFC;
+  --app-text-secondary: #94A3B8;
+  --app-border: rgba(255, 255, 255, 0.15);
+  --app-glass: rgba(24, 24, 27, 0.85);
 }
 
 @theme {
@@ -31,9 +31,9 @@
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
-  --font-sans: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
-/* rest remains same */
+
 * {
   margin: 0;
   padding: 0;
@@ -51,15 +51,22 @@ html, body, #root {
 
 html {
   scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
   color: var(--app-text);
   background: var(--app-surface);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .hindi {
@@ -77,18 +84,30 @@ body {
 }
 
 .card-shadow {
-  box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06);
   border: 1px solid var(--app-border);
 }
 
-.dark-mode .card-shadow {
-  box-shadow: 0 4px 20px -2px rgba(0,0,0,0.5);
+.dark-mode .card-shadow, html.dark .card-shadow {
+  box-shadow: 0 8px 30px -4px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
 input, select, textarea {
   background: var(--app-surface-card);
   border: 1px solid var(--app-border);
   color: var(--app-text);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #FF6B00;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.25);
 }
 
 ::-webkit-scrollbar {
@@ -102,3 +121,4 @@ input, select, textarea {
   border-radius: 3px;
   opacity: 0.3;
 }
+
