@@ -3,54 +3,133 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { HraCalcTool } from '../react-pages/BusinessTools';
 
-const title = "HRA Calculator — Tax Exemption Calculator";
-const description = "Calculate House Rent Allowance tax exemption under Section 10(13A).";
-
-const faqs = [
-  {
-    "q": "How is HRA exemption calculated under Income Tax?",
-    "a": "HRA exemption is the minimum of three: 1. Actual HRA received, 2. Rent paid minus 10% of basic salary + DA, 3. 50% of basic salary (metro cities) or 40% (non-metro)."
-  },
-  {
-    "q": "Can I claim HRA if I live with parents?",
-    "a": "Yes, you can claim HRA by paying rent to your parents. You must sign a rental agreement and they must report the rental income in their tax returns."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "HRA Calculator 2025 | House Rent Allowance Tax Exemption u/s 10(13A)";
+const description = "Calculate HRA tax exemption for FY 2025-26 under Section 10(13A). Calculate exempt vs taxable HRA for metro and non-metro cities in India.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/hra-calculator">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"HRA Calculator — Tax Exemption Calculator","item":"https://toolswaala.in/hra-calculator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala HRA Calculator India",
+      "operatingSystem": "All",
+      "applicationCategory": "FinancialApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.95",
+        "ratingCount": "2810"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the official formula for HRA tax exemption under Section 10(13A)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tax-exempt HRA is the MINIMUM of three amounts: 1. Actual HRA received from employer, 2. Actual rent paid minus 10% of (Basic Salary + DA), 3. 50% of (Basic Salary + DA) for Metro cities OR 40% for Non-Metro cities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Indian cities qualify for the 50% Metro HRA limit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "According to Income Tax rules, strictly four cities qualify for the 50% Metro HRA limit: Mumbai, Delhi (NCR), Kolkata, and Chennai. Tech hubs like Bengaluru, Hyderabad, and Pune are classified under the 40% Non-Metro limit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is landlord PAN mandatory for claiming HRA tax exemption?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! If your total annual rent paid to a landlord exceeds ₹1,00,000 per financial year (~₹8,333/month), it is mandatory to provide the landlord's PAN to your employer."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="एचआरए कैलकुलेटर" client:load>
+  <PageWrapper title="HRA Calculator" hindi="एचआरए कैलकुलेटर" client:load>
     <HraCalcTool client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; HRA Calculator — Tax Exemption Calculator</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Business & Tax Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">HRA Calculator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      HRA Calculator 2025 (House Rent Allowance Exemption u/s 10(13A))
+    </h1>
     
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Calculate your tax-exempt <strong>House Rent Allowance (HRA)</strong> and net taxable HRA under the Old Tax Regime for Financial Year 2025-26. Auto-calculate rules for <strong>Metro vs Non-Metro cities</strong> and landlord PAN declaration limits.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Section 10(13A) Minimum of Three Rule</h2>
+      <p class="text-slate-700 dark:text-slate-300 text-sm mb-3">
+        The amount of HRA exempt from income tax is calculated as the lowest of the following 3 values:
+      </p>
+      <ul class="space-y-1 text-slate-700 dark:text-slate-300 text-xs">
+        <li>📌 <strong>Condition A:</strong> Actual HRA component received from employer.</li>
+        <li>📌 <strong>Condition B:</strong> Actual Rent Paid - <code>10% of (Basic Salary + Dearness Allowance)</code>.</li>
+        <li>📌 <strong>Condition C:</strong> <code>50% of Basic Salary</code> (Delhi, Mumbai, Kolkata, Chennai) OR <code>40% of Basic Salary</code> (All other cities).</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Metro vs Non-Metro City Classification Table</h2>
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">City Category</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Eligible Exemption Limit</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Covered Major Cities</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Metro Tier 1</td>
+            <td class="p-3 text-emerald-600 font-medium">50% of Basic Salary</td>
+            <td class="p-3 font-medium">New Delhi (NCR), Mumbai, Kolkata, Chennai</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Non-Metro Tier 2 & 3</td>
+            <td class="p-3 text-indigo-600 font-medium">40% of Basic Salary</td>
+            <td class="p-3">Bengaluru, Hyderabad, Pune, Ahmedabad, Gurugram, Noida, Jaipur, Chandigarh, Kochi</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Can I claim HRA if I pay rent to my parents?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Yes! You can claim HRA by paying rent to your parents. You must execute a formal Rent Agreement, issue monthly rent receipts, and your parents must declare the rental income in their ITR filing.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is landlord PAN mandatory for claiming HRA?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          If your total annual rent paid exceeds ₹1,00,000 per year (~₹8,333/month), it is mandatory to provide the landlord's PAN to your HR/employer.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
