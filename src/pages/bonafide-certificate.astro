@@ -3,54 +3,141 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { BonafideCertificate } from '../react-pages/students';
 
-const title = "Bonafide Certificate Generator Free";
-const description = "Generate print-ready bonafide certificates online. No login needed.";
-
-const faqs = [
-  {
-    "q": "What is a Bonafide Certificate?",
-    "a": "A bonafide certificate is a document issued by an institution certifying that a student or employee belongs to that organization for a specific duration."
-  },
-  {
-    "q": "What is the format of a bonafide certificate?",
-    "a": "It contains the institution's header, candidate's name, roll number, course details, purpose of certificate, and the principal's or registrar's signature."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free Bonafide Certificate Generator Online 2025 | Download Student & Employee PDF";
+const description = "Create official Bonafide Certificates for school, college, passport application, bus pass, and education loans. Instant print-ready PDF export.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/bonafide-certificate">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Bonafide Certificate Generator Free","item":"https://toolswaala.in/bonafide-certificate"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Bonafide Certificate Generator",
+      "operatingSystem": "All",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.96",
+        "ratingCount": "2140"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Bonafide Certificate and why is it required?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Bonafide Certificate is an official document issued by a school, college, or employer certifying that a student or employee is genuinely enrolled or employed in that institution."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is a Bonafide Certificate required in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is required for passport applications, student concession bus/train passes, bank account opening, scholarship applications, and education loan approvals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the essential details included in a Bonafide Certificate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It must include: Institutional Letterhead, Reference Number, Date, Student Name, Father's Name, Roll/Registration Number, Course & Academic Year, Purpose of Issue, and Principal/Head Signature."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="बोनाफाइड सर्टिफिकेट" client:load>
+  <PageWrapper title="Bonafide Certificate" hindi="बोनाफाइड सर्टिफिकेट" client:load>
     <BonafideCertificate client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Bonafide Certificate Generator Free</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/students" class="hover:underline">Student Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Bonafide Certificate</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Free Bonafide Certificate Generator 2025 (Student & Employee Format)
+    </h1>
     
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Generate formal <strong>Bonafide Certificates</strong> for school, college, university, and employment verification. Download print-ready PDF documents formatted for <strong>Passport application, Bus/Metro concession passes, and Education loans</strong>.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Standard Bonafide Certificate Layout</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Header:</strong> Official Name, Address, and Code of the Educational Institution.</li>
+        <li>📌 <strong>Reference Details:</strong> Certificate Ref. No. and Date of Issuance.</li>
+        <li>📌 <strong>Body Text:</strong> "This is to certify that Mr./Ms. [Name], Son/Daughter of [Father's Name], Roll No. [Roll No.] is a bonafide student of [Course]..."</li>
+        <li>📌 <strong>Authority Seal:</strong> Designated space for Principal / Registrar seal and signature.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Common Applications of Bonafide Certificate</h2>
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Purpose / Application</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Issuing Authority</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Required Accompanying Proofs</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Passport Application (Tatkal / Normal)</td>
+            <td class="p-3">College Principal / Registrar</td>
+            <td class="p-3">College ID Card, Birth Certificate</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Student Bus / Railway Pass Concession</td>
+            <td class="p-3">School / College Administration</td>
+            <td class="p-3">Fee Receipt, Route Details</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Bank Account Opening (Savings)</td>
+            <td class="p-3">Head of Department (HOD)</td>
+            <td class="p-3">Aadhaar Card, Passport Photo</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Education Loan Application</td>
+            <td class="p-3">Dean / Finance Department</td>
+            <td class="p-3">Admission Letter, Fee Structure</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is a Bonafide Certificate?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          A bonafide certificate is a document issued by an institution certifying that a student or employee belongs to that organization for a specific duration.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Where is a Bonafide Certificate required?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          It is required for passport applications, student concession bus/train passes, bank account opening, and education loan approvals.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>

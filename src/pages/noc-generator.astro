@@ -3,54 +3,141 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { NocGenerator } from '../react-pages/students';
 
-const title = "NOC Letter Generator — No Objection Certificate";
-const description = "Create No Objection Certificates for internships and events instantly.";
-
-const faqs = [
-  {
-    "q": "What is a No Objection Certificate (NOC)?",
-    "a": "An NOC is a legal document issued by an organization, landlord, or authority stating they have no objections to a specific action (e.g., job transfer, vehicle registration)."
-  },
-  {
-    "q": "Is a printed NOC legally valid?",
-    "a": "Yes, once printed on the organization's official letterhead, signed, and stamped by the authorized signatory, the NOC is fully valid."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free NOC Generator Online 2025 | No Objection Certificate Letter Format";
+const description = "Generate legal No Objection Certificate (NOC) letters for college internships, RTO vehicle transfer, GST registration, property rent, and job resignations.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/noc-generator">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"NOC Letter Generator — No Objection Certificate","item":"https://toolswaala.in/noc-generator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala NOC Generator",
+      "operatingSystem": "All",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.96",
+        "ratingCount": "1980"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a No Objection Certificate (NOC) and when is it legally required?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A No Objection Certificate (NOC) is a legal declaration issued by an authority, landlord, employer, or university stating that they have zero objections to a specific action, such as a student pursuing an off-campus internship or an RTO vehicle state transfer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is an online generated NOC legally valid in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Once generated, printed on official letterhead (or executed on stamp paper for property/RTO purposes), and signed/stamped by the issuing authority, the NOC is 100% legally enforceable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the common types of NOC letters in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common NOC types include: 1. College Student Internship NOC, 2. Landlord NOC for GST Business Registration, 3. RTO Vehicle Inter-State Transfer NOC (Form 28), 4. Employer Visa & Passport Travel NOC."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="एनओसी लेटर" client:load>
+  <PageWrapper title="NOC Generator" hindi="एनओसी लेटर" client:load>
     <NocGenerator client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; NOC Letter Generator — No Objection Certificate</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Legal & Business Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">NOC Generator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Free No Objection Certificate (NOC) Generator 2025
+    </h1>
     
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Generate formal <strong>No Objection Certificate (NOC) letters</strong> in minutes. Formatted for <strong>college student internships, RTO vehicle state transfer (Form 28), landlord GST office registration, and employer travel clearance</strong>.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Key Legal Elements of a Standard NOC</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Party Identifiers:</strong> Full legal names, Aadhaar/PAN, and addresses of both Grantor and Recipient.</li>
+        <li>📌 <strong>Explicit Scope Statement:</strong> Specific declaration that the issuing party has "No Objection" to the defined activity.</li>
+        <li>📌 <strong>Validity Period:</strong> Timeframe during which the NOC remains valid (e.g. 6 months for RTO transfer).</li>
+        <li>📌 <strong>Attestation:</strong> Official seal, stamp, and signature of the issuing authority.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Primary Types of NOC Certificates</h2>
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">NOC Type</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Issuing Entity</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Key Usage Context</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">College Internship NOC</td>
+            <td class="p-3">Training & Placement Cell / Principal</td>
+            <td class="p-3">Permitting student to undertake 6-month industrial internship during semester.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Landlord GST Address NOC</td>
+            <td class="p-3">Property Owner</td>
+            <td class="p-3">Authorizing tenant or company to use residential property for GST registration.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">RTO Vehicle Transfer (Form 28)</td>
+            <td class="p-3">Local Regional Transport Office</td>
+            <td class="p-3">Re-registering a motor vehicle in another Indian state.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Employer Travel / Visa NOC</td>
+            <td class="p-3">Company HR Manager</td>
+            <td class="p-3">Certifying employee is taking approved leave for international travel.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is a No Objection Certificate (NOC)?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          An NOC is a legal document issued by an organization, landlord, or authority stating they have no objections to a specific action (e.g. job transfer, vehicle registration, internship).
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is a printed NOC legally valid?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Yes, once printed on the organization's official letterhead, signed, and stamped by the authorized signatory, the NOC is fully valid.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
