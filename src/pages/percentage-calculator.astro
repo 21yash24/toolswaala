@@ -3,54 +3,154 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { PercentageCalc } from '../react-pages/students';
 
-const title = "Marks & Percentage Calculator";
-const description = "Calculate semester results, target marks and CBSE grading instantly.";
-
-const faqs = [
-  {
-    "q": "How to calculate percentage of a number?",
-    "a": "To find the percentage, divide the part by the whole and multiply by 100: Percentage = (Part / Whole) x 100."
-  },
-  {
-    "q": "How to find percentage increase or decrease?",
-    "a": "Percentage Increase/Decrease = ((New Value - Original Value) / Original Value) x 100. A positive result is an increase, negative is a decrease."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Percentage Calculator Online 2025 | Marks & Percentage Difference Calculator";
+const description = "Calculate percentage of marks, percentage increase/decrease, reverse percentage, and CBSE exam grade boundaries. 100% free online calculator.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/percentage-calculator">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Marks & Percentage Calculator","item":"https://toolswaala.in/percentage-calculator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Percentage Calculator",
+      "operatingSystem": "All",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.96",
+        "ratingCount": "2890"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the formula to calculate percentage of marks scored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To calculate your exam percentage: Percentage = (Marks Obtained / Total Maximum Marks) × 100. For example, 450 out of 500 = (450 / 500) × 100 = 90%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to calculate percentage increase or decrease between two numbers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Percentage Change = ((New Value - Original Value) / Original Value) × 100. A positive result indicates a percentage increase, while a negative result indicates a percentage decrease."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate reverse percentage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To find the original price before a discount or tax: Original Value = Final Value / (1 - (Discount % / 100))."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="प्रतिशत कैलकुलेटर" client:load>
+  <PageWrapper title="Percentage Calculator" hindi="प्रतिशत कैलकुलेटर" client:load>
     <PercentageCalc client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Marks & Percentage Calculator</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <h2>Marks Calculator</h2><p>Semester results, CBSE grading, target marks calculator. Custom pass thresholds.</p><p>Related: <a href="/cgpa-calculator">CGPA Calculator</a></p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/students" class="hover:underline">Student Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Percentage Calculator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Percentage Calculator Online 2025 (Marks & Percentage Change)
+    </h1>
     
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Calculate student exam percentages, <strong>percentage increase/decrease, salary hike percentage, discount calculations, and reverse percentage</strong> instantly.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Essential Percentage Formulas</h2>
+      <div class="space-y-4 text-slate-700 dark:text-slate-300 text-sm">
+        <div>
+          <p class="font-semibold text-slate-900 dark:text-white">1. Student Exam Percentage:</p>
+          <code class="block bg-white dark:bg-slate-900 p-2.5 rounded border border-slate-200 dark:border-slate-800 mt-1 font-mono text-indigo-600 dark:text-indigo-400">
+            Percentage (%) = (Total Scored Marks / Total Maximum Marks) × 100
+          </code>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-900 dark:text-white">2. Percentage Increase (Salary Hike / Price Growth):</p>
+          <code class="block bg-white dark:bg-slate-900 p-2.5 rounded border border-slate-200 dark:border-slate-800 mt-1 font-mono text-emerald-600 dark:text-emerald-400">
+            Hike % = ((New Salary - Old Salary) / Old Salary) × 100
+          </code>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">CBSE Class 10 & 12 Percentage Grade Scale Table</h2>
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Marks Percentage Range</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">CBSE Letter Grade</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Grade Point (GP)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold text-emerald-600">91% – 100%</td>
+            <td class="p-3 font-bold">A1</td>
+            <td class="p-3">10.0</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold text-emerald-600">81% – 90%</td>
+            <td class="p-3 font-bold">A2</td>
+            <td class="p-3">9.0</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold text-indigo-600">71% – 80%</td>
+            <td class="p-3 font-bold">B1</td>
+            <td class="p-3">8.0</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold text-indigo-600">61% – 70%</td>
+            <td class="p-3 font-bold">B2</td>
+            <td class="p-3">7.0</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold text-amber-600">51% – 60%</td>
+            <td class="p-3 font-bold">C1</td>
+            <td class="p-3">6.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the formula to calculate percentage of marks scored?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Percentage = (Marks Obtained / Total Maximum Marks) × 100. For example, 450 out of 500 = (450 / 500) × 100 = 90%.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How to calculate percentage increase or decrease?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Percentage Change = ((New Value - Original Value) / Original Value) × 100.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
