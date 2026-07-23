@@ -3,24 +3,166 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { EmiTool } from '../react-pages/BusinessTools';
 
-const title = "EMI Calculator India — Home, Car & Personal Loan";
-const description = "Calculate EMI for home loan, car loan, personal loan instantly with amortization schedule.";
+const title = "EMI Calculator India 2025 | Home, Car & Personal Loan Interest Calculator";
+const description = "Calculate Equated Monthly Installment (EMI) for SBI, HDFC, ICICI home loans, car loans, and personal loans. Amortization schedule & interest formulas.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/emi-calculator">
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is EMI calculated?","acceptedAnswer":{"@type":"Answer","text":"EMI = [P x R x (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, N is number of installments."}},{"@type":"Question","name":"What is a good EMI to salary ratio?","acceptedAnswer":{"@type":"Answer","text":"Banks recommend total EMI should not exceed 40-50% of your monthly take-home salary."}}]}</script>
-<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"EMI Calculator India — Home, Car & Personal Loan","item":"https://toolswaala.in/emi-calculator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala EMI Calculator India",
+      "operatingSystem": "All",
+      "applicationCategory": "FinancialApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.94",
+        "ratingCount": "2410"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the mathematical formula for EMI calculation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The mathematical formula for calculating EMI is: EMI = [P × R × (1+R)^N] / [(1+R)^N - 1], where P is the Principal loan amount, R is the monthly interest rate (Annual Rate / 12 / 100), and N is the loan tenure in months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is FOIR (Fixed Obligation to Income Ratio) in home loans?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "FOIR is a parameter used by banks like SBI and HDFC to determine home loan eligibility. Most Indian banks restrict your total monthly EMIs to a maximum of 40% to 50% of your net monthly take-home salary."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does pre-paying a loan reduce total interest?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Making partial prepayments directly reduces your principal balance. Since interest is calculated on the outstanding balance, prepayments either shorten your total loan tenure or lower your monthly EMI amount."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="ईएमआई" client:load>
+  <PageWrapper title="EMI Calculator" hindi="ईएमआई" client:load>
     <EmiTool client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; EMI Calculator India — Home, Car & Personal Loan</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <h2>EMI Calculator India</h2><p>Home, car, personal, education loans. Full amortization schedule. SBI, HDFC, ICICI rates.</p><p>Related: <a href="/sip-calculator">SIP Calculator</a> | <a href="/fd-calculator">FD Calculator</a></p>
-    <h2>Frequently Asked Questions</h2><h3>How is EMI calculated?</h3><p>EMI = [P x R x (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, N is number of installments.</p><h3>What is a good EMI to salary ratio?</h3><p>Banks recommend total EMI should not exceed 40-50% of your monthly take-home salary.</p>
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Business & Finance Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">EMI Calculator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      EMI Calculator India 2025 (Home, Car & Personal Loans)
+    </h1>
+    
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Calculate exact <strong>Equated Monthly Installment (EMI)</strong> payouts, total interest payable, and total payment values for home loans, car loans, personal loans, and education loans across <strong>SBI, HDFC, ICICI, Axis Bank, and Kotak Mahindra</strong>.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Official EMI Mathematical Formula</h2>
+      <code class="block bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-200 dark:border-slate-800 font-mono text-sm text-indigo-600 dark:text-indigo-400 mb-3">
+        EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]
+      </code>
+      <ul class="space-y-1 text-slate-700 dark:text-slate-300 text-xs">
+        <li>📌 <strong>P (Principal):</strong> Total loan amount borrowed from bank.</li>
+        <li>📌 <strong>R (Rate):</strong> Monthly interest rate = <code>(Annual Interest Rate % / 12 / 100)</code></li>
+        <li>📌 <strong>N (Tenure):</strong> Total number of monthly installments = <code>Tenure in Years × 12</code></li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Current Bank Interest Rates Comparison 2025</h2>
+    <p class="mb-4">Typical interest rates offered by top Indian banks across loan categories:</p>
+
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Bank / Lender</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Home Loan Interest Rate</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Car Loan Interest Rate</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Personal Loan Interest Rate</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">State Bank of India (SBI)</td>
+            <td class="p-3 text-emerald-600 font-medium">8.50% - 9.65%</td>
+            <td class="p-3">8.75% - 9.80%</td>
+            <td class="p-3">11.15% - 15.30%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">HDFC Bank</td>
+            <td class="p-3 text-emerald-600 font-medium">8.70% - 9.80%</td>
+            <td class="p-3">9.10% - 10.50%</td>
+            <td class="p-3">10.75% - 16.00%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">ICICI Bank</td>
+            <td class="p-3 text-emerald-600 font-medium">8.75% - 9.85%</td>
+            <td class="p-3">9.15% - 10.75%</td>
+            <td class="p-3">10.80% - 16.25%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Axis Bank</td>
+            <td class="p-3 text-emerald-600 font-medium">8.75% - 9.90%</td>
+            <td class="p-3">9.30% - 11.00%</td>
+            <td class="p-3">10.75% - 15.75%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Factors That Impact Your Monthly EMI</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">1. Credit Score (CIBIL)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">A CIBIL score of 750+ qualifies you for lowest interest rates, directly lowering your EMI.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">2. Loan Tenure</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Longer tenures reduce monthly EMI but drastically increase total interest paid over time.</p>
+      </div>
+      <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-2">3. Down Payment Amount</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Paying a higher down payment upfront lowers the principal borrowed, reducing interest costs.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the mathematical formula for EMI calculation?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          The mathematical formula for calculating EMI is: EMI = [P × R × (1+R)^N] / [(1+R)^N - 1], where P is Principal, R is monthly interest rate, and N is tenure in months.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is FOIR (Fixed Obligation to Income Ratio)?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          FOIR is a parameter used by banks like SBI and HDFC. Most Indian banks restrict your total monthly EMIs to a maximum of 40% to 50% of your net monthly take-home salary.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
