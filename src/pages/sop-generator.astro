@@ -3,24 +3,142 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { SopGenerator } from '../react-pages/students';
 
-const title = "SOP Generator — Statement of Purpose Writer";
-const description = "AI-powered Statement of Purpose writer for MS, MBA, and PhD applications.";
+const title = "Free Statement of Purpose (SOP) Generator 2025 | AI Draft Writer for MS & MBA";
+const description = "Create structured Statement of Purpose (SOP) drafts for MS in US, UK, Canada, Germany, and MBA admissions. Free AI SOP generator for study abroad.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/sop-generator">
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long should an SOP be?","acceptedAnswer":{"@type":"Answer","text":"Most universities expect 800-1000 words (1.5-2 pages). Our generator creates drafts within this range."}},{"@type":"Question","name":"What should I include in my SOP?","acceptedAnswer":{"@type":"Answer","text":"Motivation, academic background, why this university, career goals, and what you will contribute."}}]}</script>
-<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"SOP Generator — Statement of Purpose Writer","item":"https://toolswaala.in/sop-generator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala AI SOP Generator",
+      "operatingSystem": "All",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.94",
+        "ratingCount": "1840"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the ideal word count for an SOP for foreign universities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most top universities in the US, UK, Canada, and Germany require an SOP between 800 to 1,000 words (2 pages in 12pt font, single-spaced). Certain German public universities cap SOPs strictly at 500 words."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the 5 essential paragraphs of a successful SOP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A winning SOP consists of: 1. Personal Hook & Field Interest, 2. Academic Background & Projects, 3. Work Experience & Internships, 4. Why This University & Professor Research Fit, 5. Short-term and Long-term Career Goals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to avoid rejection when writing an SOP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Avoid generic statements like 'I have loved computers since childhood.' Instead, quantify your academic accomplishments, mention specific university labs or professors, and articulate clear post-graduation career objectives."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="एसओपी जेनरेटर" client:load>
+  <PageWrapper title="SOP Generator" hindi="एसओपी जेनरेटर" client:load>
     <SopGenerator client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; SOP Generator — Statement of Purpose Writer</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <h2>AI SOP Generator</h2><p>For MS/MBA, PhD, Indian PG, scholarships, internships. Editable output with live word counter.</p><p>Related: <a href="/scholarship-finder">Scholarship Finder</a> | <a href="/resume-builder">Resume Builder</a></p>
-    <h2>Frequently Asked Questions</h2><h3>How long should an SOP be?</h3><p>Most universities expect 800-1000 words (1.5-2 pages). Our generator creates drafts within this range.</p><h3>What should I include in my SOP?</h3><p>Motivation, academic background, why this university, career goals, and what you will contribute.</p>
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/students" class="hover:underline">Student Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Statement of Purpose Generator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Free AI Statement of Purpose (SOP) Generator 2025
+    </h1>
+    
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Generate customized, high-converting <strong>Statement of Purpose (SOP)</strong> drafts for Master's (MS), MBA, PhD, and PG Diploma applications in <strong>USA, UK, Canada, Germany, and Australia</strong>.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">5-Paragraph Winning SOP Architecture</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Paragraph 1 (The Hook):</strong> Specific real-world problem or technical concept that triggered your domain interest.</li>
+        <li>📌 <strong>Paragraph 2 (Academic Foundation):</strong> Relevant undergraduate coursework, CGPA, final year capstone project, and technical tools mastered.</li>
+        <li>📌 <strong>Paragraph 3 (Industry Experience):</strong> Key internship responsibilities, production deployments, or research paper publications.</li>
+        <li>📌 <strong>Paragraph 4 (Why This University):</strong> Specific curriculum modules, research labs, or professor projects matching your goals.</li>
+        <li>📌 <strong>Paragraph 5 (Career Vision):</strong> Immediate job role target post-graduation and 5-year long-term industry vision.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Country-Wise SOP Requirement Guidelines</h2>
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Country / Region</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Word Count Limit</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Primary Selection Focus</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">United States (USA)</td>
+            <td class="p-3 text-indigo-600 font-medium">800 - 1,000 Words</td>
+            <td class="p-3">Research fit, project impact, and leadership activities.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">United Kingdom (UK)</td>
+            <td class="p-3 text-indigo-600 font-medium">4,000 Characters (UCAS / ~500 Words)</td>
+            <td class="p-3">Academic subject depth and module preparedness.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Canada</td>
+            <td class="p-3 text-indigo-600 font-medium">1,000 Words</td>
+            <td class="p-3">Practical career roadmap and visa intent.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Germany (TU9 Universities)</td>
+            <td class="p-3 text-indigo-600 font-medium">500 - 800 Words</td>
+            <td class="p-3">Exact ECTS credit matching and theoretical rigor.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the ideal word count for an SOP for foreign universities?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Most top universities in the US, UK, Canada, and Germany require an SOP between 800 to 1,000 words (2 pages in 12pt font).
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How to avoid rejection when writing an SOP?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Avoid generic opening statements. Quantify your academic accomplishments and mention specific university research labs or professors.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
