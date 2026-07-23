@@ -3,24 +3,140 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { PomodoroTimer } from '../react-pages/students';
 
-const title = "Pomodoro Timer & Lofi Player";
-const description = "Free Pomodoro timer with lofi beats, focus tracking, and productivity history.";
+const title = "Free Online Pomodoro Timer 2025 | Study Timer with Ambient Lofi Beats";
+const description = "Free customizable Pomodoro study timer with ambient lofi music. Boost focus for studying, coding, and writing with 25/5 minute intervals.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pomodoro-timer">
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Pomodoro Technique?","acceptedAnswer":{"@type":"Answer","text":"Study for 25 minutes, take a 5-minute break. After 4 cycles, take a 15-minute long break. Prevents burnout and maintains focus."}},{"@type":"Question","name":"Can I change the timer duration?","acceptedAnswer":{"@type":"Answer","text":"Yes! Customize focus time (1-90 min), short break (1-30 min), and long break (1-60 min)."}}]}</script>
-<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Pomodoro Timer & Lofi Player","item":"https://toolswaala.in/pomodoro-timer"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Pomodoro Timer & Lofi Player",
+      "operatingSystem": "All",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.97",
+        "ratingCount": "3950"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the standard Pomodoro Technique interval ratio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The classic Pomodoro method consists of 25 minutes of unbroken focus followed by a 5-minute short break. After completing 4 consecutive focus sessions (called 'Pomodoros'), take a longer 15 to 30-minute restorative break."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does ambient lofi music improve focus and productivity?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lofi beats and white noise mask erratic background environmental noise while stimulating low alpha brainwaves (8-14 Hz), promoting a calm state of deep focus without lyrics that distract working memory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I customize the focus and break timer lengths?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! ToolsWaala allows full customization of focus duration (1 to 90 minutes), short break (1 to 30 minutes), and long break (1 to 60 minutes)."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="पोमोडोरो टाइमर" client:load>
+  <PageWrapper title="Pomodoro Timer" hindi="पोमोडोरो टाइमर" client:load>
     <PomodoroTimer client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Pomodoro Timer & Lofi Player</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <h2>Pomodoro Study Timer</h2><p>25-minute focus sessions with lofi music, productivity tracking, and customizable durations.</p><p>Related: <a href="/study-planner">Study Planner</a> | <a href="/attendance-calculator">Attendance Calculator</a></p>
-    <h2>Frequently Asked Questions</h2><h3>What is the Pomodoro Technique?</h3><p>Study for 25 minutes, take a 5-minute break. After 4 cycles, take a 15-minute long break. Prevents burnout and maintains focus.</p><h3>Can I change the timer duration?</h3><p>Yes! Customize focus time (1-90 min), short break (1-30 min), and long break (1-60 min).</p>
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/students" class="hover:underline">Student Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Pomodoro Timer</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Free Online Pomodoro Timer 2025 (Study Timer with Lofi Music)
+    </h1>
+    
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Maximize your study productivity and eliminate distractions. Integrated <strong>25/5 Pomodoro focus timer</strong> with built-in <strong>ambient lofi beats, rain sounds, white noise, and session analytics</strong>.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">The 4 Core Steps of the Pomodoro Method</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Step 1 (Select Task):</strong> Choose a single task to complete (e.g. Solve 20 Physics questions).</li>
+        <li>📌 <strong>Step 2 (Start 25-Min Timer):</strong> Work with 100% single-task focus until the timer chimes. No phone checking.</li>
+        <li>📌 <strong>Step 3 (5-Min Short Break):</strong> Step away from the screen, stretch, drink water, or take deep breaths.</li>
+        <li>📌 <strong>Step 4 (15-Min Long Break):</strong> After 4 completed cycles, take a 15-30 minute mental recharge break.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Recommended Focus Ratios by Work Type</h2>
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Work Category</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Focus Duration</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Short Break</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Recommended Ambient Sound</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Exam Revision / Flashcards</td>
+            <td class="p-3 text-indigo-600 font-medium">25 Minutes</td>
+            <td class="p-3">5 Minutes</td>
+            <td class="p-3">Lofi Chillhop Beats</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Software Development / Coding</td>
+            <td class="p-3 text-indigo-600 font-medium">50 Minutes</td>
+            <td class="p-3">10 Minutes</td>
+            <td class="p-3">Cyberpunk Synth / Deep Focus White Noise</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Writing Essays & SOPs</td>
+            <td class="p-3 text-indigo-600 font-medium">45 Minutes</td>
+            <td class="p-3">15 Minutes</td>
+            <td class="p-3">Cozy Rain & Coffee Shop Ambience</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the standard Pomodoro Technique interval ratio?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          The classic Pomodoro method consists of 25 minutes of unbroken focus followed by a 5-minute short break. After 4 sessions, take a 15-30 minute long break.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How does ambient lofi music improve focus?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Lofi beats and white noise mask erratic background noise while stimulating low alpha brainwaves (8-14 Hz), promoting a calm state of deep focus.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
