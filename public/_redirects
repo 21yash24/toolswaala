@@ -1,0 +1,4 @@
+# Cloudflare Pages Redirects
+https://www.toolswaala.in/* https://toolswaala.in/:splat 301!
+http://www.toolswaala.in/* https://toolswaala.in/:splat 301!
+http://toolswaala.in/* https://toolswaala.in/:splat 301!
