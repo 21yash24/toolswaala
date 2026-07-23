@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { ReceiptTool } from '../react-pages/BusinessTools';
+
+const title = "Free Receipt Maker — Payment Receipt Generator";
+const description = "Generate professional payment receipts with PDF export. No login required.";
+
+const faqs = [
+  {
+    "q": "What must be included in a payment receipt?",
+    "a": "A receipt must include the receipt number, date, sender's name/business, receiver's details, payment amount, payment mode (cash/card/UPI), and description."
+  },
+  {
+    "q": "Is an online receipt legally acceptable?",
+    "a": "Yes, online receipts are valid for tax records and accounting purposes as proof of transaction."
+  }
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+});
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/receipt-maker">
+  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Free Receipt Maker — Payment Receipt Generator","item":"https://toolswaala.in/receipt-maker"}]}</script>
+
+  <PageWrapper title={title} hindi="रसीद" client:load>
+    <ReceiptTool client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; Free Receipt Maker — Payment Receipt Generator</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    
+    
+    <h2>Frequently Asked Questions</h2>
+    {faqs.map(faq => (
+      <h3>{faq.q}</h3>
+      <p>{faq.a}</p>
+    ))}
+    
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

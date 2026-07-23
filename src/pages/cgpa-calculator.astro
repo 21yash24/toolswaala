@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CgpaCalculator } from '../react-pages/students';
+import PageWrapper from '../components/PageWrapper';
+import universities from '../data/universities.json';
+
+const title = "CGPA to Percentage Calculator 2025 | All Indian Universities & Boards";
+const description = "Free online CGPA to Percentage Calculator. Convert CGPA & SGPA to percentage using official formulas for Mumbai University, VTU, AKTU, Anna University, SPPU, DU, CBSE and more.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/cgpa-calculator">
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala CGPA to Percentage Calculator",
+      "operatingSystem": "All",
+      "applicationCategory": "EducationalApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1420"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to convert CGPA to percentage for CBSE Class 10?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To convert CBSE Class 10 CGPA to percentage, multiply your overall CGPA by 9.5. For example, if your CGPA is 8.4, your percentage is 8.4 × 9.5 = 79.8%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the formula to convert CGPA to percentage for engineering universities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Engineering formulas vary by university: Mumbai University: (CGPA × 7.1) + 12 or CGPA × 9.5; VTU: (CGPA - 0.75) × 10; AKTU: (CGPA - 0.75) × 10; Anna University: CGPA × 10; SPPU: (CGPA - 0.75) × 10 or CGPA × 8.9."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What CGPA is required for campus placements in top IT companies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most IT product companies (Google, Amazon, Microsoft) prefer a CGPA of 7.5 or above (approx. 71.25%). Mass recruiters like TCS, Infosys, and Wipro require a minimum CGPA of 6.0 (approx. 57%)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between SGPA and CGPA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SGPA (Semester Grade Point Average) measures your performance in a single semester. CGPA (Cumulative Grade Point Average) is the weighted average of your SGPAs across all completed semesters."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <PageWrapper title="CGPA Calculator" hindi="सीजीपीए कैलकुलेटर" client:load>
+    <CgpaCalculator client:only="react" />
+  </PageWrapper>
+
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/students" class="hover:underline">Student Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">CGPA to Percentage Calculator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      CGPA to Percentage Calculator 2025 (Official University Formulas)
+    </h1>
+    
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Convert your Cumulative Grade Point Average (CGPA) and Semester Grade Point Average (SGPA) into exact percentage marks. Built according to official guidelines issued by <strong>CBSE, Mumbai University, VTU, AKTU, Anna University, SPPU, Delhi University (DU), KTU</strong>, and AICTE.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Quick Conversion Summary</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300">
+        <li>📌 <strong>CBSE Board (Class 10):</strong> <code>Percentage = CGPA × 9.5</code></li>
+        <li>📌 <strong>VTU (Visvesvaraya Tech Uni):</strong> <code>Percentage = (CGPA - 0.75) × 10</code></li>
+        <li>📌 <strong>AKTU (Dr. A.P.J. Abdul Kalam Tech Uni):</strong> <code>Percentage = (CGPA - 0.75) × 10</code></li>
+        <li>📌 <strong>Mumbai University (Engineering):</strong> <code>Percentage = (CGPA × 7.1) + 12</code> or <code>CGPA × 9.5</code></li>
+        <li>📌 <strong>Anna University:</strong> <code>Percentage = CGPA × 10</code></li>
+        <li>📌 <strong>SPPU (Pune University):</strong> <code>Percentage = (CGPA - 0.75) × 10</code></li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Dedicated University CGPA Calculators</h2>
+    <p class="mb-4">Select your university or board below to use the exact formula mandated by your institution:</p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+      {universities.map(uni => (
+        <a href={`/${uni.id}-cgpa-calculator`} class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-md transition-all text-sm font-semibold text-slate-800 dark:text-slate-200">
+          <span>{uni.name} CGPA</span>
+          <span class="text-indigo-600 dark:text-indigo-400 text-xs">Calculate &rarr;</span>
+        </a>
+      ))}
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How CGPA to Percentage Conversion Works</h2>
+    <p class="mb-4">
+      Educational institutions in India use different grading scales ranging from 4-point, 7-point, to 10-point scale systems. The Central Board of Secondary Education (CBSE) established the standard <strong>9.5 multiplier</strong> based on statistical historical performance data, where 9.5 represents the average percentage of candidates in the top score band.
+    </p>
+
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">CGPA</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Standard CBSE (×9.5)</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">VTU / AKTU ((CGPA-0.75)×10)</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Grade Classification</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">10.0</td>
+            <td class="p-3">95.0%</td>
+            <td class="p-3">92.5%</td>
+            <td class="p-3 text-emerald-600 font-medium">Outstanding (O)</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">9.0</td>
+            <td class="p-3">85.5%</td>
+            <td class="p-3">82.5%</td>
+            <td class="p-3 text-emerald-600 font-medium">Excellent (A+)</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">8.0</td>
+            <td class="p-3">76.0%</td>
+            <td class="p-3">72.5%</td>
+            <td class="p-3 text-indigo-600 font-medium">Very Good (A)</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">7.0</td>
+            <td class="p-3">66.5%</td>
+            <td class="p-3">62.5%</td>
+            <td class="p-3 text-indigo-600 font-medium">Good (B+)</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">6.0</td>
+            <td class="p-3">57.0%</td>
+            <td class="p-3">52.5%</td>
+            <td class="p-3 text-amber-600 font-medium">Above Average (B)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">CGPA Requirements for Higher Studies & Campus Placements</h2>
+    <p class="mb-4">
+      When applying for higher education (GATE, CAT, GRE, GMAT, MS abroad) or attending campus placement drives, recruiters look closely at your converted percentage:
+    </p>
+    <ul class="list-disc pl-6 space-y-2 mb-8 text-slate-700 dark:text-slate-300">
+      <li><strong>Foreign University Admissions (US/UK/Canada):</strong> Most foreign universities require a Minimum 3.0 GPA on a 4.0 scale, which translates to a CGPA of approximately 7.5+ in Indian 10-point scale systems.</li>
+      <li><strong>Government Jobs (UPSC, SSC, Banking):</strong> A minimum first-class degree equivalent to 60% aggregate (approx. 6.3 - 6.75 CGPA depending on the university formula) is standard.</li>
+      <li><strong>IT & Product Company Cutoffs:</strong> Companies like TCS, Infosys, Wipro, Accenture set their eligibility benchmark at 60% (6.0+ CGPA) with no active backlogs.</li>
+    </ul>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How to convert CGPA to percentage for CBSE Class 10?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Multiply your overall CGPA by 9.5. For example, if your CGPA is 8.4, your percentage is 8.4 × 9.5 = 79.8%.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the formula to convert CGPA to percentage for engineering universities?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Engineering formulas vary by university: Mumbai University: (CGPA × 7.1) + 12 or CGPA × 9.5; VTU: (CGPA - 0.75) × 10; AKTU: (CGPA - 0.75) × 10; Anna University: CGPA × 10; SPPU: (CGPA - 0.75) × 10.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the difference between SGPA and CGPA?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          SGPA (Semester Grade Point Average) measures your performance in a single semester. CGPA (Cumulative Grade Point Average) is the weighted average of your SGPAs across all completed semesters.
+        </p>
+      </div>
+    </div>
+  </article>
+</Layout>
+

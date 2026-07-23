@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PdfPageWrapper from '../../shared/PdfPageWrapper';
+import { PdfToJpg } from '../../react-pages/pdf';
+
+const title = "PDF to JPG Converter Free";
+const description = "Extract PDF pages as high-quality JPG images. Works in your browser.";
+
+const faqs = [
+  {
+    "q": "How to extract images from PDF?",
+    "a": "Select your PDF file. The tool will convert each page into a separate high-quality JPG image that you can download individually or as a ZIP."
+  },
+  {
+    "q": "Is my document secure when converting PDF to JPG?",
+    "a": "Yes! The entire conversion runs client-side in your browser. No files are uploaded to our servers, ensuring 100% privacy."
+  }
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+});
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/pdf-to-jpg">
+  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"PDF to JPG Converter Free","item":"https://toolswaala.in/pdf-tools/pdf-to-jpg"}]}</script>
+
+  <PdfPageWrapper title={title} hindi="पीडीएफ से इमेज" client:load>
+    <PdfToJpg client:only="react" />
+  </PdfPageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/pdf-tools">PDF Tools</a> &gt; PDF to JPG Converter Free</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    
+    
+    <h2>Frequently Asked Questions</h2>
+    {faqs.map(faq => (
+      <h3>{faq.q}</h3>
+      <p>{faq.a}</p>
+    ))}
+    
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

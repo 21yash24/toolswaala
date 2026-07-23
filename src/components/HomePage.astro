@@ -1,0 +1,179 @@
+---
+import { TOOLS, STUDENT_TOOLS, PDF_TOOLS, BRAND } from "../shared/constants";
+
+const BADGE_MAP = {
+  "bizname": "AI", "sop": "AI", "jobs": "NEW",
+  "pomodoro": "HOT", "gst-invoice": "HOT", "pdf-compress": "HOT", "cgpa": "HOT", "emi": "HOT",
+  "word-counter": "NEW", "age-calculator": "NEW", "yt-thumbnail": "NEW",
+};
+const BADGE_STYLES = {
+  "AI": { bg: "#7C3AED20", color: "#7C3AED", label: "AI ✨" },
+  "HOT": { bg: "#FF6B0020", color: "#FF6B00", label: "🔥 HOT" },
+  "NEW": { bg: "#10B98120", color: "#10B981", label: "NEW" },
+};
+
+const allTools = [
+  ...TOOLS.map(t => ({ ...t, module: "business" })),
+  ...STUDENT_TOOLS.map(t => ({ ...t, module: "students" })),
+  ...PDF_TOOLS.map(t => ({ ...t, module: "pdf" })),
+];
+const totalCount = allTools.length;
+
+const cats = [
+  { key: "all", label: "All Tools", color: BRAND.primary, count: allTools.length },
+  { key: "business", label: "Business", color: "#FF6B00", count: TOOLS.length },
+  { key: "students", label: "Students", color: "#7C3AED", count: STUDENT_TOOLS.length },
+  { key: "pdf", label: "PDF & Files", color: "#1D6BE4", count: PDF_TOOLS.length },
+];
+---
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 80px 24px;" class="fade-in">
+  <div style="text-align: center; margin-bottom: 48px;">
+    <div class="badge badge-orange" style="margin-bottom: 16px;">Bharat's Digital Toolkit 🇮🇳</div>
+    <h1 style={`font-size: clamp(32px, 8vw, 64px); color: ${BRAND.text}; margin-bottom: 24px; line-height: 1.1; font-weight: 900;`}>
+      Every tool you need.<br/> <span style={`color: ${BRAND.primary};`}>Zero Login.</span> No Limits.
+    </h1>
+    <p style={`font-size: clamp(16px, 2vw, 20px); color: ${BRAND.textSecondary}; max-width: 700px; margin: 0 auto; line-height: 1.6;`}>
+      Professional tools for Students and SMBs. Create invoices, process PDFs, and calculate CGPA instantly.
+    </p>
+    <div style="max-width: 650px; margin: 40px auto 0; display: flex; gap: 12px; background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 24px; border: 2px solid var(--app-border); box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+      <div style={`display: flex; align-items: center; color: ${BRAND.textSecondary}; font-size: 24px;`}>🔍</div>
+      <input id="search-input" placeholder={`Search ${totalCount}+ tools (e.g. CGPA, Invoice, बोनाफाइड)...`} style={`flex: 1; background: transparent; border: none; color: ${BRAND.text}; padding: 12px 0; font-size: 18px; outline: none; font-weight: 500;`} />
+    </div>
+  </div>
+
+  {/* Stats Strip */}
+  <div style={`display: flex; justify-content: center; flex-wrap: wrap; gap: 16px 40px; margin-bottom: 48px; padding: 20px 0; border-top: 1px solid ${BRAND.border}; border-bottom: 1px solid ${BRAND.border};`}>
+    <div style="text-align: center;">
+      <div style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>{totalCount}+</div>
+      <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Free Tools</div>
+    </div>
+    <div style="text-align: center;">
+      <div style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>0</div>
+      <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Signups Required</div>
+    </div>
+    <div style="text-align: center;">
+      <div id="anim-counter" style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>0+</div>
+      <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Indians Trust Us</div>
+    </div>
+    <div style="text-align: center;">
+      <div style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>🇮🇳</div>
+      <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Made in India</div>
+    </div>
+  </div>
+
+  {/* Category Filter Tabs */}
+  <div id="category-tabs" style="display: flex; gap: 10px; margin-bottom: 32px; overflow-x: auto; padding-bottom: 4px;">
+    {cats.map(c => (
+      <button 
+        class={`cat-btn ${c.key === 'all' ? 'active' : ''}`}
+        data-cat={c.key} 
+        style={`padding: 10px 20px; border-radius: 12px; border: 2px solid ${c.key === 'all' ? c.color : BRAND.border}; cursor: pointer; background: ${c.key === 'all' ? c.color + '15' : 'transparent'}; color: ${c.key === 'all' ? c.color : BRAND.text}; font-weight: 700; font-size: 14px; transition: 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 8px;`}
+        data-color={c.color}
+      >
+        {c.label} <span style={`background: ${c.key === 'all' ? c.color : 'rgba(255,255,255,0.1)'}; color: ${c.key === 'all' ? 'white' : BRAND.textSecondary}; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 800;`} class="cat-count">{c.count}</span>
+      </button>
+    ))}
+  </div>
+
+  {/* Tool Grid */}
+  <div id="tool-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+    {allTools.map((tool) => (
+      <a 
+        class="tool-card" 
+        data-module={tool.module} 
+        data-search={`${tool.name.toLowerCase()} ${tool.desc.toLowerCase()} ${tool.hindi} ${(tool.keywords || []).join(' ').toLowerCase()}`} 
+        href={tool.path} 
+        style="text-decoration: none; display: block;"
+      >
+        <div class="glass-card" style="height: 100%; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div style={`width: 56px; height: 56px; background: ${tool.color}15; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; border: 1px solid ${tool.color}30;`}>
+              {tool.icon}
+            </div>
+            {BADGE_MAP[tool.id] && <span style={`padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; background: ${BADGE_STYLES[BADGE_MAP[tool.id]].bg}; color: ${BADGE_STYLES[BADGE_MAP[tool.id]].color};`}>{BADGE_STYLES[BADGE_MAP[tool.id]].label}</span>}
+          </div>
+          <div>
+            <h3 style={`font-size: 20px; color: ${BRAND.text}; margin-bottom: 4px;`}>{tool.name}</h3>
+            <span class="hindi-label" style="margin-bottom: 12px;">{tool.hindi}</span>
+            <p style={`font-size: 14px; color: ${BRAND.textSecondary}; line-height: 1.5;`}>{tool.desc}</p>
+          </div>
+          <div style={`margin-top: auto; display: flex; align-items: center; gap: 8px; color: ${tool.color}; font-weight: 700; font-size: 13px;`}>
+            GET STARTED 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Filter Logic
+  const searchInput = document.getElementById('search-input');
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const toolCards = document.querySelectorAll('.tool-card');
+  let currentCat = 'all';
+
+  function filterTools() {
+    const q = searchInput.value.toLowerCase();
+    toolCards.forEach(card => {
+      const matchCat = currentCat === 'all' || card.dataset.module === currentCat;
+      const matchSearch = card.dataset.search.includes(q);
+      if (matchCat && matchSearch) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', filterTools);
+  }
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Reset active states
+      catBtns.forEach(b => {
+        b.classList.remove('active');
+        b.style.borderColor = 'var(--app-border)';
+        b.style.background = 'transparent';
+        b.style.color = 'var(--app-text)';
+        const countSpan = b.querySelector('.cat-count');
+        if(countSpan) {
+          countSpan.style.background = 'rgba(255,255,255,0.1)';
+          countSpan.style.color = 'var(--app-text-secondary)';
+        }
+      });
+      // Set active
+      btn.classList.add('active');
+      const color = btn.dataset.color;
+      btn.style.borderColor = color;
+      btn.style.background = color + '15';
+      btn.style.color = color;
+      const countSpan = btn.querySelector('.cat-count');
+      if(countSpan) {
+        countSpan.style.background = color;
+        countSpan.style.color = 'white';
+      }
+
+      currentCat = btn.dataset.cat;
+      filterTools();
+    });
+  });
+
+  // Animation Logic
+  const counter = document.getElementById('anim-counter');
+  if (counter) {
+    let n = 0;
+    const iv = setInterval(() => { 
+      n += 1247; 
+      if (n >= 50000) { 
+        n = 50000; 
+        clearInterval(iv); 
+      } 
+      counter.innerText = n.toLocaleString("en-IN") + "+";
+    }, 30);
+  }
+</script>

@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { AgeCalculator } from '../react-pages/students';
+
+const title = "Exact Age Calculator — Years, Months, Days";
+const description = "Calculate your exact age in years, months, and days instantly.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/age-calculator">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is the age calculator?","acceptedAnswer":{"@type":"Answer","text":"It calculates your exact age down to the days, weeks, and hours based on your date of birth."}},{"@type":"Question","name":"Can I find my exact age for government exams?","acceptedAnswer":{"@type":"Answer","text":"Yes, government exams often require your exact age as of a specific cut-off date. You can calculate that here."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Exact Age Calculator — Years, Months, Days","item":"https://toolswaala.in/age-calculator"}]}</script>
+
+  <PageWrapper title={title} hindi="आयु कैलकुलेटर" client:load>
+    <AgeCalculator client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Exact Age Calculator — Years, Months, Days</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>Exact Age Calculator</h2><p>Age in years, months, days, weeks, hours. Zodiac sign, birthday countdown, generation identifier.</p>
+    <h2>Frequently Asked Questions</h2><h3>How accurate is the age calculator?</h3><p>It calculates your exact age down to the days, weeks, and hours based on your date of birth.</p><h3>Can I find my exact age for government exams?</h3><p>Yes, government exams often require your exact age as of a specific cut-off date. You can calculate that here.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

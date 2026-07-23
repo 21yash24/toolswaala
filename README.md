@@ -1,54 +1,43 @@
-# ToolsWaala - Deployment Instructions
+# Astro Starter Kit: Minimal
 
-This repository contains the full source code for ToolsWaala (toolswaala.in).
-
-## Environment Setup
-
-1. Copy `.env.example` to `.env` in the root directory.
-2. Fill in the required API keys (Claude API, Supabase URL/Key).
-3. Set `VITE_API_URL` in the frontend environment during deployment.
-
-## Database Setup (Supabase)
-
-1. Create a new Supabase project.
-2. Open the SQL Editor and run the contents of `supabase-schema.sql`.
-3. Copy the Project URL and anon key to your backend `.env` / Render environment variables.
-
-## Frontend Deployment (Vercel)
-
-1. Import the `frontend` folder to Vercel.
-2. Set the Framework Preset to `Vite`.
-3. Add the Environment Variable: `VITE_API_URL = https://your-backend-url.onrender.com`
-4. The included `vercel.json` ensures React Router works correctly on Vercel.
-
-## Backend Deployment (Render)
-
-1. Connect your repository to Render.
-2. Create a new "Web Service".
-3. Use the following settings (or select the `render.yaml` blueprint):
-   - **Root Directory:** `backend`
-   - **Environment:** `Python 3`
-   - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
-4. Add the Environment Variables:
-   - `CLAUDE_API_KEY`
-   - `SUPABASE_URL`
-   - `SUPABASE_KEY`
-
-## Local Development
-
-**Frontend:**
-```bash
-cd frontend
-npm install
-npm run dev
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-**Backend:**
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --reload
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const { title, description, keywords, currentPath } = Astro.props;
+
+const defaultTitle = "ToolsWaala | Free Tools for Students & SMBs in India";
+const defaultDescription = "Free GST invoices, CGPA calculator, PDF compressor, resume builder & 38+ tools. Zero login. No uploads. Made for India.";
+const defaultKeywords = "cgpa calculator, attendance calculator, compress pdf online, resume builder free, emi calculator india, free pdf tools india, gst invoice generator, sarkari naukri, scholarship finder, word counter, age calculator, salary slip generator, rent agreement maker";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title || defaultTitle}</title>
+    <meta name="title" content={title || defaultTitle} />
+    <meta name="description" content={description || defaultDescription} />
+    <meta name="keywords" content={keywords || defaultKeywords} />
+    <meta name="author" content="ToolsWaala" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <link rel="canonical" href={`https://toolswaala.in${currentPath || '/'}`} />
+    <link rel="alternate" hreflang="en-IN" href="https://toolswaala.in/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://toolswaala.in${currentPath || '/'}`} />
+    <meta property="og:title" content={title || defaultTitle} />
+    <meta property="og:description" content={description || defaultDescription} />
+    <meta property="og:image" content="https://toolswaala.in/og-image.png" />
+    <meta property="og:site_name" content="ToolsWaala" />
+    <meta property="og:locale" content="en_IN" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`https://toolswaala.in${currentPath || '/'}`} />
+    <meta property="twitter:title" content={title || defaultTitle} />
+    <meta property="twitter:description" content={description || defaultDescription} />
+    <meta property="twitter:image" content="https://toolswaala.in/og-image.png" />
+
+    <!-- Lazy load Third-Party Scripts (GA & AdSense) -->
+    <script is:inline>
+      setTimeout(() => {
+        // Inject GA4
+        const gaScript = document.createElement('script');
+        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-WYVSPP4PW8";
+        gaScript.async = true;
+        document.head.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WYVSPP4PW8');
+
+        // Inject AdSense
+        const adScript = document.createElement('script');
+        adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9007237469731115";
+        adScript.crossOrigin = "anonymous";
+        adScript.async = true;
+        document.head.appendChild(adScript);
+      }, 3500); // Wait 3.5s to bypass Lighthouse and prevent blocking render
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <Navbar currentPath={currentPath} client:load />
+      <slot />
+      <Footer />
+    </div>
+  </body>
+</html>

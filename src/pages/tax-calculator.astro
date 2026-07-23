@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { TaxCalculatorTool } from '../react-pages/BusinessTools';
+
+const title = "Income Tax Calculator 2025 — Old vs New Regime";
+const description = "Compare old and new tax regimes instantly. Free income tax calculator for salaried individuals.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/tax-calculator">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which is better - Old or New Tax Regime?","acceptedAnswer":{"@type":"Answer","text":"The New Regime is better if your total deductions are less than 3.75 lakh. Use our calculator to compare both instantly."}},{"@type":"Question","name":"What is the tax-free income limit in 2025?","acceptedAnswer":{"@type":"Answer","text":"Under the New Regime for FY 2025-26, income up to 12 lakh is effectively tax-free."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Income Tax Calculator 2025 — Old vs New Regime","item":"https://toolswaala.in/tax-calculator"}]}</script>
+
+  <PageWrapper title={title} hindi="आयकर" client:load>
+    <TaxCalculatorTool client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; Income Tax Calculator 2025 — Old vs New Regime</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>Income Tax Calculator FY 2025-26</h2><p>Old vs New Regime comparison. 80C, 80D, HRA deductions. Updated for Budget 2025.</p><p>Related: <a href="/hra-calculator">HRA Calculator</a> | <a href="/salary-slip">Salary Slip</a></p>
+    <h2>Frequently Asked Questions</h2><h3>Which is better - Old or New Tax Regime?</h3><p>The New Regime is better if your total deductions are less than 3.75 lakh. Use our calculator to compare both instantly.</p><h3>What is the tax-free income limit in 2025?</h3><p>Under the New Regime for FY 2025-26, income up to 12 lakh is effectively tax-free.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { SopGenerator } from '../react-pages/students';
+
+const title = "SOP Generator — Statement of Purpose Writer";
+const description = "AI-powered Statement of Purpose writer for MS, MBA, and PhD applications.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/sop-generator">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long should an SOP be?","acceptedAnswer":{"@type":"Answer","text":"Most universities expect 800-1000 words (1.5-2 pages). Our generator creates drafts within this range."}},{"@type":"Question","name":"What should I include in my SOP?","acceptedAnswer":{"@type":"Answer","text":"Motivation, academic background, why this university, career goals, and what you will contribute."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"SOP Generator — Statement of Purpose Writer","item":"https://toolswaala.in/sop-generator"}]}</script>
+
+  <PageWrapper title={title} hindi="एसओपी जेनरेटर" client:load>
+    <SopGenerator client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; SOP Generator — Statement of Purpose Writer</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>AI SOP Generator</h2><p>For MS/MBA, PhD, Indian PG, scholarships, internships. Editable output with live word counter.</p><p>Related: <a href="/scholarship-finder">Scholarship Finder</a> | <a href="/resume-builder">Resume Builder</a></p>
+    <h2>Frequently Asked Questions</h2><h3>How long should an SOP be?</h3><p>Most universities expect 800-1000 words (1.5-2 pages). Our generator creates drafts within this range.</p><h3>What should I include in my SOP?</h3><p>Motivation, academic background, why this university, career goals, and what you will contribute.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

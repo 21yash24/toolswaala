@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { WordCounter } from '../react-pages/students';
+
+const title = "Free Word & Character Counter Online";
+const description = "Count words, characters and estimate reading time instantly. Free online tool.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/word-counter">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this word counter include spaces?","acceptedAnswer":{"@type":"Answer","text":"Our word counter provides character counts both with and without spaces, making it perfect for essays and social media."}},{"@type":"Question","name":"What is a good readability score?","acceptedAnswer":{"@type":"Answer","text":"A Flesch-Kincaid score between 60 and 70 is considered standard and easily understood by 13- to 15-year-old students."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Free Word & Character Counter Online","item":"https://toolswaala.in/word-counter"}]}</script>
+
+  <PageWrapper title={title} hindi="वर्ड काउंटर" client:load>
+    <WordCounter client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Free Word & Character Counter Online</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>Word Counter with Readability Score</h2><p>Count words, characters, sentences. Flesch-Kincaid readability, keyword density, character limits for Twitter, Instagram, essays.</p><p>Related: <a href="/sop-generator">SOP Generator</a> | <a href="/resume-builder">Resume Builder</a></p>
+    <h2>Frequently Asked Questions</h2><h3>Does this word counter include spaces?</h3><p>Our word counter provides character counts both with and without spaces, making it perfect for essays and social media.</p><h3>What is a good readability score?</h3><p>A Flesch-Kincaid score between 60 and 70 is considered standard and easily understood by 13- to 15-year-old students.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

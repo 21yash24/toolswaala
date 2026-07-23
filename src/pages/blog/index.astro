@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { BRAND } from '../../shared/constants';
+
+const posts = await getCollection('blog');
+
+// Sort by date (mock sorting since we use simple string dates, but let's just reverse them so newer is first assuming they were added chronologically)
+posts.reverse();
+
+const title = "ToolsWaala Blog - Tips for Indian Students & Businesses";
+const description = "Read our latest articles, guides, and tips on education, finance, and productivity in India.";
+---
+
+<Layout title={title} description={description} currentPath="/blog">
+  <div style="max-width: 1000px; margin: 40px auto; padding: 20px; font-family: system-ui, sans-serif;">
+    <h1 style="font-size: 36px; margin-bottom: 12px; font-weight: 800; letter-spacing: -1px; text-align: center;">The ToolsWaala Blog</h1>
+    <p style="text-align: center; color: var(--app-text-secondary); margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">Insights, guides, and practical advice for Indian students, freelancers, and small businesses.</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+      {posts.map((post) => (
+        <a href={`/blog/${post.id}`} style="text-decoration: none; display: flex; flex-direction: column; background: var(--app-surface-card); border: 1px solid var(--app-border); border-radius: 20px; padding: 24px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;">
+          <div style={`display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 700; margin-bottom: 16px; align-self: flex-start; ${
+            post.data.category === 'Students' 
+              ? 'background: rgba(124,58,237,0.1); color: #7C3AED' 
+              : post.data.category === 'Business' 
+              ? 'background: rgba(255,107,0,0.1); color: #FF6B00' 
+              : 'background: rgba(236,72,153,0.1); color: #EC4899'
+          }`}>
+            {post.data.category}
+          </div>
+          <h2 style="font-size: 20px; margin: 0 0 12px 0; color: var(--app-text); line-height: 1.4;">{post.data.title}</h2>
+          <p style="color: var(--app-text-secondary); font-size: 14px; line-height: 1.6; margin: 0 0 24px 0; flex-grow: 1;">
+            {post.data.description}
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--app-border);">
+            <span style="font-size: 13px; color: var(--app-text-secondary); font-weight: 500;">{post.data.author}</span>
+            <span style="font-size: 13px; color: var(--app-text-secondary);">{post.data.pubDate}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

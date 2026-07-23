@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { ScholarshipFinder } from '../react-pages/students';
+
+const title = "Best Scholarship Finder India 2025";
+const description = "Find and apply for 30+ latest government and private scholarships with verified deadlines.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/scholarship-finder">
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are the best scholarships for Indian students?","acceptedAnswer":{"@type":"Answer","text":"INSPIRE, Post Matric Scholarship, KVPY, Fulbright-Nehru, Commonwealth, Aga Khan Foundation, AICTE Pragati/Saksham."}},{"@type":"Question","name":"Can I get a full scholarship to study abroad?","acceptedAnswer":{"@type":"Answer","text":"Yes! Fulbright, Chevening, DAAD, and Erasmus Mundus cover tuition, living expenses, and travel."}}]}</script>
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Best Scholarship Finder India 2025","item":"https://toolswaala.in/scholarship-finder"}]}</script>
+
+  <PageWrapper title={title} hindi="छात्रवृत्ति खोजें" client:load>
+    <ScholarshipFinder client:only="react" />
+  </PageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; Best Scholarship Finder India 2025</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <h2>35+ Verified Scholarships</h2><p>Government, private, and study abroad scholarships. INSPIRE, Fulbright, Chevening, DAAD, and more.</p><p>Related: <a href="/sop-generator">SOP Generator</a> | <a href="/cgpa-calculator">CGPA Calculator</a></p>
+    <h2>Frequently Asked Questions</h2><h3>What are the best scholarships for Indian students?</h3><p>INSPIRE, Post Matric Scholarship, KVPY, Fulbright-Nehru, Commonwealth, Aga Khan Foundation, AICTE Pragati/Saksham.</p><h3>Can I get a full scholarship to study abroad?</h3><p>Yes! Fulbright, Chevening, DAAD, and Erasmus Mundus cover tuition, living expenses, and travel.</p>
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>

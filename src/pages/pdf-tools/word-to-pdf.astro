@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PdfPageWrapper from '../../shared/PdfPageWrapper';
+import { WordToPdf } from '../../react-pages/pdf';
+
+const title = "Word to PDF Converter Free";
+const description = "Convert DOCX to PDF entirely in your browser. No upload needed.";
+
+const faqs = [
+  {
+    "q": "How to convert docx to PDF online?",
+    "a": "Upload your Word document (.doc or .docx). The tool converts it into a standard PDF that looks identical, preserving layout and styling."
+  },
+  {
+    "q": "Does this work on mobile devices?",
+    "a": "Yes! You can convert Word documents directly from your iPhone, iPad, or Android phone using any browser."
+  }
+];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+});
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/word-to-pdf">
+  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"Word to PDF Converter Free","item":"https://toolswaala.in/pdf-tools/word-to-pdf"}]}</script>
+
+  <PdfPageWrapper title={title} hindi="वर्ड से पीडीएफ" client:load>
+    <WordToPdf client:only="react" />
+  </PdfPageWrapper>
+
+  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+    <nav><a href="/">Home</a> &gt; <a href="/pdf-tools">PDF Tools</a> &gt; Word to PDF Converter Free</nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    
+    
+    <h2>Frequently Asked Questions</h2>
+    {faqs.map(faq => (
+      <h3>{faq.q}</h3>
+      <p>{faq.a}</p>
+    ))}
+    
+    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+  </div>
+</Layout>
