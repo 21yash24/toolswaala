@@ -18,6 +18,19 @@ const defaultKeywords = "cgpa calculator, attendance calculator, compress pdf on
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Theme Flash Prevention (FOUC Fix) -->
+    <script is:inline>
+      (function() {
+        const storedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>{title || defaultTitle}</title>
     <meta name="title" content={title || defaultTitle} />
