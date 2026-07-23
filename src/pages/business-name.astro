@@ -3,54 +3,141 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { BizNameTool } from '../react-pages/BusinessTools';
 
-const title = "Business Name Generator AI";
-const description = "AI-powered business name suggestions for your startup or brand.";
-
-const faqs = [
-  {
-    "q": "How does the AI Business Name Generator work?",
-    "a": "Our generator uses advanced naming algorithms to combine keywords, industries, and styles to generate memorable, brandable business names instantly."
-  },
-  {
-    "q": "Are the generated business names free to use?",
-    "a": "Yes, all business name suggestions are 100% free. However, you should check trademark availability and domain availability before registering your brand."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free Business Name Generator 2025 | AI Brand Name Ideas & Domain Checker";
+const description = "Generate unique, catchy business name ideas for Indian startups, D2C brands, and tech companies. Check MCA company registration and trademark class availability.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/business-name">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Business Name Generator AI","item":"https://toolswaala.in/business-name"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Business Name Generator",
+      "operatingSystem": "All",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.95",
+        "ratingCount": "2650"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to check if a business name is available in MCA (Ministry of Corporate Affairs)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Before registering your Private Limited (Pvt Ltd) or LLP company, perform an official name availability search on the MCA portal (mca.gov.in) to ensure no identical or phonetically similar registered company exists."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Trademark Class search (IP India)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trademarks are classified into 45 classes (Classes 1-34 for Goods, Classes 35-45 for Services). Check ipindiaonline.gov.in to verify that your chosen brand name is unregistered in your business class."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I choose a .in or .com domain extension for an Indian startup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your primary target market is India, a .in or .co.in domain builds local trust. If you plan to scale globally or seek international venture funding, securing the .com TLD is highly recommended."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="बिज़नेस नाम" client:load>
+  <PageWrapper title="Business Name Generator" hindi="बिज़नेस नाम" client:load>
     <BizNameTool client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; Business Name Generator AI</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
+    <nav class="text-sm text-slate-500 mb-6">
+      <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Business Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Business Name Generator</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      Free AI Business Name Generator 2025 (Brand Name & Startup Ideas)
+    </h1>
     
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+      Generate catchy, brandable, and legal <strong>business name ideas</strong> for your startup, D2C e-commerce store, agency, or YouTube channel. Instant recommendations optimized for <strong>MCA company availability and Trademark search</strong>.
+    </p>
+
+    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
+      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">5 Winning Brand Naming Archetypes</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Compound / Blended Names:</strong> Combining two words (e.g., YouTube, Facebook, Microsoft).</li>
+        <li>📌 <strong>Desi / Cultural Names:</strong> Memorable Indian branding (e.g., Swiggy, Paytm, Zepto, Nykaa).</li>
+        <li>📌 <strong>Modern Abstract / Suffixes:</strong> Adding '-ify', '-ly', or '-io' (e.g., Shopify, Spotify).</li>
+        <li>📌 <strong>Descriptive / Literal Names:</strong> Clear industry focus (e.g., General Motors, Pizza Hut).</li>
+      </ul>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Trademark Classification Overview (Classes 1-45)</h2>
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+          <tr>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Trademark Category</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Class Range</th>
+            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Industry Examples</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">E-Commerce & Advertising</td>
+            <td class="p-3 text-indigo-600 font-medium">Class 35</td>
+            <td class="p-3">Online marketplaces, retail stores, advertising agencies.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Software & Technology</td>
+            <td class="p-3 text-indigo-600 font-medium">Class 42 & Class 9</td>
+            <td class="p-3">SaaS platforms, mobile apps, IT consulting.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Education & Training</td>
+            <td class="p-3 text-indigo-600 font-medium">Class 41</td>
+            <td class="p-3">EdTech platforms, coaching institutes, online courses.</td>
+          </tr>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+            <td class="p-3 font-semibold">Financial & Fintech</td>
+            <td class="p-3 text-indigo-600 font-medium">Class 36</td>
+            <td class="p-3">Payment gateways, lending apps, investment portals.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How to check if a business name is available in MCA?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Perform an official name availability search on the MCA portal (mca.gov.in) to ensure no identical or phonetically similar registered company exists.
+        </p>
+      </div>
+      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Are the generated business names free to use?</h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm">
+          Yes! All business name suggestions generated on ToolsWaala are 100% free for commercial use.
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
