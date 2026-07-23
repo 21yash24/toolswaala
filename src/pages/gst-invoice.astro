@@ -67,7 +67,7 @@ const description = "Create tax-compliant GST invoices for small businesses, fre
 
   <!-- Comprehensive SEO Content Block -->
   <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
-    <nav class="text-sm text-slate-500 mb-6">
+    <nav class="text-sm text-slate-500 dark:text-slate-400 mb-6">
       <a href="/" class="hover:underline">Home</a> &gt; <a href="/legal-hub" class="hover:underline">Business Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">GST Invoice Generator</span>
     </nav>
 
@@ -76,44 +76,44 @@ const description = "Create tax-compliant GST invoices for small businesses, fre
     </h1>
     
     <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
-      Generate professional, GST-compliant <strong>B2B and B2C tax invoices</strong> for small businesses, IT freelancers, wholesalers, and service providers across India. Download print-ready PDF bills with <strong>HSN/SAC codes and CGST/SGST/IGST splits</strong>.
+      Generate professional, GST-compliant <strong class="text-slate-900 dark:text-white">B2B and B2C tax invoices</strong> for small businesses, IT freelancers, wholesalers, and service providers across India. Download print-ready PDF bills with <strong class="text-amber-600 dark:text-amber-400">HSN/SAC codes and CGST/SGST/IGST splits</strong>.
     </p>
 
-    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
-      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Rule 46 Mandatory Invoice Components</h2>
-      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
-        <li>📌 <strong>GSTIN & Business Details:</strong> Valid 15-digit GST Identification Number for both supplier and recipient.</li>
-        <li>📌 <strong>Sequential Invoice Numbering:</strong> Unique alphanumeric series per financial year (e.g. <code>INV/2025-26/001</code>).</li>
-        <li>📌 <strong>HSN / SAC Codes:</strong> 4-digit or 6-digit Harmonized System of Nomenclature code per item.</li>
-        <li>📌 <strong>State Code & Place of Supply:</strong> Mandatory to determine whether CGST+SGST or IGST applies.</li>
+    <div class="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 mb-8 shadow-sm">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-amber-400 mb-3">Rule 46 Mandatory Invoice Components</h2>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-200 text-sm">
+        <li>📌 <strong class="text-slate-900 dark:text-white">GSTIN & Business Details:</strong> Valid 15-digit GST Identification Number for both supplier and recipient.</li>
+        <li>📌 <strong class="text-slate-900 dark:text-white">Sequential Invoice Numbering:</strong> Unique alphanumeric series per financial year (e.g. <code class="bg-slate-200 dark:bg-slate-900 px-1.5 py-0.5 rounded text-amber-600 dark:text-amber-400 font-mono">INV/2025-26/001</code>).</li>
+        <li>📌 <strong class="text-slate-900 dark:text-white">HSN / SAC Codes:</strong> 4-digit or 6-digit Harmonized System of Nomenclature code per item.</li>
+        <li>📌 <strong class="text-slate-900 dark:text-white">State Code & Place of Supply:</strong> Mandatory to determine whether CGST+SGST or IGST applies.</li>
       </ul>
     </div>
 
     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">HSN Code Mandatory Digits Table</h2>
     <div class="overflow-x-auto mb-10">
-      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
-        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
           <tr>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Annual Aggregate Turnover (AATO)</th>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Mandatory HSN Digits (B2B)</th>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Mandatory HSN Digits (B2C)</th>
+            <th class="p-3.5 border-b border-slate-200 dark:border-slate-700">Annual Aggregate Turnover (AATO)</th>
+            <th class="p-3.5 border-b border-slate-200 dark:border-slate-700">Mandatory HSN Digits (B2B)</th>
+            <th class="p-3.5 border-b border-slate-200 dark:border-slate-700">Mandatory HSN Digits (B2C)</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700/80">
           <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">Up to ₹5 Crore</td>
-            <td class="p-3 text-indigo-600 font-medium">4 Digits</td>
-            <td class="p-3">Optional (4 Digits recommended)</td>
+            <td class="p-3.5 font-semibold text-slate-900 dark:text-slate-100">Up to ₹5 Crore</td>
+            <td class="p-3.5 text-amber-600 dark:text-amber-400 font-medium">4 Digits</td>
+            <td class="p-3.5">Optional (4 Digits recommended)</td>
           </tr>
           <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">Above ₹5 Crore</td>
-            <td class="p-3 text-indigo-600 font-bold">6 Digits</td>
-            <td class="p-3 text-indigo-600 font-bold">6 Digits</td>
+            <td class="p-3.5 font-semibold text-slate-900 dark:text-slate-100">Above ₹5 Crore</td>
+            <td class="p-3.5 text-amber-600 dark:text-amber-400 font-bold">6 Digits</td>
+            <td class="p-3.5 text-amber-600 dark:text-amber-400 font-bold">6 Digits</td>
           </tr>
           <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">Chemicals & Hazardous Goods</td>
-            <td class="p-3 text-amber-600 font-bold">8 Digits</td>
-            <td class="p-3 text-amber-600 font-bold">8 Digits</td>
+            <td class="p-3.5 font-semibold text-slate-900 dark:text-slate-100">Chemicals & Hazardous Goods</td>
+            <td class="p-3.5 text-rose-500 dark:text-rose-400 font-bold">8 Digits</td>
+            <td class="p-3.5 text-rose-500 dark:text-rose-400 font-bold">8 Digits</td>
           </tr>
         </tbody>
       </table>
@@ -121,13 +121,13 @@ const description = "Create tax-compliant GST invoices for small businesses, fre
 
     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
     <div class="space-y-6">
-      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+      <div class="bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
         <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What are the mandatory 16 details required on a valid GST invoice?</h3>
         <p class="text-slate-600 dark:text-slate-300 text-sm">
           Under Rule 46 of CGST Rules 2017, a valid tax invoice must contain: Supplier Name, Address & GSTIN, Consecutive Invoice Number, Date, Buyer GSTIN, Place of Supply, HSN/SAC Code, Taxable Value, GST amounts, and Signature.
         </p>
       </div>
-      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+      <div class="bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
         <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the threshold limit for mandatory GST Registration?</h3>
         <p class="text-slate-600 dark:text-slate-300 text-sm">
           GST registration is mandatory for businesses supplying goods with annual turnover exceeding ₹40 Lakh (₹20 Lakh for Special Category States) or service providers exceeding ₹20 Lakh.

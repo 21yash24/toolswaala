@@ -83,7 +83,7 @@ function addMonths(dateStr, months) {
 // ============================================================
 // STYLES (PREMIUM DARK MODE)
 // ============================================================
-const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   :root {
@@ -91,24 +91,26 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     --primary-dark: #D45800;
     --surface: #F8FAFC;
     --surface-dark: #FFFFFF;
+    --input-bg: #FFFFFF;
     --accent: #FFB347;
-    --border: rgba(0, 0, 0, 0.08);
+    --border: rgba(0, 0, 0, 0.12);
     --text: #0F172A;
-    --text-secondary: #64748B;
+    --text-secondary: #475569;
     --success: #22C55E;
     --danger: #EF4444;
     --radius: 16px;
     --radius-sm: 8px;
-    --shadow: 0 4px 20px -2px rgba(0,0,0,0.1);
+    --shadow: 0 4px 20px -2px rgba(0,0,0,0.06);
     --shadow-hover: 0 8px 30px -4px rgba(255,107,0,0.2);
   }
 
-  .dark-mode {
+  .dark, .dark-mode, html.dark {
     --surface: #09090B;
-    --surface-dark: #141414;
-    --text: #FAFAFA;
-    --text-secondary: #A1A1AA;
-    --border: rgba(255, 255, 255, 0.08);
+    --surface-dark: #18181B;
+    --input-bg: #09090B;
+    --text: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --border: rgba(255, 255, 255, 0.16);
     --shadow: 0 10px 40px -10px rgba(0,0,0,0.8);
   }
 
@@ -123,15 +125,15 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     color: var(--text);
   }
 
-  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   
-  h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
   
   .hindi-label {
     font-family: 'Noto Sans Devanagari', sans-serif;
     font-size: 11px;
     color: var(--text-secondary);
-    opacity: 0.6;
+    opacity: 0.8;
     display: block;
     margin-top: 2px;
   }
@@ -195,15 +197,16 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     padding: 24px;
     transition: all 0.3s ease;
   }
-  .glass-card:hover { border-color: rgba(255,107,0,0.3); box-shadow: var(--shadow-hover); }
+  .glass-card:hover { border-color: rgba(255,107,0,0.4); box-shadow: var(--shadow-hover); }
 
   .form-group { margin-bottom: 20px; }
   .form-group label {
     display: block;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-secondary);
     margin-bottom: 8px;
+    letter-spacing: 0.01em;
   }
   .form-group input,
   .form-group select,
@@ -215,7 +218,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     font-family: inherit;
     font-size: 14px;
     color: var(--text);
-    background: var(--surface-dark);
+    background: var(--input-bg);
     transition: all 0.2s;
     outline: none;
   }
@@ -223,8 +226,8 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   .form-group select:focus,
   .form-group textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(255,107,0,0.2);
-    background: var(--surface);
+    box-shadow: 0 0 0 3px rgba(255,107,0,0.25);
+    background: var(--input-bg);
   }
   .form-group textarea { resize: vertical; min-height: 100px; }
 
