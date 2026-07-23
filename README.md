@@ -1,8 +1,7 @@
-# Astro Starter Kit: Minimal
+# ToolsWaala — Free Online Tools for Students & Businesses in India
 
-```sh
-npm create astro@latest -- --template minimal
-```
+<!-- Trigger Cloudflare Pages deployment -->
+
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
