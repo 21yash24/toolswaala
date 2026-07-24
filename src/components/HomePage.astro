@@ -37,8 +37,8 @@ const cats = [
       Professional tools for Students and SMBs. Create invoices, process PDFs, and calculate CGPA instantly.
     </p>
     <div style="max-width: 650px; margin: 40px auto 0; display: flex; gap: 12px; background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 24px; border: 2px solid var(--app-border); box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-      <div style={`display: flex; align-items: center; color: ${BRAND.textSecondary}; font-size: 24px;`}>🔍</div>
-      <input id="search-input" placeholder={`Search ${totalCount}+ tools (e.g. CGPA, Invoice, बोनाफाइड)...`} style={`flex: 1; background: transparent; border: none; color: ${BRAND.text}; padding: 12px 0; font-size: 18px; outline: none; font-weight: 500;`} />
+      <div style={`display: flex; align-items: center; color: ${BRAND.textSecondary}; font-size: 24px;`} aria-hidden="true">🔍</div>
+      <input id="search-input" aria-label={`Search ${totalCount}+ tools`} placeholder={`Search ${totalCount}+ tools (e.g. CGPA, Invoice, बोनाफाइड)...`} style={`flex: 1; background: transparent; border: none; color: ${BRAND.text}; padding: 12px 0; font-size: 18px; outline: none; font-weight: 500;`} />
     </div>
   </div>
 
@@ -53,7 +53,7 @@ const cats = [
       <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Signups Required</div>
     </div>
     <div style="text-align: center;">
-      <div id="anim-counter" style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>0+</div>
+      <div id="anim-counter" style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>50,000+</div>
       <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Indians Trust Us</div>
     </div>
     <div style="text-align: center;">
@@ -68,6 +68,7 @@ const cats = [
       <button 
         class={`cat-btn ${c.key === 'all' ? 'active' : ''}`}
         data-cat={c.key} 
+        aria-label={`Filter by ${c.label}`}
         style={`padding: 10px 20px; border-radius: 12px; border: 2px solid ${c.key === 'all' ? c.color : BRAND.border}; cursor: pointer; background: ${c.key === 'all' ? c.color + '15' : 'transparent'}; color: ${c.key === 'all' ? c.color : BRAND.text}; font-weight: 700; font-size: 14px; transition: 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 8px;`}
         data-color={c.color}
       >
