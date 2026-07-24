@@ -119,6 +119,15 @@ export default function StudentPageWrapper({ title, hindi, children }) {
         ))}
       </div>
 
+      {/* E-E-A-T Author Attribution & Verification Box */}
+      <div style={{ marginTop: 32, padding: "20px 24px", borderRadius: 16, background: "rgba(255,255,255,0.02)", border: `1px solid ${BRAND.border}`, display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ width: 44, height: 44, borderRadius: "50%", background: STUDENT_BRAND.accent, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 16, flexShrink: 0 }}>TW</div>
+        <div>
+          <div style={{ fontSize: 13, color: BRAND.text, fontWeight: 700 }}>Verified & Maintained by ToolsWaala Student Editorial Team</div>
+          <div style={{ fontSize: 12, color: BRAND.textSecondary, lineHeight: 1.4, marginTop: 2 }}>Fact-checked against official Indian university UGC guidelines. 100% browser-based, zero data upload. Updated July 2025.</div>
+        </div>
+      </div>
+
       <div style={{ marginTop: 40, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
         <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>More Student Tools</h3>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
