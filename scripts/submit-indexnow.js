@@ -16,7 +16,9 @@ const pages = [
   "/pdf-tools/pdf-to-word", "/pdf-tools/watermark-pdf", "/mumbai-university-cgpa-calculator",
   "/vtu-cgpa-calculator", "/anna-university-cgpa-calculator", "/aktu-cgpa-calculator",
   "/ktu-cgpa-calculator", "/sppu-cgpa-calculator", "/delhi-university-cgpa-calculator",
-  "/cbse-cgpa-calculator", "/students"
+  "/cbse-cgpa-calculator", "/jntuh-cgpa-calculator", "/gtu-cgpa-calculator", "/calicut-cgpa-calculator",
+  "/jntuk-cgpa-calculator", "/osmania-cgpa-calculator", "/rgpv-cgpa-calculator", "/bput-cgpa-calculator",
+  "/srm-cgpa-calculator", "/students"
 ];
 
 const urlList = pages.map(p => `https://${host}${p}`);

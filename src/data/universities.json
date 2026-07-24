@@ -86,5 +86,45 @@
     "desc": "Calicut University (UOC) Grade Point Average to Percentage Converter.",
     "faq1": "Calicut University (UOC) uses the 10-point scale: Percentage = CGPA × 10",
     "faq2": "First Class in Calicut University is awarded at 6.0 CGPA (60%)."
+  },
+  {
+    "id": "jntuk",
+    "name": "JNTU Kakinada (JNTUK)",
+    "idx": 12,
+    "desc": "JNTU Kakinada (JNTUK) R19 / R20 B.Tech CGPA to Percentage Calculator.",
+    "faq1": "JNTUK R19/R20 regulations use: Percentage = (CGPA - 0.75) × 10",
+    "faq2": "A CGPA of 6.75 in JNTUK corresponds to First Class (60%)."
+  },
+  {
+    "id": "osmania",
+    "name": "Osmania University (OU)",
+    "idx": 13,
+    "desc": "Osmania University (OU) CGPA to Percentage Converter for Degree & Engineering.",
+    "faq1": "Osmania University uses the official formula: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A CGPA of 7.0 is equivalent to 65% in Osmania University."
+  },
+  {
+    "id": "rgpv",
+    "name": "RGPV Bhopal",
+    "idx": 14,
+    "desc": "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV) CGPA to Percentage Calculator.",
+    "faq1": "RGPV B.Tech uses the formula: Percentage = CGPA × 10",
+    "faq2": "First Division with Honours in RGPV requires a CGPA of 7.5 or higher."
+  },
+  {
+    "id": "bput",
+    "name": "BPUT Odisha",
+    "idx": 15,
+    "desc": "Biju Patnaik University of Technology (BPUT) CGPA to Percentage Converter.",
+    "faq1": "BPUT Odisha uses: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A BPUT CGPA of 6.5 equals 60% (First Class)."
+  },
+  {
+    "id": "srm",
+    "name": "SRM Institute of Tech (SRMIST)",
+    "idx": 16,
+    "desc": "SRM University (SRMIST) CGPA to Percentage Calculator.",
+    "faq1": "SRMIST uses standard 10-point scaling: Percentage = CGPA × 10",
+    "faq2": "A CGPA of 9.0+ qualifies for First Class with Distinction at SRM."
   }
 ]
