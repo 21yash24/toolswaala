@@ -39,6 +39,12 @@ export default function Footer() {
               <a key={t.id} href={t.path} style={fs}>{t.name}</a>
             ))}
           </div>
+          <div>
+            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 20, fontSize: 13 }}>📰 Guides & Articles</div>
+            {[{n:"All Blog Articles",p:"/blog"},{n:"75% Attendance Rule",p:"/blog/75-percent-attendance-rule-guide"},{n:"Fresher ATS Resume",p:"/blog/ats-resume-for-freshers-guide"},{n:"GST Invoice Format",p:"/blog/gst-invoice-format-india-2025"},{n:"CGPA to Percentage",p:"/blog/cgpa-to-percentage-guide-2025"},{n:"Tax Regime 2025",p:"/blog/new-tax-regime-vs-old-tax-regime-2025"}].map(t=>(
+              <a key={t.p} href={t.p} style={fs}>{t.n}</a>
+            ))}
+          </div>
         </div>
         <div style={{ borderTop: `1px solid ${BRAND.border}`, paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
           <div>

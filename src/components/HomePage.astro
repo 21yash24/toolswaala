@@ -108,8 +108,42 @@ const cats = [
     ))}
   </div>
 
+  {/* Featured Blog & Educational Guides Section */}
+  <div style="margin-top: 80px; margin-bottom: 40px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h2 style={`font-size: 28px; color: ${BRAND.text}; font-weight: 800; margin-bottom: 6px;`}>📰 Popular Guides & Articles</h2>
+        <p style={`font-size: 14px; color: ${BRAND.textSecondary}; margin: 0;`}>Explore high-depth tutorials on Indian GST rules, university CGPA conversions, and placement resumes.</p>
+      </div>
+      <a href="/blog" style="padding: 10px 20px; border-radius: 12px; background: rgba(236,72,153,0.1); color: #EC4899; text-decoration: none; font-weight: 700; font-size: 14px; border: 1px solid rgba(236,72,153,0.3);">View All 29 Articles →</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <a href="/blog/75-percent-attendance-rule-guide" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #7C3AED; text-transform: uppercase; letter-spacing: 0.05em;">Students</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">75% Attendance Rule — How Many Classes Can You Bunk?</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">Learn UGC mandatory attendance calculation formulas and safe bunk limits.</p>
+      </a>
+      <a href="/blog/ats-resume-for-freshers-guide" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #7C3AED; text-transform: uppercase; letter-spacing: 0.05em;">Career</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">ATS Resume for Freshers 2025 Guide</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">How to format single-page placement resumes for Naukri & LinkedIn scanners.</p>
+      </a>
+      <a href="/blog/gst-invoice-format-india-2025" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #FF6B00; text-transform: uppercase; letter-spacing: 0.05em;">Business</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">GST Tax Invoice Format Rules 2025</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">Mandatory CGST, SGST, IGST, and HSN code rules for B2B billing in India.</p>
+      </a>
+      <a href="/blog/top-fully-funded-scholarships-for-indian-students-2025" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #10B981; text-transform: uppercase; letter-spacing: 0.05em;">Scholarships</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">Top Fully Funded Scholarships for Indian Students</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">Comprehensive list of state and central scholarships with eligibility criteria.</p>
+      </a>
+    </div>
+  </div>
+
   {/* Homepage FAQ Section & Schema */}
-  <div style="margin-top: 80px; padding: 40px 32px; border-radius: 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--app-border);">
+  <div style="margin-top: 40px; padding: 40px 32px; border-radius: 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--app-border);">
     <h2 style={`font-size: 28px; color: ${BRAND.text}; font-weight: 800; margin-bottom: 28px; text-align: center;`}>❓ Frequently Asked Questions</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
       <div>
