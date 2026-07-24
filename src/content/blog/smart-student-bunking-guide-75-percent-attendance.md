@@ -1,32 +1,29 @@
 ---
-title: "The Smart Student’s Guide to Bunking: How to Maintain 75% Attendance Like a Pro"
-description: "Bunking is an art, but getting detained is a tragedy. Learn the calculated way to skip classes while staying on the safe side of the 75% rule."
-pubDate: "May 6, 2026"
-author: "ToolsWaala Team"
+title: "UGC 75% Attendance Rule: Complete Student Bunking & Calculation Guide (2025-26)"
+description: "Master the mathematics of the 75% UGC attendance rule. Calculate safe bunks per subject, handle medical leave condonation, and avoid college exam detention."
+pubDate: "2025-07-24"
+author: "ToolsWaala Academic Desk"
 category: "Students"
 slug: "smart-student-bunking-guide-75-percent-attendance"
 ---
 
+Most Indian universities (VTU, Mumbai University, AKTU, Anna University, DU, KTU, SPPU) strictly enforce the **75% attendance criteria** under UGC guidelines. Falling below 75% can lead to exam detention, admit card withholding, or mandatory condonation fees.
 
-      <h2>Why 75% is the Magic Number</h2>
-      <p>Most Indian universities have a strict 75% attendance criteria. While we don't encourage missing classes, we know that sometimes you need that extra time for a startup idea, a competition, or just a mental health break.</p>
-      
-      <h3>The Strategy:</h3>
-      <p>The key is not to bunk randomly, but to bunk <strong>mathematically</strong>. You need to know exactly how many "bullets" (bunks) you have left in your magazine before the semester ends.</p>
+### The Mathematics Behind 75% Attendance
+To determine if you can skip an upcoming class while staying at or above 75%, use the core attendance formula:
 
-      <h3>Common Bunking Mistakes:</h3>
-      <ul>
-        <li><strong>Bunking early in the semester:</strong> You never know when you'll actually get sick later.</li>
-        <li><strong>Missing lab sessions:</strong> Labs usually carry more weightage and are harder to compensate for.</li>
-        <li><strong>Not tracking:</strong> Guessing your attendance is the fastest way to get a 'detained' list notice.</li>
-      </ul>
+$$\text{Safe Bunks} = \left\lfloor \frac{\text{Classes Attended} - (0.75 \times \text{Total Conducted Classes})}{0.75} \right\rfloor$$
 
-      <div style="margin: 40px 0; padding: 24px; background: rgba(236,72,153,0.1); border-radius: 16px; border: 1px solid rgba(236,72,153,0.2);">
-        <h4 style="margin-top:0; color: #EC4899;">Bunk with Confidence!</h4>
-        <p>Our Attendance Tracker now features a "Bunk Mode". It tells you exactly how many classes you can safely miss today to stay at 75%.</p>
-        <a href="/attendance-calculator" style="color: #EC4899; font-weight: 700; text-decoration: none;">Track Your Bunks Now →</a>
-      </div>
+If the result is positive, that number represents the exact number of consecutive classes you can skip without falling below 75%.
 
-      <h2>Pro Tip: The Streak Method</h2>
-      <p>Try to attend classes in streaks. Building a 5-day attendance streak gives you a "buffer" that allows for a guilt-free bunk on a Friday. Use our streak tracker to keep yourself motivated!</p>
+### What Happens If You Fall Below 75%?
+1. **65% to 74% (Medical Condonation):** Most colleges allow condonation upon submitting an official registered medical certificate and paying a condonation fee (typically ₹500 to ₹1,500).
+2. **Below 65% (Detention List):** Falling below 65% usually results in course detention, requiring you to re-attend classes with junior batches in subsequent semesters.
+
+### 5 Critical Rules for Calculated Bunking
+- **Never Bunk Early in the Semester:** Save your attendance buffer for mid-terms or genuine emergencies later in the term.
+- **Prioritize 2-Credit & 4-Credit Labs:** Lab sessions carry higher credits per hour and are harder to compensate.
+- **Track Attendance Daily:** Use automated trackers instead of guessing to avoid end-of-semester surprises.
+
+[Calculate Your Safe College Bunks Free](/attendance-calculator)
     
