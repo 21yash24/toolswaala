@@ -65,94 +65,94 @@ const description = "Create shareable UPI payment links & QR codes for small bus
     <UpiTool client:only="react" />
   </PageWrapper>
 
-  <!-- Sleek Dark Glassmorphic SEO Content Block -->
-  <article style="max-width: 900px; margin: 60px auto 40px; padding: 0 24px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; line-height: 1.7; color: var(--app-text);">
-    <div class="mb-10 text-center sm:text-left">
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-4">
+  <!-- Sleek High-Contrast SEO Content Block -->
+  <article class="seo-article">
+    <div style="margin-bottom: 32px;">
+      <span class="seo-badge">
         ⚡ NPCI Deep Link Spec 2025
       </span>
-      <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">
+      <h2 style="font-size: clamp(24px, 4vw, 32px); font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
         Direct UPI Link & Instant QR Generator
-      </h3>
-      <p class="text-base text-zinc-400 max-w-2xl">
+      </h2>
+      <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7; max-width: 700px;">
         Generate zero-fee payment links and printable QR codes for store counters, freelancing invoices, and shop sales. Receive 100% direct bank deposits with 0% MDR commissions.
       </p>
     </div>
 
-    <!-- Glassmorphic Specification Card -->
-    <div class="bg-zinc-900/40 border border-white/10 rounded-2xl p-6 mb-10 backdrop-blur-md shadow-2xl">
-      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
-        <span class="text-amber-400">📌</span> NPCI Standard UPI Deep Link Format
-      </h4>
-      <p class="text-zinc-400 text-sm mb-4">
+    <!-- Specification Card -->
+    <div class="seo-card">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+        <span style="color: #FF6B00;">📌</span> NPCI Standard UPI Deep Link Format
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin-bottom: 16px;">
         ToolsWaala constructs standardized Unified Payments Interface (UPI) deep links adhering to National Payments Corporation of India (NPCI) specs:
       </p>
-      <div class="bg-zinc-950/80 p-4 rounded-xl border border-white/10 font-mono text-xs text-amber-300 overflow-x-auto mb-4">
+      <div style="background: rgba(255,107,0,0.06); padding: 16px; border-radius: 12px; border: 1px solid var(--app-border); font-family: monospace; font-size: 13px; color: #D45800; overflow-x: auto; margin-bottom: 20px;">
         upi://pay?pa=yourvpa@upi&pn=BusinessName&am=500.00&cu=INR&tn=Invoice101
       </div>
-      <div class="grid sm:grid-cols-2 gap-3 text-xs text-zinc-400">
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">pa (Payee VPA)</span>
-          Your UPI ID (e.g. <code>9876543210@paytm</code>)
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+        <div style="background: var(--app-surface); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+          <strong style="color: var(--app-text); display: block; font-size: 13px; margin-bottom: 2px;">pa (Payee VPA)</strong>
+          <span style="font-size: 12px; color: var(--app-text-secondary);">Your UPI ID (e.g. <code>9876543210@paytm</code>)</span>
         </div>
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">pn (Payee Name)</span>
-          Display name registered with your bank
+        <div style="background: var(--app-surface); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+          <strong style="color: var(--app-text); display: block; font-size: 13px; margin-bottom: 2px;">pn (Payee Name)</strong>
+          <span style="font-size: 12px; color: var(--app-text-secondary);">Display name registered with your bank</span>
         </div>
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">am (Amount)</span>
-          Transaction amount in INR (optional)
+        <div style="background: var(--app-surface); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+          <strong style="color: var(--app-text); display: block; font-size: 13px; margin-bottom: 2px;">am (Amount)</strong>
+          <span style="font-size: 12px; color: var(--app-text-secondary);">Transaction amount in INR (optional)</span>
         </div>
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">tn (Transaction Note)</span>
-          Invoice reference or order description
+        <div style="background: var(--app-surface); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+          <strong style="color: var(--app-text); display: block; font-size: 13px; margin-bottom: 2px;">tn (Transaction Note)</strong>
+          <span style="font-size: 12px; color: var(--app-text-secondary);">Invoice reference or order description</span>
         </div>
       </div>
     </div>
 
     <!-- Comparison Table -->
-    <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Direct UPI Link vs Traditional Gateway</h4>
-    <div class="overflow-x-auto mb-12">
-      <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--app-border); border-radius: 16px; overflow: hidden; font-size: 14px; background: var(--app-surface-card);">
-        <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">Direct UPI Link vs Traditional Gateway</h3>
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead>
           <tr>
-            <th class="p-4 border-b border-white/10">Feature</th>
-            <th class="p-4 border-b border-white/10 text-amber-400">ToolsWaala Direct Link</th>
-            <th class="p-4 border-b border-white/10 text-zinc-500">Payment Gateways</th>
+            <th>Feature</th>
+            <th style="color: #FF6B00;">ToolsWaala Direct Link</th>
+            <th>Payment Gateways</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-white/5 text-zinc-300">
-          <tr class="hover:bg-white/5 transition-colors">
-            <td class="p-4 font-semibold text-white">Transaction MDR Fee</td>
-            <td class="p-4 text-emerald-400 font-bold">0% (100% Free)</td>
-            <td class="p-4 text-zinc-400">2.0% + 18% GST</td>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: var(--app-text);">Transaction MDR Fee</td>
+            <td style="color: #10B981; font-weight: 700;">0% (100% Free)</td>
+            <td>2.0% + 18% GST</td>
           </tr>
-          <tr class="hover:bg-white/5 transition-colors">
-            <td class="p-4 font-semibold text-white">Settlement Time</td>
-            <td class="p-4 text-emerald-400 font-bold">Instant Bank Transfer</td>
-            <td class="p-4 text-zinc-400">T+1 or T+2 Business Days</td>
+          <tr>
+            <td style="font-weight: 700; color: var(--app-text);">Settlement Time</td>
+            <td style="color: #10B981; font-weight: 700;">Instant Bank Transfer</td>
+            <td>T+1 or T+2 Business Days</td>
           </tr>
-          <tr class="hover:bg-white/5 transition-colors">
-            <td class="p-4 font-semibold text-white">KYC Requirement</td>
-            <td class="p-4 text-emerald-400 font-bold">Zero KYC Required</td>
-            <td class="p-4 text-zinc-400">Merchant Document Verification</td>
+          <tr>
+            <td style="font-weight: 700; color: var(--app-text);">KYC Requirement</td>
+            <td style="color: #10B981; font-weight: 700;">Zero KYC Required</td>
+            <td>Merchant Document Verification</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Glassmorphic FAQ Cards -->
-    <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Frequently Asked Questions</h4>
-    <div class="grid sm:grid-cols-2 gap-4">
-      <div class="bg-zinc-900/40 p-5 rounded-2xl border border-white/10 backdrop-blur-md hover:border-amber-500/30 transition-all">
-        <h4 class="text-sm font-semibold text-white mb-2">Are there any gateway fees (MDR)?</h4>
-        <p class="text-zinc-400 text-xs leading-relaxed">
+    <!-- FAQ Cards -->
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">Frequently Asked Questions</h3>
+    <div class="seo-faq-grid">
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Are there any gateway fees (MDR)?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
           Zero fees! Direct NPCI UPI deep links route payments directly from customer bank accounts to your bank account with 0% MDR fees.
         </p>
       </div>
-      <div class="bg-zinc-900/40 p-5 rounded-2xl border border-white/10 backdrop-blur-md hover:border-amber-500/30 transition-all">
-        <h4 class="text-sm font-semibold text-white mb-2">Are UPI payment QRs secure?</h4>
-        <p class="text-zinc-400 text-xs leading-relaxed">
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Are UPI payment QRs secure?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
           Yes. UPI QR codes only store public routing parameters (your VPA ID). They cannot deduct funds or access account balances.
         </p>
       </div>

@@ -66,7 +66,7 @@ const description = "Create tax-compliant GST invoices for small businesses, fre
   </PageWrapper>
 
   <!-- Sleek Dark Glassmorphic SEO Content Block -->
-  <article style="max-width: 900px; margin: 60px auto 40px; padding: 0 24px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; line-height: 1.7; color: var(--app-text);">
+  <article class="seo-article">
     <div class="mb-10 text-center sm:text-left">
       <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-4">
         🧾 Rule 46 CGST Tax Bill Compliance
@@ -74,31 +74,31 @@ const description = "Create tax-compliant GST invoices for small businesses, fre
       <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">
         Free GST Invoice & Tax Bill Creator 2025
       </h3>
-      <p class="text-base text-zinc-400 max-w-2xl">
+      <p style="color: var(--app-text-secondary);">
         Generate professional B2B and B2C GST-compliant invoices with automatic CGST, SGST, IGST calculations and HSN/SAC codes. Print or save instant PDF invoices.
       </p>
     </div>
 
     <!-- Rule 46 Components Glass Card -->
-    <div class="bg-zinc-900/40 border border-white/10 rounded-2xl p-6 mb-10 backdrop-blur-md shadow-2xl">
+    <div class="seo-card">
       <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
         <span class="text-amber-400">📋</span> Mandatory Rule 46 Invoice Components
       </h4>
-      <div class="grid sm:grid-cols-2 gap-3 text-xs text-zinc-400">
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">GSTIN & Address</span>
+      <div style="color: var(--app-text-secondary);">
+        <div class="seo-card">
+          <span style="color: var(--app-text);">GSTIN & Address</span>
           15-digit GSTIN for supplier and recipient
         </div>
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">Sequential Invoice No.</span>
+        <div class="seo-card">
+          <span style="color: var(--app-text);">Sequential Invoice No.</span>
           Unique series per financial year (e.g. <code>INV/2025-26/001</code>)
         </div>
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">HSN / SAC Codes</span>
+        <div class="seo-card">
+          <span style="color: var(--app-text);">HSN / SAC Codes</span>
           4-digit or 6-digit HSN classification code
         </div>
-        <div class="bg-zinc-900/60 p-3 rounded-xl border border-white/5">
-          <span class="text-white font-semibold block mb-0.5">Place of Supply</span>
+        <div class="seo-card">
+          <span style="color: var(--app-text);">Place of Supply</span>
           State code determining CGST+SGST vs IGST
         </div>
       </div>
@@ -106,28 +106,28 @@ const description = "Create tax-compliant GST invoices for small businesses, fre
 
     <!-- HSN Code Table -->
     <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Mandatory HSN Code Digits</h4>
-    <div class="overflow-x-auto mb-12">
-      <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--app-border); border-radius: 16px; overflow: hidden; font-size: 14px; background: var(--app-surface-card);">
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
         <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
           <tr>
             <th class="p-4 border-b border-white/10">Turnover (AATO)</th>
             <th class="p-4 border-b border-white/10 text-amber-400">B2B Invoices</th>
-            <th class="p-4 border-b border-white/10 text-zinc-400">B2C Invoices</th>
+            <th style="color: var(--app-text-secondary);">B2C Invoices</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-white/5 text-zinc-300">
+        <tbody style="color: var(--app-text-secondary);">
           <tr class="hover:bg-white/5 transition-colors">
-            <td class="p-4 font-semibold text-white">Up to ₹5 Crore</td>
+            <td style="color: var(--app-text);">Up to ₹5 Crore</td>
             <td class="p-4 text-emerald-400 font-bold">4 Digits</td>
-            <td class="p-4 text-zinc-400">Optional (4 Digits recommended)</td>
+            <td style="color: var(--app-text-secondary);">Optional (4 Digits recommended)</td>
           </tr>
           <tr class="hover:bg-white/5 transition-colors">
-            <td class="p-4 font-semibold text-white">Above ₹5 Crore</td>
+            <td style="color: var(--app-text);">Above ₹5 Crore</td>
             <td class="p-4 text-amber-400 font-bold">6 Digits</td>
             <td class="p-4 text-amber-400 font-bold">6 Digits</td>
           </tr>
           <tr class="hover:bg-white/5 transition-colors">
-            <td class="p-4 font-semibold text-white">Chemicals / Chemical Goods</td>
+            <td style="color: var(--app-text);">Chemicals / Chemical Goods</td>
             <td class="p-4 text-rose-400 font-bold">8 Digits</td>
             <td class="p-4 text-rose-400 font-bold">8 Digits</td>
           </tr>
@@ -137,16 +137,16 @@ const description = "Create tax-compliant GST invoices for small businesses, fre
 
     <!-- FAQs -->
     <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Frequently Asked Questions</h4>
-    <div class="grid sm:grid-cols-2 gap-4">
-      <div class="bg-zinc-900/40 p-5 rounded-2xl border border-white/10 backdrop-blur-md hover:border-amber-500/30 transition-all">
-        <h4 class="text-sm font-semibold text-white mb-2">What details are mandatory on a GST invoice?</h4>
-        <p class="text-zinc-400 text-xs leading-relaxed">
+    <div class="seo-faq-grid">
+      <div class="seo-card">
+        <h4 style="color: var(--app-text);">What details are mandatory on a GST invoice?</h4>
+        <p style="color: var(--app-text-secondary);">
           Under Rule 46, invoices must state Supplier Name, GSTIN, Date, Invoice No, Buyer GSTIN, HSN Code, Taxable Value, CGST/SGST/IGST rates, and totals.
         </p>
       </div>
-      <div class="bg-zinc-900/40 p-5 rounded-2xl border border-white/10 backdrop-blur-md hover:border-amber-500/30 transition-all">
-        <h4 class="text-sm font-semibold text-white mb-2">What is the GST registration threshold?</h4>
-        <p class="text-zinc-400 text-xs leading-relaxed">
+      <div class="seo-card">
+        <h4 style="color: var(--app-text);">What is the GST registration threshold?</h4>
+        <p style="color: var(--app-text-secondary);">
           ₹40 Lakh turnover for goods suppliers (₹20 Lakh for special category states) and ₹20 Lakh for service providers.
         </p>
       </div>
