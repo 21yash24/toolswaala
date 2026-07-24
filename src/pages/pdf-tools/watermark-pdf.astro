@@ -3,54 +3,75 @@ import Layout from '../../layouts/Layout.astro';
 import PdfPageWrapper from '../../shared/PdfPageWrapper';
 import { WatermarkPdf } from '../../react-pages/pdf';
 
-const title = "Add Watermark to PDF Free";
-const description = "Add text watermark to your PDF pages. Free online watermark tool.";
-
-const faqs = [
-  {
-    "q": "How to add a watermark to PDF?",
-    "a": "Upload your PDF, type the watermark text (e.g. 'CONFIDENTIAL', 'DRAFT'), adjust the rotation, opacity, and font size, and apply it to all pages."
-  },
-  {
-    "q": "Can I add image watermarks to a PDF?",
-    "a": "Currently, our tool supports adding text watermarks with full opacity and positioning control."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free PDF Watermark Tool 2025 | Add Text Stamps & Protection";
+const description = "Add custom text watermarks, confidential stamps, and copyright notices to PDF pages online. 100% private client-side watermark generator.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/watermark-pdf">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"Add Watermark to PDF Free","item":"https://toolswaala.in/pdf-tools/watermark-pdf"}]}</script>
+  <script type="application/ld+json" is:inline set:html={'{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to add a diagonal watermark across all PDF pages?","acceptedAnswer":{"@type":"Answer","text":"Upload your document, type your desired watermark text, choose font size, opacity, and rotation angle (45° diagonal), then click Apply Watermark."}},{"@type":"Question","name":"Can third parties easily remove the text watermark?","acceptedAnswer":{"@type":"Answer","text":"ToolsWaala flattens the watermark directly into the PDF page canvas layers, making simple text deletion impossible for unauthorized recipients."}},{"@type":"Question","name":"Is my watermarked PDF file secure?","acceptedAnswer":{"@type":"Answer","text":"100% secure. The entire watermarking process takes place inside your browser memory. Zero files are uploaded to external servers."}}]}'}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"Free PDF Watermark Tool 2025 | Add Text Stamps & Protection","item":"https://toolswaala.in/pdf-tools/watermark-pdf"}]}</script>
 
-  <PdfPageWrapper title={title} hindi="वाटरमार्क लगाएं" client:load>
+  <PdfPageWrapper title={title} hindi="पीडीएफ टूल" client:load>
     <WatermarkPdf client:only="react" />
   </PdfPageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/pdf-tools">PDF Tools</a> &gt; Add Watermark to PDF Free</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <article class="seo-article">
+    <div style="margin-bottom: 32px;">
+      <span class="seo-badge">
+        🖋️ Confidential Document Protection
+      </span>
+      <h2 style="font-size: clamp(24px, 4vw, 32px); font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        Add Custom Text Watermarks to PDF Pages
+      </h2>
+      <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7;">
+        Protect your proprietary reports, financial proposals, and identity documents from unauthorized copying. Add custom text stamps like "CONFIDENTIAL", "DRAFT", "FOR VERIFICATION ONLY", or your company name across every page of your PDF.
+      </p>
+    </div>
+
+    <div class="seo-card">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        🛡️ Why Watermark Your Documents Before Sharing?
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
+        Sharing unwatermarked identity proofs (Aadhaar, PAN, Passport copies) or draft business proposals exposes you to identity theft and IP piracy. Placing a diagonal "FOR BANK VERIFICATION ONLY" watermark prevents unauthorized reuse.
+      </p>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Popular Watermark Preset Styles
+    </h3>
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead>
+          <tr>
+            <th>Stamp Type</th><th>Text Content</th><th>Opacity Level</th><th>Recommended Use Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-weight: 700; color: var(--app-text);">Confidential Stamp</td><td>CONFIDENTIAL / DO NOT COPY</td><td>30% Diagonal</td><td>Internal business reports & financial audits</td></tr>
+<tr><td style="font-weight: 700; color: var(--app-text);">Verification Stamp</td><td>FOR AADHAAR VERIFICATION ONLY</td><td>25% Semi-Transparent</td><td>Identity proof submission to third parties</td></tr>
+<tr><td style="font-weight: 700; color: var(--app-text);">Draft Stamp</td><td>DRAFT - SUBJECT TO REVISION</td><td>40% Bold Red</td><td>Pre-release proposals & client contracts</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Frequently Asked Questions (FAQs)
+    </h3>
+    <div class="seo-faq-grid">
+      
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">How to add a diagonal watermark across all PDF pages?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Upload your document, type your desired watermark text, choose font size, opacity, and rotation angle (45° diagonal), then click Apply Watermark.</p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Can third parties easily remove the text watermark?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">ToolsWaala flattens the watermark directly into the PDF page canvas layers, making simple text deletion impossible for unauthorized recipients.</p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Is my watermarked PDF file secure?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">100% secure. The entire watermarking process takes place inside your browser memory. Zero files are uploaded to external servers.</p>
+      </div>
+    </div>
+  </article>
 </Layout>

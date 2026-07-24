@@ -3,54 +3,77 @@ import Layout from '../../layouts/Layout.astro';
 import PdfPageWrapper from '../../shared/PdfPageWrapper';
 import { SplitPdf } from '../../react-pages/pdf';
 
-const title = "Split PDF Free — Extract Pages";
-const description = "Extract pages or split PDF into separate files. 100% browser-based.";
-
-const faqs = [
-  {
-    "q": "How to extract specific pages from a PDF?",
-    "a": "Upload your PDF, specify the page range (e.g. pages 2-5 or page 9), and click split to generate a new PDF containing only those pages."
-  },
-  {
-    "q": "Can I split a PDF into multiple separate files?",
-    "a": "Yes, you can split by page ranges, creating separate PDF files for each range."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free PDF Splitter Online 2025 | Extract & Separate PDF Pages";
+const description = "Split PDF files into separate pages or extract specific page ranges online. 100% free, fast, and private browser-based PDF page extractor.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/split-pdf">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"Split PDF Free — Extract Pages","item":"https://toolswaala.in/pdf-tools/split-pdf"}]}</script>
+  <script type="application/ld+json" is:inline set:html={'{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to extract specific pages from a PDF file?","acceptedAnswer":{"@type":"Answer","text":"Upload your document to ToolsWaala PDF Splitter, specify the page numbers or range you wish to extract (e.g., 2-5), and click Download Split PDF."}},{"@type":"Question","name":"Is there a file size limit for splitting PDFs?","acceptedAnswer":{"@type":"Answer","text":"No! Because processing happens client-side inside your web browser, you can split large PDFs without arbitrary file size caps."}},{"@type":"Question","name":"Does splitting affect document security or password protection?","acceptedAnswer":{"@type":"Answer","text":"Splitting preserves the original document quality. For password-protected PDFs, enter your password locally to unlock and extract pages."}}]}'}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"Free PDF Splitter Online 2025 | Extract & Separate PDF Pages","item":"https://toolswaala.in/pdf-tools/split-pdf"}]}</script>
 
-  <PdfPageWrapper title={title} hindi="पीडीएफ स्प्लिट करें" client:load>
+  <PdfPageWrapper title={title} hindi="पीडीएफ टूल" client:load>
     <SplitPdf client:only="react" />
   </PdfPageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/pdf-tools">PDF Tools</a> &gt; Split PDF Free — Extract Pages</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <article class="seo-article">
+    <div style="margin-bottom: 32px;">
+      <span class="seo-badge">
+        ✂️ Precise Page Extraction
+      </span>
+      <h2 style="font-size: clamp(24px, 4vw, 32px); font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        Split & Extract Pages from PDF Documents Online
+      </h2>
+      <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7;">
+        ToolsWaala PDF Splitter gives you complete control over multi-page PDF documents. Easily extract specific chapters, isolate single pages, or break a large 100-page book into clean, lightweight individual files.
+      </p>
+    </div>
+
+    <div class="seo-card">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        📌 3 Common Use Cases for PDF Splitting
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
+        1. Extracting Marksheets: Separate a single semester marksheet from a 4-year consolidated PDF transcript.
+2. Submitting Legal Chapters: Extract specific agreement pages for court or bank verification.
+3. Reducing File Size: Remove unnecessary cover pages or blank appendices to meet email attachment limits.
+      </p>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Supported PDF Splitting Modes
+    </h3>
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead>
+          <tr>
+            <th>Split Mode</th><th>Description</th><th>Output Format</th><th>Processing Speed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-weight: 700; color: var(--app-text);">Extract Specific Pages</td><td>Enter exact page numbers (e.g. 1, 3-5, 8)</td><td>Single PDF Document</td><td>Instant (<1 second)</td></tr>
+<tr><td style="font-weight: 700; color: var(--app-text);">Split into Individual Pages</td><td>Separate every single page into distinct files</td><td>ZIP Archive</td><td>Fast (<2 seconds)</td></tr>
+<tr><td style="font-weight: 700; color: var(--app-text);">Range Selection</td><td>Define custom page chunks (e.g. 1-10, 11-20)</td><td>Multiple PDF Files</td><td>Instant (<1 second)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Frequently Asked Questions (FAQs)
+    </h3>
+    <div class="seo-faq-grid">
+      
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">How to extract specific pages from a PDF file?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Upload your document to ToolsWaala PDF Splitter, specify the page numbers or range you wish to extract (e.g., 2-5), and click Download Split PDF.</p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Is there a file size limit for splitting PDFs?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">No! Because processing happens client-side inside your web browser, you can split large PDFs without arbitrary file size caps.</p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Does splitting affect document security or password protection?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Splitting preserves the original document quality. For password-protected PDFs, enter your password locally to unlock and extract pages.</p>
+      </div>
+    </div>
+  </article>
 </Layout>

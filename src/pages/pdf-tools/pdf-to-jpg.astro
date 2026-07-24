@@ -3,54 +3,75 @@ import Layout from '../../layouts/Layout.astro';
 import PdfPageWrapper from '../../shared/PdfPageWrapper';
 import { PdfToJpg } from '../../react-pages/pdf';
 
-const title = "PDF to JPG Converter Free";
-const description = "Extract PDF pages as high-quality JPG images. Works in your browser.";
-
-const faqs = [
-  {
-    "q": "How to extract images from PDF?",
-    "a": "Select your PDF file. The tool will convert each page into a separate high-quality JPG image that you can download individually or as a ZIP."
-  },
-  {
-    "q": "Is my document secure when converting PDF to JPG?",
-    "a": "Yes! The entire conversion runs client-side in your browser. No files are uploaded to our servers, ensuring 100% privacy."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free PDF to JPG Image Converter 2025 (High Resolution)";
+const description = "Extract pages from any PDF document into high-resolution JPG images online. 100% private, client-side conversion without file uploads.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/pdf-to-jpg">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"PDF to JPG Converter Free","item":"https://toolswaala.in/pdf-tools/pdf-to-jpg"}]}</script>
+  <script type="application/ld+json" is:inline set:html={'{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to convert PDF to JPG without losing quality?","acceptedAnswer":{"@type":"Answer","text":"Upload your file to ToolsWaala PDF to JPG Converter. Our engine renders pages at full 300 DPI resolution, maintaining crisp text and sharp image details."}},{"@type":"Question","name":"Can I convert multi-page PDFs into images?","acceptedAnswer":{"@type":"Answer","text":"Yes! Every page is extracted as a separate JPG image file. You can download individual pages or save them all as a single ZIP archive."}},{"@type":"Question","name":"Are my converted images saved on your servers?","acceptedAnswer":{"@type":"Answer","text":"No. All conversions run 100% inside your browser using JavaScript and HTML5. Zero files are uploaded or stored."}}]}'}></script>
+  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://toolswaala.in/pdf-tools"},{"@type":"ListItem","position":3,"name":"Free PDF to JPG Image Converter 2025 (High Resolution)","item":"https://toolswaala.in/pdf-tools/pdf-to-jpg"}]}</script>
 
-  <PdfPageWrapper title={title} hindi="पीडीएफ से इमेज" client:load>
+  <PdfPageWrapper title={title} hindi="पीडीएफ टूल" client:load>
     <PdfToJpg client:only="react" />
   </PdfPageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/pdf-tools">PDF Tools</a> &gt; PDF to JPG Converter Free</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    
-    
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <article class="seo-article">
+    <div style="margin-bottom: 32px;">
+      <span class="seo-badge">
+        📸 High-Resolution Image Extraction
+      </span>
+      <h2 style="font-size: clamp(24px, 4vw, 32px); font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        Convert PDF Pages to JPG Images Online
+      </h2>
+      <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7;">
+        ToolsWaala PDF to JPG Converter allows you to extract individual pages or entire documents into crystal-clear 300 DPI JPEG images. Perfect for submitting scanned certificates, identity documents, and project diagrams to university portals or job applications.
+      </p>
+    </div>
+
+    <div class="seo-card">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        ⚡ Why Convert PDF to JPG Client-Side?
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
+        Most online converters upload your sensitive PDFs (Aadhaar cards, bank statements, marksheets) to external cloud servers. ToolsWaala processes every page locally in your web browser memory using HTML5 Canvas rendering—ensuring your personal data never leaves your device.
+      </p>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Supported Output Image Formats & DPI Resolution
+    </h3>
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead>
+          <tr>
+            <th>Image Format</th><th>Render Resolution</th><th>Quality Option</th><th>Best Use Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-weight: 700; color: var(--app-text);">Standard JPG</td><td>150 DPI</td><td>Balanced (Compressed)</td><td>Email attachments & messaging share</td></tr>
+<tr><td style="font-weight: 700; color: var(--app-text);">High-Res JPG</td><td>300 DPI</td><td>Maximum Quality (Lossless)</td><td>Official printing & portal uploads</td></tr>
+<tr><td style="font-weight: 700; color: var(--app-text);">PNG Graphic</td><td>300 DPI</td><td>Transparent Background</td><td>Diagrams, signatures & logos</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Frequently Asked Questions (FAQs)
+    </h3>
+    <div class="seo-faq-grid">
+      
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">How to convert PDF to JPG without losing quality?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Upload your file to ToolsWaala PDF to JPG Converter. Our engine renders pages at full 300 DPI resolution, maintaining crisp text and sharp image details.</p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Can I convert multi-page PDFs into images?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Yes! Every page is extracted as a separate JPG image file. You can download individual pages or save them all as a single ZIP archive.</p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Are my converted images saved on your servers?</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">No. All conversions run 100% inside your browser using JavaScript and HTML5. Zero files are uploaded or stored.</p>
+      </div>
+    </div>
+  </article>
 </Layout>
