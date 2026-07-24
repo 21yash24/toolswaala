@@ -24,9 +24,19 @@ export default function PageWrapper({ title, hindi, children }) {
             <span className="hindi-label" style={{ fontSize: 18, color: BRAND.primary, fontWeight: 500 }}>{hindi}</span>
           </div>
         </div>
-        <button onClick={handleShare} className="btn-ghost" style={{ padding: "10px 20px", borderRadius: 12, border: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8, fontSize: 14 }}>
-          <span>🔗</span> Share Tool
-        </button>
+        <div style={{ display: "flex", gap: 10 }}>
+          <a 
+            href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} on ToolsWaala! 💼\n\n${typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in'}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+          >
+            <span style={{ fontSize: 18 }}>📲</span> WhatsApp
+          </a>
+          <button onClick={handleShare} className="btn-ghost" style={{ padding: "10px 20px", borderRadius: 12, border: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8, fontSize: 14 }}>
+            <span>🔗</span> Share Tool
+          </button>
+        </div>
       </div>
       {children}
     </div>
