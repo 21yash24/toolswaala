@@ -70,6 +70,23 @@ const defaultKeywords = "free educational tools india, small business resources 
     <meta property="twitter:description" content={description || defaultDescription} />
     <meta property="twitter:image" content="https://toolswaala.in/og-image.png" />
 
+    <!-- Organization & Entity Schema (Fixes Pixis GEO E-E-A-T score) -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ToolsWaala",
+        "url": "https://toolswaala.in",
+        "logo": "https://toolswaala.in/favicon.svg",
+        "description": "India's free 100% private, client-side digital toolkit for students, freelancers, and small businesses.",
+        "foundingLocation": "New Delhi, India",
+        "sameAs": [
+          "https://github.com/21yash24/toolswaala",
+          "https://www.producthunt.com/products/toolswaala"
+        ]
+      }
+    </script>
+
     <!-- Deferred Third-Party Analytics & Ads -->
     <script is:inline>
       const loadAnalytics = () => {
