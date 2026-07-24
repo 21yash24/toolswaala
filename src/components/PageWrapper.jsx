@@ -18,7 +18,13 @@ export default function PageWrapper({ title, hindi, children }) {
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: "40px 24px" }} className="fade-in">
       <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
         <div style={{ flex: 1 }}>
-          <a href="/" className="btn-ghost" style={{ marginBottom: 24, display: "inline-block" }}>← Dashboard</a>
+          <nav aria-label="Breadcrumb" style={{ marginBottom: 16, fontSize: 13, color: BRAND.textSecondary, display: "flex", alignItems: "center", gap: 8 }}>
+            <a href="/" style={{ color: BRAND.textSecondary, textDecoration: "none" }}>Home</a>
+            <span>/</span>
+            <a href="/" style={{ color: BRAND.primary, textDecoration: "none", fontWeight: 600 }}>Business Tools</a>
+            <span>/</span>
+            <span style={{ color: BRAND.text, fontWeight: 700 }}>{title}</span>
+          </nav>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
             <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)", color: BRAND.text, fontWeight: 900, letterSpacing: "-0.02em" }}>{title}</h1>
             <span className="hindi-label" style={{ fontSize: 18, color: BRAND.primary, fontWeight: 500 }}>{hindi}</span>
