@@ -2,21 +2,189 @@
 import Layout from '../layouts/Layout.astro';
 import { PdfHome } from '../react-pages/pdf';
 
-const title = "Free PDF Tools Online — No Upload, 100% Private";
-const description = "9 free PDF tools. Compress, merge, split, convert. Your files never leave your browser.";
+const title = "Free PDF Tools Online 2025 | 100% Private, Zero File Uploads";
+const description = "9 free client-side PDF tools. Compress PDF under 100KB, convert JPG to PDF, merge, split, and watermark documents offline in browser.";
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are my PDF files uploaded to any server when using ToolsWaala?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never. All ToolsWaala PDF tools process documents locally inside your web browser using HTML5 WebAssembly and client-side JavaScript. Your confidential files never touch any remote server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to compress PDF files under 100KB or 200KB for exam portals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use our Compress PDF tool. Select your PDF document, adjust compression quality, and download a lightweight PDF optimized for government recruitment portals (UPSC, SSC, NTA, GATE, Anna University)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is ToolsWaala PDF tool suite free for commercial business use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, 100% free with zero file limits, zero watermarks, and no user account registration required."
+      }
+    }
+  ]
+}
+</script>\n`;
+
+const bcSchema = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolswaala.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "${title}",
+      "item": "https://toolswaala.in/pdf-tools"
+    }
+  ]
+}
+</script>\n`;
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools">
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Free PDF Tools Online — No Upload, 100% Private","item":"https://toolswaala.in/pdf-tools"}]}</script>
+  <Fragment set:html={faqSchemaStr} />
+  <Fragment set:html={bcSchema} />
 
   <PdfHome client:only="react" />
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; Free PDF Tools Online — No Upload, 100% Private</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <p>9 free PDF tools, 100% browser-based. No uploads.</p><ul><li><a href="/pdf-tools/compress-pdf">Compress PDF</a></li><li><a href="/pdf-tools/image-to-pdf">Image to PDF</a></li><li><a href="/pdf-tools/merge-pdf">Merge PDF</a></li><li><a href="/pdf-tools/split-pdf">Split PDF</a></li></ul>
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+  <!-- Comprehensive High-Depth SEO Content Block -->
+  <article class="seo-article">
+    <div style="margin-bottom: 32px;">
+      <span class="seo-badge">
+        🔒 100% Client-Side Browser Security
+      </span>
+      <h2 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--app-text); margin-bottom: 12px; letter-spacing: -0.02em;">
+        Free PDF Utility Suite 2025 (Private & Offline Compatible)
+      </h2>
+      <p style="font-size: 16px; color: var(--app-text-secondary); line-height: 1.7;">
+        ToolsWaala provides 9 high-performance PDF manipulation tools engineered specifically for students, legal professionals, and small businesses across India. Unlike legacy PDF sites that upload your confidential contracts and academic transcripts to remote servers, <strong>every document processed on ToolsWaala stays 100% inside your device's memory</strong>.
+      </p>
+    </div>
+
+    <!-- Client-Side Security Highlight Card -->
+    <div class="seo-card">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+        <span style="color: #10B981;">🛡️</span> Zero File Upload Security Architecture
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin-bottom: 16px; line-height: 1.6;">
+        Standard online PDF tools upload your PDF files to cloud servers in US/Europe, introducing severe data breach risks for sensitive financial statements, Aadhaar copies, and legal contracts.
+      </p>
+      <div style="background: rgba(16,185,129,0.06); padding: 16px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.2); font-size: 13px; color: var(--app-text);">
+        ✅ <strong>ToolsWaala Security Guarantee:</strong> All PDF compression, merging, splitting, and image conversions run via client-side WebAssembly. Zero bytes leave your browser. Zero logs recorded.
+      </div>
+    </div>
+
+    <!-- PDF Tool Breakdown Grid -->
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Explore ToolsWaala PDF Utilities
+    </h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 40px;">
+      <a href="/pdf-tools/compress-pdf" class="seo-card" style="margin-bottom: 0; text-decoration: none;">
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin-bottom: 6px;">📉 Compress PDF</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Reduce PDF file size for email attachments and exam portal uploads (under 100KB / 200KB).</p>
+      </a>
+      <a href="/pdf-tools/image-to-pdf" class="seo-card" style="margin-bottom: 0; text-decoration: none;">
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin-bottom: 6px;">🖼️ Image to PDF</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Convert scanned JPG, PNG document photos into clean, single-page or multi-page PDF files.</p>
+      </a>
+      <a href="/pdf-tools/merge-pdf" class="seo-card" style="margin-bottom: 0; text-decoration: none;">
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin-bottom: 6px;">📑 Merge PDF</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Combine multiple PDF chapters, marksheets, or invoice pages into one consolidated document.</p>
+      </a>
+      <a href="/pdf-tools/split-pdf" class="seo-card" style="margin-bottom: 0; text-decoration: none;">
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin-bottom: 6px;">✂️ Split PDF</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Extract specific page ranges or break large PDF books into separate files.</p>
+      </a>
+      <a href="/pdf-tools/compress-image" class="seo-card" style="margin-bottom: 0; text-decoration: none;">
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin-bottom: 6px;">🖼️ Image Compressor</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Resize JPG/PNG passport photos and signatures under 50KB for government application forms.</p>
+      </a>
+      <a href="/pdf-tools/word-to-pdf" class="seo-card" style="margin-bottom: 0; text-decoration: none;">
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin-bottom: 6px;">📄 Word to PDF</h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Convert DOCX resumes, assignments, and letters into print-ready PDF format.</p>
+      </a>
+    </div>
+
+    <!-- Exam Portal Upload Optimization Guide -->
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Optimizing PDFs for Indian Recruitment & University Portals
+    </h3>
+    <p style="font-size: 15px; color: var(--app-text-secondary); margin-bottom: 24px; line-height: 1.7;">
+      Most Indian examination boards enforce strict upload file size caps:
+    </p>
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead>
+          <tr>
+            <th>Examination Portal</th>
+            <th>Required Upload Document</th>
+            <th>Maximum Allowed File Size</th>
+            <th>Recommended Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: var(--app-text);">UPSC / SSC Recruitment</td>
+            <td>Category Certificate & ID Proof</td>
+            <td style="color: #FF6B00; font-weight: 700;">Under 300 KB</td>
+            <td>PDF Document</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: var(--app-text);">GATE / NTA Exam Portal</td>
+            <td>Marksheets & Category Cert</td>
+            <td style="color: #FF6B00; font-weight: 700;">Under 500 KB</td>
+            <td>PDF Document</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: var(--app-text);">University Admission Portals</td>
+            <td>Consolidated Semester Marksheets</td>
+            <td style="color: #FF6B00; font-weight: 700;">Under 1 MB or 2 MB</td>
+            <td>Merged PDF Document</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQ Cards -->
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+      Frequently Asked Questions (FAQs)
+    </h3>
+    <div class="seo-faq-grid">
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
+          Are my PDF files uploaded to any server when using ToolsWaala?
+        </h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
+          Never. All ToolsWaala PDF tools process documents locally inside your web browser using HTML5 WebAssembly and client-side JavaScript. Your confidential files never touch any remote server.
+        </p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
+          How to compress PDF files under 100KB or 200KB for exam portals?
+        </h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
+          Use our Compress PDF tool. Select your PDF document, adjust compression quality, and download a lightweight PDF optimized for government recruitment portals (UPSC, SSC, NTA, GATE, Anna University).
+        </p>
+      </div>
+    </div>
+  </article>
 </Layout>
