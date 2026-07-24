@@ -1,0 +1,44 @@
+{
+  "name": "ToolsWaala — Free Tools for Students & SMBs in India",
+  "short_name": "ToolsWaala",
+  "description": "38+ Free Tools for Students & Small Businesses. Zero Login. No Uploads. 100% Private.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090B",
+  "theme_color": "#FF6B00",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "CGPA Calculator",
+      "short_name": "CGPA",
+      "description": "Convert CGPA to Percentage for Indian Universities",
+      "url": "/cgpa-calculator"
+    },
+    {
+      "name": "Attendance Calculator",
+      "short_name": "Attendance",
+      "description": "Track 75% UGC Bunk Rule",
+      "url": "/attendance-calculator"
+    },
+    {
+      "name": "GST Invoice",
+      "short_name": "Invoice",
+      "description": "Create GST Compliant Invoices with PDF",
+      "url": "/gst-invoice"
+    },
+    {
+      "name": "Compress PDF",
+      "short_name": "Compress",
+      "description": "Reduce PDF File Size Privately",
+      "url": "/pdf-tools/compress-pdf"
+    }
+  ]
+}

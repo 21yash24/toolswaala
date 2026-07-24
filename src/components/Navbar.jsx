@@ -61,11 +61,12 @@ export default function Navbar({ currentPath = "/" }) {
             <input 
               type="text" 
               aria-label="Search 40+ free tools"
-              placeholder="Search 40+ tools (e.g. CGPA, GST, PDF)..." 
+              placeholder="Search 40+ tools..." 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{ width: "100%", padding: "10px 14px 10px 40px", borderRadius: 12, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.05)", color: BRAND.text, fontSize: 13 }}
+              style={{ width: "100%", padding: "10px 48px 10px 40px", borderRadius: 12, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.05)", color: BRAND.text, fontSize: 13 }}
             />
+            <kbd className="nav-desktop-links" style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.1)", color: BRAND.textSecondary, padding: "2px 6px", borderRadius: 6, fontSize: 10, fontWeight: 700, pointerEvents: "none" }}>⌘K</kbd>
           </div>
           {filteredTools.length > 0 && (
             <div style={{ position: "absolute", top: "100%", left: 0, right: 0, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}`, borderRadius: 12, marginTop: 8, boxShadow: "0 10px 30px rgba(0,0,0,0.3)", maxHeight: 300, overflowY: "auto", zIndex: 1000 }}>
