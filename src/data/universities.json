@@ -62,5 +62,29 @@
     "desc": "CBSE Class 10th and 12th CGPA to Percentage Calculator.",
     "faq1": "CBSE uses the standard formula: Percentage = CGPA × 9.5",
     "faq2": "To score 95%, you need a perfect 10 CGPA."
+  },
+  {
+    "id": "jntuh",
+    "name": "JNTU Hyderabad (JNTUH)",
+    "idx": 9,
+    "desc": "JNTU Hyderabad (JNTUH) B.Tech CGPA to Percentage Calculator.",
+    "faq1": "JNTUH uses the formula: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A CGPA of 6.5 in JNTUH corresponds to 60% (First Class)."
+  },
+  {
+    "id": "gtu",
+    "name": "Gujarat Tech University (GTU)",
+    "idx": 10,
+    "desc": "GTU SPI / CPI / CGPA to Percentage Calculator for Diploma & BE.",
+    "faq1": "GTU uses the official formula: Percentage = (SPI / CPI / CGPA - 0.5) × 10",
+    "faq2": "To get First Class with Distinction, GTU requires a CPI of 7.5 or higher."
+  },
+  {
+    "id": "calicut",
+    "name": "Calicut University",
+    "idx": 11,
+    "desc": "Calicut University (UOC) Grade Point Average to Percentage Converter.",
+    "faq1": "Calicut University (UOC) uses the 10-point scale: Percentage = CGPA × 10",
+    "faq2": "First Class in Calicut University is awarded at 6.0 CGPA (60%)."
   }
 ]
