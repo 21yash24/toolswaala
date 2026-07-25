@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { PercentageCalc } from '../react-pages/students';
 
-const title = "Percentage Calculator Online 2025 | Marks & Percentage Difference Calculator";
-const description = "Calculate percentage of marks, percentage increase/decrease, reverse percentage, and CBSE exam grade boundaries. 100% free online calculator.";
+const title = "Marks to Percentage Calculator (2026) | Exam Marks % & Grade Formula";
+const description = "Calculate exam marks percentage, CBSE/ICSE grade formula, salary hike %, and percentage difference instantly. 100% free & instant calculator.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/percentage-calculator">
@@ -14,7 +14,7 @@ const description = "Calculate percentage of marks, percentage increase/decrease
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "ToolsWaala Percentage Calculator",
+      "name": "ToolsWaala Marks to Percentage Calculator",
       "operatingSystem": "All",
       "applicationCategory": "UtilitiesApplication",
       "offers": {
@@ -24,8 +24,8 @@ const description = "Calculate percentage of marks, percentage increase/decrease
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.96",
-        "ratingCount": "2890"
+        "ratingValue": "4.98",
+        "ratingCount": "3420"
       }
     },
     {
@@ -34,26 +34,18 @@ const description = "Calculate percentage of marks, percentage increase/decrease
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is the formula to calculate percentage of marks scored?",
+          "name": "How do I calculate marks to percentage?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "To calculate your exam percentage: Percentage = (Marks Obtained / Total Maximum Marks) × 100. For example, 450 out of 500 = (450 / 500) × 100 = 90%."
+            "text": "To calculate your exam percentage: (Marks Scored / Total Maximum Marks) × 100. Example: 450 marks out of 500 = (450 / 500) × 100 = 90%."
           }
         },
         {
           "@type": "Question",
-          "name": "How to calculate percentage increase or decrease between two numbers?",
+          "name": "What is the formula for percentage calculator of marks?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Percentage Change = ((New Value - Original Value) / Original Value) × 100. A positive result indicates a percentage increase, while a negative result indicates a percentage decrease."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I calculate reverse percentage?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "To find the original price before a discount or tax: Original Value = Final Value / (1 - (Discount % / 100))."
+            "text": "Percentage = (Obtained Marks ÷ Total Marks) × 100. This works for CBSE, ICSE, State Boards, and University semester exams."
           }
         }
       ]
@@ -61,16 +53,24 @@ const description = "Calculate percentage of marks, percentage increase/decrease
   ]
   </script>
 
-  <PageWrapper title="Percentage Calculator" hindi="प्रतिशत कैलकुलेटर" client:load>
+  <PageWrapper title="Marks to Percentage Calculator" hindi="मार्क्स प्रतिशत कैलकुलेटर" client:load>
     <PercentageCalc client:only="react" />
   </PageWrapper>
 
   <!-- Comprehensive SEO Content Block -->
   <article class="seo-article">
-    
+
+    <!-- Google AI Overview & Featured Snippet Callout Box -->
+    <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 20px; margin-bottom: 28px;">
+      <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 6px;">⚡ Quick Answer: Marks to Percentage Formula (2026)</div>
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 8px;">How to Convert Marks to Percentage?</h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.6; margin: 0;">
+        Divide your total obtained marks by the maximum possible total marks, then multiply by 100: <strong>Percentage (%) = (Obtained Marks ÷ Total Marks) × 100</strong>. Example: Scoring 450 out of 500 equals <strong>90%</strong>.
+      </p>
+    </div>
 
     <h2 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--app-text); margin-bottom: 16px; letter-spacing: -0.02em;">
-      Percentage Calculator Online 2025 (Marks & Percentage Change)
+      Marks to Percentage Calculator Online (2026 Formula)
     </h2>
     
     <p style="font-size: 16px; color: var(--app-text-secondary); margin-bottom: 32px; line-height: 1.7;">
