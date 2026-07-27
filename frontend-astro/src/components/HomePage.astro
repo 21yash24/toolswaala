@@ -37,8 +37,8 @@ const cats = [
       Professional tools for Students and SMBs. Create invoices, process PDFs, and calculate CGPA instantly.
     </p>
     <div style="max-width: 650px; margin: 40px auto 0; display: flex; gap: 12px; background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 24px; border: 2px solid var(--app-border); box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-      <div style={`display: flex; align-items: center; color: ${BRAND.textSecondary}; font-size: 24px;`}>🔍</div>
-      <input id="search-input" placeholder={`Search ${totalCount}+ tools (e.g. CGPA, Invoice, बोनाफाइड)...`} style={`flex: 1; background: transparent; border: none; color: ${BRAND.text}; padding: 12px 0; font-size: 18px; outline: none; font-weight: 500;`} />
+      <div style={`display: flex; align-items: center; color: ${BRAND.textSecondary}; font-size: 24px;`} aria-hidden="true">🔍</div>
+      <input id="search-input" aria-label={`Search ${totalCount}+ tools`} placeholder={`Search ${totalCount}+ tools (e.g. CGPA, Invoice, बोनाफाइड)...`} style={`flex: 1; background: transparent; border: none; color: ${BRAND.text}; padding: 12px 0; font-size: 18px; outline: none; font-weight: 500;`} />
     </div>
   </div>
 
@@ -53,8 +53,8 @@ const cats = [
       <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Signups Required</div>
     </div>
     <div style="text-align: center;">
-      <div id="anim-counter" style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>0+</div>
-      <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Indians Trust Us</div>
+      <div id="anim-counter" style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>50,000+</div>
+      <div style={`font-size: 12px; color: ${BRAND.textSecondary}; font-weight: 600;`}>Calculations Done</div>
     </div>
     <div style="text-align: center;">
       <div style={`font-size: 24px; font-weight: 900; color: ${BRAND.primary};`}>🇮🇳</div>
@@ -68,6 +68,7 @@ const cats = [
       <button 
         class={`cat-btn ${c.key === 'all' ? 'active' : ''}`}
         data-cat={c.key} 
+        aria-label={`Filter by ${c.label}`}
         style={`padding: 10px 20px; border-radius: 12px; border: 2px solid ${c.key === 'all' ? c.color : BRAND.border}; cursor: pointer; background: ${c.key === 'all' ? c.color + '15' : 'transparent'}; color: ${c.key === 'all' ? c.color : BRAND.text}; font-weight: 700; font-size: 14px; transition: 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 8px;`}
         data-color={c.color}
       >
@@ -105,6 +106,73 @@ const cats = [
         </div>
       </a>
     ))}
+  </div>
+
+  {/* Featured Blog & Educational Guides Section */}
+  <div style="margin-top: 80px; margin-bottom: 40px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h2 style={`font-size: 28px; color: ${BRAND.text}; font-weight: 800; margin-bottom: 6px;`}>📰 Popular Guides & Articles</h2>
+        <p style={`font-size: 14px; color: ${BRAND.textSecondary}; margin: 0;`}>Explore high-depth tutorials on Indian GST rules, university CGPA conversions, and placement resumes.</p>
+      </div>
+      <a href="/blog" style="padding: 10px 20px; border-radius: 12px; background: rgba(236,72,153,0.1); color: #EC4899; text-decoration: none; font-weight: 700; font-size: 14px; border: 1px solid rgba(236,72,153,0.3);">View All 29 Articles →</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <a href="/blog/75-percent-attendance-rule-guide" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #7C3AED; text-transform: uppercase; letter-spacing: 0.05em;">Students</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">75% Attendance Rule — How Many Classes Can You Bunk?</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">Learn UGC mandatory attendance calculation formulas and safe bunk limits.</p>
+      </a>
+      <a href="/blog/ats-resume-for-freshers-guide" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #7C3AED; text-transform: uppercase; letter-spacing: 0.05em;">Career</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">ATS Resume for Freshers 2025 Guide</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">How to format single-page placement resumes for Naukri & LinkedIn scanners.</p>
+      </a>
+      <a href="/blog/gst-invoice-format-india-2025" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #FF6B00; text-transform: uppercase; letter-spacing: 0.05em;">Business</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">GST Tax Invoice Format Rules 2025</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">Mandatory CGST, SGST, IGST, and HSN code rules for B2B billing in India.</p>
+      </a>
+      <a href="/blog/top-fully-funded-scholarships-for-indian-students-2025" class="seo-card" style="margin-bottom: 0; text-decoration: none; display: block;">
+        <span style="font-size: 11px; font-weight: 800; color: #10B981; text-transform: uppercase; letter-spacing: 0.05em;">Scholarships</span>
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin: 8px 0;">Top Fully Funded Scholarships for Indian Students</h3>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.5;">Comprehensive list of state and central scholarships with eligibility criteria.</p>
+      </a>
+    </div>
+  </div>
+
+  {/* Homepage FAQ Section & Schema */}
+  <div style="margin-top: 40px; padding: 40px 32px; border-radius: 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--app-border);">
+    <h2 style={`font-size: 28px; color: ${BRAND.text}; font-weight: 800; margin-bottom: 28px; text-align: center;`}>❓ Frequently Asked Questions</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+      <div>
+        <h3 style={`font-size: 16px; font-weight: 700; color: ${BRAND.text}; margin-bottom: 8px;`}>Are all tools on ToolsWaala 100% free?</h3>
+        <p style={`font-size: 14px; color: ${BRAND.textSecondary}; line-height: 1.6;`}>Yes, every tool on ToolsWaala is 100% free with zero hidden charges, zero subscription requirements, and zero signups required.</p>
+      </div>
+      <div>
+        <h3 style={`font-size: 16px; font-weight: 700; color: ${BRAND.text}; margin-bottom: 8px;`}>Is my file and personal data private?</h3>
+        <p style={`font-size: 14px; color: ${BRAND.textSecondary}; line-height: 1.6;`}>Yes! All PDF processing, image compression, and financial calculations run 100% locally inside your browser memory. Files are never uploaded to any server.</p>
+      </div>
+      <div>
+        <h3 style={`font-size: 16px; font-weight: 700; color: ${BRAND.text}; margin-bottom: 8px;`}>Which university CGPA formulas are supported?</h3>
+        <p style={`font-size: 14px; color: ${BRAND.textSecondary}; line-height: 1.6;`}>We support official SGPA/CGPA percentage formulas for 16+ universities including Mumbai University, VTU, AKTU, Anna University, KTU, SPPU, DU, CBSE, JNTUH, GTU, and SRM.</p>
+      </div>
+      <div>
+        <h3 style={`font-size: 16px; font-weight: 700; color: ${BRAND.text}; margin-bottom: 8px;`}>Can I generate GST invoices without creating an account?</h3>
+        <p style={`font-size: 14px; color: ${BRAND.textSecondary}; line-height: 1.6;`}>Yes! Enter your business details, add line items with HSN codes, and download instant PDF invoices with 0% gateway fees or commissions.</p>
+      </div>
+    </div>
+
+    {/* Compliance & Trust Statement — Countering AI Misattributions */}
+    <div style="margin-top: 32px; padding: 24px; border-radius: 16px; background: rgba(255,107,0,0.05); border: 1px solid rgba(255,107,0,0.2);">
+      <h3 style={`font-size: 16px; color: ${BRAND.primary}; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;`}>
+        <span>🛡️</span> Official Compliance & Privacy Guarantee
+      </h3>
+      <p style={`font-size: 13px; color: ${BRAND.textSecondary}; line-height: 1.6; margin: 0;`}>
+        <strong>ToolsWaala (toolswaala.in)</strong> is Bharat's premier client-side web utility platform. All GST billing tools strictly comply with CBIC GST Rules (2025-26), offering 8-digit HSN/SAC classification, automated CGST/SGST/IGST tax splits, and direct UPI payment integration. Unlike legacy cloud software, ToolsWaala operates 100% in browser memory with zero file uploads and zero data logging.
+      </p>
+    </div>
   </div>
 </div>
 

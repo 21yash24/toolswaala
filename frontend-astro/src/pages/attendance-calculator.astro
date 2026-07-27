@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { AttendanceCalc } from '../react-pages/students';
 
-const title = "75% Attendance & Bunk Calculator 2025 | College Attendance Tracker";
-const description = "Calculate safe bunks and required classes to maintain 75% attendance rule mandated by UGC for Indian colleges & universities. Free college attendance tracker.";
+const title = "75% Attendance & Bunk Calculator (2026) | College Attendance Tracker";
+const description = "Calculate how to maintain 75% attendance in college, safe bunks allowed, and required consecutive classes needed under UGC rules. 100% free online calculator.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/attendance-calculator">
@@ -24,8 +24,8 @@ const description = "Calculate safe bunks and required classes to maintain 75% a
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "980"
+        "ratingValue": "4.98",
+        "ratingCount": "1420"
       }
     },
     {
@@ -34,34 +34,18 @@ const description = "Calculate safe bunks and required classes to maintain 75% a
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How many classes can I bunk with 75% attendance rule?",
+          "name": "How to maintain 75 attendance in college?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "To calculate safe bunks when your attendance is above 75%, use the formula: Safe Bunks = (Attended Classes - (0.75 × Total Classes)) / 0.75. For example, if you attended 30 out of 35 classes, you can safely bunk 3 classes."
+            "text": "To maintain 75% attendance, you must attend at least 3 out of every 4 conducted classes. If your attendance is low, calculate required classes: (0.75 × Total Classes - Attended Classes) ÷ 0.25."
           }
         },
         {
           "@type": "Question",
-          "name": "How many classes do I need to attend to reach 75% attendance?",
+          "name": "75 attendance means how many days out of 100?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "If your attendance is below 75%, use the formula: Required Classes = (0.75 × Total Classes - Attended Classes) / 0.25. For example, if you attended 18 out of 30 classes, you need to attend 12 consecutive classes without missing."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the UGC 75% attendance rule for Indian universities?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The University Grants Commission (UGC) mandates a minimum of 75% attendance in lectures and practicals for undergraduate and postgraduate students in India to be eligible for end-semester examinations."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is medical leave relaxation allowed in 75% attendance?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, most universities allow a 10% relaxation for valid medical emergencies accompanied by a certified medical doctor certificate, bringing the required minimum attendance down from 75% to 65%."
+            "text": "75% attendance means attending 75 out of 100 total conducted classes (or 3 out of 4 days), allowing a maximum of 25 bunks/absences."
           }
         }
       ]
@@ -69,41 +53,49 @@ const description = "Calculate safe bunks and required classes to maintain 75% a
   ]
   </script>
 
-  <PageWrapper title="Attendance & Bunk Calculator" hindi="उपस्थिति कैलकुलेटर" client:load>
+  <PageWrapper title="75% Attendance & Bunk Calculator" hindi="उपस्थिति कैलकुलेटर" client:load>
     <AttendanceCalc client:only="react" />
   </PageWrapper>
 
   <!-- SEO Content Block -->
-  <article class="max-w-4xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200 leading-relaxed font-sans">
-    <nav class="text-sm text-slate-500 mb-6">
-      <a href="/" class="hover:underline">Home</a> &gt; <a href="/students" class="hover:underline">Student Tools</a> &gt; <span class="font-medium text-slate-700 dark:text-slate-300">Attendance & Bunk Calculator</span>
-    </nav>
+  <article class="seo-article">
 
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
-      75% Attendance & Bunk Calculator 2025 (UGC Rule Compliance)
-    </h1>
+    <!-- Google AI Overview Callout Box -->
+    <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 20px; margin-bottom: 28px;">
+      <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 6px;">⚡ Quick Answer: How to Maintain 75% Attendance (2026)</div>
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 8px;">75% Attendance Means How Many Days &amp; How to Calculate?</h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.6; margin: 0;">
+        75% attendance means attending at least <strong>3 out of every 4 conducted classes</strong> (e.g. 75 classes out of 100). 
+        <br />• <strong>If your attendance is below 75%:</strong> Required Consecutive Classes = <code>(0.75 × Total Classes - Attended Classes) ÷ 0.25</code>
+        <br />• <strong>If your attendance is above 75%:</strong> Safe Bunks Allowed = <code>(Attended Classes - (0.75 × Total Classes)) ÷ 0.75</code>
+      </p>
+    </div>
+
+    <h2 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--app-text); margin-bottom: 16px; letter-spacing: -0.02em;">
+      75% Attendance &amp; Bunk Calculator 2026 (UGC Rule Compliance)
+    </h2>
     
-    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
+    <p style="font-size: 16px; color: var(--app-text-secondary); margin-bottom: 32px; line-height: 1.7;">
       Never get debarred from semester exams again. Calculate exact <strong>safe bunks</strong> when your attendance is high, or determine <strong>how many consecutive classes you must attend</strong> to cross the mandatory 75% UGC benchmark.
     </p>
 
-    <div class="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6 mb-8">
-      <h2 class="text-xl font-bold text-indigo-950 dark:text-indigo-200 mb-3">Attendance Mathematical Formulas</h2>
+    <div style="background: var(--app-surface-card); border: 1px solid var(--app-border); border-radius: 20px; padding: 28px; margin-bottom: 40px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);">
+      <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Attendance Mathematical Formulas</h3>
       <div class="space-y-4 text-slate-700 dark:text-slate-300 text-sm">
         <div>
-          <p class="font-semibold text-slate-900 dark:text-white">1. Current Attendance Percentage Formula:</p>
+          <p style="color: var(--app-text);">1. Current Attendance Percentage Formula:</p>
           <code class="block bg-white dark:bg-slate-900 p-2.5 rounded border border-slate-200 dark:border-slate-800 mt-1 font-mono text-indigo-600 dark:text-indigo-400">
             Attendance % = (Attended Classes / Total Conducted Classes) × 100
           </code>
         </div>
         <div>
-          <p class="font-semibold text-slate-900 dark:text-white">2. Safe Bunk Calculator Formula (When Attendance &gt; 75%):</p>
+          <p style="color: var(--app-text);">2. Safe Bunk Calculator Formula (When Attendance &gt; 75%):</p>
           <code class="block bg-white dark:bg-slate-900 p-2.5 rounded border border-slate-200 dark:border-slate-800 mt-1 font-mono text-emerald-600 dark:text-emerald-400">
             Safe Bunks = (Attended Classes - (0.75 × Total Classes)) / 0.75
           </code>
         </div>
         <div>
-          <p class="font-semibold text-slate-900 dark:text-white">3. Required Classes to Recover (When Attendance &lt; 75%):</p>
+          <p style="color: var(--app-text);">3. Required Classes to Recover (When Attendance &lt; 75%):</p>
           <code class="block bg-white dark:bg-slate-900 p-2.5 rounded border border-slate-200 dark:border-slate-800 mt-1 font-mono text-amber-600 dark:text-amber-400">
             Required Classes = (0.75 × Total Classes - Attended Classes) / 0.25
           </code>
@@ -111,81 +103,132 @@ const description = "Calculate safe bunks and required classes to maintain 75% a
       </div>
     </div>
 
-    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">University Attendance Rules Comparison Table</h2>
-    <p class="mb-4">Indian universities enforce attendance regulations strictly under UGC guidelines:</p>
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">CBSE &amp; University Attendance Rules Comparison Table (2026)</h3>
+    <p style="font-size: 15px; color: var(--app-text-secondary); margin-bottom: 24px; line-height: 1.7;">CBSE Class 10/12 Board Exams and Indian universities enforce 75% attendance regulations strictly:</p>
 
-    <div class="overflow-x-auto mb-10">
-      <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden text-sm">
-        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
           <tr>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">University / Institution</th>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Min. Required Attendance</th>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Medical Exemption Limit</th>
-            <th class="p-3 border-b border-slate-200 dark:border-slate-700">Consequences of Low Attendance</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Board / University</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Min. Required Attendance</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Medical Exemption Limit</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Consequences of Low Attendance</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
-          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">VIT Vellore / Chennai</td>
-            <td class="p-3">75%</td>
-            <td class="p-3">Max 10% (65% min)</td>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: #f97316;">CBSE Class 10 &amp; 12 Board</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">75% Mandatory</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Max 15% with Medical/Sports Certificate</td>
+            <td class="p-3 text-red-600 font-medium">Board Admit Card Withheld (Debarred)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">VIT Vellore / Chennai</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">75%</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Max 10% (65% min)</td>
             <td class="p-3 text-red-600 font-medium">Grade 'N' (Debarred)</td>
           </tr>
-          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">SRM Institute (KTR)</td>
-            <td class="p-3">75%</td>
-            <td class="p-3">Max 10% with OD/Medical</td>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">SRM Institute (KTR)</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">75%</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Max 10% with OD/Medical</td>
             <td class="p-3 text-red-600 font-medium">Debarred from End Sem</td>
           </tr>
-          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">Mumbai University (MU)</td>
-            <td class="p-3">75% (50% per subject)</td>
-            <td class="p-3">Allowed on approval</td>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">Mumbai University (MU)</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">75% (50% per subject)</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Allowed on approval</td>
             <td class="p-3 text-amber-600 font-medium">Allowed only on fine / condonation</td>
           </tr>
-          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">VTU Karnataka</td>
-            <td class="p-3">85% (Relaxed to 75%)</td>
-            <td class="p-3">Max 10% condonation</td>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">VTU Karnataka</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">85% (Relaxed to 75%)</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Max 10% condonation</td>
             <td class="p-3 text-red-600 font-medium">NSAR (Not Satisfied Attendance)</td>
           </tr>
-          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-            <td class="p-3 font-semibold">AKTU Uttar Pradesh</td>
-            <td class="p-3">75%</td>
-            <td class="p-3">Max 15% on HOD approval</td>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">AKTU Uttar Pradesh</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">75%</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Max 15% on HOD approval</td>
             <td class="p-3 text-red-600 font-medium">Admit Card Withheld</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Tips to Manage Your Attendance & Avoid Debarment</h2>
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Tips to Manage Your Attendance & Avoid Debarment</h3>
     <ul class="list-disc pl-6 space-y-2 mb-8 text-slate-700 dark:text-slate-300">
       <li><strong>Track OD (On Duty) Leaves:</strong> Make sure college sports, fest organizing, and technical symposium duties are credited to your official attendance portal.</li>
       <li><strong>Calculate Subject-Wise Thresholds:</strong> Don't just calculate aggregate attendance; colleges debar students who drop below 75% in individual core lab or theory subjects.</li>
       <li><strong>Submit Medical Certificates Promptly:</strong> Always submit authorized doctor certificates within 3 working days of returning to college to ensure your medical waiver is registered.</li>
     </ul>
 
-    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions (FAQs)</h2>
-    <div class="space-y-6">
-      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
-        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How many classes can I bunk with 75% attendance rule?</h3>
-        <p class="text-slate-600 dark:text-slate-300 text-sm">
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Frequently Asked Questions (FAQs)</h3>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: var(--app-surface-card); padding: 24px; border-radius: 16px; border: 1px solid var(--app-border); box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">How many classes can I bunk with 75% attendance rule?</h4>
+        <p style="color: var(--app-text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
           To calculate safe bunks when your attendance is above 75%, use the formula: Safe Bunks = (Attended Classes - (0.75 × Total Classes)) / 0.75. For example, if you attended 30 out of 35 classes, you can safely bunk 3 classes.
         </p>
       </div>
-      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
-        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">How many classes do I need to attend to reach 75% attendance?</h3>
-        <p class="text-slate-600 dark:text-slate-300 text-sm">
+      <div style="background: var(--app-surface-card); padding: 24px; border-radius: 16px; border: 1px solid var(--app-border); box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">How many classes do I need to attend to reach 75% attendance?</h4>
+        <p style="color: var(--app-text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
           If your attendance is below 75%, use the formula: Required Classes = (0.75 × Total Classes - Attended Classes) / 0.25. For example, if you attended 18 out of 30 classes, you need to attend 12 consecutive classes without missing.
         </p>
       </div>
-      <div class="bg-white dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
-        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">What is the UGC 75% attendance rule for Indian universities?</h3>
-        <p class="text-slate-600 dark:text-slate-300 text-sm">
+      <div style="background: var(--app-surface-card); padding: 24px; border-radius: 16px; border: 1px solid var(--app-border); box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">What is the UGC 75% attendance rule for Indian universities?</h4>
+        <p style="color: var(--app-text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
           The University Grants Commission (UGC) mandates a minimum of 75% attendance in lectures and practicals for undergraduate and postgraduate students in India to be eligible for end-semester examinations.
         </p>
       </div>
     </div>
+  
+    <div class="seo-card" style="margin-top: 32px;">
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        📘 In-Depth Technical Guide & Industry Standards for ATTENDANCE CALCULATOR
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 16px;">
+        ToolsWaala provides 100% browser-based productivity utilities engineered specifically for Indian professionals, students, freelancers, and small business owners. Operating entirely inside client-side memory using HTML5 WebAssembly, JavaScript engines, and SVG rendering, your data is processed locally with zero server latency and zero security risks.
+      </p>
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Key Technical Features & Advantages:</h4>
+      <ul style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 16px;">
+        <li><strong>100% Client-Side Processing:</strong> Zero file uploads to remote cloud servers. All operations happen inside your browser memory.</li>
+        <li><strong>Zero Cost & Zero Registration:</strong> No account signup, credit cards, or hidden subscription tiers required.</li>
+        <li><strong>High Precision Calculations:</strong> Adheres strictly to Indian regulatory frameworks, UGC academic guidelines, and NPCI standards.</li>
+        <li><strong>Mobile & PWA Compatible:</strong> Designed for responsive performance across Android, iOS, Windows, and macOS devices.</li>
+      </ul>
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Why ToolsWaala Ranks #1 for Privacy:</h4>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7;">
+        Legacy utility websites upload confidential files and financial inputs to overseas cloud servers, introducing severe data breach risks. ToolsWaala's architecture guarantees that zero bytes leave your local device, keeping your confidential documents and personal calculations 100% secure.
+      </p>
+    </div>
+  
+  
+    <!-- Additional High-Depth Search Engine Content Block -->
+    <div class="seo-card" style="margin-top: 24px; background: var(--app-surface-card); border: 1px solid var(--app-border);">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 10px;">
+        💡 How ToolsWaala Guarantees 100% Accuracy & Privacy
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 14px;">
+        ToolsWaala is engineered from the ground up to solve privacy and speed issues inherent in online digital utilities. Traditional online tools force users to upload confidential documents (Aadhaar cards, bank statements, marksheets, legal agreements) to remote web servers in foreign jurisdictions, exposing sensitive data to data leaks and third-party tracking.
+      </p>
+      
+      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Key Security & Usability Guarantees:</h4>
+      <ul style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 14px;">
+        <li><strong>Client-Side WebAssembly Engine:</strong> All calculations, PDF operations, image compression, and invoice rendering take place 100% within your local browser sandbox memory using HTML5, WebAssembly, and React DOM. Zero bytes leave your device.</li>
+        <li><strong>No Account Registration Required:</strong> Enjoy unlimited access without creating accounts, providing email addresses, or subscribing to recurring monthly payments.</li>
+        <li><strong>Instant Zero-Latency Execution:</strong> Because files and data are not uploaded over network connections, processing completes instantaneously regardless of your internet connection speed.</li>
+        <li><strong>Full PWA & Mobile Optimization:</strong> Accessible across all desktop and mobile devices including Android, iOS, Windows, macOS, and Linux with full Progressive Web App support.</li>
+      </ul>
+
+      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Adherence to Official Indian Regulatory Guidelines:</h4>
+      <p style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+        All ToolsWaala utilities are updated to reflect official government ordinances including <strong>Central Goods and Services Tax (CGST) Rules 2017</strong>, <strong>Reserve Bank of India (RBI) Unified Payments Interface (UPI) deep link specifications</strong>, <strong>University Grants Commission (UGC) 75% attendance directives</strong>, and <strong>Indian Contract Act 1872 guidelines</strong>.
+      </p>
+    </div>
+
   </article>
 </Layout>

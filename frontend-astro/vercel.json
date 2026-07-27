@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "toolswaala.in"
+        }
+      ],
+      "destination": "https://www.toolswaala.in/:path*",
+      "permanent": true
+    }
+  ]
+}

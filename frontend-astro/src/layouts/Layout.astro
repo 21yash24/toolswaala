@@ -2,12 +2,13 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CommandPalette from '../components/CommandPalette';
 
 const { title, description, keywords, currentPath } = Astro.props;
 
 const defaultTitle = "ToolsWaala | Free Tools for Students & SMBs in India";
-const defaultDescription = "Free GST invoices, CGPA calculator, PDF compressor, resume builder & 38+ tools. Zero login. No uploads. Made for India.";
-const defaultKeywords = "cgpa calculator, attendance calculator, compress pdf online, resume builder free, emi calculator india, free pdf tools india, gst invoice generator, sarkari naukri, scholarship finder, word counter, age calculator, salary slip generator, rent agreement maker";
+const defaultDescription = "Free GST invoice generator, university CGPA calculator, 100% private PDF tools, ATS resume builder & 38+ free digital tools for Indian students & SMBs.";
+const defaultKeywords = "free educational tools india, small business resources india, no login required tools, online calculators for students, digital tools for smbs, free resume templates, invoice tools for startups, pdf editing tools free, student productivity tools, business management tools india, easy gst invoice creation, compress pdf files online free, build resumes with no uploads, cgpa calculator, attendance calculator";
 ---
 
 <!doctype html>
@@ -15,9 +16,37 @@ const defaultKeywords = "cgpa calculator, attendance calculator, compress pdf on
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- PWA & Mobile Web App Meta Tags -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#09090B" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ToolsWaala" />
+
+    <!-- Google Fonts Optimized Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Theme Flash Prevention (FOUC Fix) -->
+    <script is:inline>
+      (function() {
+        const storedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>{title || defaultTitle}</title>
     <meta name="title" content={title || defaultTitle} />
@@ -25,29 +54,49 @@ const defaultKeywords = "cgpa calculator, attendance calculator, compress pdf on
     <meta name="keywords" content={keywords || defaultKeywords} />
     <meta name="author" content="ToolsWaala" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-    <link rel="canonical" href={`https://toolswaala.in${currentPath || '/'}`} />
-    <link rel="alternate" hreflang="en-IN" href="https://toolswaala.in/" />
+    <link rel="canonical" href={`https://www.toolswaala.in${currentPath || '/'}`} />
+    <link rel="alternate" hreflang="en-IN" href="https://www.toolswaala.in/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://toolswaala.in${currentPath || '/'}`} />
+    <meta property="og:url" content={`https://www.toolswaala.in${currentPath || '/'}`} />
     <meta property="og:title" content={title || defaultTitle} />
     <meta property="og:description" content={description || defaultDescription} />
-    <meta property="og:image" content="https://toolswaala.in/og-image.png" />
+    <meta property="og:image" content="https://www.toolswaala.in/og-image.png" />
     <meta property="og:site_name" content="ToolsWaala" />
     <meta property="og:locale" content="en_IN" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={`https://toolswaala.in${currentPath || '/'}`} />
+    <meta property="twitter:url" content={`https://www.toolswaala.in${currentPath || '/'}`} />
     <meta property="twitter:title" content={title || defaultTitle} />
     <meta property="twitter:description" content={description || defaultDescription} />
-    <meta property="twitter:image" content="https://toolswaala.in/og-image.png" />
+    <meta property="twitter:image" content="https://www.toolswaala.in/og-image.png" />
 
-    <!-- Lazy load Third-Party Scripts (GA & AdSense) -->
+    <!-- Organization & Entity Schema (Fixes Pixis GEO E-E-A-T score) -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ToolsWaala",
+        "url": "https://www.toolswaala.in",
+        "logo": "https://www.toolswaala.in/favicon.svg",
+        "description": "India's free 100% private, client-side digital toolkit for students, freelancers, and small businesses.",
+        "foundingLocation": "New Delhi, India",
+        "sameAs": [
+          "https://github.com/21yash24/toolswaala",
+          "https://www.producthunt.com/products/toolswaala"
+        ]
+      }
+    </script>
+
+    <!-- Deferred Third-Party Analytics & Ads -->
     <script is:inline>
-      setTimeout(() => {
-        // Inject GA4
+      const loadAnalytics = () => {
+        if (window.analyticsLoaded) return;
+        window.analyticsLoaded = true;
+
+        // GA4
         const gaScript = document.createElement('script');
         gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-WYVSPP4PW8";
         gaScript.async = true;
@@ -58,20 +107,27 @@ const defaultKeywords = "cgpa calculator, attendance calculator, compress pdf on
         gtag('js', new Date());
         gtag('config', 'G-WYVSPP4PW8');
 
-        // Inject AdSense
+        // AdSense
         const adScript = document.createElement('script');
         adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9007237469731115";
         adScript.crossOrigin = "anonymous";
         adScript.async = true;
         document.head.appendChild(adScript);
-      }, 3500); // Wait 3.5s to bypass Lighthouse and prevent blocking render
+      };
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => setTimeout(loadAnalytics, 2500));
+      } else {
+        setTimeout(loadAnalytics, 3500);
+      }
     </script>
   </head>
   <body>
     <div id="root">
-      <Navbar currentPath={currentPath} client:load />
+      <Navbar currentPath={currentPath} client:idle />
       <slot />
       <Footer />
+      <CommandPalette client:idle />
     </div>
   </body>
 </html>

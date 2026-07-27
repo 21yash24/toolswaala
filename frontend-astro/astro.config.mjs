@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://toolswaala.in',
+  site: 'https://www.toolswaala.in',
   integrations: [react(), sitemap()],
 
   vite: {

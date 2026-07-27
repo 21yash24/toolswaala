@@ -9,7 +9,17 @@ export default function Footer() {
           <div>
             <div style={{ color: BRAND.text, fontWeight: 800, fontSize: 20, marginBottom: 16 }}>ToolsWaala</div>
             <p style={{ fontSize: 13, color: BRAND.textSecondary, lineHeight: 1.7, marginBottom: 16 }}>Bharat ka Digital Toolkit. Free tools for students, businesses, and professionals. No login. No data stored. Ever.</p>
-            <p style={{ fontSize: 12, color: BRAND.textSecondary }}>📧 hello@toolswaala.in</p>
+            <p style={{ fontSize: 12, color: BRAND.textSecondary, marginBottom: 16 }}>📧 hello@toolswaala.in</p>
+            
+            {/* Social Media Links — Resolves SEO Audit Red Flags */}
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+              <a href="https://x.com/toolswaala" target="_blank" rel="noopener noreferrer" aria-label="ToolsWaala on X Twitter" style={{ color: BRAND.textSecondary, fontSize: 18, textDecoration: "none" }}>𝕏</a>
+              <a href="https://linkedin.com/company/toolswaala" target="_blank" rel="noopener noreferrer" aria-label="ToolsWaala on LinkedIn" style={{ color: BRAND.textSecondary, fontSize: 18, textDecoration: "none" }}>💼</a>
+              <a href="https://youtube.com/@toolswaala" target="_blank" rel="noopener noreferrer" aria-label="ToolsWaala on YouTube" style={{ color: BRAND.textSecondary, fontSize: 18, textDecoration: "none" }}>▶️</a>
+              <a href="https://instagram.com/toolswaala" target="_blank" rel="noopener noreferrer" aria-label="ToolsWaala on Instagram" style={{ color: BRAND.textSecondary, fontSize: 18, textDecoration: "none" }}>📸</a>
+              <a href="https://facebook.com/toolswaala" target="_blank" rel="noopener noreferrer" aria-label="ToolsWaala on Facebook" style={{ color: BRAND.textSecondary, fontSize: 18, textDecoration: "none" }}>📘</a>
+              <a href="https://github.com/21yash24/toolswaala" target="_blank" rel="noopener noreferrer" aria-label="ToolsWaala on GitHub" style={{ color: BRAND.textSecondary, fontSize: 18, textDecoration: "none" }}>🐙</a>
+            </div>
           </div>
           <div>
             <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 20, fontSize: 13 }}>💼 Business Tools</div>
@@ -27,6 +37,12 @@ export default function Footer() {
             <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 20, fontSize: 13 }}>📄 PDF Tools</div>
             {PDF_TOOLS.map(t=>(
               <a key={t.id} href={t.path} style={fs}>{t.name}</a>
+            ))}
+          </div>
+          <div>
+            <div style={{ color: BRAND.text, fontWeight: 700, marginBottom: 20, fontSize: 13 }}>📰 Guides & Articles</div>
+            {[{n:"All Blog Articles",p:"/blog"},{n:"75% Attendance Rule",p:"/blog/75-percent-attendance-rule-guide"},{n:"Fresher ATS Resume",p:"/blog/ats-resume-for-freshers-guide"},{n:"GST Invoice Format",p:"/blog/gst-invoice-format-india-2025"},{n:"CGPA to Percentage",p:"/blog/cgpa-to-percentage-guide-2025"},{n:"Tax Regime 2025",p:"/blog/new-tax-regime-vs-old-tax-regime-2025"}].map(t=>(
+              <a key={t.p} href={t.p} style={fs}>{t.n}</a>
             ))}
           </div>
         </div>

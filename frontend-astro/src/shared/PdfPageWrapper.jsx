@@ -36,7 +36,7 @@ export default function PdfPageWrapper({ children, title, hindi }) {
     setMeta("og:title", seoTitle);
     setMeta("og:description", seoDesc);
     setMeta("og:url", window.location.href);
-    setMeta("og:image", "https://toolswaala.in/og-image.png");
+    setMeta("og:image", "https://www.toolswaala.in/og-image.png");
     setMeta("twitter:title", seoTitle);
     setMeta("twitter:description", seoDesc);
     setMeta("twitter:card", "summary_large_image");
@@ -57,7 +57,7 @@ export default function PdfPageWrapper({ children, title, hindi }) {
       operatingSystem: "All",
       applicationCategory: "BusinessApplication",
       offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
-      url: typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in',
+      url: typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in',
       description: seoDesc,
     };
     let script = document.getElementById("json-ld-schema");
@@ -139,7 +139,7 @@ export default function PdfPageWrapper({ children, title, hindi }) {
                 </div>
                 <div style={{ display: "flex", gap: 10 }}>
                   <a 
-                    href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} tool on ToolsWaala! 📄\n\n${typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in'}`)}`}
+                    href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} tool on ToolsWaala! 📄\n\n${typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in'}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}

@@ -38,9 +38,9 @@ export default function Navbar({ currentPath = "/" }) {
   return (
     <nav style={{ background: BRAND.surface, backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: `1px solid ${BRAND.border}`, width: "100vw" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
+        <a href="/" aria-label="ToolsWaala Homepage" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
           <div style={{ position: "relative", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M20 25H80M50 25V85" stroke="#FF6B00" strokeWidth="10" strokeLinecap="round" />
               <path d="M20 25L10 15M20 25L10 35" stroke="#FF6B00" strokeWidth="8" strokeLinecap="round" />
               <path d="M25 55L40 85L50 65L60 85L75 55" stroke="var(--app-text)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
@@ -57,14 +57,16 @@ export default function Navbar({ currentPath = "/" }) {
         {/* Global Search Bar */}
         <div style={{ flex: 1, maxWidth: 400, margin: "0 20px", position: "relative" }} className="nav-search-container">
           <div style={{ position: "relative" }}>
-            <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", opacity: 0.5 }}>🔍</span>
+            <span style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", opacity: 0.5 }} aria-hidden="true">🔍</span>
             <input 
               type="text" 
-              placeholder="Search 40+ tools (e.g. CGPA, GST, PDF)..." 
+              aria-label="Search 40+ free tools"
+              placeholder="Search 40+ tools..." 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{ width: "100%", padding: "10px 14px 10px 40px", borderRadius: 12, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.05)", color: BRAND.text, fontSize: 13 }}
+              style={{ width: "100%", padding: "10px 48px 10px 40px", borderRadius: 12, border: `1px solid ${BRAND.border}`, background: "rgba(255,255,255,0.05)", color: BRAND.text, fontSize: 13 }}
             />
+            <kbd className="nav-desktop-links" style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.1)", color: BRAND.textSecondary, padding: "2px 6px", borderRadius: 6, fontSize: 10, fontWeight: 700, pointerEvents: "none" }}>⌘K</kbd>
           </div>
           {filteredTools.length > 0 && (
             <div style={{ position: "absolute", top: "100%", left: 0, right: 0, background: BRAND.surfaceCard, border: `1px solid ${BRAND.border}`, borderRadius: 12, marginTop: 8, boxShadow: "0 10px 30px rgba(0,0,0,0.3)", maxHeight: 300, overflowY: "auto", zIndex: 1000 }}>
@@ -82,15 +84,16 @@ export default function Navbar({ currentPath = "/" }) {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <button onClick={toggleDarkMode} style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
+          <button onClick={toggleDarkMode} aria-label="Toggle Dark Mode" style={{ background: "transparent", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
             {darkMode ? "☀️" : "🌙"}
           </button>
           <div className="nav-desktop-links" style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <a href="/" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: currentPath === "/" ? BRAND.primary : "transparent", color: currentPath === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>💼 Business</a>
             <a href="/pdf-tools" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: currentPath.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: currentPath.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📄 PDF Tools</a>
             <a href="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: currentPath.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => currentPath.includes(p)) ? STUDENT_BRAND.accent : "transparent", color: currentPath.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</a>
+            <a href="/blog" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid rgba(236,72,153,0.4)`, background: currentPath.includes("/blog") ? "#EC4899" : "transparent", color: currentPath.includes("/blog") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📰 Blog</a>
           </div>
-          <button className="nav-mobile-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
+          <button className="nav-mobile-hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Navigation Menu" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyCenter: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
         </div>
       </div>
       {menuOpen && (
@@ -100,6 +103,7 @@ export default function Navbar({ currentPath = "/" }) {
               <a href="/" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: currentPath === "/" ? BRAND.primary : "transparent", color: currentPath === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>💼 Business</a>
               <a href="/pdf-tools" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${PDF_BRAND.accent}40`, background: currentPath.includes("/pdf-tools") ? PDF_BRAND.accent : "transparent", color: currentPath.includes("/pdf-tools") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>📄 PDF Tools</a>
               <a href="/students" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: currentPath.includes("/students") ? STUDENT_BRAND.accent : "transparent", color: currentPath.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>🎓 Students</a>
+              <a href="/blog" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid rgba(236,72,153,0.4)`, background: currentPath.includes("/blog") ? "#EC4899" : "transparent", color: currentPath.includes("/blog") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>📰 Blog</a>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 6 }}>
               {TOOLS.map(t => (

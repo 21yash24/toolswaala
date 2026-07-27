@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { GstInvoiceTool } from '../react-pages/BusinessTools';
+
+const title = "GST Invoice Format for Freelancers 2026 | Free PDF Invoice Generator";
+const description = "Generate GST compliant invoices for Indian freelancers, software developers, and agency contractors. Export services LUT guide, SAC codes, IGST/CGST rules & PDF export.";
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do freelancers in India need GST registration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GST registration is mandatory for freelancers whose annual turnover exceeds ₹20 Lakhs (₹10 Lakhs for North-Eastern states). However, for export of services (working for US/foreign clients), GST registration with LUT filing is mandatory regardless of turnover."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to invoice US or foreign clients without charging 18% GST?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Freelancers exporting services can file a Letter of Undertaking (LUT) under Form GST RFD-11 on the GST portal. Filing LUT allows zero-rated export of services without paying 18% IGST upfront."
+      }
+    }
+  ]
+}
+</script>\n`;
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/gst-invoice-format-freelancers">
+  <script type="application/ld+json" is:inline set:html={faqSchemaStr} />
+
+  <PageWrapper title="GST Invoice Format for Freelancers" description="Create clean, print-ready GST invoices for domestic and export client billing.">
+    <GstInvoiceTool client:load />
+
+    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
+      <h2>Essential Fields Required in a Freelancer GST Invoice</h2>
+      <ol style="line-height: 1.8;">
+        <li><strong>Invoice Number &amp; Date:</strong> Sequential invoice number (e.g., INV-2026-001) and billing date.</li>
+        <li><strong>GSTIN &amp; PAN:</strong> Your 15-digit GSTIN and client's GSTIN (or "Export under LUT" note).</li>
+        <li><strong>SAC Code (Services Accounting Code):</strong> 998314 for IT &amp; Software, 998313 for Graphic Design, 998311 for Management Consulting.</li>
+        <li><strong>Place of Supply (POS):</strong> State code of the client for domestic GST (CGST + SGST vs IGST).</li>
+        <li><strong>Bank Account &amp; IFSC:</strong> Account number, UPI ID, and SWIFT/BIC code for foreign inward remittances.</li>
+      </ol>
+
+      <h2>LUT Notice Clause for Export Invoices</h2>
+      <p style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; font-style: italic;">
+        "SUPPLY MEANT FOR EXPORT UNDER LETTER OF UNDERTAKING (LUT) WITHOUT PAYMENT OF INTEGRATED TAX (IGST)"
+      </p>
+    </div>
+  </PageWrapper>
+</Layout>

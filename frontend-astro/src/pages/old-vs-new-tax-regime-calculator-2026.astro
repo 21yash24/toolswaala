@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { TaxCalculatorTool } from '../react-pages/BusinessTools';
+
+const title = "Old vs New Tax Regime Calculator 2026-27 | Budget 2025-26 Comparison";
+const description = "Compare Income Tax under Old vs New Tax Regime for FY 2025-26 (AY 2026-27). Standard deduction ₹75,000, 80C exemptions, HRA rebate, and tax liability breakdown.";
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the tax rebate limit under the New Tax Regime for FY 2025-26?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under Section 87A of the New Tax Regime, salaried individuals with taxable income up to ₹7,000,000 pay zero income tax. With the enhanced ₹75,000 standard deduction, income up to ₹7,75,000 is effectively tax-free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which tax regime saves more money in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your total deductions (80C, 80D, HRA, Home Loan Interest) exceed ₹3,75,000, the Old Tax Regime typically saves more tax. For individuals with lower deductions, the New Tax Regime offers lower slab rates and zero tax up to ₹7.75 Lakhs."
+      }
+    }
+  ]
+}
+</script>\n`;
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/old-vs-new-tax-regime-calculator-2026">
+  <script type="application/ld+json" is:inline set:html={faqSchemaStr} />
+
+  <PageWrapper title="Old vs New Tax Regime Calculator 2026-27" description="Side-by-side tax comparison incorporating Union Budget standard deduction updates.">
+    <TaxCalculatorTool client:load />
+
+    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
+      <h2>Income Tax Slab Comparison for FY 2025-26 (AY 2026-27)</h2>
+      <p>Choosing between the Old and New Tax Regimes depends on your total eligible deductions under Section 80C (PPF/EPF/ELSS), 80D (Health Insurance), Section 24(b) (Home Loan Interest), and HRA (House Rent Allowance).</p>
+
+      <div style="overflow-x:auto; margin: 24px 0;">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--app-border);">
+              <th style="padding: 10px;">Income Slab</th>
+              <th style="padding: 10px;">New Tax Regime Rate</th>
+              <th style="padding: 10px;">Old Tax Regime Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">Up to ₹3,00,000</td>
+              <td style="padding: 10px;">NIL (0%)</td>
+              <td style="padding: 10px;">NIL (0%) up to ₹2.5L</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">₹3,00,001 to ₹7,00,000</td>
+              <td style="padding: 10px;">5% (Section 87A Rebate)</td>
+              <td style="padding: 10px;">5% (₹2.5L - ₹5L)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">₹7,00,001 to ₹10,00,000</td>
+              <td style="padding: 10px;">10%</td>
+              <td style="padding: 10px;">20% (₹5L - ₹10L)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">₹10,00,001 to ₹12,00,000</td>
+              <td style="padding: 10px;">15%</td>
+              <td style="padding: 10px;">30% (Above ₹10L)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">₹12,00,001 to ₹15,00,000</td>
+              <td style="padding: 10px;">20%</td>
+              <td style="padding: 10px;">30%</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">Above ₹15,00,000</td>
+              <td style="padding: 10px;">30%</td>
+              <td style="padding: 10px;">30%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Standard Deduction Benefits in 2026</h2>
+      <p>Salaried employees benefit from a <strong>₹75,000 flat Standard Deduction</strong> under the New Tax Regime (increased from ₹50,000). Combined with Section 87A rebate, salaried individuals earning up to ₹7,75,000 pay zero income tax.</p>
+    </div>
+  </PageWrapper>
+</Layout>

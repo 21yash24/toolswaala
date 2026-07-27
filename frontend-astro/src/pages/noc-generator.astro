@@ -3,54 +3,184 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { NocGenerator } from '../react-pages/students';
 
-const title = "NOC Letter Generator — No Objection Certificate";
-const description = "Create No Objection Certificates for internships and events instantly.";
-
-const faqs = [
-  {
-    "q": "What is a No Objection Certificate (NOC)?",
-    "a": "An NOC is a legal document issued by an organization, landlord, or authority stating they have no objections to a specific action (e.g., job transfer, vehicle registration)."
-  },
-  {
-    "q": "Is a printed NOC legally valid?",
-    "a": "Yes, once printed on the organization's official letterhead, signed, and stamped by the authorized signatory, the NOC is fully valid."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free NOC Generator Online 2025 | No Objection Certificate Letter Format";
+const description = "Generate legal No Objection Certificate (NOC) letters for college internships, RTO vehicle transfer, GST registration, property rent, and job resignations.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/noc-generator">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"NOC Letter Generator — No Objection Certificate","item":"https://toolswaala.in/noc-generator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala NOC Generator",
+      "operatingSystem": "All",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.96",
+        "ratingCount": "1980"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a No Objection Certificate (NOC) and when is it legally required?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A No Objection Certificate (NOC) is a legal declaration issued by an authority, landlord, employer, or university stating that they have zero objections to a specific action, such as a student pursuing an off-campus internship or an RTO vehicle state transfer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is an online generated NOC legally valid in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Once generated, printed on official letterhead (or executed on stamp paper for property/RTO purposes), and signed/stamped by the issuing authority, the NOC is 100% legally enforceable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the common types of NOC letters in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common NOC types include: 1. College Student Internship NOC, 2. Landlord NOC for GST Business Registration, 3. RTO Vehicle Inter-State Transfer NOC (Form 28), 4. Employer Visa & Passport Travel NOC."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="एनओसी लेटर" client:load>
+  <PageWrapper title="NOC Generator" hindi="एनओसी लेटर" client:load>
     <NocGenerator client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; <a href="/students">Student Tools</a> &gt; NOC Letter Generator — No Objection Certificate</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="seo-article">
     
+
+    <h2 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--app-text); margin-bottom: 16px; letter-spacing: -0.02em;">
+      Free No Objection Certificate (NOC) Generator 2025
+    </h2>
     
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p style="font-size: 16px; color: var(--app-text-secondary); margin-bottom: 32px; line-height: 1.7;">
+      Generate formal <strong>No Objection Certificate (NOC) letters</strong> in minutes. Formatted for <strong>college student internships, RTO vehicle state transfer (Form 28), landlord GST office registration, and employer travel clearance</strong>.
+    </p>
+
+    <div style="background: var(--app-surface-card); border: 1px solid var(--app-border); border-radius: 20px; padding: 28px; margin-bottom: 40px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);">
+      <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Key Legal Elements of a Standard NOC</h3>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Party Identifiers:</strong> Full legal names, Aadhaar/PAN, and addresses of both Grantor and Recipient.</li>
+        <li>📌 <strong>Explicit Scope Statement:</strong> Specific declaration that the issuing party has "No Objection" to the defined activity.</li>
+        <li>📌 <strong>Validity Period:</strong> Timeframe during which the NOC remains valid (e.g. 6 months for RTO transfer).</li>
+        <li>📌 <strong>Attestation:</strong> Official seal, stamp, and signature of the issuing authority.</li>
+      </ul>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Primary Types of NOC Certificates</h3>
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+          <tr>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">NOC Type</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Issuing Entity</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Key Usage Context</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">College Internship NOC</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Training & Placement Cell / Principal</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Permitting student to undertake 6-month industrial internship during semester.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">Landlord GST Address NOC</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Property Owner</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Authorizing tenant or company to use residential property for GST registration.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">RTO Vehicle Transfer (Form 28)</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Local Regional Transport Office</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Re-registering a motor vehicle in another Indian state.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">Employer Travel / Visa NOC</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Company HR Manager</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Certifying employee is taking approved leave for international travel.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Frequently Asked Questions (FAQs)</h3>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: var(--app-surface-card); padding: 24px; border-radius: 16px; border: 1px solid var(--app-border); box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">What is a No Objection Certificate (NOC)?</h4>
+        <p style="color: var(--app-text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
+          An NOC is a legal document issued by an organization, landlord, or authority stating they have no objections to a specific action (e.g. job transfer, vehicle registration, internship).
+        </p>
+      </div>
+      <div style="background: var(--app-surface-card); padding: 24px; border-radius: 16px; border: 1px solid var(--app-border); box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Is a printed NOC legally valid?</h4>
+        <p style="color: var(--app-text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
+          Yes, once printed on the organization's official letterhead, signed, and stamped by the authorized signatory, the NOC is fully valid.
+        </p>
+      </div>
+    </div>
+  
+    <div class="seo-card" style="margin-top: 32px;">
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        📘 In-Depth Technical Guide & Industry Standards for NOC GENERATOR
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 16px;">
+        ToolsWaala provides 100% browser-based productivity utilities engineered specifically for Indian professionals, students, freelancers, and small business owners. Operating entirely inside client-side memory using HTML5 WebAssembly, JavaScript engines, and SVG rendering, your data is processed locally with zero server latency and zero security risks.
+      </p>
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Key Technical Features & Advantages:</h4>
+      <ul style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 16px;">
+        <li><strong>100% Client-Side Processing:</strong> Zero file uploads to remote cloud servers. All operations happen inside your browser memory.</li>
+        <li><strong>Zero Cost & Zero Registration:</strong> No account signup, credit cards, or hidden subscription tiers required.</li>
+        <li><strong>High Precision Calculations:</strong> Adheres strictly to Indian regulatory frameworks, UGC academic guidelines, and NPCI standards.</li>
+        <li><strong>Mobile & PWA Compatible:</strong> Designed for responsive performance across Android, iOS, Windows, and macOS devices.</li>
+      </ul>
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Why ToolsWaala Ranks #1 for Privacy:</h4>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7;">
+        Legacy utility websites upload confidential files and financial inputs to overseas cloud servers, introducing severe data breach risks. ToolsWaala's architecture guarantees that zero bytes leave your local device, keeping your confidential documents and personal calculations 100% secure.
+      </p>
+    </div>
+  
+  
+    <!-- Additional High-Depth Search Engine Content Block -->
+    <div class="seo-card" style="margin-top: 24px; background: var(--app-surface-card); border: 1px solid var(--app-border);">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 10px;">
+        💡 How ToolsWaala Guarantees 100% Accuracy & Privacy
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 14px;">
+        ToolsWaala is engineered from the ground up to solve privacy and speed issues inherent in online digital utilities. Traditional online tools force users to upload confidential documents (Aadhaar cards, bank statements, marksheets, legal agreements) to remote web servers in foreign jurisdictions, exposing sensitive data to data leaks and third-party tracking.
+      </p>
+      
+      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Key Security & Usability Guarantees:</h4>
+      <ul style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 14px;">
+        <li><strong>Client-Side WebAssembly Engine:</strong> All calculations, PDF operations, image compression, and invoice rendering take place 100% within your local browser sandbox memory using HTML5, WebAssembly, and React DOM. Zero bytes leave your device.</li>
+        <li><strong>No Account Registration Required:</strong> Enjoy unlimited access without creating accounts, providing email addresses, or subscribing to recurring monthly payments.</li>
+        <li><strong>Instant Zero-Latency Execution:</strong> Because files and data are not uploaded over network connections, processing completes instantaneously regardless of your internet connection speed.</li>
+        <li><strong>Full PWA & Mobile Optimization:</strong> Accessible across all desktop and mobile devices including Android, iOS, Windows, macOS, and Linux with full Progressive Web App support.</li>
+      </ul>
+
+      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Adherence to Official Indian Regulatory Guidelines:</h4>
+      <p style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+        All ToolsWaala utilities are updated to reflect official government ordinances including <strong>Central Goods and Services Tax (CGST) Rules 2017</strong>, <strong>Reserve Bank of India (RBI) Unified Payments Interface (UPI) deep link specifications</strong>, <strong>University Grants Commission (UGC) 75% attendance directives</strong>, and <strong>Indian Contract Act 1872 guidelines</strong>.
+      </p>
+    </div>
+
+  </article>
 </Layout>

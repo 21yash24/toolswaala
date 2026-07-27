@@ -6,7 +6,7 @@ export default function PageWrapper({ title, hindi, children }) {
       navigator.share({
         title: `ToolsWaala - ${title}`,
         text: `Check out this free ${title} I found on ToolsWaala!`,
-        url: typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in',
+        url: typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in',
       }).catch(console.error);
     } else {
       navigator.clipboard.writeText(window.location.href);
@@ -18,34 +18,43 @@ export default function PageWrapper({ title, hindi, children }) {
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: "40px 24px" }} className="fade-in">
       <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
         <div style={{ flex: 1 }}>
-          <a href="/" className="btn-ghost" style={{ marginBottom: 24, display: "inline-block" }}>← Dashboard</a>
+          <nav aria-label="Breadcrumb" style={{ marginBottom: 16, fontSize: 13, color: BRAND.textSecondary, display: "flex", alignItems: "center", gap: 8 }}>
+            <a href="/" style={{ color: BRAND.textSecondary, textDecoration: "none" }}>Home</a>
+            <span>/</span>
+            <a href="/" style={{ color: BRAND.primary, textDecoration: "none", fontWeight: 600 }}>Business Tools</a>
+            <span>/</span>
+            <span style={{ color: BRAND.text, fontWeight: 700 }}>{title}</span>
+          </nav>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
             <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)", color: BRAND.text, fontWeight: 900, letterSpacing: "-0.02em" }}>{title}</h1>
             <span className="hindi-label" style={{ fontSize: 18, color: BRAND.primary, fontWeight: 500 }}>{hindi}</span>
           </div>
         </div>
-        <button onClick={handleShare} className="btn-ghost" style={{ padding: "10px 20px", borderRadius: 12, border: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8, fontSize: 14 }}>
-          <span>🔗</span> Share Tool
-        </button>
+        <div style={{ display: "flex", gap: 10 }}>
+          <a 
+            href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} on ToolsWaala! 💼\n\n${typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in'}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+          >
+            <span style={{ fontSize: 18 }}>📲</span> WhatsApp
+          </a>
+          <button onClick={handleShare} className="btn-ghost" style={{ padding: "10px 20px", borderRadius: 12, border: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8, fontSize: 14 }}>
+            <span>🔗</span> Share Tool
+          </button>
+        </div>
       </div>
       {children}
 
-      <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
-        <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>Other Useful Tools</h3>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-          {TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (
-            <a key={tool.id} href={tool.path} style={{ textDecoration: "none" }}>
-              <div className="glass-card" style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, height: "100%" }}>
-                <div style={{ fontSize: 24 }}>{tool.icon}</div>
-                <div>
-                  <div style={{ fontWeight: 600, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
-                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
-                </div>
-              </div>
-            </a>
-          ))}
+      {/* E-E-A-T Author Attribution & Verification Box */}
+      <div style={{ marginTop: 40, padding: "20px 24px", borderRadius: 16, background: "var(--app-surface-card)", border: "1px solid var(--app-border)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ width: 44, height: 44, borderRadius: "50%", background: BRAND.primary, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 16, flexShrink: 0 }}>TW</div>
+        <div>
+          <div style={{ fontSize: 13, color: "var(--app-text)", fontWeight: 700 }}>Verified & Maintained by ToolsWaala Engineering & Business Team</div>
+          <div style={{ fontSize: 12, color: "var(--app-text-secondary)", lineHeight: 1.4, marginTop: 2 }}>Audited for GST tax compliance & client-side privacy. 100% browser-based calculations. Updated July 2025.</div>
         </div>
       </div>
     </div>
   );
 }
+

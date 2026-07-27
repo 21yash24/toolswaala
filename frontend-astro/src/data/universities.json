@@ -62,5 +62,133 @@
     "desc": "CBSE Class 10th and 12th CGPA to Percentage Calculator.",
     "faq1": "CBSE uses the standard formula: Percentage = CGPA × 9.5",
     "faq2": "To score 95%, you need a perfect 10 CGPA."
+  },
+  {
+    "id": "jntuh",
+    "name": "JNTU Hyderabad (JNTUH)",
+    "idx": 9,
+    "desc": "JNTU Hyderabad (JNTUH) B.Tech CGPA to Percentage Calculator.",
+    "faq1": "JNTUH uses the formula: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A CGPA of 6.5 in JNTUH corresponds to 60% (First Class)."
+  },
+  {
+    "id": "gtu",
+    "name": "Gujarat Tech University (GTU)",
+    "idx": 10,
+    "desc": "GTU SPI / CPI / CGPA to Percentage Calculator for Diploma & BE.",
+    "faq1": "GTU uses the official formula: Percentage = (SPI / CPI / CGPA - 0.5) × 10",
+    "faq2": "To get First Class with Distinction, GTU requires a CPI of 7.5 or higher."
+  },
+  {
+    "id": "calicut",
+    "name": "Calicut University",
+    "idx": 11,
+    "desc": "Calicut University (UOC) Grade Point Average to Percentage Converter.",
+    "faq1": "Calicut University (UOC) uses the 10-point scale: Percentage = CGPA × 10",
+    "faq2": "First Class in Calicut University is awarded at 6.0 CGPA (60%)."
+  },
+  {
+    "id": "jntuk",
+    "name": "JNTU Kakinada (JNTUK)",
+    "idx": 12,
+    "desc": "JNTU Kakinada (JNTUK) R19 / R20 B.Tech CGPA to Percentage Calculator.",
+    "faq1": "JNTUK R19/R20 regulations use: Percentage = (CGPA - 0.75) × 10",
+    "faq2": "A CGPA of 6.75 in JNTUK corresponds to First Class (60%)."
+  },
+  {
+    "id": "osmania",
+    "name": "Osmania University (OU)",
+    "idx": 13,
+    "desc": "Osmania University (OU) CGPA to Percentage Converter for Degree & Engineering.",
+    "faq1": "Osmania University uses the official formula: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A CGPA of 7.0 is equivalent to 65% in Osmania University."
+  },
+  {
+    "id": "rgpv",
+    "name": "RGPV Bhopal",
+    "idx": 14,
+    "desc": "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV) CGPA to Percentage Calculator.",
+    "faq1": "RGPV B.Tech uses the formula: Percentage = CGPA × 10",
+    "faq2": "First Division with Honours in RGPV requires a CGPA of 7.5 or higher."
+  },
+  {
+    "id": "bput",
+    "name": "BPUT Odisha",
+    "idx": 15,
+    "desc": "Biju Patnaik University of Technology (BPUT) CGPA to Percentage Converter.",
+    "faq1": "BPUT Odisha uses: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A BPUT CGPA of 6.5 equals 60% (First Class)."
+  },
+  {
+    "id": "srm",
+    "name": "SRM Institute of Tech (SRMIST)",
+    "idx": 16,
+    "desc": "SRM University (SRMIST) CGPA to Percentage Calculator.",
+    "faq1": "SRMIST uses standard 10-point scaling: Percentage = CGPA × 10",
+    "faq2": "A CGPA of 9.0+ qualifies for First Class with Distinction at SRM."
+  },
+  {
+    "id": "up-board",
+    "name": "UP Board (UPMSP)",
+    "idx": 17,
+    "desc": "UP Board High School (10th) & Intermediate (12th) Marks to Percentage Calculator.",
+    "faq1": "UP Board calculates percentage by dividing total obtained marks by total maximum marks (600 for 10th, 500 for 12th) and multiplying by 100.",
+    "faq2": "First Division in UP Board is awarded for scoring 60% or higher."
+  },
+  {
+    "id": "bihar-board",
+    "name": "Bihar Board (BSEB)",
+    "idx": 18,
+    "desc": "BSEB Bihar Board 10th Matric & 12th Inter Marks to Percentage Calculator.",
+    "faq1": "Bihar Board percentage formula: (Total Obtained Marks ÷ 500) × 100.",
+    "faq2": "First Division in BSEB is awarded for scoring 300 marks or more out of 500 (60%)."
+  },
+  {
+    "id": "mp-board",
+    "name": "MP Board (MPBSE)",
+    "idx": 19,
+    "desc": "MP Board Class 10th & 12th Marks & Grade Point Percentage Calculator.",
+    "faq1": "MP Board percentage is calculated as: (Total Obtained Marks ÷ Total Maximum Marks) × 100.",
+    "faq2": "Passing marks for MP Board theory exams are 33% per subject."
+  },
+  {
+    "id": "rbse",
+    "name": "Rajasthan Board (RBSE)",
+    "idx": 20,
+    "desc": "RBSE Board 10th & 12th Marks to Percentage Calculator.",
+    "faq1": "RBSE calculates percentage as: (Obtained Marks ÷ Total Maximum Marks) × 100.",
+    "faq2": "First Division in RBSE is awarded for scoring 60% or higher."
+  },
+  {
+    "id": "west-bengal-board",
+    "name": "West Bengal Board (WBCHSE / WBBSE)",
+    "idx": 21,
+    "desc": "WBBSE Madhyamik & WBCHSE Higher Secondary Percentage Calculator.",
+    "faq1": "West Bengal Board percentage formula: (Total Marks Obtained ÷ Total Max Marks) × 100.",
+    "faq2": "First Division in WB Board is awarded for scoring 60% or above."
+  },
+  {
+    "id": "karnataka-sslc-puc",
+    "name": "Karnataka SSLC & PUC Board",
+    "idx": 22,
+    "desc": "Karnataka KSEAB SSLC (10th) & 2nd PUC (12th) Marks to Percentage Calculator.",
+    "faq1": "Karnataka SSLC percentage formula: (Obtained Marks ÷ 625) × 100. 2nd PUC uses (Obtained Marks ÷ 600) × 100.",
+    "faq2": "Distinction in Karnataka Board is awarded for 85% or higher."
+  },
+  {
+    "id": "cbse-10th-result",
+    "name": "CBSE 10th Result Percentage Calculator 2026",
+    "idx": 23,
+    "desc": "Calculate your CBSE Class 10th result percentage from best of 5 subjects or total CGPA.",
+    "faq1": "CBSE Class 10 percentage formula: Add marks of top 5 subjects, divide by 5.",
+    "faq2": "If grades are given in CGPA, multiply CGPA by 9.5 to get your exact percentage."
+  },
+  {
+    "id": "cbse-12th-result",
+    "name": "CBSE 12th Result Percentage Calculator 2026",
+    "idx": 24,
+    "desc": "Calculate your CBSE Class 12th result percentage for Science, Commerce, and Arts streams.",
+    "faq1": "CBSE Class 12 percentage formula: (Total marks in best 5 main subjects ÷ 500) × 100.",
+    "faq2": "Aggregates for university admission (like DU CUET) usually require top 4 or top 3 subject combinations."
   }
 ]

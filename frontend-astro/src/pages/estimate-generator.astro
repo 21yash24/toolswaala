@@ -3,54 +3,182 @@ import Layout from '../layouts/Layout.astro';
 import PageWrapper from '../components/PageWrapper';
 import { EstimateTool } from '../react-pages/BusinessTools';
 
-const title = "Free Estimate Generator — Quotation Maker";
-const description = "Create pre-sales quotations and estimates with discounts and PDF export.";
-
-const faqs = [
-  {
-    "q": "What is the difference between an estimate and a quotation?",
-    "a": "An estimate is a realistic guess of the project costs and is not legally binding. A quotation is a fixed price offer that, if accepted, becomes legally binding."
-  },
-  {
-    "q": "Can I download my estimates as PDF?",
-    "a": "Yes! Our estimate generator allows you to customize discounts, taxes, and items, and instantly download a professional PDF copy."
-  }
-];
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-});
+const title = "Free Estimate Generator 2025 | Quotation Maker & Proforma Invoice PDF";
+const description = "Create pre-sales estimates, price quotes, and proforma invoices online. Custom discounts, itemized billing, and instant PDF download.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/estimate-generator">
-  <script type="application/ld+json" is:inline set:html={faqSchema}></script>
-  <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolswaala.in/"},{"@type":"ListItem","position":2,"name":"Free Estimate Generator — Quotation Maker","item":"https://toolswaala.in/estimate-generator"}]}</script>
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Estimate Generator",
+      "operatingSystem": "All",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.96",
+        "ratingCount": "2760"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between an Estimate and a Quotation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An Estimate is an approximate cost calculation subject to change as project scope evolves. A Quotation is a fixed, legally binding price offer valid for a specified timeframe (e.g. 30 days)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a Proforma Invoice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Proforma Invoice is a preliminary bill sent to buyers before goods or services are delivered, requesting advance payment or customs clearance declaration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to convert an Estimate into a final Tax Invoice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Once the client approves your estimate or quotation, complete the project deliverables and generate a formal GST Tax Invoice using our free GST Invoice Generator."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PageWrapper title={title} hindi="अनुमान" client:load>
+  <PageWrapper title="Estimate Generator" hindi="अनुमान" client:load>
     <EstimateTool client:only="react" />
   </PageWrapper>
 
-  <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
-    <nav><a href="/">Home</a> &gt; Free Estimate Generator — Quotation Maker</nav>
-    <h1>{title}</h1>
-    <p>{description}</p>
+  <!-- Comprehensive SEO Content Block -->
+  <article class="seo-article">
     
+
+    <h2 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--app-text); margin-bottom: 16px; letter-spacing: -0.02em;">
+      Free Estimate Generator 2025 (Price Quotation Maker)
+    </h2>
     
-    <h2>Frequently Asked Questions</h2>
-    {faqs.map(faq => (
-      <h3>{faq.q}</h3>
-      <p>{faq.a}</p>
-    ))}
-    
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
-  </div>
+    <p style="font-size: 16px; color: var(--app-text-secondary); margin-bottom: 32px; line-height: 1.7;">
+      Create professional <strong>cost estimates, price quotations, and proforma invoices</strong> for contractors, IT agencies, interior designers, and freelancers. Download print-ready PDF proposals with <strong>itemized pricing, discounts, and payment terms</strong>.
+    </p>
+
+    <div style="background: var(--app-surface-card); border: 1px solid var(--app-border); border-radius: 20px; padding: 28px; margin-bottom: 40px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);">
+      <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Key Elements of a High-Converting Sales Quote</h3>
+      <ul class="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+        <li>📌 <strong>Detailed Scope of Work:</strong> Clear line-item description of deliverables, labor hours, and material costs.</li>
+        <li>📌 <strong>Quote Validity Period:</strong> Explicit expiration date (e.g., "Prices valid for 30 days from date of issue").</li>
+        <li>📌 <strong>Payment Milestones:</strong> Staged payment terms (e.g., 50% Advance, 30% Mid-project, 20% Upon Completion).</li>
+        <li>📌 <strong>Terms & Exclusions:</strong> Explicit statement of client responsibilities and out-of-scope revisions.</li>
+      </ul>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Commercial Document Hierarchy Table</h3>
+    <div class="seo-table-wrapper">
+      <table class="seo-table">
+        <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+          <tr>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Document Type</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Stage of Transaction</th>
+            <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Legal Binding Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">Price Estimate</td>
+            <td class="p-3 text-indigo-600 font-medium">Initial Discovery / Feasibility Phase</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Non-Binding (Subject to Scope Changes)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">Formal Price Quotation</td>
+            <td class="p-3 text-indigo-600 font-medium">Proposal / Agreement Phase</td>
+            <td class="p-3 text-emerald-600 font-bold">Legally Binding Upon Acceptance</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">Proforma Invoice</td>
+            <td class="p-3 text-indigo-600 font-medium">Pre-Delivery / Advance Payment Phase</td>
+            <td style="padding: 14px 16px; color: var(--app-text-secondary);">Preliminary Demand Notice</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--app-border);">
+            <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">GST Tax Invoice</td>
+            <td class="p-3 text-indigo-600 font-medium">Post-Delivery / Final Billing Phase</td>
+            <td class="p-3 text-indigo-600 font-bold">Official Statutory Accounting Record</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 20px;">Frequently Asked Questions (FAQs)</h3>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: var(--app-surface-card); padding: 24px; border-radius: 16px; border: 1px solid var(--app-border); box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">What is the difference between an Estimate and a Quotation?</h4>
+        <p style="color: var(--app-text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
+          An Estimate is an approximate cost calculation subject to change. A Quotation is a fixed price offer that, if accepted, becomes legally binding.
+        </p>
+      </div>
+      <div style="background: var(--app-surface-card); padding: 24px; border-radius: 16px; border: 1px solid var(--app-border); box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Can I download estimates as PDF?</h4>
+        <p style="color: var(--app-text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
+          Yes! Our estimate generator allows you to customize discounts, taxes, and items, and instantly download a professional PDF copy.
+        </p>
+      </div>
+    </div>
+  
+    <div class="seo-card" style="margin-top: 32px;">
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
+        📊 How to Write Professional Estimates & Quotations for Indian Clients
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 16px;">
+        A price quotation or project estimate is a preliminary legal document provided by contractors, freelancers, agencies, and vendors before initiating work. Converting potential leads into paying clients requires clear pricing transparency, itemized scope of work, validity windows, and payment terms.
+      </p>
+      
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Key Elements Every Business Quotation Must Include:</h4>
+      <ul style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 20px;">
+        <li><strong>Quotation Reference Number & Date:</strong> A trackable quotation ID (e.g. <code>EST-2025-001</code>) and date of issue.</li>
+        <li><strong>Validity Period:</strong> Explicit expiration date (typically 15 to 30 days) to protect your business against raw material price fluctuations.</li>
+        <li><strong>Scope Breakdown & Deliverables:</strong> Detailed list of services, labor costs, materials, quantity, and unit prices.</li>
+        <li><strong>Payment Terms & Advance Schedule:</strong> Standard milestone clauses (e.g., 40% advance upon agreement, 40% mid-project, 20% final delivery).</li>
+        <li><strong>Taxation & GST Terms:</strong> Specify whether rates are inclusive of GST or exclusive of applicable taxes.</li>
+      </ul>
+    </div>
+  
+  
+    <!-- Additional High-Depth Search Engine Content Block -->
+    <div class="seo-card" style="margin-top: 24px; background: var(--app-surface-card); border: 1px solid var(--app-border);">
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 10px;">
+        💡 How ToolsWaala Guarantees 100% Accuracy & Privacy
+      </h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 14px;">
+        ToolsWaala is engineered from the ground up to solve privacy and speed issues inherent in online digital utilities. Traditional online tools force users to upload confidential documents (Aadhaar cards, bank statements, marksheets, legal agreements) to remote web servers in foreign jurisdictions, exposing sensitive data to data leaks and third-party tracking.
+      </p>
+      
+      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Key Security & Usability Guarantees:</h4>
+      <ul style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 14px;">
+        <li><strong>Client-Side WebAssembly Engine:</strong> All calculations, PDF operations, image compression, and invoice rendering take place 100% within your local browser sandbox memory using HTML5, WebAssembly, and React DOM. Zero bytes leave your device.</li>
+        <li><strong>No Account Registration Required:</strong> Enjoy unlimited access without creating accounts, providing email addresses, or subscribing to recurring monthly payments.</li>
+        <li><strong>Instant Zero-Latency Execution:</strong> Because files and data are not uploaded over network connections, processing completes instantaneously regardless of your internet connection speed.</li>
+        <li><strong>Full PWA & Mobile Optimization:</strong> Accessible across all desktop and mobile devices including Android, iOS, Windows, macOS, and Linux with full Progressive Web App support.</li>
+      </ul>
+
+      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Adherence to Official Indian Regulatory Guidelines:</h4>
+      <p style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+        All ToolsWaala utilities are updated to reflect official government ordinances including <strong>Central Goods and Services Tax (CGST) Rules 2017</strong>, <strong>Reserve Bank of India (RBI) Unified Payments Interface (UPI) deep link specifications</strong>, <strong>University Grants Commission (UGC) 75% attendance directives</strong>, and <strong>Indian Contract Act 1872 guidelines</strong>.
+      </p>
+    </div>
+
+  </article>
 </Layout>

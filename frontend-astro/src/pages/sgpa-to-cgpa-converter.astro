@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { CgpaCalculator } from '../react-pages/students';
+
+const title = "SGPA to CGPA Converter 2026 | Semester Grade Point to Cumulative Calculator";
+const description = "Convert semester SGPA to cumulative CGPA across all Indian universities (MU, VTU, AKTU, DU, Anna, SPPU). Credit weightage formulas, credit calculations, and grade point tables.";
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between SGPA and CGPA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SGPA (Semester Grade Point Average) measures your academic performance in a single semester, while CGPA (Cumulative Grade Point Average) is the credit-weighted average of your SGPA across all completed semesters in a degree program."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the formula to convert SGPA to CGPA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The credit-weighted formula for CGPA is: CGPA = Σ(SGPA_i × Credits_i) ÷ Σ(Total Credits). If all semesters have equal credit weightage, CGPA is simply the arithmetic mean: CGPA = Sum of all SGPAs ÷ Number of Semesters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can SGPA be higher than CGPA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If your current semester SGPA is higher than your previous overall average, your cumulative CGPA will increase."
+      }
+    }
+  ]
+}
+</script>\n`;
+
+const softwareSchema = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ToolsWaala SGPA to CGPA Converter",
+  "operatingSystem": "All",
+  "applicationCategory": "EducationalApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  }
+}
+</script>\n`;
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/sgpa-to-cgpa-converter">
+  <Fragment set:html={softwareSchema} />
+  <Fragment set:html={faqSchemaStr} />
+
+  <PageWrapper title="SGPA to CGPA Converter" description="Convert semester SGPA scores to overall cumulative CGPA with credit-weighted calculations.">
+    <CgpaCalculator client:only="react" />
+
+    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
+      <h2>SGPA to CGPA Conversion Guide (2026)</h2>
+      <p>In Choice Based Credit Systems (CBCS) mandated by UGC across Indian universities, academic performance is evaluated per semester using <strong>SGPA (Semester Grade Point Average)</strong> and overall using <strong>CGPA (Cumulative Grade Point Average)</strong>.</p>
+
+      <h2>Mathematical Formula for SGPA to CGPA</h2>
+      <p>To convert your semester SGPAs into a cumulative CGPA, use the credit-weighted summation formula:</p>
+      <p style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; font-family: monospace;">
+        <strong>CGPA = ( (SGPA1 × C1) + (SGPA2 × C2) + ... + (SGPAn × Cn) ) ÷ (C1 + C2 + ... + Cn)</strong>
+      </p>
+      <p>Where <em>C_i</em> represents the total credit points assigned to semester <em>i</em>.</p>
+
+      <h2>Step-by-Step Calculation Example</h2>
+      <ol style="line-height: 1.8;">
+        <li><strong>Semester 1:</strong> SGPA = 8.0 (20 Credits) ➔ Credit Points = 160</li>
+        <li><strong>Semester 2:</strong> SGPA = 8.5 (22 Credits) ➔ Credit Points = 187</li>
+        <li><strong>Semester 3:</strong> SGPA = 7.5 (24 Credits) ➔ Credit Points = 180</li>
+        <li><strong>Total Credit Points:</strong> 160 + 187 + 180 = 527</li>
+        <li><strong>Total Credits:</strong> 20 + 22 + 24 = 66</li>
+        <li><strong>Cumulative CGPA:</strong> 527 ÷ 66 = <strong>7.98 CGPA</strong></li>
+      </ol>
+
+      <h2>University Specific CGPA Conversion Shortcuts</h2>
+      <ul style="display:flex; flex-wrap:wrap; gap:12px; list-style:none; padding:0; margin:16px 0;">
+        <li><a href="/mumbai-university-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">Mumbai University (MU) →</a></li>
+        <li><a href="/vtu-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">VTU Karnataka →</a></li>
+        <li><a href="/aktu-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">AKTU UPTU →</a></li>
+        <li><a href="/delhi-university-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">Delhi University (DU) →</a></li>
+      </ul>
+    </div>
+  </PageWrapper>
+</Layout>

@@ -83,7 +83,7 @@ function addMonths(dateStr, months) {
 // ============================================================
 // STYLES (PREMIUM DARK MODE)
 // ============================================================
-const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   :root {
@@ -91,24 +91,26 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     --primary-dark: #D45800;
     --surface: #F8FAFC;
     --surface-dark: #FFFFFF;
+    --input-bg: #FFFFFF;
     --accent: #FFB347;
-    --border: rgba(0, 0, 0, 0.08);
+    --border: rgba(0, 0, 0, 0.12);
     --text: #0F172A;
-    --text-secondary: #64748B;
+    --text-secondary: #475569;
     --success: #22C55E;
     --danger: #EF4444;
     --radius: 16px;
     --radius-sm: 8px;
-    --shadow: 0 4px 20px -2px rgba(0,0,0,0.1);
+    --shadow: 0 4px 20px -2px rgba(0,0,0,0.06);
     --shadow-hover: 0 8px 30px -4px rgba(255,107,0,0.2);
   }
 
-  .dark-mode {
+  .dark, .dark-mode, html.dark {
     --surface: #09090B;
-    --surface-dark: #141414;
-    --text: #FAFAFA;
-    --text-secondary: #A1A1AA;
-    --border: rgba(255, 255, 255, 0.08);
+    --surface-dark: #18181B;
+    --input-bg: #09090B;
+    --text: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --border: rgba(255, 255, 255, 0.16);
     --shadow: 0 10px 40px -10px rgba(0,0,0,0.8);
   }
 
@@ -123,15 +125,15 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     color: var(--text);
   }
 
-  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   
-  h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
   
   .hindi-label {
     font-family: 'Noto Sans Devanagari', sans-serif;
     font-size: 11px;
     color: var(--text-secondary);
-    opacity: 0.6;
+    opacity: 0.8;
     display: block;
     margin-top: 2px;
   }
@@ -195,15 +197,16 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     padding: 24px;
     transition: all 0.3s ease;
   }
-  .glass-card:hover { border-color: rgba(255,107,0,0.3); box-shadow: var(--shadow-hover); }
+  .glass-card:hover { border-color: rgba(255,107,0,0.4); box-shadow: var(--shadow-hover); }
 
   .form-group { margin-bottom: 20px; }
   .form-group label {
     display: block;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-secondary);
     margin-bottom: 8px;
+    letter-spacing: 0.01em;
   }
   .form-group input,
   .form-group select,
@@ -215,7 +218,7 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
     font-family: inherit;
     font-size: 14px;
     color: var(--text);
-    background: var(--surface-dark);
+    background: var(--input-bg);
     transition: all 0.2s;
     outline: none;
   }
@@ -223,8 +226,8 @@ const globalStyle = `@import url('https://fonts.googleapis.com/css2?family=Inter
   .form-group select:focus,
   .form-group textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(255,107,0,0.2);
-    background: var(--surface);
+    box-shadow: 0 0 0 3px rgba(255,107,0,0.25);
+    background: var(--input-bg);
   }
   .form-group textarea { resize: vertical; min-height: 100px; }
 
@@ -532,23 +535,6 @@ export function PageWrapper({ title, hindi, children }) {
         </button>
       </div>
       {children}
-
-      <div style={{ marginTop: 80, paddingTop: 40, borderTop: `1px solid ${BRAND.border}` }}>
-        <h3 style={{ fontSize: 20, marginBottom: 24, color: BRAND.text }}>Other Useful Tools</h3>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-          {TOOLS.filter(t => t.name !== title).slice(0, 3).map(tool => (
-            <a key={tool.id} href={tool.path} style={{ textDecoration: "none" }}>
-              <div className="glass-card" style={{ padding: 20, display: "flex", alignItems: "center", gap: 16, height: "100%" }}>
-                <div style={{ fontSize: 24 }}>{tool.icon}</div>
-                <div>
-                  <div style={{ fontWeight: 600, color: BRAND.text, fontSize: 14 }}>{tool.name}</div>
-                  <div style={{ fontSize: 12, color: BRAND.textSecondary }}>{tool.hindi}</div>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
@@ -570,22 +556,22 @@ export function UpiTool() {
     window.location.href = deepLinks[app] || payUrl;
   };
   return (
-    <div className="grid-2">
+    <div style={generated ? {} : { maxWidth: 580, margin: "0 auto" }} className={generated ? "grid-2" : ""}>
       <div className="glass-card">
-        <div className="form-group"><label>Display Name</label><input value={form.name} onChange={e => update("name", e.target.value)} /></div>
-        <div className="form-group"><label>UPI ID</label><input value={form.upiId} onChange={e => update("upiId", e.target.value)} /></div>
-        <div className="form-group"><label>Amount</label><input type="number" value={form.amount} onChange={e => update("amount", e.target.value)} /></div>
-        <button className="btn-primary" style={{ width: "100%" }} onClick={generate}>Generate Page</button>
+        <div className="form-group"><label>Display Name</label><input value={form.name} onChange={e => update("name", e.target.value)} placeholder="e.g. Yash Store" /></div>
+        <div className="form-group"><label>UPI ID</label><input value={form.upiId} onChange={e => update("upiId", e.target.value)} placeholder="e.g. 9876543210@paytm or store@okicici" /></div>
+        <div className="form-group"><label>Amount (Optional)</label><input type="number" value={form.amount} onChange={e => update("amount", e.target.value)} placeholder="e.g. 500" /></div>
+        <button className="btn-primary" style={{ width: "100%", marginTop: 8 }} onClick={generate}>Generate Payment Page</button>
       </div>
       {generated && (
         <div className="result-box fade-in">
           <div style={{ textAlign: "center" }}>
-            <div style={{ width: 60, height: 60, borderRadius: 12, background: BRAND.primary, margin: "0 auto 20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{getInitials(form.name)}</div>
+            <div style={{ width: 60, height: 60, borderRadius: 12, background: BRAND.primary, margin: "0 auto 20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, color: "white", fontWeight: 800 }}>{getInitials(form.name)}</div>
             <h2>{form.name}</h2>
-            <p>{form.upiId}</p>
-            {form.amount && <div style={{ fontSize: 32, fontWeight: 900, margin: "20px 0" }}>{formatINR(form.amount)}</div>}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-              {["phonepe", "gpay", "paytm", "bhim"].map(app => <button key={app} onClick={() => openPayment(app)} className="btn-secondary">{app.toUpperCase()}</button>)}
+            <p style={{ color: BRAND.textSecondary, fontSize: 14 }}>{form.upiId}</p>
+            {form.amount && <div style={{ fontSize: 32, fontWeight: 900, margin: "20px 0", color: BRAND.primary }}>{formatINR(form.amount)}</div>}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 20 }}>
+              {["phonepe", "gpay", "paytm", "bhim"].map(app => <button key={app} onClick={() => openPayment(app)} className="btn-secondary" style={{ justifyContent: "center" }}>{app.toUpperCase()}</button>)}
             </div>
           </div>
         </div>
@@ -1200,12 +1186,12 @@ export function GstinVerifyTool() {
 }
 
 export function QrTool() {
-  const [input, setInput] = useState("https://toolswaala.in");
+  const [input, setInput] = useState("https://www.toolswaala.in");
   const [options, setOptions] = useState({
     width: 300,
     height: 300,
     type: "svg",
-    data: "https://toolswaala.in",
+    data: "https://www.toolswaala.in",
     margin: 10,
     qrOptions: { typeNumber: 0, mode: "Byte", errorCorrectionLevel: "Q" },
     imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 10, crossOrigin: "anonymous" },
@@ -1231,7 +1217,7 @@ export function QrTool() {
     if (!qrCode) return;
     qrCode.update({
       ...options,
-      data: input || "https://toolswaala.in"
+      data: input || "https://www.toolswaala.in"
     });
   }, [input, options, qrCode]);
 
