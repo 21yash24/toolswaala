@@ -6,7 +6,7 @@ export default function PageWrapper({ title, hindi, children }) {
       navigator.share({
         title: `ToolsWaala - ${title}`,
         text: `Check out this free ${title} I found on ToolsWaala!`,
-        url: typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in',
+        url: typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in',
       }).catch(console.error);
     } else {
       navigator.clipboard.writeText(window.location.href);
@@ -32,7 +32,7 @@ export default function PageWrapper({ title, hindi, children }) {
         </div>
         <div style={{ display: "flex", gap: 10 }}>
           <a 
-            href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} on ToolsWaala! 💼\n\n${typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in'}`)}`}
+            href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} on ToolsWaala! 💼\n\n${typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in'}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}

@@ -31,7 +31,7 @@ export default function StudentPageWrapper({ title, hindi, children }) {
     setMeta("og:title", seoTitle);
     setMeta("og:description", seoDesc);
     setMeta("og:url", window.location.href);
-    setMeta("og:image", "https://toolswaala.in/og-image.png");
+    setMeta("og:image", "https://www.toolswaala.in/og-image.png");
     setMeta("twitter:title", seoTitle);
     setMeta("twitter:description", seoDesc);
     setMeta("twitter:card", "summary_large_image");
@@ -52,7 +52,7 @@ export default function StudentPageWrapper({ title, hindi, children }) {
       operatingSystem: "Web",
       applicationCategory: "EducationalApplication",
       offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
-      url: typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in',
+      url: typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in',
       description: seoDesc,
     };
     let script = document.getElementById("json-ld-schema");
@@ -67,7 +67,7 @@ export default function StudentPageWrapper({ title, hindi, children }) {
 
   const handleShare = () => {
     if (navigator.share) {
-      navigator.share({ title: `ToolsWaala - ${title}`, text: `Check out this free ${title} for students!`, url: typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in' }).catch(() => {});
+      navigator.share({ title: `ToolsWaala - ${title}`, text: `Check out this free ${title} for students!`, url: typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in' }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
       alert("Link copied!");
@@ -88,7 +88,7 @@ export default function StudentPageWrapper({ title, hindi, children }) {
         </div>
         <div style={{ display: "flex", gap: 10 }}>
           <a 
-            href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} on ToolsWaala! 🎓\n\n${typeof window !== 'undefined' ? window.location.href : 'https://toolswaala.in'}`)}`}
+            href={`https://wa.me/?text=${encodeURIComponent(`Check out this free ${title} on ToolsWaala! 🎓\n\n${typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in'}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             style={{ padding: "10px 18px", borderRadius: 12, border: "1px solid #25D366", background: "rgba(37,211,102,0.1)", color: "#25D366", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}
