@@ -12,8 +12,8 @@ export async function getStaticPaths() {
 }
 
 const { bank } = Astro.props;
-const title = `${bank.name} EMI Calculator 2026 | Home, Car & Personal Loan Rates`;
-const description = `Calculate monthly EMI for ${bank.name} home loans (${bank.homeInterest}), car loans (${bank.carInterest}), and personal loans (${bank.personalInterest}). Complete amortization breakdown.`;
+const title = `${bank.name} EMI Calculator 2026 | Home, Car & Personal Loan Interest Rates`;
+const description = `Calculate exact monthly EMI for ${bank.name} home loans (${bank.homeInterest}), car loans (${bank.carInterest}), and personal loans (${bank.personalInterest}). Complete amortization breakdown, interest formulas, and eligibility rules.`;
 
 const faqSchemaStr = `<script type="application/ld+json" is:inline>
 {
@@ -30,10 +30,18 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
     },
     {
       "@type": "Question",
-      "name": "Does ${bank.shortName} charge prepayment penalties?",
+      "name": "Does ${bank.shortName} charge prepayment penalties on floating rate loans?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "${bank.faq2}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum credit score (CIBIL) required for ${bank.shortName} home loans?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "${bank.shortName} generally requires a CIBIL score of 750 or higher to unlock the lowest interest rate bracket. Applicants with scores between 700 and 749 may still qualify, but at slightly higher interest margins."
       }
     }
   ]
@@ -56,24 +64,25 @@ const softwareSchema = `<script type="application/ld+json" is:inline>
 </script>\n`;
 ---
 
-<Layout title={`${title} | ToolsWaala`} description={description} currentPath={`/${bank.id}`}>
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath={`/${bank.id}-emi-calculator`}>
   <Fragment set:html={softwareSchema} />
   <Fragment set:html={faqSchemaStr} />
 
-  <PageWrapper title={`${bank.name} EMI Calculator`} description={`Calculate loan EMIs for ${bank.name} home loans, auto loans, and personal credit.`}>
+  <PageWrapper title={`${bank.name} EMI Calculator`} description={`Calculate monthly loan EMIs, total interest payable, and amortization schedules for ${bank.name} loans.`}>
     <EmiTool client:load />
 
     <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
       <h2>{bank.name} Interest Rates &amp; EMI Guide (2026)</h2>
-      <p>{bank.name} is one of India's leading financial institutions. Calculate your exact monthly loan repayments using official interest rates across key categories:</p>
+      <p>{bank.name} is one of India's most prominent retail lenders, offering comprehensive financing options across housing, auto, and personal consumption categories. Equated Monthly Installments (EMIs) represent the fixed amount you pay back to {bank.shortName} each month until your principal loan amount and accrued interest are fully settled.</p>
 
       <div style="overflow-x:auto; margin: 24px 0;">
         <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
           <thead>
             <tr style="border-bottom: 2px solid var(--app-border);">
               <th style="padding: 10px;">Loan Category</th>
-              <th style="padding: 10px;">Indicative Interest Rate</th>
-              <th style="padding: 10px;">Max Tenure</th>
+              <th style="padding: 10px;">Indicative Interest Rate (p.a.)</th>
+              <th style="padding: 10px;">Max Loan Tenure</th>
+              <th style="padding: 10px;">Processing Fee Range</th>
             </tr>
           </thead>
           <tbody>
@@ -81,26 +90,50 @@ const softwareSchema = `<script type="application/ld+json" is:inline>
               <td style="padding: 10px;"><strong>{bank.shortName} Home Loan</strong></td>
               <td style="padding: 10px;">{bank.homeInterest}</td>
               <td style="padding: 10px;">Up to 30 Years</td>
+              <td style="padding: 10px;">0.35% - 0.50% of loan amount</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--app-border);">
               <td style="padding: 10px;"><strong>{bank.shortName} Car Loan</strong></td>
               <td style="padding: 10px;">{bank.carInterest}</td>
               <td style="padding: 10px;">Up to 7 Years</td>
+              <td style="padding: 10px;">₹500 - ₹1,500 flat fee</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--app-border);">
               <td style="padding: 10px;"><strong>{bank.shortName} Personal Loan</strong></td>
               <td style="padding: 10px;">{bank.personalInterest}</td>
               <td style="padding: 10px;">Up to 5 Years</td>
+              <td style="padding: 10px;">1.00% - 2.50% of principal</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2>Other Bank EMI Calculators</h2>
+      <h2>How {bank.shortName} Calculates Monthly EMI</h2>
+      <p>The mathematical formula used by {bank.name} to compute your monthly Equated Monthly Installment is based on reducing balance interest principles:</p>
+      <p style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; font-family: monospace;">
+        <strong>EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]</strong>
+      </p>
+      <ul style="line-height: 1.8;">
+        <li><strong>P (Principal):</strong> The total loan amount sanctioned and disbursed by {bank.shortName}.</li>
+        <li><strong>R (Monthly Interest Rate):</strong> Annual interest rate divided by 12 months and divided by 100.</li>
+        <li><strong>N (Tenure in Months):</strong> Total repayment duration multiplied by 12 months (e.g., 20 years = 240 months).</li>
+      </ul>
+
+      <h2>Key Factors Influencing {bank.shortName} Loan Approval &amp; Rates</h2>
+      <ol style="line-height: 1.8;">
+        <li><strong>CIBIL &amp; Credit Score:</strong> A CIBIL credit score of 750 or higher qualifies you for {bank.shortName}'s lowest floating interest rate brackets.</li>
+        <li><strong>Fixed Obligation to Income Ratio (FOIR):</strong> {bank.shortName} evaluates your total existing monthly debt obligations. Ideally, your total monthly EMIs across all active loans should not exceed 40% to 50% of your net monthly salary.</li>
+        <li><strong>Loan-to-Value (LTV) Ratio:</strong> For property purchases, RBI regulations mandate LTV caps ranging from 75% to 90% depending on property valuation.</li>
+      </ol>
+
+      <h2>How Prepayment Reduces Your {bank.shortName} Interest Outlay</h2>
+      <p>When you make partial prepayments toward your {bank.shortName} loan, the lump sum payment is applied directly against your outstanding principal balance. Because monthly interest charges are recalculated on the reduced principal, prepayment significantly shortens your total loan tenure and saves lakhs of rupees in interest costs over the life of the loan.</p>
+
+      <h2>Compare Other Major Indian Bank EMI Calculators</h2>
       <ul style="display:flex; flex-wrap:wrap; gap:12px; list-style:none; padding:0; margin:16px 0;">
         {banks.map(b => (
           <li>
-            <a href={`/${b.id}`} style="padding: 6px 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--app-border); border-radius: 8px; font-weight:600; text-decoration:none;">
+            <a href={`/${b.id}-emi-calculator`} style="padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--app-border); border-radius: 8px; font-weight:600; text-decoration:none; display:inline-block;">
               {b.shortName} EMI Calculator →
             </a>
           </li>
