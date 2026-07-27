@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { LegalHubTool } from '../react-pages/BusinessTools';
+
+const title = "Rent Agreement Format India 2026 | Free Residential Lease Drafter";
+const description = "Generate print-ready residential rent agreement format in India. 11-month lease terms, lock-in period clauses, security deposit refund, and stamp duty rules.";
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why are most rent agreements in India made for 11 months?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the Registration Act of 1908, lease agreements exceeding 11 months require mandatory registration with the Sub-Registrar office, incurring high stamp duty and registration fees. 11-month tenancy contracts avoid mandatory registration while remaining legally enforceable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much stamp paper is required for a rent agreement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stamp duty varies by state: ₹100 - ₹500 non-judicial stamp paper in Maharashtra, Delhi, Karnataka, and UP for standard 11-month residential agreements."
+      }
+    }
+  ]
+}
+</script>\n`;
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/rent-agreement-format-india">
+  <script type="application/ld+json" is:inline set:html={faqSchemaStr} />
+
+  <PageWrapper title="Rent Agreement Format India" description="Draft customized residential tenancy agreements with legal clauses instantly.">
+    <LegalHubTool client:load />
+
+    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
+      <h2>Essential Legal Clauses in an 11-Month Rent Agreement</h2>
+      <ol style="line-height: 1.8;">
+        <li><strong>Monthly Rent &amp; Maintenance:</strong> Due date (e.g., 5th of every month) and breakdown of society maintenance fees.</li>
+        <li><strong>Security Deposit Refund Clause:</strong> Refund timeline (usually within 7-15 days of vacant possession) after deduction for actual physical damages.</li>
+        <li><strong>Lock-in Period &amp; Notice Period:</strong> Standard 1-month or 2-month written notice period required by either landlord or tenant.</li>
+        <li><strong>Utility Bills &amp; Property Maintenance:</strong> Electricity, water, gas pipeline, and Wi-Fi payment responsibilities.</li>
+      </ol>
+    </div>
+  </PageWrapper>
+</Layout>

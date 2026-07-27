@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { CgpaCalculator } from '../react-pages/students';
+
+const title = "GPA to Percentage for MS Abroad 2026 | Convert Indian CGPA to US 4.0 Scale";
+const description = "Convert 10-point Indian CGPA to US 4.0 GPA scale for MS in US, Germany, Canada & UK applications. WES evaluation rules, ETS guidelines, and university grade conversion tables.";
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is Indian 10-point CGPA converted to US 4.0 GPA scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most US universities and WES (World Education Services) evaluate Indian transcripts by mapping grade percentage intervals: 60%+ = 3.0 GPA (B Grade), 70%+ = 3.5 GPA (B+ Grade), and 80%+ = 4.0 GPA (A Grade)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is WES evaluation and do I need to calculate GPA manually?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WES recalculates your cumulative GPA using official semester transcript marksheets. You should never manually alter transcript GPAs on your resume unless explicitly requested in percentage equivalent format."
+      }
+    }
+  ]
+}
+</script>\n`;
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/gpa-to-percentage-ms-abroad">
+  <script type="application/ld+json" is:inline set:html={faqSchemaStr} />
+
+  <PageWrapper title="GPA to Percentage for MS Abroad" description="Convert Indian 10-point CGPA to US 4.0 GPA scale & percentage for university admissions abroad.">
+    <CgpaCalculator client:only="react" />
+
+    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
+      <h2>Indian CGPA (10-Point Scale) to US 4.0 GPA Conversion Chart</h2>
+      <p>Indian universities follow a 10-point CGPA grading scale, whereas institutions in the United States, Canada, and Germany evaluate graduate applicants on a 4.0 GPA scale. Below is the official WES (World Education Services) grade mapping framework:</p>
+
+      <div style="overflow-x:auto; margin: 24px 0;">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--app-border);">
+              <th style="padding: 10px;">Indian Percentage Equivalent</th>
+              <th style="padding: 10px;">US Letter Grade</th>
+              <th style="padding: 10px;">US 4.0 GPA Equivalent</th>
+              <th style="padding: 10px;">Indian CGPA (approx)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">80% - 100%</td>
+              <td style="padding: 10px;">A / A+</td>
+              <td style="padding: 10px;"><strong>4.0 GPA</strong></td>
+              <td style="padding: 10px;">8.5 - 10.0</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">70% - 79.9%</td>
+              <td style="padding: 10px;">B+</td>
+              <td style="padding: 10px;"><strong>3.5 GPA</strong></td>
+              <td style="padding: 10px;">7.5 - 8.49</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">60% - 69.9%</td>
+              <td style="padding: 10px;">B</td>
+              <td style="padding: 10px;"><strong>3.0 GPA</strong></td>
+              <td style="padding: 10px;">6.5 - 7.49</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 10px;">50% - 59.9%</td>
+              <td style="padding: 10px;">C+</td>
+              <td style="padding: 10px;"><strong>2.5 GPA</strong></td>
+              <td style="padding: 10px;">5.5 - 6.49</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Key Tips for MS Application Documents (SOP &amp; Resumes)</h2>
+      <ol style="line-height: 1.8;">
+        <li><strong>Report Official Transcript Metrics:</strong> Always report your exact CGPA (out of 10) as stated on your university marksheet unless the university portal specifically requests a converted 4.0 GPA.</li>
+        <li><strong>Pair with SOP Generator:</strong> Use our <a href="/sop-generator">Free AI SOP Generator</a> to highlight your academic distinction and project achievements for MS in US/Germany applications.</li>
+      </ol>
+    </div>
+  </PageWrapper>
+</Layout>

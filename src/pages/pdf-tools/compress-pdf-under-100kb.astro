@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PdfPageWrapper from '../../shared/PdfPageWrapper';
+import { PdfCompressor } from '../../react-pages/pdf';
+
+const title = "Compress PDF Under 100KB Online Free | Govt Exam Portal Tool";
+const description = "Compress PDF file size to under 100KB & 200KB for UPSC, SSC, NTA, IBPS, and University portal uploads. 100% private browser compression with zero quality loss.";
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to compress PDF under 100KB for govt job portals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload your PDF file to our client-side compressor, select High Compression mode, and download the optimized PDF under 100KB. Processing happens 100% inside your browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to compress certificate PDFs on ToolsWaala?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ToolsWaala uses WebAssembly client-side compression. Zero bytes are uploaded to external servers."
+      }
+    }
+  ]
+}
+</script>\n`;
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/compress-pdf-under-100kb">
+  <script type="application/ld+json" is:inline set:html={faqSchemaStr} />
+
+  <PdfPageWrapper title="Compress PDF Under 100KB for Exam Portals" description="Reduce PDF file size to under 100KB or 200KB instantly inside your browser memory.">
+    <PdfCompressor client:load />
+
+    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
+      <h2>Portal File Size Guidelines for Indian Examinations</h2>
+      <ul style="line-height: 1.8;">
+        <li><strong>UPSC / SSC / State PSC Forms:</strong> Signature &amp; photo PDFs must be strictly under 100KB.</li>
+        <li><strong>NTA NEET / JEE Main / CUET Portals:</strong> Category certificates and class 10 marksheets capped at 200KB.</li>
+        <li><strong>Naukri &amp; LinkedIn Resume Uploads:</strong> Resume PDFs recommended under 500KB for fast ATS parsing.</li>
+      </ul>
+    </div>
+  </PdfPageWrapper>
+</Layout>
