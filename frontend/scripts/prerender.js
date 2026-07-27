@@ -188,13 +188,13 @@ function generateSeoContent(route) {
     faqs.forEach(f => { faqHtml += `<h3>${f.q}</h3><p>${f.a}</p>`; });
   }
   
-  let bcItems = [{ name: 'Home', url: 'https://toolswaala.in/' }];
-  if (route.path.includes('/pdf-tools/')) bcItems.push({ name: 'PDF Tools', url: 'https://toolswaala.in/pdf-tools' });
-  else if (route.path.includes('/blog/')) bcItems.push({ name: 'Blog', url: 'https://toolswaala.in/blog' });
-  bcItems.push({ name: cleanTitle, url: `https://toolswaala.in${route.path}` });
+  let bcItems = [{ name: 'Home', url: 'https://www.toolswaala.in/' }];
+  if (route.path.includes('/pdf-tools/')) bcItems.push({ name: 'PDF Tools', url: 'https://www.toolswaala.in/pdf-tools' });
+  else if (route.path.includes('/blog/')) bcItems.push({ name: 'Blog', url: 'https://www.toolswaala.in/blog' });
+  bcItems.push({ name: cleanTitle, url: `https://www.toolswaala.in${route.path}` });
   const bcSchema = `<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[${bcItems.map((b,i) => `{"@type":"ListItem","position":${i+1},"name":"${b.name}","item":"${b.url}"}`).join(',')}]}</script>`;
   
-  return `${faqSchema}${bcSchema}<div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">${breadcrumb}<h1>${cleanTitle}</h1><p>${route.desc}</p>${extra}${faqHtml}<p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p></div>`;
+  return `${faqSchema}${bcSchema}<div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">${breadcrumb}<h1>${cleanTitle}</h1><p>${route.desc}</p>${extra}${faqHtml}<p>Free tool by <a href="https://www.toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p></div>`;
 }
 
 // Pre-render meta tags AND body content for each route
@@ -211,7 +211,7 @@ routes.forEach(route => {
   html = html.replace(/<meta property="twitter:title" content="[^"]*"/g, `<meta property="twitter:title" content="${route.title}"`);
   html = html.replace(/<meta property="twitter:description" content="[^"]*"/g, `<meta property="twitter:description" content="${route.desc}"`);
   // Add canonical
-  html = html.replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="https://toolswaala.in${route.path}"`);
+  html = html.replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="https://www.toolswaala.in${route.path}"`);
   
   // CRITICAL: Inject real content outside <div id="root"> so it doesn't disappear when React loads!
   const seoContent = generateSeoContent(route);
@@ -284,14 +284,14 @@ fs.writeFileSync(path.join(distDir, 'index.html'), homeHtml);
 // Generate sitemap.xml
 const today = new Date().toISOString().split('T')[0];
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-sitemap += `  <url><loc>https://toolswaala.in/</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>\n`;
+sitemap += `  <url><loc>https://www.toolswaala.in/</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>\n`;
 routes.forEach(r => {
   let prio = '0.9';
   if (r.path.includes('pdf-tools/')) prio = '0.8';
   if (r.path.includes('/blog/')) prio = '0.7';
   if (r.path === '/blog' || r.path === '/students' || r.path === '/pdf-tools') prio = '0.9';
   
-  sitemap += `  <url><loc>https://toolswaala.in${r.path}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${prio}</priority></url>\n`;
+  sitemap += `  <url><loc>https://www.toolswaala.in${r.path}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${prio}</priority></url>\n`;
 });
 sitemap += `</urlset>`;
 fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap);

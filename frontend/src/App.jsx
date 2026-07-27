@@ -1315,12 +1315,12 @@ function GstinVerifyTool() {
 }
 
 function QrTool() {
-  const [input, setInput] = useState("https://toolswaala.in");
+  const [input, setInput] = useState("https://www.toolswaala.in");
   const [options, setOptions] = useState({
     width: 300,
     height: 300,
     type: "svg",
-    data: "https://toolswaala.in",
+    data: "https://www.toolswaala.in",
     margin: 10,
     qrOptions: { typeNumber: 0, mode: "Byte", errorCorrectionLevel: "Q" },
     imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 10, crossOrigin: "anonymous" },
@@ -1346,7 +1346,7 @@ function QrTool() {
     if (!qrCode) return;
     qrCode.update({
       ...options,
-      data: input || "https://toolswaala.in"
+      data: input || "https://www.toolswaala.in"
     });
   }, [input, options, qrCode]);
 

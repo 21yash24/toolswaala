@@ -31,7 +31,7 @@ export default function StudentPageWrapper({ title, hindi, children }) {
     setMeta("og:title", seoTitle);
     setMeta("og:description", seoDesc);
     setMeta("og:url", window.location.href);
-    setMeta("og:image", "https://toolswaala.in/og-image.png");
+    setMeta("og:image", "https://www.toolswaala.in/og-image.png");
     setMeta("twitter:title", seoTitle);
     setMeta("twitter:description", seoDesc);
     setMeta("twitter:card", "summary_large_image");

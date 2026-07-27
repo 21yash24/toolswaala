@@ -206,9 +206,9 @@ function generateAstroFiles() {
       faqs.forEach(f => { faqHtml += `<h3>${f.q}</h3><p>${f.a}</p>`; });
     }
 
-    let bcItems = [{ name: 'Home', url: 'https://toolswaala.in/' }];
-    if (route.path.includes('/pdf-tools/')) bcItems.push({ name: 'PDF Tools', url: 'https://toolswaala.in/pdf-tools' });
-    bcItems.push({ name: cleanTitle, url: `https://toolswaala.in${route.path}` });
+    let bcItems = [{ name: 'Home', url: 'https://www.toolswaala.in/' }];
+    if (route.path.includes('/pdf-tools/')) bcItems.push({ name: 'PDF Tools', url: 'https://www.toolswaala.in/pdf-tools' });
+    bcItems.push({ name: cleanTitle, url: `https://www.toolswaala.in${route.path}` });
     const bcSchema = `<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[${bcItems.map((b,i) => `{"@type":"ListItem","position":${i+1},"name":"${b.name}","item":"${b.url}"}`).join(',')}]}</script>\n`;
 
     const depthPrefix = route.path.includes('/pdf-tools/') ? '../' : '';
@@ -248,7 +248,7 @@ const description = ${JSON.stringify(route.desc)};
     <p>{description}</p>
     ${extra}
     ${faqHtml}
-    <p>Free tool by <a href="https://toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
+    <p>Free tool by <a href="https://www.toolswaala.in">ToolsWaala</a> — India's free toolkit. No login required.</p>
   </div>
 </Layout>`;
 

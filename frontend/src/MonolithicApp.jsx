@@ -578,7 +578,7 @@ function UpiTool() {
     window.location.href = deepLinks[app] || payUrl;
   };
 
-  const shareableLink = `https://toolswaala.in/pay/${form.upiId?.replace("@", "-at-")}`;
+  const shareableLink = `https://www.toolswaala.in/pay/${form.upiId?.replace("@", "-at-")}`;
 
   return (
     <div>
@@ -935,7 +935,7 @@ function QrTool() {
   const [generated, setGenerated] = useState(false);
 
   const qrTypes = [
-    { id: "url", label: "URL / Website", hindi: "वेबसाइट", placeholder: "https://toolswaala.in" },
+    { id: "url", label: "URL / Website", hindi: "वेबसाइट", placeholder: "https://www.toolswaala.in" },
     { id: "upi", label: "UPI ID", hindi: "यूपीआई", placeholder: "name@paytm" },
     { id: "whatsapp", label: "WhatsApp", hindi: "व्हाट्सऐप", placeholder: "+91 98765 43210" },
     { id: "text", label: "Plain Text", hindi: "टेक्स्ट", placeholder: "Any text..." },
