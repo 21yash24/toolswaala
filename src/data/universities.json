@@ -126,5 +126,69 @@
     "desc": "SRM University (SRMIST) CGPA to Percentage Calculator.",
     "faq1": "SRMIST uses standard 10-point scaling: Percentage = CGPA × 10",
     "faq2": "A CGPA of 9.0+ qualifies for First Class with Distinction at SRM."
+  },
+  {
+    "id": "up-board",
+    "name": "UP Board (UPMSP)",
+    "idx": 17,
+    "desc": "UP Board High School (10th) & Intermediate (12th) Marks to Percentage Calculator.",
+    "faq1": "UP Board calculates percentage by dividing total obtained marks by total maximum marks (600 for 10th, 500 for 12th) and multiplying by 100.",
+    "faq2": "First Division in UP Board is awarded for scoring 60% or higher."
+  },
+  {
+    "id": "bihar-board",
+    "name": "Bihar Board (BSEB)",
+    "idx": 18,
+    "desc": "BSEB Bihar Board 10th Matric & 12th Inter Marks to Percentage Calculator.",
+    "faq1": "Bihar Board percentage formula: (Total Obtained Marks ÷ 500) × 100.",
+    "faq2": "First Division in BSEB is awarded for scoring 300 marks or more out of 500 (60%)."
+  },
+  {
+    "id": "mp-board",
+    "name": "MP Board (MPBSE)",
+    "idx": 19,
+    "desc": "MP Board Class 10th & 12th Marks & Grade Point Percentage Calculator.",
+    "faq1": "MP Board percentage is calculated as: (Total Obtained Marks ÷ Total Maximum Marks) × 100.",
+    "faq2": "Passing marks for MP Board theory exams are 33% per subject."
+  },
+  {
+    "id": "rbse",
+    "name": "Rajasthan Board (RBSE)",
+    "idx": 20,
+    "desc": "RBSE Board 10th & 12th Marks to Percentage Calculator.",
+    "faq1": "RBSE calculates percentage as: (Obtained Marks ÷ Total Maximum Marks) × 100.",
+    "faq2": "First Division in RBSE is awarded for scoring 60% or higher."
+  },
+  {
+    "id": "west-bengal-board",
+    "name": "West Bengal Board (WBCHSE / WBBSE)",
+    "idx": 21,
+    "desc": "WBBSE Madhyamik & WBCHSE Higher Secondary Percentage Calculator.",
+    "faq1": "West Bengal Board percentage formula: (Total Marks Obtained ÷ Total Max Marks) × 100.",
+    "faq2": "First Division in WB Board is awarded for scoring 60% or above."
+  },
+  {
+    "id": "karnataka-sslc-puc",
+    "name": "Karnataka SSLC & PUC Board",
+    "idx": 22,
+    "desc": "Karnataka KSEAB SSLC (10th) & 2nd PUC (12th) Marks to Percentage Calculator.",
+    "faq1": "Karnataka SSLC percentage formula: (Obtained Marks ÷ 625) × 100. 2nd PUC uses (Obtained Marks ÷ 600) × 100.",
+    "faq2": "Distinction in Karnataka Board is awarded for 85% or higher."
+  },
+  {
+    "id": "cbse-10th-result",
+    "name": "CBSE 10th Result Percentage Calculator 2026",
+    "idx": 23,
+    "desc": "Calculate your CBSE Class 10th result percentage from best of 5 subjects or total CGPA.",
+    "faq1": "CBSE Class 10 percentage formula: Add marks of top 5 subjects, divide by 5.",
+    "faq2": "If grades are given in CGPA, multiply CGPA by 9.5 to get your exact percentage."
+  },
+  {
+    "id": "cbse-12th-result",
+    "name": "CBSE 12th Result Percentage Calculator 2026",
+    "idx": 24,
+    "desc": "Calculate your CBSE Class 12th result percentage for Science, Commerce, and Arts streams.",
+    "faq1": "CBSE Class 12 percentage formula: (Total marks in best 5 main subjects ÷ 500) × 100.",
+    "faq2": "Aggregates for university admission (like DU CUET) usually require top 4 or top 3 subject combinations."
   }
 ]
