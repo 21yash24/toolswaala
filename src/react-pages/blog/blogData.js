@@ -30,8 +30,8 @@ export const BLOG_POSTS = [
       <h2>Pro Tip: The Streak Method</h2>
       <p>Try to attend classes in streaks. Building a 5-day attendance streak gives you a "buffer" that allows for a guilt-free bunk on a Friday. Use our streak tracker to keep yourself motivated!</p>
     `,
-    metaTitle: "Smart Bunking Guide: How to Maintain 75% Attendance in College",
-    metaDesc: "Calculated bunking for college students. Learn the 75% rule math and how to use our tracker to never get detained."
+    metaTitle: "How Many Days Can You Be Absent for 75% Attendance? (75% Rule Guide)",
+    metaDesc: "Find exact classes & days you can be absent for 75% attendance criteria under UGC rules. Calculate safe bunks and required classes instantly."
   },
   {
     id: "study-abroad-scholarships-2025",
