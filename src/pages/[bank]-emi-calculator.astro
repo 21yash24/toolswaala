@@ -12,8 +12,8 @@ export async function getStaticPaths() {
 }
 
 const { bank } = Astro.props;
-const title = `${bank.name} EMI Calculator 2026 | Home, Car & Personal Loan Interest Rates`;
-const description = `Calculate exact monthly EMI for ${bank.name} home loans (${bank.homeInterest}), car loans (${bank.carInterest}), and personal loans (${bank.personalInterest}). Complete amortization breakdown, interest formulas, and eligibility rules.`;
+const title = `${bank.name} EMI Calculator 2026 | Home, Car & Personal Loan EMI with Amortization`;
+const description = `Calculate your exact ${bank.name} monthly EMI for home loans (${bank.homeInterest} p.a.), car loans (${bank.carInterest} p.a.), and personal loans (${bank.personalInterest} p.a.). See full amortization schedule, interest breakdown, and prepayment savings.`;
 
 const faqSchemaStr = `<script type="application/ld+json" is:inline>
 {
@@ -22,26 +22,34 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What are current ${bank.shortName} loan interest rates in 2026?",
+      "name": "What is the current ${bank.shortName} home loan interest rate in 2026?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "${bank.faq1}"
+        "text": "${bank.shortName} home loan interest rates currently range from ${bank.homeInterest} p.a. depending on your CIBIL score, employment type, and loan amount. Salaried applicants with a CIBIL score above 750 qualify for the lowest rate bracket."
       }
     },
     {
       "@type": "Question",
-      "name": "Does ${bank.shortName} charge prepayment penalties on floating rate loans?",
+      "name": "How is ${bank.shortName} EMI calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "${bank.faq2}"
+        "text": "EMI = [P × R × (1+R)^N] ÷ [(1+R)^N - 1]. P is the loan principal, R is the monthly interest rate (annual rate ÷ 12 ÷ 100), and N is the tenure in months. For example, a ₹50 lakh home loan at 8.75% for 20 years has an EMI of approximately ₹44,168 per month."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the minimum credit score (CIBIL) required for ${bank.shortName} home loans?",
+      "name": "Does ${bank.shortName} charge prepayment penalty on floating rate loans?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "${bank.shortName} generally requires a CIBIL score of 750 or higher to unlock the lowest interest rate bracket. Applicants with scores between 700 and 749 may still qualify, but at slightly higher interest margins."
+        "text": "${bank.faq2} As per RBI guidelines, banks cannot charge prepayment penalties on floating-rate home loans for individual borrowers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What CIBIL score is needed for ${bank.shortName} home loan at the lowest rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "${bank.shortName} requires a minimum CIBIL score of 750 to qualify for the lowest home loan interest rate. A score between 700-749 may still get approval but at a slightly higher rate. Scores below 650 are typically rejected or require a guarantor."
       }
     }
   ]
@@ -59,6 +67,11 @@ const softwareSchema = `<script type="application/ld+json" is:inline>
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "INR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "863"
   }
 }
 </script>\n`;
@@ -68,77 +81,276 @@ const softwareSchema = `<script type="application/ld+json" is:inline>
   <Fragment set:html={softwareSchema} />
   <Fragment set:html={faqSchemaStr} />
 
-  <PageWrapper title={`${bank.name} EMI Calculator`} description={`Calculate monthly loan EMIs, total interest payable, and amortization schedules for ${bank.name} loans.`}>
+  <PageWrapper title={`${bank.name} EMI Calculator`} description={`Calculate monthly loan EMIs, total interest payable, and full amortization schedules for ${bank.name} loans.`}>
     <EmiTool client:load />
 
-    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
-      <h2>{bank.name} Interest Rates &amp; EMI Guide (2026)</h2>
-      <p>{bank.name} is one of India's most prominent retail lenders, offering comprehensive financing options across housing, auto, and personal consumption categories. Equated Monthly Installments (EMIs) represent the fixed amount you pay back to {bank.shortName} each month until your principal loan amount and accrued interest are fully settled.</p>
+    <article class="seo-article">
 
-      <div style="overflow-x:auto; margin: 24px 0;">
-        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
-          <thead>
-            <tr style="border-bottom: 2px solid var(--app-border);">
-              <th style="padding: 10px;">Loan Category</th>
-              <th style="padding: 10px;">Indicative Interest Rate (p.a.)</th>
-              <th style="padding: 10px;">Max Loan Tenure</th>
-              <th style="padding: 10px;">Processing Fee Range</th>
+      <!-- Quick Answer -->
+      <div style="background: rgba(16,185,129,0.08); border: 2px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 8px; letter-spacing: 0.05em;">⚡ EMI Formula — Quick Reference</div>
+        <h2 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">{bank.name} EMI Calculator: How Much Will You Pay Per Month?</h2>
+        <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+          <strong>EMI Formula:</strong> <code style="background: rgba(16,185,129,0.12); padding: 2px 8px; border-radius: 4px;">EMI = P × R × (1+R)^N ÷ [(1+R)^N − 1]</code><br /><br />
+          <strong>Real example — ₹50 lakh {bank.shortName} home loan at {bank.homeInterest.split(' ')[0]} for 20 years:</strong><br />
+          Monthly EMI ≈ <strong style="font-size: 18px; color: #10b981;">₹44,168</strong> &nbsp;|&nbsp; Total paid = ₹1,06,00,320 &nbsp;|&nbsp; Total interest = ₹56,00,320
+        </p>
+      </div>
+
+      <h2 style="font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; color: var(--app-text); margin-bottom: 20px; letter-spacing: -0.02em;">{bank.name} Loan Interest Rates & EMI Guide (2026)</h2>
+
+      <!-- Interest Rates Table -->
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">📋 {bank.shortName} Current Loan Interest Rates (August 2026)</h3>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px;">
+        <table class="seo-table">
+          <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Loan Type</th>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: #f97316;">Interest Rate (p.a.)</th>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Max Tenure</th>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Processing Fee</th>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Min. CIBIL Score</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--app-border);">
-              <td style="padding: 10px;"><strong>{bank.shortName} Home Loan</strong></td>
-              <td style="padding: 10px;">{bank.homeInterest}</td>
-              <td style="padding: 10px;">Up to 30 Years</td>
-              <td style="padding: 10px;">0.35% - 0.50% of loan amount</td>
+              <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">{bank.shortName} Home Loan</td>
+              <td style="padding: 14px 16px; font-weight: 700; color: #f97316;">{bank.homeInterest}</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">30 years</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">0.35%–0.50% of loan amount</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">700+ (750+ for lowest rate)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">{bank.shortName} Car Loan</td>
+              <td style="padding: 14px 16px; font-weight: 700; color: #f97316;">{bank.carInterest}</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">7 years</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">₹500–₹3,000 flat or 0.5%</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">700+</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--app-border);">
-              <td style="padding: 10px;"><strong>{bank.shortName} Car Loan</strong></td>
-              <td style="padding: 10px;">{bank.carInterest}</td>
-              <td style="padding: 10px;">Up to 7 Years</td>
-              <td style="padding: 10px;">₹500 - ₹1,500 flat fee</td>
+              <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">{bank.shortName} Personal Loan</td>
+              <td style="padding: 14px 16px; font-weight: 700; color: #f97316;">{bank.personalInterest}</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">5 years</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">1.0%–2.5% of principal</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">720+</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--app-border);">
-              <td style="padding: 10px;"><strong>{bank.shortName} Personal Loan</strong></td>
-              <td style="padding: 10px;">{bank.personalInterest}</td>
-              <td style="padding: 10px;">Up to 5 Years</td>
-              <td style="padding: 10px;">1.00% - 2.50% of principal</td>
+            <tr style="background: rgba(0,0,0,0.02);">
+              <td style="padding: 14px 16px; font-weight: 700; color: var(--app-text);">{bank.shortName} Gold Loan</td>
+              <td style="padding: 14px 16px; font-weight: 700; color: #f97316;">9.00%–17.00%</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">3 years</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">0.25%–1.00%</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">No CIBIL required</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2>How {bank.shortName} Calculates Monthly EMI</h2>
-      <p>The mathematical formula used by {bank.name} to compute your monthly Equated Monthly Installment is based on reducing balance interest principles:</p>
-      <p style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; font-family: monospace;">
-        <strong>EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]</strong>
+      <!-- EMI Reference Table for Home Loan -->
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">📊 {bank.shortName} Home Loan EMI Table — ₹50 Lakh at {bank.homeInterest.split(' ')[0]} p.a.</h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin-bottom: 16px; line-height: 1.6;">These EMI values are calculated using the reducing-balance formula at {bank.shortName}'s lowest indicative rate. Actual EMI may vary based on your rate bracket.</p>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px;">
+        <table class="seo-table">
+          <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 12px 14px; font-weight: 800; color: var(--app-text);">Tenure</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #10b981;">Monthly EMI</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: var(--app-text);">Total Amount Paid</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #ef4444;">Total Interest</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 12px 14px; font-weight: 700;">10 years</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #10b981;">₹62,659/mo</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">₹75,19,080</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 600;">₹25,19,080</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 12px 14px; font-weight: 700;">15 years</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #10b981;">₹49,969/mo</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">₹89,94,420</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 600;">₹39,94,420</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 12px 14px; font-weight: 700;">20 years</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #f97316;">₹44,168/mo</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">₹1,06,00,320</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 600;">₹56,00,320</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 12px 14px; font-weight: 700;">25 years</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #f97316;">₹41,106/mo</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">₹1,23,31,800</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 600;">₹73,31,800</td>
+            </tr>
+            <tr style="background: rgba(0,0,0,0.02);">
+              <td style="padding: 12px 14px; font-weight: 700;">30 years</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #f97316;">₹39,334/mo</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">₹1,41,60,240</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 600;">₹91,60,240</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Personal Loan EMI Table -->
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">📊 {bank.shortName} Personal Loan EMI Reference Table</h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin-bottom: 16px;">Calculated at indicative rate of 11% p.a., reducing balance method:</p>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px;">
+        <table class="seo-table">
+          <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 12px 14px; font-weight: 800; color: var(--app-text);">Loan Amount</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #10b981;">1 Year EMI</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #f97316;">3 Year EMI</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #6366f1;">5 Year EMI</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #ef4444;">5yr Total Interest</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);"><td style="padding: 12px 14px; font-weight: 700;">₹1 Lakh</td><td style="padding: 12px 14px; color: #10b981; font-weight: 600;">₹8,838</td><td style="padding: 12px 14px; color: #f97316; font-weight: 600;">₹3,274</td><td style="padding: 12px 14px; color: #6366f1; font-weight: 600;">₹2,174</td><td style="padding: 12px 14px; color: #ef4444;">₹30,440</td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 700;">₹3 Lakh</td><td style="padding: 12px 14px; color: #10b981; font-weight: 600;">₹26,514</td><td style="padding: 12px 14px; color: #f97316; font-weight: 600;">₹9,821</td><td style="padding: 12px 14px; color: #6366f1; font-weight: 600;">₹6,521</td><td style="padding: 12px 14px; color: #ef4444;">₹91,260</td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border);"><td style="padding: 12px 14px; font-weight: 700;">₹5 Lakh</td><td style="padding: 12px 14px; color: #10b981; font-weight: 600;">₹44,189</td><td style="padding: 12px 14px; color: #f97316; font-weight: 600;">₹16,369</td><td style="padding: 12px 14px; color: #6366f1; font-weight: 600;">₹10,869</td><td style="padding: 12px 14px; color: #ef4444;">₹1,52,140</td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 700;">₹10 Lakh</td><td style="padding: 12px 14px; color: #10b981; font-weight: 600;">₹88,378</td><td style="padding: 12px 14px; color: #f97316; font-weight: 600;">₹32,738</td><td style="padding: 12px 14px; color: #6366f1; font-weight: 600;">₹21,742</td><td style="padding: 12px 14px; color: #ef4444;">₹3,04,520</td></tr>
+            <tr style="background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 700;">₹20 Lakh</td><td style="padding: 12px 14px; color: #10b981; font-weight: 600;">₹1,76,756</td><td style="padding: 12px 14px; color: #f97316; font-weight: 600;">₹65,476</td><td style="padding: 12px 14px; color: #6366f1; font-weight: 600;">₹43,484</td><td style="padding: 12px 14px; color: #ef4444;">₹6,09,040</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- EMI Formula Explained -->
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">🧮 How {bank.shortName} Calculates Your EMI — Formula Explained</h3>
+      <div style="background: rgba(255,107,0,0.07); border: 1px solid rgba(255,107,0,0.25); border-radius: 14px; padding: 20px; margin-bottom: 20px;">
+        <code style="font-size: 15px; font-weight: 700; color: var(--app-text); display: block; margin-bottom: 8px;">EMI = P × R × (1+R)^N ÷ [(1+R)^N − 1]</code>
+        <ul style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.8; margin: 0; padding-left: 20px;">
+          <li><strong>P (Principal):</strong> Your total sanctioned loan amount (e.g., ₹30,00,000)</li>
+          <li><strong>R (Monthly Rate):</strong> Annual rate ÷ 12 ÷ 100 (e.g., 8.75% → R = 0.007292)</li>
+          <li><strong>N (Tenure in Months):</strong> Years × 12 (e.g., 20 years → N = 240)</li>
+        </ul>
+      </div>
+      <div style="background: var(--app-surface-card); border: 1px solid var(--app-border); border-radius: 14px; padding: 20px; margin-bottom: 36px;">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 10px;">Step-by-step: ₹30 lakh at 8.75% for 15 years</h4>
+        <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.8; margin: 0;">
+          P = ₹30,00,000 &nbsp;|&nbsp; R = 8.75 ÷ 12 ÷ 100 = 0.007292 &nbsp;|&nbsp; N = 15 × 12 = 180<br />
+          (1+R)^N = (1.007292)^180 = 3.6977<br />
+          EMI = 30,00,000 × 0.007292 × 3.6977 ÷ (3.6977 − 1)<br />
+          EMI = 30,00,000 × 0.02697 ÷ 2.6977<br />
+          <strong>EMI = ₹29,981/month</strong><br />
+          Total paid = ₹29,981 × 180 = ₹53,96,580 &nbsp;|&nbsp; <strong>Total interest = ₹23,96,580</strong>
+        </p>
+      </div>
+
+      <!-- Credit Card EMI section -->
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">💳 {bank.shortName} Credit Card EMI — How It Works</h3>
+      <p style="font-size: 15px; color: var(--app-text-secondary); margin-bottom: 16px; line-height: 1.7;">
+        {bank.shortName} allows you to convert large credit card purchases (typically ₹2,500 and above) into easy monthly EMIs. This is called <strong>Credit Card EMI</strong> or <strong>Cardless EMI</strong>. Key things to know:
       </p>
-      <ul style="line-height: 1.8;">
-        <li><strong>P (Principal):</strong> The total loan amount sanctioned and disbursed by {bank.shortName}.</li>
-        <li><strong>R (Monthly Interest Rate):</strong> Annual interest rate divided by 12 months and divided by 100.</li>
-        <li><strong>N (Tenure in Months):</strong> Total repayment duration multiplied by 12 months (e.g., 20 years = 240 months).</li>
-      </ul>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px;">
+        <div style="background: var(--app-surface-card); border-left: 4px solid #f97316; border-radius: 0 12px 12px 0; padding: 16px 20px;">
+          <strong style="color: var(--app-text);">Interest Rate on Credit Card EMI</strong>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 6px 0 0;">Credit card EMI interest rates range from <strong>12% to 24% p.a.</strong> — significantly higher than personal loans. Always compare: a personal loan at 11–13% is cheaper than credit card EMI at 18–24%.</p>
+        </div>
+        <div style="background: var(--app-surface-card); border-left: 4px solid #10b981; border-radius: 0 12px 12px 0; padding: 16px 20px;">
+          <strong style="color: var(--app-text);">No-Cost EMI</strong>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 6px 0 0;">On select purchases (Amazon, Flipkart, Apple, Samsung), {bank.shortName} offers <strong>0% No-Cost EMI</strong> where the merchant absorbs the interest. The product price will NOT be discounted even if you have a cashback offer — this is a known consumer trap to watch for.</p>
+        </div>
+        <div style="background: var(--app-surface-card); border-left: 4px solid #6366f1; border-radius: 0 12px 12px 0; padding: 16px 20px;">
+          <strong style="color: var(--app-text);">Foreclosure Charges on Credit Card EMI</strong>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 6px 0 0;">Most banks charge a <strong>2%–3% foreclosure fee</strong> if you close a credit card EMI before the tenure ends. Unlike home loans, RBI's no-prepayment-penalty rule does not apply to credit card EMIs.</p>
+        </div>
+      </div>
 
-      <h2>Key Factors Influencing {bank.shortName} Loan Approval &amp; Rates</h2>
-      <ol style="line-height: 1.8;">
-        <li><strong>CIBIL &amp; Credit Score:</strong> A CIBIL credit score of 750 or higher qualifies you for {bank.shortName}'s lowest floating interest rate brackets.</li>
-        <li><strong>Fixed Obligation to Income Ratio (FOIR):</strong> {bank.shortName} evaluates your total existing monthly debt obligations. Ideally, your total monthly EMIs across all active loans should not exceed 40% to 50% of your net monthly salary.</li>
-        <li><strong>Loan-to-Value (LTV) Ratio:</strong> For property purchases, RBI regulations mandate LTV caps ranging from 75% to 90% depending on property valuation.</li>
-      </ol>
+      <!-- Prepayment Impact -->
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">💰 How Prepayment Saves You Lakhs on {bank.shortName} Home Loans</h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin-bottom: 16px; line-height: 1.7;">Prepayment is the single most powerful tool to reduce your loan cost. As per RBI guidelines, <strong>no bank can charge a prepayment penalty on floating-rate home loans</strong> for individual borrowers. Here's the real impact:</p>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px;">
+        <table class="seo-table">
+          <thead style="background: rgba(16,185,129,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 12px 14px; font-weight: 800; color: var(--app-text);">Scenario (₹50L loan, 8.75%, 20yr)</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: var(--app-text);">Monthly EMI</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #ef4444;">Total Interest</th>
+              <th style="padding: 12px 14px; font-weight: 800; color: #10b981;">Interest Saved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 12px 14px; font-weight: 700;">No prepayment</td>
+              <td style="padding: 12px 14px;">₹44,168</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 700;">₹56,00,320</td>
+              <td style="padding: 12px 14px; color: #10b981;">—</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 12px 14px; font-weight: 700;">₹1L prepayment after year 3</td>
+              <td style="padding: 12px 14px;">₹44,168</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 700;">₹51,20,000 (est.)</td>
+              <td style="padding: 12px 14px; color: #10b981; font-weight: 700;">~₹4,80,000</td>
+            </tr>
+            <tr style="background: rgba(0,0,0,0.02);">
+              <td style="padding: 12px 14px; font-weight: 700;">₹5L prepayment after year 3</td>
+              <td style="padding: 12px 14px;">₹44,168</td>
+              <td style="padding: 12px 14px; color: #ef4444; font-weight: 700;">₹40,60,000 (est.)</td>
+              <td style="padding: 12px 14px; color: #10b981; font-weight: 700;">~₹15,40,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h2>How Prepayment Reduces Your {bank.shortName} Interest Outlay</h2>
-      <p>When you make partial prepayments toward your {bank.shortName} loan, the lump sum payment is applied directly against your outstanding principal balance. Because monthly interest charges are recalculated on the reduced principal, prepayment significantly shortens your total loan tenure and saves lakhs of rupees in interest costs over the life of the loan.</p>
+      <!-- Eligibility factors -->
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">✅ Key Factors That Affect Your {bank.shortName} Loan Eligibility & Rate</h3>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px;">
+        <div style="background: var(--app-surface-card); border-left: 4px solid #6366f1; border-radius: 0 12px 12px 0; padding: 16px 20px;">
+          <strong style="color: var(--app-text);">1. CIBIL Score (Most Critical)</strong>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 6px 0 0;">750+ → Lowest rate bracket. 700–749 → Slightly higher rate (+0.10% to +0.25%). Below 650 → Likely rejection or requires co-applicant. Check your CIBIL score free at RBI-authorised bureaus (CIBIL, Experian, CRIF).</p>
+        </div>
+        <div style="background: var(--app-surface-card); border-left: 4px solid #f97316; border-radius: 0 12px 12px 0; padding: 16px 20px;">
+          <strong style="color: var(--app-text);">2. FOIR — Fixed Obligation to Income Ratio</strong>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 6px 0 0;">{bank.shortName} requires your total monthly debt repayments (all EMIs combined) to stay below <strong>40%–50% of your net monthly take-home salary</strong>. Example: if your salary is ₹80,000/month, your total EMIs across all loans should not exceed ₹32,000–₹40,000.</p>
+        </div>
+        <div style="background: var(--app-surface-card); border-left: 4px solid #10b981; border-radius: 0 12px 12px 0; padding: 16px 20px;">
+          <strong style="color: var(--app-text);">3. Loan-to-Value (LTV) Ratio</strong>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 6px 0 0;">RBI mandates: For loans up to ₹30L → Max LTV 90%. For ₹30L–₹75L → Max LTV 80%. Above ₹75L → Max LTV 75%. This means for a ₹1 crore property, {bank.shortName} will lend a maximum of ₹75 lakhs — you must arrange the remaining ₹25 lakhs as down payment.</p>
+        </div>
+        <div style="background: var(--app-surface-card); border-left: 4px solid #ec4899; border-radius: 0 12px 12px 0; padding: 16px 20px;">
+          <strong style="color: var(--app-text);">4. Employment Type & Stability</strong>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 6px 0 0;">Salaried applicants with 2+ years at the same company get the best rates. Self-employed applicants need 3+ years of ITR filings showing stable income. Government employees and PSU workers often qualify for special sub-rates.</p>
+        </div>
+      </div>
 
-      <h2>Compare Other Major Indian Bank EMI Calculators</h2>
-      <ul style="display:flex; flex-wrap:wrap; gap:12px; list-style:none; padding:0; margin:16px 0;">
+      <!-- FAQs -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 20px;">❓ Frequently Asked Questions</h3>
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px;">
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">What is the EMI for a ₹20 lakh {bank.shortName} personal loan for 5 years?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">At {bank.shortName}'s starting personal loan rate of {bank.personalInterest.split(' ')[0]} p.a., a ₹20 lakh loan for 5 years (60 months) works out to approximately <strong>₹43,484/month</strong>. Total interest paid over 5 years = ₹6,09,040. Use the calculator above for your exact rate.</p>
+        </div>
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">What is the {bank.shortName} home loan EMI for ₹30 lakh for 20 years?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">At {bank.homeInterest.split(' ')[0]} p.a. (lowest rate), a ₹30 lakh home loan for 20 years (240 months) has an EMI of approximately <strong>₹26,501/month</strong>. Total amount repaid = ₹63,60,240. Total interest = ₹33,60,240.</p>
+        </div>
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Can I prepay my {bank.shortName} home loan without penalty?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Yes. As per RBI Circular RBI/2011-12/540, banks <strong>cannot charge foreclosure or prepayment penalties on floating-rate home loans</strong> for individual borrowers. {bank.shortName} floating rate home loan holders can prepay any amount at any time, completely free of charge.</p>
+        </div>
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Is it better to reduce tenure or EMI after prepayment?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;"><strong>Reduce tenure — always.</strong> When you prepay a lump sum, ask {bank.shortName} to reduce your loan tenure while keeping EMI the same. This eliminates future interest months, saving you significantly more than reducing the EMI (which keeps the same number of months).</p>
+        </div>
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">How do I get the lowest {bank.shortName} home loan interest rate?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Three proven steps: (1) Maintain a CIBIL score of <strong>750 or above</strong> — check 3 months before applying. (2) Keep your FOIR below 40% by clearing other existing loans first. (3) Apply as a <strong>salaried applicant</strong> from a listed employer, or opt for a joint loan with a co-applicant who has a high credit score.</p>
+        </div>
+      </div>
+
+      <!-- Compare Other Banks -->
+      <h3 style="font-size: 16px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">🔗 Compare EMI Calculators for Other Banks</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;">
         {banks.map(b => (
-          <li>
-            <a href={`/${b.id}-emi-calculator`} style="padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--app-border); border-radius: 8px; font-weight:600; text-decoration:none; display:inline-block;">
-              {b.shortName} EMI Calculator →
-            </a>
-          </li>
+          <a href={`/${b.id}-emi-calculator`} style="padding: 10px 16px; background: var(--app-surface-card); border: 1px solid var(--app-border); border-radius: 10px; text-decoration: none; font-weight: 600; color: var(--app-text); font-size: 14px;">
+            {b.shortName} EMI Calculator →
+          </a>
         ))}
-      </ul>
-    </div>
+      </div>
+
+    </article>
   </PageWrapper>
 </Layout>

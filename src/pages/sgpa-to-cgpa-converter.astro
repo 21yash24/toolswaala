@@ -12,18 +12,26 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is the difference between SGPA and CGPA?",
+      "name": "What is the formula to convert SGPA to CGPA?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "SGPA (Semester Grade Point Average) measures your academic performance in a single semester, while CGPA (Cumulative Grade Point Average) is the credit-weighted average of your SGPA across all completed semesters in a degree program."
+        "text": "CGPA = Σ(SGPA_i × Credits_i) ÷ Σ(Total Credits). If all semesters have equal credits, CGPA = Sum of all SGPAs ÷ Number of Semesters."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the formula to convert SGPA to CGPA?",
+      "name": "What is the difference between SGPA and CGPA?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The credit-weighted formula for CGPA is: CGPA = Σ(SGPA_i × Credits_i) ÷ Σ(Total Credits). If all semesters have equal credit weightage, CGPA is simply the arithmetic mean: CGPA = Sum of all SGPAs ÷ Number of Semesters."
+        "text": "SGPA is your grade point average for a single semester. CGPA is the credit-weighted cumulative average across all completed semesters of your degree."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to calculate CGPA from SGPA for all 8 semesters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add (SGPA × Credits) for each semester, divide by total credits. Example: S1=8.0(20cr), S2=8.5(22cr), S3=7.5(24cr), S4=9.0(22cr) → CGPA = (160+187+180+198)÷88 = 725÷88 = 8.24."
       }
     },
     {
@@ -31,12 +39,20 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
       "name": "Can SGPA be higher than CGPA?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. If your current semester SGPA is higher than your previous overall average, your cumulative CGPA will increase."
+        "text": "Yes. If your latest semester SGPA is higher than your existing CGPA, your cumulative CGPA will rise. If it is lower, your CGPA will drop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is CGPA to percentage conversion formula for Indian universities?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each university has its own formula. Mumbai University (MU): CGPA × 7.1. VTU Karnataka: CGPA × 10. AKTU: CGPA × 9.5 - 0.5. Anna University: (CGPA - 0.5) × 10. SPPU Pune: CGPA × 7.1."
       }
     }
   ]
 }
-</script>\n`;
+</script>`;
 
 const softwareSchema = `<script type="application/ld+json" is:inline>
 {
@@ -51,7 +67,7 @@ const softwareSchema = `<script type="application/ld+json" is:inline>
     "priceCurrency": "INR"
   }
 }
-</script>\n`;
+</script>`;
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/sgpa-to-cgpa-converter">
@@ -61,34 +77,141 @@ const softwareSchema = `<script type="application/ld+json" is:inline>
   <PageWrapper title="SGPA to CGPA Converter" description="Convert semester SGPA scores to overall cumulative CGPA with credit-weighted calculations.">
     <CgpaCalculator client:only="react" />
 
-    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
-      <h2>SGPA to CGPA Conversion Guide (2026)</h2>
-      <p>In Choice Based Credit Systems (CBCS) mandated by UGC across Indian universities, academic performance is evaluated per semester using <strong>SGPA (Semester Grade Point Average)</strong> and overall using <strong>CGPA (Cumulative Grade Point Average)</strong>.</p>
+    <article class="seo-article">
 
-      <h2>Mathematical Formula for SGPA to CGPA</h2>
-      <p>To convert your semester SGPAs into a cumulative CGPA, use the credit-weighted summation formula:</p>
-      <p style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; font-family: monospace;">
-        <strong>CGPA = ( (SGPA1 × C1) + (SGPA2 × C2) + ... + (SGPAn × Cn) ) ÷ (C1 + C2 + ... + Cn)</strong>
+      <!-- Quick Answer Box -->
+      <div style="background: rgba(99,102,241,0.08); border: 2px solid rgba(99,102,241,0.3); border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #6366f1; margin-bottom: 8px; letter-spacing: 0.05em;">⚡ Quick Answer (2026)</div>
+        <h2 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">How to Convert SGPA to CGPA (Credit-Weighted Formula)</h2>
+        <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+          <strong>CGPA = Σ(SGPA<sub>i</sub> × Credits<sub>i</sub>) ÷ Σ(Total Credits)</strong><br /><br />
+          If all your semesters have the <strong>same number of credits</strong>, the shortcut is:<br />
+          <code style="background: rgba(99,102,241,0.1); padding: 2px 8px; border-radius: 4px; font-size: 14px;">CGPA = (SGPA₁ + SGPA₂ + ... + SGPAₙ) ÷ n</code><br /><br />
+          <strong>Example:</strong> If you have SGPAs of 8.2, 7.9, 8.5, 8.0 across 4 equal-credit semesters → CGPA = 32.6 ÷ 4 = <strong>8.15</strong>
+        </p>
+      </div>
+
+      <!-- SGPA vs CGPA difference -->
+      <h2 style="font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; color: var(--app-text); margin-bottom: 20px; letter-spacing: -0.02em;">SGPA vs CGPA — What's the Difference?</h2>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px;">
+        <table class="seo-table">
+          <thead style="background: rgba(99,102,241,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: var(--app-text);">Parameter</th>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: #6366f1;">SGPA</th>
+              <th style="padding: 14px 16px; text-align: left; font-weight: 800; color: #f97316;">CGPA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 14px 16px; font-weight: 600; color: var(--app-text);">Full form</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">Semester Grade Point Average</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">Cumulative Grade Point Average</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 14px 16px; font-weight: 600; color: var(--app-text);">Scope</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">Single semester only</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">All semesters of your degree</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 14px 16px; font-weight: 600; color: var(--app-text);">How it's calculated</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">Σ(Grade Points × Subject Credits) ÷ Total Credits that semester</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">Σ(SGPA × Semester Credits) ÷ Total Credits earned</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 14px 16px; font-weight: 600; color: var(--app-text);">Resets each semester?</td>
+              <td style="padding: 14px 16px; color: #10b981; font-weight: 700;">Yes — fresh start</td>
+              <td style="padding: 14px 16px; color: #ef4444; font-weight: 700;">No — carries all history</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 14px 16px; font-weight: 600; color: var(--app-text);">Used for</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">Marksheet, semester performance</td>
+              <td style="padding: 14px 16px; color: var(--app-text-secondary);">Degree certificate, jobs, PG admission, GATE eligibility</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Formula cards -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 16px;">🧮 SGPA to CGPA Formula (Both Methods)</h3>
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px;">
+        <div style="background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.25); border-radius: 14px; padding: 20px;">
+          <div style="font-size: 13px; font-weight: 700; color: #6366f1; margin-bottom: 8px;">✅ METHOD 1: Credit-Weighted (Accurate — Use This)</div>
+          <code style="font-size: 14px; font-weight: 700; color: var(--app-text); display: block; margin-bottom: 10px; line-height: 1.6;">CGPA = [ (SGPA₁×C₁) + (SGPA₂×C₂) + ... + (SGPAₙ×Cₙ) ] ÷ (C₁+C₂+...+Cₙ)</code>
+          <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Use when semesters have <strong>different credit counts</strong>. Most engineering programs have varying credits per semester.</p>
+        </div>
+        <div style="background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.25); border-radius: 14px; padding: 20px;">
+          <div style="font-size: 13px; font-weight: 700; color: #10b981; margin-bottom: 8px;">⚡ METHOD 2: Simple Average (Quick Estimate)</div>
+          <code style="font-size: 14px; font-weight: 700; color: var(--app-text); display: block; margin-bottom: 10px;">CGPA = (SGPA₁ + SGPA₂ + ... + SGPAₙ) ÷ n</code>
+          <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0;">Use only when all semesters have <strong>identical credit counts</strong>. Good for a rough estimate; for final transcripts always use Method 1.</p>
+        </div>
+      </div>
+
+      <!-- Worked Example -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 16px;">📝 Full Worked Example (4 Semesters B.Tech)</h3>
+      <div class="seo-table-wrapper" style="margin-bottom: 24px;">
+        <table class="seo-table">
+          <thead style="background: rgba(99,102,241,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 12px 14px; text-align: left; font-weight: 800; color: var(--app-text);">Semester</th>
+              <th style="padding: 12px 14px; text-align: left; font-weight: 800; color: var(--app-text);">SGPA</th>
+              <th style="padding: 12px 14px; text-align: left; font-weight: 800; color: var(--app-text);">Credits</th>
+              <th style="padding: 12px 14px; text-align: left; font-weight: 800; color: #6366f1;">SGPA × Credits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);"><td style="padding: 12px 14px; font-weight: 600;">Semester 1</td><td style="padding: 12px 14px;">8.0</td><td style="padding: 12px 14px;">20</td><td style="padding: 12px 14px; font-weight: 700; color: #6366f1;">160.0</td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 600;">Semester 2</td><td style="padding: 12px 14px;">8.5</td><td style="padding: 12px 14px;">22</td><td style="padding: 12px 14px; font-weight: 700; color: #6366f1;">187.0</td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border);"><td style="padding: 12px 14px; font-weight: 600;">Semester 3</td><td style="padding: 12px 14px;">7.5</td><td style="padding: 12px 14px;">24</td><td style="padding: 12px 14px; font-weight: 700; color: #6366f1;">180.0</td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 600;">Semester 4</td><td style="padding: 12px 14px;">9.0</td><td style="padding: 12px 14px;">22</td><td style="padding: 12px 14px; font-weight: 700; color: #6366f1;">198.0</td></tr>
+            <tr style="font-weight: 800; background: rgba(99,102,241,0.08);"><td style="padding: 12px 14px;">TOTAL</td><td style="padding: 12px 14px;">—</td><td style="padding: 12px 14px; color: #10b981;">88 Credits</td><td style="padding: 12px 14px; color: #6366f1;">725.0 Points</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 15px; color: var(--app-text-secondary); margin-bottom: 36px; line-height: 1.6;">
+        <strong>Calculation:</strong> Total Points = 725.0, Total Credits = 88<br />
+        <strong>Final CGPA</strong> = 725.0 ÷ 88 = <strong style="color: #6366f1; font-size: 18px;">8.24 CGPA</strong>
       </p>
-      <p>Where <em>C_i</em> represents the total credit points assigned to semester <em>i</em>.</p>
 
-      <h2>Step-by-Step Calculation Example</h2>
-      <ol style="line-height: 1.8;">
-        <li><strong>Semester 1:</strong> SGPA = 8.0 (20 Credits) ➔ Credit Points = 160</li>
-        <li><strong>Semester 2:</strong> SGPA = 8.5 (22 Credits) ➔ Credit Points = 187</li>
-        <li><strong>Semester 3:</strong> SGPA = 7.5 (24 Credits) ➔ Credit Points = 180</li>
-        <li><strong>Total Credit Points:</strong> 160 + 187 + 180 = 527</li>
-        <li><strong>Total Credits:</strong> 20 + 22 + 24 = 66</li>
-        <li><strong>Cumulative CGPA:</strong> 527 ÷ 66 = <strong>7.98 CGPA</strong></li>
-      </ol>
+      <!-- University Conversion Formulas Table -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 16px;">🏛️ University-Specific CGPA to Percentage Formulas</h3>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px;">
+        <table class="seo-table">
+          <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 12px 14px; text-align: left; font-weight: 800; color: var(--app-text);">University</th>
+              <th style="padding: 12px 14px; text-align: left; font-weight: 800; color: #f97316;">Conversion Formula</th>
+              <th style="padding: 12px 14px; text-align: left; font-weight: 800; color: var(--app-text);">Example (8.0 CGPA)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);"><td style="padding: 12px 14px; font-weight: 700;">Mumbai University (MU)</td><td style="padding: 12px 14px; font-weight: 600; color: #f97316;">Percentage = (CGPA × 7.1) + 11</td><td style="padding: 12px 14px;">(8.0 × 7.1) + 11 = <strong>67.8%</strong></td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 700;">VTU Belagavi</td><td style="padding: 12px 14px; font-weight: 600; color: #f97316;">Percentage = (CGPA - 0.75) × 10</td><td style="padding: 12px 14px;">(8.0 - 0.75) × 10 = <strong>72.5%</strong></td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border);"><td style="padding: 12px 14px; font-weight: 700;">AKTU Lucknow</td><td style="padding: 12px 14px; font-weight: 600; color: #f97316;">Percentage = (CGPA - 0.5) × 10</td><td style="padding: 12px 14px;">(8.0 - 0.5) × 10 = <strong>75.0%</strong></td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 700;">SPPU Pune</td><td style="padding: 12px 14px; font-weight: 600; color: #f97316;">Percentage = (CGPA × 8.8) + 12 (Engineering)</td><td style="padding: 12px 14px;">(8.0 × 8.8) + 12 = <strong>82.4%</strong></td></tr>
+            <tr style="border-bottom: 1px solid var(--app-border);"><td style="padding: 12px 14px; font-weight: 700;">Anna University Chennai</td><td style="padding: 12px 14px; font-weight: 600; color: #f97316;">Percentage = CGPA × 10</td><td style="padding: 12px 14px;">8.0 × 10 = <strong>80.0%</strong></td></tr>
+            <tr style="background: rgba(0,0,0,0.02);"><td style="padding: 12px 14px; font-weight: 700;">CBSE Class 10 / 12</td><td style="padding: 12px 14px; font-weight: 600; color: #f97316;">Percentage = CGPA × 9.5</td><td style="padding: 12px 14px;">8.0 × 9.5 = <strong>76.0%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h2>University Specific CGPA Conversion Shortcuts</h2>
-      <ul style="display:flex; flex-wrap:wrap; gap:12px; list-style:none; padding:0; margin:16px 0;">
-        <li><a href="/mumbai-university-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">Mumbai University (MU) →</a></li>
-        <li><a href="/vtu-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">VTU Karnataka →</a></li>
-        <li><a href="/aktu-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">AKTU UPTU →</a></li>
-        <li><a href="/delhi-university-cgpa-calculator" style="padding:8px 14px; background:rgba(255,255,255,0.05); border:1px solid var(--app-border); border-radius:8px; text-decoration:none; font-weight:600;">Delhi University (DU) →</a></li>
-      </ul>
-    </div>
+      <!-- FAQs -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 20px;">❓ Frequently Asked Questions</h3>
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px;">
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">What is the formula to convert SGPA to CGPA?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">CGPA = Σ(SGPA<sub>i</sub> × Credits<sub>i</sub>) ÷ Σ(Total Credits). If all semesters have equal credits, CGPA = Sum of all SGPAs ÷ Number of Semesters.</p>
+        </div>
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">What is the difference between SGPA and CGPA?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">SGPA (Semester Grade Point Average) measures your academic performance for a single semester. CGPA (Cumulative Grade Point Average) is the credit-weighted overall score across all semesters completed so far.</p>
+        </div>
+        <div style="background: var(--app-surface-card); padding: 20px 24px; border-radius: 14px; border: 1px solid var(--app-border);">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Can SGPA be higher than CGPA?</h4>
+          <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">Yes! If your current semester SGPA is higher than your previous CGPA, your overall CGPA will increase. If your semester SGPA is lower than your previous CGPA, your CGPA will decrease.</p>
+        </div>
+      </div>
+
+    </article>
   </PageWrapper>
 </Layout>
