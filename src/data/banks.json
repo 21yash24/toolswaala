@@ -6,8 +6,11 @@
     "homeInterest": "8.50% - 9.65%",
     "carInterest": "8.75% - 9.80%",
     "personalInterest": "11.15% - 14.30%",
+    "creditCardInterest": "14.0% - 18.0%",
+    "processingFee": "1.5% + GST",
     "faq1": "SBI home loan interest rates start from 8.50% p.a. depending on your CIBIL score. Use our calculator to compute your exact monthly EMI and interest payout schedule.",
-    "faq2": "SBI allows partial prepayment and foreclosure with zero penalty for floating interest rate home loans."
+    "faq2": "SBI allows partial prepayment and foreclosure with zero penalty for floating interest rate home loans.",
+    "faqCc": "SBI Credit Card transactions over ₹2,500 can be converted into 3 to 24 month EMIs with interest rates starting at 14.0% p.a."
   },
   {
     "id": "hdfc",
@@ -16,8 +19,11 @@
     "homeInterest": "8.70% - 9.80%",
     "carInterest": "8.95% - 10.25%",
     "personalInterest": "10.75% - 15.50%",
+    "creditCardInterest": "13.0% - 19.5%",
+    "processingFee": "2.0% + GST",
     "faq1": "HDFC home loan interest rates currently start from 8.70% p.a. Calculate your exact monthly EMI for home, car, and personal loans.",
-    "faq2": "HDFC offers up to 30 years repayment tenure for home loans, lowering your monthly EMI liability."
+    "faq2": "HDFC offers up to 30 years repayment tenure for home loans, lowering your monthly EMI liability.",
+    "faqCc": "HDFC Credit Card SmartEMI allows converting big purchases into EMIs over 6 to 36 months with a small processing fee of ₹199-₹299 + GST."
   },
   {
     "id": "icici",
@@ -26,8 +32,11 @@
     "homeInterest": "8.75% - 9.90%",
     "carInterest": "9.10% - 10.50%",
     "personalInterest": "10.80% - 16.00%",
+    "creditCardInterest": "13.5% - 20.0%",
+    "processingFee": "2.0% + GST",
     "faq1": "ICICI Bank loan EMI depends on principal amount, interest rate (8.75%+), and tenure (up to 30 years for home loans).",
-    "faq2": "Prepaying ICICI Bank loans directly reduces outstanding principal, lowering total interest paid over the tenure."
+    "faq2": "Prepaying ICICI Bank loans directly reduces outstanding principal, lowering total interest paid over the tenure.",
+    "faqCc": "ICICI Bank Credit Card Instant EMI features flexible tenures from 3 to 24 months with interest rates starting from 13.5% p.a."
   },
   {
     "id": "axis",
@@ -36,8 +45,11 @@
     "homeInterest": "8.75% - 9.85%",
     "carInterest": "9.30% - 10.75%",
     "personalInterest": "10.99% - 15.75%",
+    "creditCardInterest": "14.5% - 21.0%",
+    "processingFee": "1.5% - 2.5% + GST",
     "faq1": "Axis Bank provides competitive EMI plans for home, car, and personal loans starting at 8.75% p.a. interest.",
-    "faq2": "Axis Bank loan tenure ranges up to 30 years for home financing and up to 7 years for auto loans."
+    "faq2": "Axis Bank loan tenure ranges up to 30 years for home financing and up to 7 years for auto loans.",
+    "faqCc": "Axis Bank Credit Card EMI conversion allows converting purchases above ₹2,500 into 3, 6, 9, 12, or 24-month EMIs via internet banking or mobile app."
   },
   {
     "id": "pnb",
@@ -46,17 +58,24 @@
     "homeInterest": "8.45% - 9.50%",
     "carInterest": "8.80% - 9.90%",
     "personalInterest": "11.25% - 14.50%",
+    "creditCardInterest": "15.0% - 19.0%",
+    "processingFee": "1.0% + GST",
     "faq1": "PNB home loan interest rates are among the lowest in India, starting at 8.45% p.a. for high CIBIL applicants.",
-    "faq2": "PNB imposes no prepayment penalty on floating rate retail loans."
+    "faq2": "PNB imposes no prepayment penalty on floating rate retail loans.",
+    "faqCc": "PNB Credit Card EMI options allow easy conversion of festival and travel expenses into low-interest monthly installments."
   },
   {
     "id": "kotak",
     "name": "Kotak Mahindra Bank",
-    "shortName": "Kotak",
+    "shortName": "Kotak Mahindra",
+    "shortNameAlt": "Kotak",
     "homeInterest": "8.70% - 9.75%",
     "carInterest": "8.85% - 10.15%",
     "personalInterest": "10.99% - 16.00%",
+    "creditCardInterest": "14.0% - 20.0%",
+    "processingFee": "1.5% - 2.0% + GST",
     "faq1": "Kotak Mahindra Bank offers quick online loan approval with home loan rates starting at 8.70% p.a.",
-    "faq2": "Kotak personal loan EMIs can be calculated using the principal, monthly rate, and tenure formula."
+    "faq2": "Kotak personal loan EMIs can be calculated using the principal, monthly rate, and tenure formula.",
+    "faqCc": "Kotak Mahindra Bank Credit Card EMI allows converting transactions over ₹2,500 into EMIs with zero documentation and instant digital approval."
   }
 ]

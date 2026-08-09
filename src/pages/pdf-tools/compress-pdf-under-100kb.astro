@@ -3,48 +3,66 @@ import Layout from '../../layouts/Layout.astro';
 import PdfPageWrapper from '../../shared/PdfPageWrapper';
 import { PdfCompressor } from '../../react-pages/pdf';
 
-const title = "Compress PDF Under 100KB Online Free | Govt Exam Portal Tool";
-const description = "Compress PDF file size to under 100KB & 200KB for UPSC, SSC, NTA, IBPS, and University portal uploads. 100% private browser compression with zero quality loss.";
-
-const faqSchemaStr = `<script type="application/ld+json" is:inline>
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How to compress PDF under 100KB for govt job portals?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Upload your PDF file to our client-side compressor, select High Compression mode, and download the optimized PDF under 100KB. Processing happens 100% inside your browser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is it safe to compress certificate PDFs on ToolsWaala?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. ToolsWaala uses WebAssembly client-side compression. Zero bytes are uploaded to external servers."
-      }
-    }
-  ]
-}
-</script>\n`;
+const title = "Compress PDF Under 100KB Online Free | Reduce PDF File Size to 100KB";
+const description = "Compress PDF files under 100KB online for free. Ideal for UPSC, SSC, IBPS, NEET & government job application forms. 100% private browser processing.";
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath="/pdf-tools/compress-pdf-under-100kb">
-  <script type="application/ld+json" is:inline set:html={faqSchemaStr} />
+  <!-- SoftwareApplication & FAQ Structured Data -->
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Compress PDF Under 100KB Tool",
+      "operatingSystem": "All",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to compress a PDF file under 100KB online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your PDF to ToolsWaala's PDF compressor, select Extreme Compression level (or Target 100KB), and click Compress. The tool shrinks your PDF file under 100KB while preserving text readability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do Indian government exam forms require PDF size below 100KB?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Portals like UPSC, SSC, IBPS, NEET, and NTA have strict server upload limits requiring certificates, marksheets, and IDs to be under 100KB or 200KB to ensure fast portal processing."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
-  <PdfPageWrapper title="Compress PDF Under 100KB for Exam Portals" description="Reduce PDF file size to under 100KB or 200KB instantly inside your browser memory.">
-    <PdfCompressor client:load />
-
-    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--app-border);" id="seo-content">
-      <h2>Portal File Size Guidelines for Indian Examinations</h2>
-      <ul style="line-height: 1.8;">
-        <li><strong>UPSC / SSC / State PSC Forms:</strong> Signature &amp; photo PDFs must be strictly under 100KB.</li>
-        <li><strong>NTA NEET / JEE Main / CUET Portals:</strong> Category certificates and class 10 marksheets capped at 200KB.</li>
-        <li><strong>Naukri &amp; LinkedIn Resume Uploads:</strong> Resume PDFs recommended under 500KB for fast ATS parsing.</li>
-      </ul>
-    </div>
+  <PdfPageWrapper title="Compress PDF Under 100KB" hindi="100KB से कम PDF कंप्रेसर" client:load>
+    <PdfCompressor client:only="react" />
   </PdfPageWrapper>
+
+  <!-- SEO Content Block -->
+  <article class="seo-article">
+    <div style="background: rgba(16, 185, 129, 0.08); border: 2px solid rgba(16, 185, 129, 0.35); border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+      <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 8px; letter-spacing: 0.05em;">⚡ Quick Guide (2026)</div>
+      <h2 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">How to Reduce PDF File Size Below 100KB for Exam Forms</h2>
+      <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+        1. Select or drag & drop your PDF file above.<br />
+        2. Set compression level to <strong>Extreme (Target &lt; 100KB)</strong>.<br />
+        3. Click <strong>Compress PDF</strong> and download your file in seconds.<br />
+        <em>Note: 100% browser-based WebAssembly processing — your documents are never uploaded to any remote server.</em>
+      </p>
+    </div>
+  </article>
 </Layout>
