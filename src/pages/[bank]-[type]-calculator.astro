@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+import { EmiTool } from '../react-pages/BusinessTools';
+import banks from '../data/banks.json';
+
+export async function getStaticPaths() {
+  const loanTypes = [
+    { id: "personal-loan-emi", label: "Personal Loan EMI", key: "personalInterest" },
+    { id: "home-loan-emi", label: "Home Loan EMI", key: "homeInterest" },
+    { id: "credit-card-emi", label: "Credit Card EMI", key: "creditCardInterest" },
+  ];
+
+  const paths = [];
+  for (const bank of banks) {
+    for (const type of loanTypes) {
+      paths.push({
+        params: { bank: `${bank.id}-bank`, type: type.id },
+        props: { bank, type },
+      });
+      // also push short alias without '-bank' suffix for exact GSC matching (e.g. /axis-personal-loan-emi-calculator)
+      paths.push({
+        params: { bank: bank.id, type: type.id },
+        props: { bank, type },
+      });
+    }
+  }
+  return paths;
+}
+
+const { bank, type } = Astro.props;
+
+const rateText = bank[type.key] || "10.50% - 16.00%";
+const title = `${bank.name} ${type.label} Calculator (2026) | Exact Monthly EMI & Interest Schedule`;
+const description = `Calculate your exact monthly ${bank.name} ${type.label} with current interest rates (${rateText} p.a.). See complete loan tenure repayment table, processing fees, and CIBIL score requirements.`;
+
+const faqSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the current ${bank.shortName} ${type.label} interest rate in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "${bank.shortName} ${type.label} interest rates currently range from ${rateText} p.a. depending on loan amount, tenure, and borrower credit profile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to calculate ${bank.shortName} ${type.label} monthly EMI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the formula EMI = [P × R × (1+R)^N] ÷ [(1+R)^N - 1], where P is principal, R is monthly rate (annual rate ÷ 12 ÷ 100), and N is total months."
+      }
+    }
+  ]
+}
+</script>\n`;
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath={`/${bank.id}-${type.id}-calculator`}>
+  <Fragment set:html={faqSchemaStr} />
+
+  <PageWrapper title={`${bank.name} ${type.label} Calculator`} description={`Calculate your exact monthly EMI, total interest, and repayment schedule for ${bank.name} ${type.label}.`}>
+    <EmiTool client:load />
+
+    <article class="seo-article">
+      <div style="background: rgba(16,185,129,0.08); border: 2px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 8px; letter-spacing: 0.05em;">⚡ {bank.shortName} {type.label} Summary (2026)</div>
+        <h2 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">{bank.name} {type.label}: Current Interest Rates & Breakdown</h2>
+        <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+          • <strong>Interest Rate:</strong> {rateText} p.a.<br />
+          • <strong>Processing Fee:</strong> {bank.processingFee || '1.5% + GST'}<br />
+          • <strong>Min. Required CIBIL Score:</strong> 720+
+        </p>
+      </div>
+    </article>
+  </PageWrapper>
+</Layout>
