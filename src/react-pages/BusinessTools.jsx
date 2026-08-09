@@ -1294,33 +1294,176 @@ export function QrTool() {
 }
 
 export function EmiTool() {
-  const [amount, setAmount] = useState(1000000);
-  const [rate, setRate] = useState(9.5);
-  const [tenure, setTenure] = useState(60);
+  const [amount, setAmount] = useState(2500000);
+  const [rate, setRate] = useState(8.75);
+  const [tenure, setTenure] = useState(240); // 20 years (240 mo)
+  const [extraPrepayment, setExtraPrepayment] = useState(2000); // Prepayment simulator
+
   const monthlyRate = rate / (12 * 100);
-  const emi = (amount * monthlyRate * Math.pow(1 + monthlyRate, tenure)) / (Math.pow(1 + monthlyRate, tenure) - 1);
+  const emi = Math.round((amount * monthlyRate * Math.pow(1 + monthlyRate, tenure)) / (Math.pow(1 + monthlyRate, tenure) - 1));
+  const totalPayment = Math.round(emi * tenure);
+  const totalInterest = Math.round(totalPayment - amount);
+
+  // Prepayment Calculations
+  const newMonthlyPayment = emi + extraPrepayment;
+  let remainingPrincipal = amount;
+  let actualMonths = 0;
+  let actualInterest = 0;
+
+  if (extraPrepayment > 0 && monthlyRate > 0) {
+    while (remainingPrincipal > 0 && actualMonths < tenure) {
+      const monthInterest = remainingPrincipal * monthlyRate;
+      const monthPrincipal = Math.min(remainingPrincipal, newMonthlyPayment - monthInterest);
+      actualInterest += monthInterest;
+      remainingPrincipal -= monthPrincipal;
+      actualMonths++;
+    }
+  }
+
+  const interestSaved = extraPrepayment > 0 ? Math.max(0, Math.round(totalInterest - actualInterest)) : 0;
+  const tenureSavedMonths = extraPrepayment > 0 ? Math.max(0, tenure - actualMonths) : 0;
+
+  const principalPercent = Math.round((amount / totalPayment) * 100);
+  const interestPercent = 100 - principalPercent;
+
+  const shareText = encodeURIComponent(`🏦 Loan EMI Quote & Prepayment Savings:\n\n• Principal: ${formatINR(amount)}\n• Interest Rate: ${rate}% p.a.\n• Tenure: ${Math.round(tenure/12)} Years (${tenure} Mo)\n-----------------------\n• Monthly EMI: ${formatINR(emi)}\n• Total Interest: ${formatINR(totalInterest)}\n${extraPrepayment > 0 ? `• Interest Saved via Prepayment: ${formatINR(interestSaved)} 🎉` : ''}\n\nCalculate yours at: ${typeof window !== 'undefined' ? window.location.href : 'https://www.toolswaala.in/emi-calculator'}`);
+
   return (
-    <div className="grid-2">
-      <div className="glass-card">
-        <div className="form-group"><label>Amount: {formatINR(amount)}</label><input type="range" min="50000" max="10000000" step="50000" value={amount} onChange={e => setAmount(+e.target.value)} /></div>
-        <div className="form-group"><label>Rate: {rate}%</label><input type="range" min="5" max="30" step="0.1" value={rate} onChange={e => setRate(+e.target.value)} /></div>
-        <div className="form-group"><label>Tenure: {tenure} Mo</label><input type="range" min="6" max="360" value={tenure} onChange={e => setTenure(+e.target.value)} /></div>
+    <div className="space-y-6">
+      <div className="grid-2">
+        {/* Input Sliders */}
+        <div className="glass-card space-y-4">
+          <h3 style={{ fontSize: 16, fontWeight: 800, color: "var(--app-text)" }}>⚙️ Adjust Loan Details</h3>
+          
+          <div className="form-group">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+              <label style={{ fontWeight: 700 }}>Loan Amount (Principal)</label>
+              <span style={{ fontWeight: 900, color: BRAND.primary, fontSize: 16 }}>{formatINR(amount)}</span>
+            </div>
+            <input type="range" min="50000" max="15000000" step="50000" value={amount} onChange={e => setAmount(+e.target.value)} style={{ width: "100%" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "var(--app-text-secondary)" }}>
+              <span>₹50K</span><span>₹50L</span><span>₹1.5Cr</span>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+              <label style={{ fontWeight: 700 }}>Annual Interest Rate (% p.a.)</label>
+              <span style={{ fontWeight: 900, color: "#f97316", fontSize: 16 }}>{rate}%</span>
+            </div>
+            <input type="range" min="5.0" max="24.0" step="0.1" value={rate} onChange={e => setRate(+e.target.value)} style={{ width: "100%" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "var(--app-text-secondary)" }}>
+              <span>5% (Home)</span><span>9.5% (Avg)</span><span>24% (Card)</span>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+              <label style={{ fontWeight: 700 }}>Loan Tenure</label>
+              <span style={{ fontWeight: 900, color: "var(--app-text)", fontSize: 16 }}>{Math.floor(tenure / 12)} Yrs ({tenure} Mo)</span>
+            </div>
+            <input type="range" min="6" max="360" step="6" value={tenure} onChange={e => setTenure(+e.target.value)} style={{ width: "100%" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "var(--app-text-secondary)" }}>
+              <span>6 Mo</span><span>15 Yrs</span><span>30 Yrs</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Result Card */}
+        <div className="result-box" style={{ background: "rgba(15, 23, 42, 0.95)", color: "#fff", padding: 24, borderRadius: 20 }}>
+          <div style={{ textAlign: "center", marginBottom: 20 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", color: "#10b981", letterSpacing: "0.05em" }}>Calculated Monthly EMI</span>
+            <div style={{ fontSize: 44, fontWeight: 900, color: "#10b981", margin: "4px 0" }}>{formatINR(emi)}</div>
+            <span style={{ fontSize: 12, color: "#94a3b8" }}>per month for {tenure} months</span>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, margin: "16px 0", fontSize: 12 }}>
+            <div style={{ background: "rgba(255,255,255,0.06)", padding: 12, borderRadius: 12 }}>
+              <span style={{ color: "#94a3b8", display: "block", fontSize: 10 }}>Total Interest Paid</span>
+              <strong style={{ color: "#ef4444", fontSize: 15 }}>{formatINR(totalInterest)}</strong>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.06)", padding: 12, borderRadius: 12 }}>
+              <span style={{ color: "#94a3b8", display: "block", fontSize: 10 }}>Total Amount Paid</span>
+              <strong style={{ color: "#38bdf8", fontSize: 15 }}>{formatINR(totalPayment)}</strong>
+            </div>
+          </div>
+
+          {/* Visual Bar */}
+          <div style={{ margin: "16px 0" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, marginBottom: 6 }}>
+              <span style={{ color: "#10b981" }}>Principal: {principalPercent}%</span>
+              <span style={{ color: "#ef4444" }}>Interest: {interestPercent}%</span>
+            </div>
+            <div style={{ height: 10, borderRadius: 10, background: "#ef4444", overflow: "hidden", display: "flex" }}>
+              <div style={{ width: `${principalPercent}%`, background: "#10b981" }} />
+            </div>
+          </div>
+
+          {/* Share Actions */}
+          <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
+            <a 
+              href={`https://wa.me/?text=${shareText}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-primary" 
+              style={{ flex: 1, textAlign: "center", background: "#25D366", color: "#fff", textDecoration: "none", fontSize: 13, fontWeight: 800, padding: "10px 0", borderRadius: 12 }}
+            >
+              📲 Share on WhatsApp
+            </a>
+            <button 
+              onClick={() => {
+                navigator.clipboard.writeText(decodeURIComponent(shareText));
+                alert("Loan quote summary copied to clipboard!");
+              }}
+              style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "none", padding: "10px 14px", borderRadius: 12, cursor: "pointer", fontSize: 13, fontWeight: 700 }}
+            >
+              📋 Copy
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="result-box">
-        <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: 14 }}>Monthly EMI</div>
-          <div style={{ fontSize: 48, fontWeight: 900, color: BRAND.primary }}>{formatINR(emi)}</div>
-          <button 
-            onClick={() => {
-              const text = `🏦 Loan EMI Calculation:\n\nPrincipal: ${formatINR(amount)}\nInterest: ${rate}%\nTenure: ${tenure} Months\n---\nMonthly EMI: ${formatINR(emi)}\n\nCheck yours at: ${window.location.href}`;
-              navigator.clipboard.writeText(text);
-              alert("Summary copied to clipboard!");
-            }}
-            className="btn-primary" 
-            style={{ width: "100%", marginTop: 16, fontSize: 14 }}
-          >
-            📋 Copy Summary
-          </button>
+
+      {/* Prepayment Savings Simulator (Viral Engagement Box) */}
+      <div style={{ background: "rgba(16, 185, 129, 0.07)", border: "2px dashed rgba(16, 185, 129, 0.35)", borderRadius: 20, padding: 24 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 14 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", color: "#10b981" }}>💡 Prepayment Interest Savings Simulator</span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: "var(--app-text)", margin: "2px 0 0 0" }}>How Much Can You Save By Prepaying Extra Monthly?</h3>
+          </div>
+          {interestSaved > 0 && (
+            <div style={{ background: "#10b981", color: "#fff", padding: "6px 14px", borderRadius: 20, fontSize: 12, fontWeight: 800 }}>
+              🎉 Save {formatINR(interestSaved)}
+            </div>
+          )}
+        </div>
+
+        <div className="grid-2" style={{ alignItems: "center" }}>
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, marginBottom: 6 }}>
+              <span>Extra Monthly Prepayment:</span>
+              <strong style={{ color: "#10b981" }}>+{formatINR(extraPrepayment)} / mo</strong>
+            </div>
+            <input type="range" min="0" max="20000" step="500" value={extraPrepayment} onChange={e => setExtraPrepayment(+e.target.value)} style={{ width: "100%" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "var(--app-text-secondary)", marginTop: 4 }}>
+              <span>₹0</span><span>₹10,000</span><span>₹20,000/mo</span>
+            </div>
+          </div>
+
+          <div style={{ background: "var(--app-bg-secondary)", padding: 16, borderRadius: 14, border: "1px solid var(--app-border)" }}>
+            {extraPrepayment > 0 ? (
+              <div style={{ fontSize: 13, lineHeight: 1.6, color: "var(--app-text)" }}>
+                By adding <strong>{formatINR(extraPrepayment)}</strong> per month:
+                <br />
+                • You save <strong style={{ color: "#10b981" }}>{formatINR(interestSaved)}</strong> in total interest!
+                <br />
+                • Your loan finishes <strong style={{ color: "#f97316" }}>{Math.floor(tenureSavedMonths / 12)} Yrs {tenureSavedMonths % 12} Mo earlier</strong>!
+              </div>
+            ) : (
+              <div style={{ fontSize: 12, color: "var(--app-text-secondary)", textAlign: "center" }}>
+                👈 Drag the slider above to see how prepaying just ₹1,000 or ₹2,000 extra per month saves lakhs in interest!
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
