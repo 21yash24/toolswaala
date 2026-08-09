@@ -6,9 +6,42 @@ import banks from '../data/banks.json';
 
 export async function getStaticPaths() {
   const loanTypes = [
-    { id: "personal-loan-emi", label: "Personal Loan EMI", key: "personalInterest" },
-    { id: "home-loan-emi", label: "Home Loan EMI", key: "homeInterest" },
-    { id: "credit-card-emi", label: "Credit Card EMI", key: "creditCardInterest" },
+    {
+      id: "personal-loan-emi",
+      label: "Personal Loan EMI",
+      key: "personalInterest",
+      maxTenureYears: 5,
+      minAmount: "₹50,000",
+      maxAmount: "₹40 Lakh",
+      useCase: "medical emergencies, travel, wedding, home renovation, debt consolidation",
+      taxBenefit: "Personal loans have no direct tax benefit unless used for home renovation (Section 24b) or business purposes.",
+      processingTime: "24–72 hours (instant digital approval for pre-approved customers)",
+      emoji: "💰",
+    },
+    {
+      id: "home-loan-emi",
+      label: "Home Loan EMI",
+      key: "homeInterest",
+      maxTenureYears: 30,
+      minAmount: "₹10 Lakh",
+      maxAmount: "₹10 Crore+",
+      useCase: "purchasing a new home, under-construction flat, plot purchase, home construction",
+      taxBenefit: "Home loan borrowers can claim up to ₹2 lakh/year interest deduction (Section 24b) + ₹1.5 lakh principal repayment deduction (Section 80C) — saving up to ₹1.5 lakh in taxes annually!",
+      processingTime: "7–15 working days (property verification required)",
+      emoji: "🏠",
+    },
+    {
+      id: "credit-card-emi",
+      label: "Credit Card EMI",
+      key: "creditCardInterest",
+      maxTenureYears: 2,
+      minAmount: "₹2,500",
+      maxAmount: "₹5 Lakh",
+      useCase: "converting large purchases (electronics, appliances, travel bookings) into affordable monthly installments",
+      taxBenefit: "Credit Card EMIs have no tax benefit. However, interest-free EMI offers (0% EMI) from partner merchants are available on select cards.",
+      processingTime: "Instant (via mobile banking or internet banking, no documentation required)",
+      emoji: "💳",
+    },
   ];
 
   const paths = [];
@@ -18,7 +51,6 @@ export async function getStaticPaths() {
         params: { bank: `${bank.id}-bank`, type: type.id },
         props: { bank, type },
       });
-      // also push short alias without '-bank' suffix for exact GSC matching (e.g. /axis-personal-loan-emi-calculator)
       paths.push({
         params: { bank: bank.id, type: type.id },
         props: { bank, type },
@@ -31,8 +63,24 @@ export async function getStaticPaths() {
 const { bank, type } = Astro.props;
 
 const rateText = bank[type.key] || "10.50% - 16.00%";
-const title = `${bank.name} ${type.label} Calculator (2026) | Exact Monthly EMI & Interest Schedule`;
-const description = `Calculate your exact monthly ${bank.name} ${type.label} with current interest rates (${rateText} p.a.). See complete loan tenure repayment table, processing fees, and CIBIL score requirements.`;
+const rateMin = parseFloat(rateText.split('%')[0]) || 10.5;
+const title = `${bank.name} ${type.label} Calculator 2026 | EMI, Interest Rate & Eligibility Guide`;
+const description = `Calculate your exact ${bank.name} ${type.label} (${rateText} p.a.). Get full amortization table, prepayment savings, CIBIL score guide, tax benefits, and eligibility tips for 2026.`;
+
+const loanAmounts = [300000, 500000, 1000000, 2500000, 5000000];
+const tenures = type.id === "home-loan-emi" ? [10, 15, 20, 25, 30] : type.id === "credit-card-emi" ? [3, 6, 12, 18, 24] : [1, 2, 3, 4, 5];
+const tenureUnit = type.id === "credit-card-emi" ? "months" : "years";
+
+function calcEMI(p, annualRate, tenureYears) {
+  const r = annualRate / 12 / 100;
+  const n = type.id === "credit-card-emi" ? tenureYears : tenureYears * 12;
+  if (r === 0) return Math.round(p / n);
+  return Math.round((p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
+}
+
+function formatINR(n) {
+  return '₹' + n.toLocaleString('en-IN');
+}
 
 const faqSchemaStr = `<script type="application/ld+json" is:inline>
 {
@@ -44,7 +92,7 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
       "name": "What is the current ${bank.shortName} ${type.label} interest rate in 2026?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "${bank.shortName} ${type.label} interest rates currently range from ${rateText} p.a. depending on loan amount, tenure, and borrower credit profile."
+        "text": "${bank.shortName} ${type.label} interest rates currently range from ${rateText} p.a. The lowest rate bracket (${rateMin}%) is available to salaried applicants with a CIBIL score of 750+ and stable income proof."
       }
     },
     {
@@ -52,7 +100,31 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
       "name": "How to calculate ${bank.shortName} ${type.label} monthly EMI?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use the formula EMI = [P × R × (1+R)^N] ÷ [(1+R)^N - 1], where P is principal, R is monthly rate (annual rate ÷ 12 ÷ 100), and N is total months."
+        "text": "Use the formula EMI = [P × R × (1+R)^N] ÷ [(1+R)^N - 1]. P is the loan principal, R is monthly interest rate (Annual Rate ÷ 12 ÷ 100), and N is tenure in months. Use the calculator above for instant results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum CIBIL score required for ${bank.shortName} ${type.label}?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "${bank.shortName} typically requires a minimum CIBIL score of 720 for ${type.label} approval. A score of 750+ qualifies you for the lowest interest rate bracket (${rateMin}%). Scores below 650 may lead to rejection or require a co-applicant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents are needed for ${bank.shortName} ${type.label}?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For ${bank.shortName} ${type.label}, you typically need: (1) KYC documents — Aadhaar, PAN Card, (2) Income proof — last 3 months salary slips or 2 years ITR for self-employed, (3) Bank statements — last 6 months, ${type.id === 'home-loan-emi' ? '(4) Property documents — sale deed, NOC from builder, approved building plan.' : '(4) Address proof — utility bill or passport copy.'}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "${type.taxBenefit.startsWith('Home') ? 'What are the tax benefits on ' + bank.shortName + ' Home Loan?' : 'Is there any tax benefit on ' + bank.shortName + ' ' + type.label + '?'}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "${type.taxBenefit}"
       }
     }
   ]
@@ -63,19 +135,235 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath={`/${bank.id}-${type.id}-calculator`}>
   <Fragment set:html={faqSchemaStr} />
 
-  <PageWrapper title={`${bank.name} ${type.label} Calculator`} description={`Calculate your exact monthly EMI, total interest, and repayment schedule for ${bank.name} ${type.label}.`}>
+  <PageWrapper title={`${bank.name} ${type.label} Calculator`} description={`Calculate your exact ${bank.name} ${type.label} EMI, total interest payable, and full amortization schedule — updated for 2026.`}>
     <EmiTool client:load />
 
     <article class="seo-article">
+
+      <!-- Quick Answer Snippet Box -->
       <div style="background: rgba(16,185,129,0.08); border: 2px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 24px; margin-bottom: 32px;">
-        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 8px; letter-spacing: 0.05em;">⚡ {bank.shortName} {type.label} Summary (2026)</div>
-        <h2 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">{bank.name} {type.label}: Current Interest Rates & Breakdown</h2>
-        <p style="font-size: 15px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
-          • <strong>Interest Rate:</strong> {rateText} p.a.<br />
-          • <strong>Processing Fee:</strong> {bank.processingFee || '1.5% + GST'}<br />
-          • <strong>Min. Required CIBIL Score:</strong> 720+
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #10b981; margin-bottom: 8px; letter-spacing: 0.06em;">⚡ Quick Answer — {bank.shortName} {type.label} (August 2026)</div>
+        <h2 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 14px;">{bank.name} {type.label}: Current Rate, EMI & Key Facts</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 14px;">
+          <div style="background: var(--app-bg-secondary); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+            <div style="font-size: 10px; color: var(--app-text-secondary); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Interest Rate</div>
+            <div style="font-size: 18px; font-weight: 900; color: #f97316;">{rateText} p.a.</div>
+          </div>
+          <div style="background: var(--app-bg-secondary); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+            <div style="font-size: 10px; color: var(--app-text-secondary); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Processing Fee</div>
+            <div style="font-size: 18px; font-weight: 900; color: var(--app-text);">{bank.processingFee || '1.5% + GST'}</div>
+          </div>
+          <div style="background: var(--app-bg-secondary); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+            <div style="font-size: 10px; color: var(--app-text-secondary); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Max Tenure</div>
+            <div style="font-size: 18px; font-weight: 900; color: var(--app-text);">{type.maxTenureYears} {type.id === 'credit-card-emi' ? 'Months' : 'Years'}</div>
+          </div>
+          <div style="background: var(--app-bg-secondary); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+            <div style="font-size: 10px; color: var(--app-text-secondary); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Min. CIBIL Score</div>
+            <div style="font-size: 18px; font-weight: 900; color: #10b981;">720+</div>
+          </div>
+          <div style="background: var(--app-bg-secondary); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+            <div style="font-size: 10px; color: var(--app-text-secondary); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Approval Time</div>
+            <div style="font-size: 14px; font-weight: 800; color: var(--app-text);">{type.processingTime.split('(')[0].trim()}</div>
+          </div>
+          <div style="background: var(--app-bg-secondary); padding: 14px; border-radius: 12px; border: 1px solid var(--app-border);">
+            <div style="font-size: 10px; color: var(--app-text-secondary); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Best For</div>
+            <div style="font-size: 13px; font-weight: 700; color: var(--app-text);">{type.emoji} {type.id === 'home-loan-emi' ? 'Home Purchase / Construction' : type.id === 'credit-card-emi' ? 'Big Purchase EMI Conversion' : 'Instant Cash Needs'}</div>
+          </div>
+        </div>
+        <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
+          <strong>{bank.name} {type.label}</strong> is ideal for <em>{type.useCase}</em>. The EMI calculator above automatically computes your monthly repayment using the standard reducing-balance formula. Use the <strong>Prepayment Simulator</strong> above to see how paying ₹1,000–₹5,000 extra per month can save you lakhs in interest!
         </p>
       </div>
+
+      <!-- EMI Ready Reference Table -->
+      <h2 style="font-size: clamp(20px, 3vw, 28px); font-weight: 800; color: var(--app-text); margin-bottom: 16px; letter-spacing: -0.02em;">
+        📊 {bank.shortName} {type.label} EMI Table — {rateMin}% p.a. (2026)
+      </h2>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin-bottom: 18px; line-height: 1.7;">
+        Pre-calculated EMI reference table for common loan amounts at <strong>{bank.shortName}'s lowest indicative rate of {rateMin}% p.a.</strong> Your actual EMI may differ based on your approved rate bracket and credit profile.
+      </p>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px; overflow-x: auto;">
+        <table class="seo-table" style="min-width: 600px; width: 100%;">
+          <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 13px 14px; text-align: left; font-weight: 800; color: var(--app-text); white-space: nowrap;">Loan Amount</th>
+              {tenures.map(t => (
+                <th style="padding: 13px 14px; text-align: left; font-weight: 800; color: #f97316; white-space: nowrap;">{t} {tenureUnit === 'months' ? 'Mo' : 'Yrs'}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {loanAmounts.map((amt, i) => (
+              <tr style={i % 2 === 1 ? "border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);" : "border-bottom: 1px solid var(--app-border);"}>
+                <td style="padding: 12px 14px; font-weight: 800; color: var(--app-text); white-space: nowrap;">{formatINR(amt)}</td>
+                {tenures.map(t => {
+                  const emi = calcEMI(amt, rateMin, t);
+                  return <td style="padding: 12px 14px; font-weight: 700; color: #10b981; white-space: nowrap;">{formatINR(emi)}/mo</td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CIBIL Score Impact Section -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 16px;">🎯 How Your CIBIL Score Affects {bank.shortName} {type.label} Interest Rate</h3>
+      <p style="font-size: 14px; color: var(--app-text-secondary); margin-bottom: 18px; line-height: 1.7;">
+        Your CIBIL score is the single biggest factor determining what rate {bank.shortName} will offer you. A score difference of just 50 points can mean saving <strong>₹2–₹5 lakh</strong> over a 20-year home loan or paying 2–3% more on a personal loan.
+      </p>
+      <div class="seo-table-wrapper" style="margin-bottom: 36px;">
+        <table class="seo-table">
+          <thead style="background: rgba(255,107,0,0.08); border-bottom: 1px solid var(--app-border);">
+            <tr>
+              <th style="padding: 13px 14px; font-weight: 800; color: var(--app-text);">CIBIL Score Range</th>
+              <th style="padding: 13px 14px; font-weight: 800; color: #10b981;">Rating</th>
+              <th style="padding: 13px 14px; font-weight: 800; color: #f97316;">Likely Rate (Indicative)</th>
+              <th style="padding: 13px 14px; font-weight: 800; color: var(--app-text);">Approval Chance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 12px 14px; font-weight: 700;">800 – 900</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #10b981;">🏆 Excellent</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #10b981;">{rateMin}% (Lowest Slab)</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">✅ Very High (Pre-approved Eligible)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 12px 14px; font-weight: 700;">750 – 799</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #10b981;">😊 Good</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #f97316;">{(rateMin + 0.5).toFixed(2)}% – {(rateMin + 1).toFixed(2)}%</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">✅ High</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border);">
+              <td style="padding: 12px 14px; font-weight: 700;">700 – 749</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #f97316;">😐 Fair</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #f97316;">{(rateMin + 1.5).toFixed(2)}% – {(rateMin + 2.5).toFixed(2)}%</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">⚠️ Moderate (Higher rate offered)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--app-border); background: rgba(0,0,0,0.02);">
+              <td style="padding: 12px 14px; font-weight: 700;">650 – 699</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #ef4444;">😟 Poor</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #ef4444;">{(rateMin + 3).toFixed(2)}% – {(rateMin + 4).toFixed(2)}%</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">❌ Low (Co-applicant recommended)</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 14px; font-weight: 700;">Below 650</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #ef4444;">🚫 Very Poor</td>
+              <td style="padding: 12px 14px; font-weight: 700; color: #ef4444;">Declined or NBFC tier</td>
+              <td style="padding: 12px 14px; color: var(--app-text-secondary);">❌ Very Low</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tax Benefits Section -->
+      <div style="background: rgba(255, 107, 0, 0.07); border: 1px solid rgba(255,107,0,0.25); border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">🧾 Tax Benefits on {bank.name} {type.label}</h3>
+        <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.8; margin: 0;">
+          {type.taxBenefit}
+          {type.id === 'home-loan-emi' && (
+            <><br /><br />
+            <strong>Example Calculation:</strong> On a ₹50L home loan at {rateMin}% for 20 years, you pay approx. ₹4,38,000 in annual interest (Year 1). At a 30% income tax slab, you save <strong style="color: #10b981;">₹1,31,400 in income tax</strong> in the first year alone via Section 24(b). This makes the effective cost of your {bank.shortName} home loan significantly lower!</>
+          )}
+        </p>
+      </div>
+
+      <!-- Documents Required -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 16px;">📋 Documents Required for {bank.name} {type.label}</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px;">
+        <div style="background: var(--app-bg-secondary); border: 1px solid var(--app-border); border-radius: 14px; padding: 16px;">
+          <div style="font-weight: 800; font-size: 14px; color: var(--app-text); margin-bottom: 10px;">🪪 KYC & Identity</div>
+          <ul style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.9; margin: 0; padding-left: 16px;">
+            <li>Aadhaar Card</li>
+            <li>PAN Card</li>
+            <li>Passport / Voter ID</li>
+          </ul>
+        </div>
+        <div style="background: var(--app-bg-secondary); border: 1px solid var(--app-border); border-radius: 14px; padding: 16px;">
+          <div style="font-weight: 800; font-size: 14px; color: var(--app-text); margin-bottom: 10px;">💼 Income Proof</div>
+          <ul style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.9; margin: 0; padding-left: 16px;">
+            <li>Last 3 months salary slips</li>
+            <li>Form 16 / ITR (2 years)</li>
+            <li>Offer letter (if < 1 yr employed)</li>
+          </ul>
+        </div>
+        <div style="background: var(--app-bg-secondary); border: 1px solid var(--app-border); border-radius: 14px; padding: 16px;">
+          <div style="font-weight: 800; font-size: 14px; color: var(--app-text); margin-bottom: 10px;">🏦 Bank Documents</div>
+          <ul style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.9; margin: 0; padding-left: 16px;">
+            <li>Last 6 months bank statements</li>
+            <li>Existing loan repayment history</li>
+            {type.id === 'home-loan-emi' && <li>Property / Sale Agreement</li>}
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 Tips to Reduce EMI -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 16px;">💡 5 Proven Ways to Reduce Your {bank.shortName} {type.label} EMI</h3>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px;">
+        {[
+          { tip: "Improve your CIBIL score to 750+ before applying", detail: `Each 50-point improvement in CIBIL can reduce your ${bank.shortName} interest rate by 0.25%–0.5%, saving thousands over the loan tenure.` },
+          { tip: "Choose a longer tenure to lower monthly EMI", detail: `Extending from 5 years to 7 years reduces EMI significantly, though total interest paid increases. Use the calculator above to find your sweet spot.` },
+          { tip: "Make regular part-prepayments from Year 1", detail: `Even a ₹2,000/month extra prepayment in Year 1 of a 20-year home loan can cut 3–4 years off your tenure and save ₹5–8 lakh in interest.` },
+          { tip: "Negotiate your rate after 1 year of clean repayment", detail: `After 12 months of on-time EMIs, you can request a rate review or balance transfer to a lower-rate lender.` },
+          { tip: "Add a co-applicant with a higher income or score", detail: `Adding a working spouse or parent as a co-applicant can improve loan eligibility by up to 80% and help negotiate a lower rate bracket.` },
+        ].map((item, i) => (
+          <div style="background: var(--app-bg-secondary); border: 1px solid var(--app-border); border-radius: 14px; padding: 16px; display: flex; gap: 14px; align-items: flex-start;">
+            <div style="background: linear-gradient(135deg, #f97316, #ef4444); color: #fff; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; flex-shrink: 0;">{i + 1}</div>
+            <div>
+              <div style="font-weight: 800; font-size: 14px; color: var(--app-text); margin-bottom: 4px;">{item.tip}</div>
+              <div style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.6;">{item.detail}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- FAQ Accordions -->
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 16px;">❓ Frequently Asked Questions — {bank.shortName} {type.label}</h3>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px;">
+        {[
+          {
+            q: `What is the ${bank.shortName} ${type.label} interest rate in August 2026?`,
+            a: `${bank.shortName} ${type.label} currently ranges from ${rateText} p.a. The exact rate you receive depends on your CIBIL score, loan amount, employment type (salaried vs. self-employed), and loan tenure. Salaried customers with 800+ CIBIL scores typically get the lowest rate of ${rateMin}% p.a.`
+          },
+          {
+            q: `What is the EMI for a ₹10 lakh ${bank.shortName} ${type.label} for ${type.id === 'credit-card-emi' ? '12 months' : '5 years'}?`,
+            a: `For a ₹10,00,000 ${bank.shortName} ${type.label} at ${rateMin}% p.a. for ${type.id === 'credit-card-emi' ? '12 months' : '5 years (60 months)'}, the monthly EMI would be approximately ${formatINR(calcEMI(1000000, rateMin, type.id === 'credit-card-emi' ? 12 : 5))} per month. Total interest payable would be approximately ${formatINR(calcEMI(1000000, rateMin, type.id === 'credit-card-emi' ? 12 : 5) * (type.id === 'credit-card-emi' ? 12 : 60) - 1000000)}.`
+          },
+          {
+            q: `Does ${bank.shortName} charge prepayment penalty on ${type.label}?`,
+            a: type.id === 'home-loan-emi'
+              ? `No. As per RBI guidelines, banks cannot charge prepayment penalties on floating-rate home loans for individual borrowers. However, fixed-rate home loans may carry a 1–2% prepayment charge.`
+              : type.id === 'credit-card-emi'
+              ? `${bank.shortName} charges a foreclosure fee (typically 3%) on credit card EMI conversions if you wish to repay the full remaining amount before the EMI tenure ends.`
+              : `${bank.shortName} typically charges 2–4% prepayment fee on personal loans for the outstanding amount if prepaid within the first year. After 1 year, many banks reduce or waive this charge — confirm with your relationship manager.`
+          },
+          {
+            q: `How to apply for ${bank.shortName} ${type.label} online?`,
+            a: `You can apply for ${bank.shortName} ${type.label} online through: (1) ${bank.shortName} NetBanking portal, (2) ${bank.shortName} Mobile App, (3) Official ${bank.shortName} website → Loans section. For existing ${bank.shortName} customers, pre-approved ${type.label} offers are often available with instant disbursal in 24 hours.`
+          },
+        ].map(faq => (
+          <div style="background: var(--app-bg-secondary); border: 1px solid var(--app-border); border-radius: 14px; padding: 16px;">
+            <div style="font-weight: 800; font-size: 14px; color: var(--app-text); margin-bottom: 8px;">Q: {faq.q}</div>
+            <div style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7;">A: {faq.a}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Compare with other banks callout -->
+      <div style="background: rgba(56, 189, 248, 0.07); border: 1px solid rgba(56,189,248,0.25); border-radius: 16px; padding: 20px; margin-bottom: 32px;">
+        <div style="font-size: 13px; font-weight: 800; color: #38bdf8; margin-bottom: 8px;">🔗 Compare {type.label} Rates Across Banks</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          {banks.filter(b => b.id !== bank.id).map(b => (
+            <a
+              href={`/${b.id}-${type.id}-calculator`}
+              style="background: var(--app-bg-secondary); border: 1px solid var(--app-border); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--app-text); text-decoration: none; transition: background 0.2s;"
+            >
+              {b.shortName || b.name} — {b[type.key] || 'Check Rate'}
+            </a>
+          ))}
+        </div>
+      </div>
+
     </article>
   </PageWrapper>
 </Layout>
