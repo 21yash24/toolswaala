@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "About ToolsWaala | Bharat's Free Private Digital Toolkit";
+const description = "Learn about ToolsWaala's mission to provide 100% free, private, client-side digital tools for students, freelancers, and small businesses in India.";
+---
+
+<Layout title={title} description={description} currentPath="/about">
+  <main class="max-w-4xl mx-auto px-6 py-12 md:py-20 text-slate-800 dark:text-slate-200">
+    <header class="text-center mb-12 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-600 dark:text-orange-400 text-xs font-semibold">
+        <span>🇮🇳</span>
+        <span>Made for Bharat • 100% Free & Private</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        About ToolsWaala
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+        Empowering Indian students, creators, and small business owners with instant, zero-login digital utilities.
+      </p>
+    </header>
+
+    <div class="p-8 md:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 shadow-xl backdrop-blur-xl space-y-8 leading-relaxed">
+      
+      <!-- Mission -->
+      <section class="space-y-3">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Our Mission</h2>
+        <p>
+          <strong>ToolsWaala (toolswaala.in)</strong> was founded with a singular purpose: to remove friction from daily digital workflows across India. Whether you are an engineering student calculating your CGPA according to your university's exact conversion formula, a shopkeeper generating compliant GST invoices, or a freelancer converting PDFs, ToolsWaala offers powerful web tools that work instantly in your browser.
+        </p>
+      </section>
+
+      <!-- Privacy Guarantee -->
+      <section class="space-y-3 border-t border-slate-200 dark:border-slate-800 pt-6">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">100% Client-Side Privacy Guarantee</h2>
+        <p>
+          Unlike traditional utility portals that upload your sensitive documents, resumes, marks sheets, and financial bills to remote servers, ToolsWaala utilizes modern WebAssembly and client-side JavaScript. 
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+          <li><strong>Zero Document Uploads:</strong> PDF compression, image resizing, and invoice generation happen locally inside your browser memory.</li>
+          <li><strong>No Login / No Signups:</strong> We never ask for your email address, phone number, or OTP to access any tool.</li>
+          <li><strong>Zero Data Selling:</strong> We do not harvest or monetize your personal or financial inputs.</li>
+        </ul>
+      </section>
+
+      <!-- Editorial & Calculation Rigor -->
+      <section class="space-y-3 border-t border-slate-200 dark:border-slate-800 pt-6">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Calculation Rigor & Standards</h2>
+        <p>
+          Every calculator and template on ToolsWaala is built according to official regulatory and institutional frameworks:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+          <li><strong>GST & Tax Systems:</strong> Formulas follow the Central Goods and Services Tax (CGST) Act 2017 and Income Tax Department slabs for both Old and New Tax Regimes (AY 2025-26 & AY 2026-27).</li>
+          <li><strong>University Formulas:</strong> CGPA and SGPA converters use verified grading ordinances from Mumbai University, VTU, Anna University, AKTU, SPPU, Delhi University, and CBSE.</li>
+          <li><strong>Banking & Loans:</strong> EMI and SIP calculators use standard amortisation formulas approved by the Reserve Bank of India (RBI) and Association of Mutual Funds in India (AMFI).</li>
+        </ul>
+      </section>
+
+      <!-- Team & Transparency -->
+      <section class="space-y-3 border-t border-slate-200 dark:border-slate-800 pt-6">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Editorial & Development Team</h2>
+        <p>
+          ToolsWaala is developed and maintained by independent Indian software engineers and open-source contributors based in New Delhi, India. We are committed to maintaining ToolsWaala as a free public utility.
+        </p>
+        <p class="text-sm">
+          Have suggestions or need a new tool built for your university or business? Reach out to us via our <a href="/contact" class="text-orange-600 dark:text-orange-400 font-bold underline">Contact Page</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+</Layout>

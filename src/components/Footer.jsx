@@ -50,7 +50,8 @@ export default function Footer() {
           <div>
             <p style={{ fontSize: 12, color: BRAND.textSecondary, margin: "0 0 8px 0" }}>Made with ❤️ in India | © {new Date().getFullYear()} ToolsWaala</p>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <a href="/privacy" style={{ fontSize: 12, color: BRAND.textSecondary, textDecoration: "none" }}>Privacy Policy</a>
+              <a href="/about" style={{ fontSize: 12, color: BRAND.textSecondary, textDecoration: "none" }}>About Us</a>
+              <a href="/privacy-policy" style={{ fontSize: 12, color: BRAND.textSecondary, textDecoration: "none" }}>Privacy Policy</a>
               <a href="/terms" style={{ fontSize: 12, color: BRAND.textSecondary, textDecoration: "none" }}>Terms of Service</a>
               <a href="/disclaimer" style={{ fontSize: 12, color: BRAND.textSecondary, textDecoration: "none" }}>Disclaimer</a>
               <a href="/contact" style={{ fontSize: 12, color: BRAND.textSecondary, textDecoration: "none" }}>Contact Us</a>
