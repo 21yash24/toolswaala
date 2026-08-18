@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { uni } = Astro.props;
 
-const isBoard = uni.id.includes('board') || uni.id.includes('sslc') || uni.id.includes('puc') || uni.id.includes('result') || uni.id === 'rbse';
+const isBoard = uni.id.includes('board') || uni.id.includes('sslc') || uni.id.includes('puc') || uni.id.includes('result') || uni.id.includes('cbse') || uni.id === 'rbse';
 
 const title = isBoard
   ? `${uni.name} Percentage Calculator (2026) | Marks to %, 10th/12th Division & Grade`
