@@ -230,23 +230,76 @@ const description = "Calculate Public Provident Fund (PPF) interest, 15-year mat
           </ul>
         </section>
 
+        <!-- 15-Year Year-by-Year Compounding Schedule -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">15-Year PPF Compounding Schedule (₹1.5 Lakh/Year Deposit)</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Illustrative year-by-year accumulation chart at 7.1% annual compounding:</p>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white uppercase font-bold">
+                <tr>
+                  <th class="p-3">Year</th>
+                  <th class="p-3">Annual Deposit</th>
+                  <th class="p-3">Interest Earned</th>
+                  <th class="p-3">Closing Balance</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 1</td><td class="p-3">₹1,50,000</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">₹10,650</td><td class="p-3 font-bold">₹1,60,650</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 3</td><td class="p-3">₹1,50,000</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">₹35,622</td><td class="p-3 font-bold">₹5,37,337</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 5</td><td class="p-3">₹1,50,000</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">₹68,349</td><td class="p-3 font-bold">₹10,31,029</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 10</td><td class="p-3">₹1,50,000</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">₹1,78,485</td><td class="p-3 font-bold">₹26,92,492</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 bg-emerald-500/10"><td class="p-3 font-sans font-bold">Year 15 (Maturity)</td><td class="p-3">₹1,50,000</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">₹2,69,578</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-black">₹40,68,209</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PPF vs Alternative Investment Instruments -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">PPF vs Sukanya Samriddhi (SSY) vs Mutual Fund ELSS</h2>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white uppercase font-bold">
+                <tr>
+                  <th class="p-3">Feature</th>
+                  <th class="p-3">Public Provident Fund (PPF)</th>
+                  <th class="p-3">Sukanya Samriddhi (SSY)</th>
+                  <th class="p-3">ELSS Mutual Funds</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Current Return</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-bold">7.1% (Guaranteed)</td><td class="p-3 font-bold">8.2% (Guaranteed)</td><td class="p-3">12-15% (Market Linked)</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Lock-in Period</td><td class="p-3">15 Years</td><td class="p-3">21 Years (or Age 18+)</td><td class="p-3">3 Years</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Tax Exemption Tier</td><td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">EEE (100% Tax Free)</td><td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">EEE (100% Tax Free)</td><td class="p-3">EET (LTCG > ₹1.25L Taxed @ 12.5%)</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Eligibility</td><td class="p-3">All Resident Citizens</td><td class="p-3">Parents of Girl Child (&lt;10 yrs)</td><td class="p-3">All Investors</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <!-- FAQs Section -->
         <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
           <h2 class="text-2xl font-black text-slate-900 dark:text-white">Frequently Asked Questions (FAQs)</h2>
           
-          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
-            <summary class="font-bold text-slate-900 dark:text-white cursor-pointer">Can an NRI open a new PPF account?</summary>
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">Can an NRI open a new PPF account?</summary>
             <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Non-Resident Indians (NRIs) cannot open a fresh PPF account. However, if a resident Indian opened an account and subsequently became an NRI, the account can continue till its 15-year maturity on a non-repatriable basis.</p>
           </details>
 
-          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
-            <summary class="font-bold text-slate-900 dark:text-white cursor-pointer">Can I take a loan against my PPF balance?</summary>
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">Can I take a loan against my PPF balance?</summary>
             <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Yes! You can avail of a loan against your PPF balance between the 3rd and 6th financial year. The loan interest rate is set at only 1% above the prevailing PPF rate.</p>
           </details>
 
-          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
-            <summary class="font-bold text-slate-900 dark:text-white cursor-pointer">Is PPF protected against court attachments?</summary>
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">Is PPF protected against court attachments?</summary>
             <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Yes. Under the PPF Act, the balance in a PPF account cannot be attached by any court of law in respect of any debt or liability incurred by the account holder.</p>
+          </details>
+
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">What happens if I deposit more than ₹1.5 Lakh in a financial year?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Any amount deposited in excess of ₹1,50,000 in a financial year does not earn any interest and is not eligible for tax rebate under Section 80C. The excess amount is refunded back to the account holder.</p>
           </details>
         </section>
 

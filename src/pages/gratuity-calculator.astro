@@ -151,19 +151,85 @@ const description = "Calculate gratuity amount instantly based on monthly basic 
           <h2 class="text-2xl font-black text-slate-900 dark:text-white">The 15/26 Mathematical Formula Explained</h2>
           <p>The standard formula for organizations covered under the Gratuity Act is:</p>
           <div class="p-4 rounded-xl bg-slate-900 text-white font-mono text-xs md:text-sm text-center border border-slate-800">
-            Gratuity = (15 × Last Drawn Basic Salary + DA × N) / 26
+            Gratuity = (15 × (Last Drawn Basic Salary + DA) × Completed Years of Service) / 26
           </div>
           <p class="text-xs text-slate-600 dark:text-slate-400">
-            Where <strong>26</strong> represents the number of working days in a month (excluding 4 Sundays), <strong>15</strong> represents 15 days of wages per year of service, and <strong>N</strong> represents total completed years of service.
+            Where <strong>26</strong> represents the statutory number of working days in a month (excluding 4 Sundays), <strong>15</strong> represents 15 days of wages for every completed year of service, and <strong>Last Drawn Salary</strong> consists exclusively of Basic Pay + Dearness Allowance (DA). HRA, special allowances, and annual bonuses are legally excluded.
           </p>
         </section>
 
+        <!-- 6-Month Rounding Rule -->
+        <section class="p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">The 6-Month Service Rounding Rule</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Under the Payment of Gratuity Act, any service tenure exceeding 6 months in the final year of employment is rounded up to the next full year:</p>
+          <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-400">
+            <li><strong>Example 1:</strong> If an employee works for <strong>5 years and 7 months</strong>, tenure for gratuity calculation is rounded up to <strong>6 full years</strong>.</li>
+            <li><strong>Example 2:</strong> If an employee works for <strong>7 years and 4 months</strong>, tenure is rounded down to <strong>7 years</strong>.</li>
+          </ul>
+        </section>
+
+        <!-- Gratuity Calculation for Employees NOT Covered under the Act -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Gratuity for Employees NOT Covered Under the Act</h2>
+          <p>For organizations not covered under the Gratuity Act (typically smaller private enterprises with fewer than 10 employees), the calculation is based on half-month salary for every completed year:</p>
+          <div class="p-4 rounded-xl bg-slate-900 text-white font-mono text-xs md:text-sm text-center border border-slate-800">
+            Gratuity = (15 × Average Salary of Last 10 Months × Completed Years) / 30
+          </div>
+        </section>
+
+        <!-- Tax Limits -->
         <section class="p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
           <h3 class="text-lg font-bold text-slate-900 dark:text-white">Section 10(10) Income Tax Exemption Limits</h3>
           <ul class="list-disc pl-5 space-y-2 text-xs text-slate-600 dark:text-slate-400">
-            <li><strong>Government Employees:</strong> 100% tax-free regardless of the gratuity amount.</li>
-            <li><strong>Private Sector Employees (Covered by Act):</strong> Gratuity up to <strong>₹20,00,000</strong> is completely exempt from income tax. Any excess above ₹20 Lakh is taxed according to the employee's income tax slab.</li>
+            <li><strong>Government Employees:</strong> 100% tax-free regardless of the total gratuity amount received.</li>
+            <li><strong>Private Sector Employees (Covered by Act):</strong> Gratuity up to <strong>₹20,00,000 (₹20 Lakh)</strong> is completely tax-exempt. Any amount exceeding ₹20 Lakh is added to taxable income.</li>
           </ul>
+        </section>
+
+        <!-- Step-by-Step Worked Case Study -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Worked Numerical Case Study</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Consider an employee with the following employment details:</p>
+          <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs space-y-2 font-mono">
+            <div>&bull; Last Drawn Basic Pay: ₹50,000</div>
+            <div>&bull; Dearness Allowance (DA): ₹10,000</div>
+            <div>&bull; Total Qualifying Salary: ₹60,000 / month</div>
+            <div>&bull; Completed Years of Service: 12 Years &amp; 8 Months (&rarr; Rounded to 13 Years)</div>
+            <div class="pt-2 border-t border-slate-200 dark:border-slate-700 text-emerald-600 dark:text-emerald-400 font-bold font-sans text-sm">
+              Gratuity Calculation = (15 &times; ₹60,000 &times; 13) / 26 = ₹4,50,000 (100% Tax-Free)
+            </div>
+          </div>
+        </section>
+
+        <!-- Employer Payment Timeline & Penalty for Delay -->
+        <section class="p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Employer 30-Day Payment Deadline &amp; Delay Interest</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            By statutory mandate under Section 7(3) of the Payment of Gratuity Act, the employer is legally obligated to disburse the gratuity amount <strong>within 30 days</strong> from the date it becomes payable.
+          </p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <strong>Mandatory Interest Penalty:</strong> If the employer fails to pay the gratuity within 30 days without lawful cause, the employer must pay simple interest (typically 10% per annum) on the unpaid amount from the expiry of the 30-day period until the date of actual disbursement.
+          </p>
+        </section>
+
+        <!-- FAQs -->
+        <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Frequently Asked Questions (FAQs)</h2>
+          
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">Is the 5-year continuous service rule mandatory in all cases?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">The 5-year condition is mandatory for regular resignation or retirement. However, the 5-year rule is completely relaxed in case of death of the employee or permanent disablement due to accident or disease.</p>
+          </details>
+
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">Can an employer refuse or forfeit gratuity?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Gratuity can only be forfeited if the employee's services were terminated for riotous conduct, violence, or acts involving moral turpitude committed during employment, or to recover damages caused by willful omission.</p>
+          </details>
+
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">How does an employee claim gratuity from an employer?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">An employee submits a written application in Form I to the employer within 30 days of resignation/retirement. If the employer refuses or delays payment, the employee can file an application in Form N before the Controlling Authority under the Gratuity Act.</p>
+          </details>
         </section>
       </article>
 

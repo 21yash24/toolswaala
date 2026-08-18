@@ -199,12 +199,81 @@ const description = "Calculate maturity amount, annual interest (8.2%), and tax-
           </div>
         </section>
 
-        <!-- Partial Withdrawal Rules -->
+        <!-- 21-Year Year-by-Year Compounding Schedule -->
         <section class="space-y-4">
-          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Partial Withdrawal for Higher Education</h2>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">21-Year SSY Compounding Schedule (₹1.5 Lakh/Year Deposit)</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Illustrative year-by-year accumulation chart at 8.2% annual compounding:</p>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white uppercase font-bold">
+                <tr>
+                  <th class="p-3">Year</th>
+                  <th class="p-3">Deposit Phase</th>
+                  <th class="p-3">Annual Deposit</th>
+                  <th class="p-3">Interest Earned</th>
+                  <th class="p-3">Closing Balance</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 1</td><td class="p-3 font-sans text-emerald-600">Active Deposit</td><td class="p-3">₹1,50,000</td><td class="p-3 text-pink-600 dark:text-pink-400 font-bold">₹12,300</td><td class="p-3 font-bold">₹1,62,300</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 5</td><td class="p-3 font-sans text-emerald-600">Active Deposit</td><td class="p-3">₹1,50,000</td><td class="p-3 text-pink-600 dark:text-pink-400 font-bold">₹82,624</td><td class="p-3 font-bold">₹10,90,217</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 10</td><td class="p-3 font-sans text-emerald-600">Active Deposit</td><td class="p-3">₹1,50,000</td><td class="p-3 text-pink-600 dark:text-pink-400 font-bold">₹2,29,548</td><td class="p-3 font-bold">₹30,29,190</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 15</td><td class="p-3 font-sans text-emerald-600">Last Deposit</td><td class="p-3">₹1,50,000</td><td class="p-3 text-pink-600 dark:text-pink-400 font-bold">₹4,46,654</td><td class="p-3 font-bold">₹45,26,450</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">Year 18</td><td class="p-3 font-sans text-amber-600">Pure Growth</td><td class="p-3">₹0 (Zero)</td><td class="p-3 text-pink-600 dark:text-pink-400 font-bold">₹4,81,872</td><td class="p-3 font-bold">₹57,27,998</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 bg-pink-500/10"><td class="p-3 font-sans font-bold">Year 21 (Maturity)</td><td class="p-3 font-sans text-purple-600">Full Maturity</td><td class="p-3">₹0 (Zero)</td><td class="p-3 text-pink-600 dark:text-pink-400 font-bold">₹5,75,442</td><td class="p-3 text-pink-600 dark:text-pink-400 font-black">₹71,32,347</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Partial Withdrawal & Premature Closure Rules -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Partial Withdrawal &amp; Premature Closure Guidelines</h2>
           <p>
             Once the girl child attains the age of <strong>18 years</strong> or passes Class 10th, up to <strong>50% of the accumulated balance</strong> as at the end of the preceding financial year can be withdrawn to fund genuine higher education fees (college admission, university tuition).
           </p>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
+            <strong class="text-slate-900 dark:text-white block text-sm">Permitted Premature Closure Scenarios:</strong>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-400">
+              <li><strong>Marriage of Girl Child:</strong> Allowed after attaining 18 years of age upon producing an official age declaration or marriage affidavit.</li>
+              <li><strong>Medical Emergency:</strong> For treatment of life-threatening diseases of the account holder upon producing valid medical certification.</li>
+              <li><strong>Death of Account Holder:</strong> Immediate closure and handover of complete corpus to the nominee/guardian.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- SSY vs PPF vs Mutual Fund ELSS -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">SSY vs PPF vs Equity Mutual Funds (ELSS)</h2>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white uppercase font-bold">
+                <tr>
+                  <th class="p-3">Parameter</th>
+                  <th class="p-3 text-pink-600 dark:text-pink-400">Sukanya Samriddhi (SSY)</th>
+                  <th class="p-3">Public Provident Fund (PPF)</th>
+                  <th class="p-3">ELSS Tax Mutual Funds</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Guaranteed Return</td><td class="p-3 font-bold text-pink-600 dark:text-pink-400">8.2% p.a.</td><td class="p-3 font-bold">7.1% p.a.</td><td class="p-3">Market Linked (~12-14%)</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Tax Exemption</td><td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">EEE (100% Tax Free)</td><td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">EEE (100% Tax Free)</td><td class="p-3">EET (LTCG &gt; ₹1.25L Taxed @ 12.5%)</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Lock-in Period</td><td class="p-3">21 Years from Account Opening</td><td class="p-3">15 Years</td><td class="p-3">3 Years</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Target Beneficiary</td><td class="p-3 font-semibold text-pink-600">Girl Child (&lt; 10 Years)</td><td class="p-3">All Resident Citizens</td><td class="p-3">All Retail Investors</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Document Checklist for Opening Account -->
+        <section class="p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Required Documents for Opening an SSY Account</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+            <li><strong>Birth Certificate of Girl Child:</strong> Official birth certificate issued by municipal authority or registrar.</li>
+            <li><strong>Identity &amp; Address Proof of Parent/Guardian:</strong> Aadhaar Card, PAN Card, Passport, or Voter ID.</li>
+            <li><strong>Photographs:</strong> Passport-size photos of the girl child and biological parent/legal guardian.</li>
+            <li><strong>Medical Certificate (for Twins/Triplets):</strong> Medical affidavit from authorized hospital in case of twin/triplet birth in 2nd order.</li>
+          </ul>
         </section>
 
         <!-- FAQs -->
@@ -218,7 +287,12 @@ const description = "Calculate maturity amount, annual interest (8.2%), and tax-
 
           <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
             <summary class="font-bold text-slate-900 dark:text-white cursor-pointer">Is SSY maturity amount completely tax-free?</summary>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Yes! Sukanya Samriddhi Yojana enjoys 100% tax-free EEE status. Neither the annual interest nor the final maturity amount at 21 years attracts any income tax or capital gains tax.</p>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Yes! Sukanya Samriddhi Yojana enjoys 100% EEE tax exemption. The deposits (80C), accrued interest (Section 10(11A)), and the entire maturity proceeds are completely tax-free.</p>
+          </details>
+
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+            <summary class="font-bold text-slate-900 dark:text-white cursor-pointer">Can an SSY account be transferred from one city or bank to another?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Yes. An SSY account can be transferred anywhere across India from one post office/bank to another branch completely free of cost upon submitting proof of residence change.</p>
           </details>
         </section>
 

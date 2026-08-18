@@ -181,10 +181,61 @@ const description = "Predict your NTA JEE Mains 2026 percentile and All India Ra
             Because the JEE Mains exam is conducted across morning and evening sessions across multiple exam days, the difficulty of question papers can vary. To ensure absolute parity, the <strong>National Testing Agency (NTA)</strong> converts raw scores into normalized percentile scores rounded up to 7 decimal places.
           </p>
           <div class="p-4 rounded-xl bg-slate-900 text-white font-mono text-xs md:text-sm text-center border border-slate-800">
-            NTA Percentile = (100 × Candidates with raw score &le; Yours) / Total Shift Candidates
+            NTA Percentile = (100 × Number of candidates who scored &le; Your raw score in your shift) / Total candidates who appeared in your shift
           </div>
         </section>
 
+        <!-- Category-Wise Qualifying Cutoff Table for JEE Advanced -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Category-Wise Expected JEE Advanced Qualifying Cutoff (2026)</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Based on historical NTA normalization trends and candidate volume:</p>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white uppercase font-bold">
+                <tr>
+                  <th class="p-3">Category</th>
+                  <th class="p-3 text-cyan-600 dark:text-cyan-400">Expected Cutoff Percentile</th>
+                  <th class="p-3">Approximate Raw Score</th>
+                  <th class="p-3">Advanced Eligibility</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">General (UR)</td><td class="p-3 font-bold text-cyan-600 dark:text-cyan-400">93.2 – 93.8</td><td class="p-3 font-mono">90 – 98 Marks</td><td class="p-3 text-emerald-600 font-semibold">Eligible for JEE Advanced</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Gen-EWS</td><td class="p-3 font-bold text-cyan-600 dark:text-cyan-400">81.0 – 82.5</td><td class="p-3 font-mono">68 – 74 Marks</td><td class="p-3 text-emerald-600 font-semibold">Eligible for JEE Advanced</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">OBC-NCL</td><td class="p-3 font-bold text-cyan-600 dark:text-cyan-400">79.0 – 80.5</td><td class="p-3 font-mono">65 – 72 Marks</td><td class="p-3 text-emerald-600 font-semibold">Eligible for JEE Advanced</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Scheduled Caste (SC)</td><td class="p-3 font-bold text-cyan-600 dark:text-cyan-400">60.0 – 62.0</td><td class="p-3 font-mono">42 – 48 Marks</td><td class="p-3 text-emerald-600 font-semibold">Eligible for JEE Advanced</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Scheduled Tribe (ST)</td><td class="p-3 font-bold text-cyan-600 dark:text-cyan-400">46.0 – 48.5</td><td class="p-3 font-mono">32 – 38 Marks</td><td class="p-3 text-emerald-600 font-semibold">Eligible for JEE Advanced</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- JoSAA & CSAB Counselling Strategy -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">JoSAA &amp; CSAB Seat Allocation Strategy</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400">
+            Admissions to 31 NITs, 25 IIITs, and 33 GFTIs are conducted through <strong>Joint Seat Allocation Authority (JoSAA)</strong> followed by special spot rounds by <strong>CSAB</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+            <li><strong>Home State (HS) vs Other State (OS) Quota:</strong> NITs allocate 50% of their seats exclusively to students from their home state, which often has significantly lower cutoff requirements compared to Other State general quota.</li>
+            <li><strong>NTA Tie-Breaking Policy:</strong> If two candidates score identical percentile scores, rank is resolved by: Higher NTA Score in Mathematics &rarr; Higher Score in Physics &rarr; Higher Score in Chemistry &rarr; Candidate with less proportion of negative answers.</li>
+          </ul>
+        </section>
+
+        <!-- FAQs Section -->
+        <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Frequently Asked Questions (FAQs)</h2>
+          
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">How many marks are required for 99 percentile in JEE Mains?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">In a moderate shift, 99 percentile requires approximately 180–195 marks out of 300. In a tougher shift, this cutoff can drop to 165–175 marks, while in very easy shifts it can rise to 205–215 marks.</p>
+          </details>
+
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">What is the formula to calculate All India Rank (AIR) from percentile?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">AIR is estimated using: Estimated Rank = ((100 - Your Percentile) / 100) × Total Candidates Appeared (e.g. 14,00,000 candidates).</p>
+          </details>
+        </section>
       </article>
 
     </div>

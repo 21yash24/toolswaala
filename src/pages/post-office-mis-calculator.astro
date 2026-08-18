@@ -151,23 +151,109 @@ const description = "Calculate guaranteed monthly income and interest payouts un
           </ul>
         </section>
 
+        <!-- Monthly Payout Reference Schedule -->
         <section class="space-y-4">
-          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Formula for Monthly Interest Calculation</h2>
-          <p>The monthly interest payout formula is straightforward:</p>
-          <div class="p-4 rounded-xl bg-slate-900 text-white font-mono text-xs md:text-sm text-center border border-slate-800">
-            Monthly Payout = (Principal × Annual Interest Rate 7.4%) / 12
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">POMIS Monthly Payout &amp; 5-Year Return Chart</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400">Calculated at current 7.4% per annum fixed interest rate:</p>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white uppercase font-bold">
+                <tr>
+                  <th class="p-3">Deposit Amount</th>
+                  <th class="p-3">Account Type</th>
+                  <th class="p-3">Monthly Income</th>
+                  <th class="p-3">Annual Payout</th>
+                  <th class="p-3">Total 5-Yr Income</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">₹1,00,000</td><td class="p-3 font-sans">Single</td><td class="p-3 text-amber-600 dark:text-amber-400 font-bold">₹617</td><td class="p-3">₹7,400</td><td class="p-3">₹37,000</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">₹3,00,000</td><td class="p-3 font-sans">Single</td><td class="p-3 text-amber-600 dark:text-amber-400 font-bold">₹1,850</td><td class="p-3">₹22,200</td><td class="p-3">₹1,11,000</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-sans font-bold">₹5,00,000</td><td class="p-3 font-sans">Single</td><td class="p-3 text-amber-600 dark:text-amber-400 font-bold">₹3,083</td><td class="p-3">₹37,000</td><td class="p-3">₹1,85,000</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 bg-amber-500/10"><td class="p-3 font-sans font-bold">₹9,00,000 (Max Single)</td><td class="p-3 font-sans font-bold">Single Max</td><td class="p-3 text-amber-600 dark:text-amber-400 font-bold">₹5,550</td><td class="p-3 font-bold">₹66,600</td><td class="p-3 font-bold">₹3,33,000</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 bg-emerald-500/10"><td class="p-3 font-sans font-bold">₹15,00,000 (Max Joint)</td><td class="p-3 font-sans font-bold">Joint Max</td><td class="p-3 text-emerald-600 dark:text-emerald-400 font-black">₹9,250</td><td class="p-3 font-black">₹1,11,000</td><td class="p-3 font-black">₹5,55,000</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
-        <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
-          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Premature Closure Rules</h2>
+        <!-- POMIS vs SCSS vs Bank Fixed Deposit -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">POMIS vs Senior Citizen Savings Scheme (SCSS) vs Bank FD</h2>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white uppercase font-bold">
+                <tr>
+                  <th class="p-3">Feature</th>
+                  <th class="p-3">Post Office MIS (POMIS)</th>
+                  <th class="p-3">Senior Citizen Savings (SCSS)</th>
+                  <th class="p-3">Bank Monthly FD</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Interest Rate</td><td class="p-3 font-bold text-amber-600">7.4% p.a.</td><td class="p-3 font-bold text-emerald-600">8.2% p.a.</td><td class="p-3">6.8% - 7.3%</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Payout Frequency</td><td class="p-3 font-bold">Monthly Guaranteed</td><td class="p-3">Quarterly Payout</td><td class="p-3">Monthly / Quarterly</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">Eligibility</td><td class="p-3">Any Resident Indian (All Ages)</td><td class="p-3">Senior Citizens (Age 60+)</td><td class="p-3">All Citizens</td></tr>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40"><td class="p-3 font-bold">TDS Deduction</td><td class="p-3 text-emerald-600 font-bold">No TDS Deducted at Source</td><td class="p-3">TDS Applicable &gt; ₹50,000</td><td class="p-3">TDS Applicable &gt; ₹40,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Premature Closure Rules -->
+        <section class="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Premature Closure &amp; Penalty Guidelines</h2>
           <p class="text-xs text-slate-600 dark:text-slate-400">
-            Premature withdrawal is allowed after 1 year with nominal deductions:
+            Depositors can prematurely encash their POMIS account after completion of 1 year:
           </p>
           <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-400">
-            <li><strong>Between 1 to 3 Years:</strong> 2% deduction from principal amount.</li>
-            <li><strong>Between 3 to 5 Years:</strong> 1% deduction from principal amount.</li>
+            <li><strong>Between 1 to 3 Years:</strong> A deduction of 2% is made from the principal amount, and remaining balance is paid out.</li>
+            <li><strong>Between 3 to 5 Years:</strong> A deduction of 1% is made from the principal amount, and remaining balance is paid out.</li>
+            <li><strong>Before 1 Year:</strong> No premature withdrawal is permitted under any circumstances.</li>
           </ul>
+        </section>
+
+        <!-- The POMIS + RD Compounding Loop Strategy -->
+        <section class="p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">The Smart Investor Hack: The POMIS + RD Wealth Multiplier</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            By default, POMIS gives simple monthly payout without compounding. However, savvy investors use the <strong>POMIS + Post Office RD (Recurring Deposit) Combo</strong>:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-400">
+            <li>Invest ₹9,00,000 in POMIS to generate <strong>₹5,550 monthly interest</strong>.</li>
+            <li>Set up an automatic standing instruction (ECS) to invest that ₹5,550/month into a <strong>5-year Post Office Recurring Deposit (earning 6.7% quarterly compounding)</strong>.</li>
+            <li>At the end of 5 years, in addition to receiving your entire ₹9,00,000 principal back, your RD accumulates into a massive additional corpus of <strong>₹3,94,000+</strong>, boosting your effective return!</li>
+          </ol>
+        </section>
+
+        <!-- Account Opening, Transfer & Nomination Guidelines -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Account Transfer &amp; Nomination Guidelines</h2>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+            <li><strong>Nationwide Portability:</strong> A POMIS account can be transferred from any Post Office branch across India to another branch free of charge.</li>
+            <li><strong>Mandatory Nomination:</strong> You can nominate one or more persons at the time of opening the account or at any subsequent stage. In case of unfortunate demise, the entire principal along with unpaid interest is handed over to the registered nominee.</li>
+            <li><strong>Minor Accounts:</strong> A parent or legal guardian can open an account on behalf of a minor (aged 10+ can operate independently). The minor account has a separate ₹3 Lakh limit.</li>
+          </ul>
+        </section>
+
+        <!-- FAQs -->
+        <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Frequently Asked Questions (FAQs)</h2>
+          
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">Is POMIS monthly interest taxable?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Yes. The monthly interest earned from POMIS is fully taxable under the head "Income from Other Sources" as per the account holder's income tax slab. However, no TDS is deducted at source by India Post.</p>
+          </details>
+
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">What happens if you do not withdraw the monthly interest?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">If the monthly interest is not claimed or withdrawn, it does not earn any additional interest. It is recommended to set up an automatic standing instruction (ECS) to transfer the interest to a Post Office Savings Account or RD account.</p>
+          </details>
+
+          <details class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 cursor-pointer">
+            <summary class="font-bold text-slate-900 dark:text-white">Can an investor open multiple POMIS accounts?</summary>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">Yes, an individual can open multiple POMIS accounts across different post offices, provided the aggregate cumulative deposit across all single and joint shares does not exceed ₹9,00,000 for an individual.</p>
+          </details>
         </section>
       </article>
 
