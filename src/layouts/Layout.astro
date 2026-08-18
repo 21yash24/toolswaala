@@ -134,13 +134,7 @@ const defaultKeywords = "free educational tools india, small business resources 
         window.addEventListener('mousemove', loadThirdParty, { passive: true, once: true });
         window.addEventListener('touchstart', loadThirdParty, { passive: true, once: true });
         window.addEventListener('keydown', loadThirdParty, { passive: true, once: true });
-
-        // Fallback after 4.5 seconds idle
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(() => setTimeout(loadThirdParty, 4500));
-        } else {
-          setTimeout(loadThirdParty, 4500);
-        }
+        window.addEventListener('click', loadThirdParty, { passive: true, once: true });
       })();
     </script>
   </head>
