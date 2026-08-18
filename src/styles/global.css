@@ -10,6 +10,15 @@
   --color-slate-400: #475569;
   --color-slate-500: #334155;
   --color-slate-600: #1e293b;
+  --color-emerald-400: #047857;
+  --color-emerald-500: #065f46;
+  --color-emerald-600: #065f46;
+  --color-emerald-700: #064e3b;
+  --color-amber-400: #92400e;
+  --color-amber-500: #78350f;
+  --color-amber-600: #78350f;
+  --color-orange-600: #9a3412;
+  --color-rose-600: #9f1239;
 }
 
 .dark, .dark-mode, html.dark {
@@ -22,6 +31,15 @@
   --color-slate-400: #94a3b8;
   --color-slate-500: #cbd5e1;
   --color-slate-600: #e2e8f0;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #6ee7b7;
+  --color-emerald-600: #a7f3d0;
+  --color-emerald-700: #6ee7b7;
+  --color-amber-400: #fcd34d;
+  --color-amber-500: #fde68a;
+  --color-amber-600: #fef3c7;
+  --color-orange-600: #fdba74;
+  --color-rose-600: #fda4af;
 }
 
 @theme {
