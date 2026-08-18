@@ -4,18 +4,24 @@
   --app-surface: #F8FAFC;
   --app-surface-card: #FFFFFF;
   --app-text: #0F172A;
-  --app-text-secondary: #475569;
-  --app-border: rgba(0, 0, 0, 0.12);
-  --app-glass: rgba(255, 255, 255, 0.85);
+  --app-text-secondary: #334155;
+  --app-border: rgba(0, 0, 0, 0.15);
+  --app-glass: rgba(255, 255, 255, 0.95);
+  --color-slate-400: #475569;
+  --color-slate-500: #334155;
+  --color-slate-600: #1e293b;
 }
 
 .dark, .dark-mode, html.dark {
   --app-surface: #09090B;
   --app-surface-card: #18181B;
   --app-text: #F8FAFC;
-  --app-text-secondary: #94A3B8;
+  --app-text-secondary: #CBD5E1;
   --app-border: rgba(255, 255, 255, 0.15);
   --app-glass: rgba(24, 24, 27, 0.85);
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #cbd5e1;
+  --color-slate-600: #e2e8f0;
 }
 
 @theme {
