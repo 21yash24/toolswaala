@@ -1,8 +1,8 @@
 ---
-title: "75% Attendance Rule — How Many Classes Can You Miss?"
-description: "Struggling with the 75% attendance rule? Learn how to calculate exactly how many more classes you can bunk or need to attend to stay safe."
+title: "⚡ 75% Attendance Calculator (2026) – How Many Classes Can You Bunk? (UGC Rule)"
+description: "Calculate safe bunks & required classes to maintain 75% attendance in college. Instant formula, subject-wise attendance tracker & UGC medical leave rules."
 pubDate: "May 5, 2026"
-author: "ToolsWaala Team"
+author: "ToolsWaala Academic Team"
 category: "Students"
 slug: "75-percent-attendance-rule-guide"
 ---

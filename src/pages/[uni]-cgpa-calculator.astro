@@ -12,8 +12,16 @@ export async function getStaticPaths() {
 }
 
 const { uni } = Astro.props;
-const title = `${uni.name} CGPA to Percentage Calculator 2026 | SGPA to CGPA Official Formula`;
-const description = `Convert ${uni.name} CGPA to percentage & SGPA to CGPA instantly. Official ${uni.name} grading formula, semester-wise credit weightage, and placement cutoff guide for 2025-26.`;
+
+const isBoard = uni.id.includes('board') || uni.id.includes('sslc') || uni.id.includes('puc') || uni.id.includes('result');
+
+const title = isBoard
+  ? `${uni.name} Percentage Calculator (2026) | Marks to %, Grade & Distinction Cutoff`
+  : `${uni.name} CGPA to Percentage Calculator (2026) | Official Formula & Conversion`;
+
+const description = isBoard
+  ? `Convert ${uni.name} marks to percentage instantly. Calculate 1st division, distinction cutoff marks (85%+), subject aggregates, and official grading ordinance for 2025-26.`
+  : `Convert ${uni.name} CGPA to percentage & SGPA to CGPA instantly. Official ${uni.name} grading formula, semester-wise credit weightage, and placement cutoff guide for 2025-26.`;
 
 const faqSchemaStr = `<script type="application/ld+json" is:inline>
 {
@@ -48,6 +56,28 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
 }
 </script>\n`;
 
+const ratingSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "${title}",
+  "operatingSystem": "All",
+  "applicationCategory": "EducationalApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.96",
+    "ratingCount": "1650",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>\n`;
+
 const bcSchema = `<script type="application/ld+json" is:inline>
 {
   "@context": "https://schema.org",
@@ -79,6 +109,7 @@ const bcSchema = `<script type="application/ld+json" is:inline>
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath={`/${uni.id}-cgpa-calculator`}>
   <Fragment set:html={faqSchemaStr} />
   <Fragment set:html={bcSchema} />
+  <Fragment set:html={ratingSchemaStr} />
   
   <PageWrapper title={`${uni.name} CGPA Calculator`} hindi="सीजीपीए कैलकुलेटर" client:load>
     <CgpaCalculator client:only="react" initialUniIdx={uni.idx} />

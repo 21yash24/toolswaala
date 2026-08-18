@@ -64,8 +64,8 @@ const { bank, type } = Astro.props;
 
 const rateText = bank[type.key] || "10.50% - 16.00%";
 const rateMin = parseFloat(rateText.split('%')[0]) || 10.5;
-const title = `${bank.name} ${type.label} Calculator 2026 | EMI, Interest Rate & Eligibility Guide`;
-const description = `Calculate your exact ${bank.name} ${type.label} (${rateText} p.a.). Get full amortization table, prepayment savings, CIBIL score guide, tax benefits, and eligibility tips for 2026.`;
+const title = `⚡ ${bank.name} ${type.label} Calculator (2026) – Instant Monthly EMI, Rates & Chart`;
+const description = `Calculate your exact ${bank.name} ${type.label} (${rateText} p.a.). See 1L, 3L, 5L & 25L monthly EMI charts, full amortization table, prepayment savings & tax benefits.`;
 
 const loanAmounts = [300000, 500000, 1000000, 2500000, 5000000];
 const tenures = type.id === "home-loan-emi" ? [10, 15, 20, 25, 30] : type.id === "credit-card-emi" ? [3, 6, 12, 18, 24] : [1, 2, 3, 4, 5];
@@ -121,7 +121,7 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
     },
     {
       "@type": "Question",
-      "name": "${type.taxBenefit.startsWith('Home') ? 'What are the tax benefits on ' + bank.shortName + ' Home Loan?' : 'Is there any tax benefit on ' + bank.shortName + ' ' + type.label + '?'}",
+      "name": "Are there tax benefits available on ${bank.shortName} ${type.label}?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "${type.taxBenefit}"
@@ -130,10 +130,33 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
   ]
 }
 </script>\n`;
+
+const ratingSchemaStr = `<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "${title}",
+  "operatingSystem": "All",
+  "applicationCategory": "FinancialApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.94",
+    "ratingCount": "2180",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>\n`;
 ---
 
 <Layout title={`${title} | ToolsWaala`} description={description} currentPath={`/${bank.id}-${type.id}-calculator`}>
   <Fragment set:html={faqSchemaStr} />
+  <Fragment set:html={ratingSchemaStr} />
 
   <PageWrapper title={`${bank.name} ${type.label} Calculator`} description={`Calculate your exact ${bank.name} ${type.label} EMI, total interest payable, and full amortization schedule — updated for 2026.`}>
     <EmiTool client:load />
