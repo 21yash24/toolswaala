@@ -29,14 +29,17 @@ const defaultKeywords = "free educational tools india, small business resources 
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="ToolsWaala" />
 
-    <!-- Google Fonts Optimized Loading -->
+    <!-- Google Fonts Optimized Asynchronous Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    </noscript>
 
-    <!-- Google AdSense Account Verification Tag -->
+    <!-- Google AdSense Verification Meta -->
     <meta name="google-adsense-account" content="ca-pub-9007237469731115" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9007237469731115" crossorigin="anonymous"></script>
 
     <!-- Theme Flash Prevention (FOUC Fix) -->
     <script is:inline>
@@ -79,7 +82,7 @@ const defaultKeywords = "free educational tools india, small business resources 
     <meta property="twitter:description" content={description || defaultDescription} />
     <meta property="twitter:image" content="https://www.toolswaala.in/og-image.png" />
 
-    <!-- Organization & Entity Schema (Fixes Pixis GEO E-E-A-T score) -->
+    <!-- Organization & Entity Schema -->
     <script type="application/ld+json" is:inline>
       {
         "@context": "https://schema.org",
@@ -96,42 +99,57 @@ const defaultKeywords = "free educational tools india, small business resources 
       }
     </script>
 
-    <!-- Deferred Third-Party Analytics & Ads -->
+    <!-- Ultra-Fast Interactive Lazy Loading for Analytics & Ads (0 Blocking Time) -->
     <script is:inline>
-      const loadAnalytics = () => {
-        if (window.analyticsLoaded) return;
-        window.analyticsLoaded = true;
+      (function() {
+        let loaded = false;
+        function loadThirdParty() {
+          if (loaded) return;
+          loaded = true;
+          window.removeEventListener('scroll', loadThirdParty);
+          window.removeEventListener('mousemove', loadThirdParty);
+          window.removeEventListener('touchstart', loadThirdParty);
+          window.removeEventListener('keydown', loadThirdParty);
 
-        // GA4
-        const gaScript = document.createElement('script');
-        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-WYVSPP4PW8";
-        gaScript.async = true;
-        document.head.appendChild(gaScript);
+          // GA4
+          const gaScript = document.createElement('script');
+          gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-WYVSPP4PW8";
+          gaScript.async = true;
+          document.head.appendChild(gaScript);
 
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-WYVSPP4PW8');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-WYVSPP4PW8');
 
-        // AdSense
-        const adScript = document.createElement('script');
-        adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9007237469731115";
-        adScript.crossOrigin = "anonymous";
-        adScript.async = true;
-        document.head.appendChild(adScript);
-      };
+          // AdSense (Only loads after user interaction to protect Core Web Vitals)
+          const adScript = document.createElement('script');
+          adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9007237469731115";
+          adScript.crossOrigin = "anonymous";
+          adScript.async = true;
+          document.head.appendChild(adScript);
+        }
 
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => setTimeout(loadAnalytics, 2500));
-      } else {
-        setTimeout(loadAnalytics, 3500);
-      }
+        window.addEventListener('scroll', loadThirdParty, { passive: true, once: true });
+        window.addEventListener('mousemove', loadThirdParty, { passive: true, once: true });
+        window.addEventListener('touchstart', loadThirdParty, { passive: true, once: true });
+        window.addEventListener('keydown', loadThirdParty, { passive: true, once: true });
+
+        // Fallback after 4.5 seconds idle
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => setTimeout(loadThirdParty, 4500));
+        } else {
+          setTimeout(loadThirdParty, 4500);
+        }
+      })();
     </script>
   </head>
-  <body>
-    <div id="root">
+  <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <div id="root" class="flex flex-col min-h-screen">
       <Navbar currentPath={currentPath} client:idle />
-      <slot />
+      <main id="main-content" class="flex-grow">
+        <slot />
+      </main>
       <Footer />
       <CommandPalette client:idle />
     </div>
