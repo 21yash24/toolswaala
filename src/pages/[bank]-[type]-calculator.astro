@@ -31,6 +31,18 @@ export async function getStaticPaths() {
       emoji: "🏠",
     },
     {
+      id: "car-loan-emi",
+      label: "Car Loan EMI",
+      key: "carInterest",
+      maxTenureYears: 7,
+      minAmount: "₹1 Lakh",
+      maxAmount: "₹1 Crore",
+      useCase: "purchasing new hatchbacks, sedans, SUVs, electric vehicles (EVs), and pre-owned certified cars",
+      taxBenefit: "Self-employed professionals and business owners can claim car loan interest and depreciation as tax-deductible business expenses.",
+      processingTime: "24–48 hours (instant on-road dealer approval available)",
+      emoji: "🚗",
+    },
+    {
       id: "credit-card-emi",
       label: "Credit Card EMI",
       key: "creditCardInterest",
@@ -68,7 +80,7 @@ const title = `⚡ ${bank.name} ${type.label} Calculator (2026) – Instant Mont
 const description = `Calculate your exact ${bank.name} ${type.label} (${rateText} p.a.). See 1L, 3L, 5L & 25L monthly EMI charts, full amortization table, prepayment savings & tax benefits.`;
 
 const loanAmounts = [300000, 500000, 1000000, 2500000, 5000000];
-const tenures = type.id === "home-loan-emi" ? [10, 15, 20, 25, 30] : type.id === "credit-card-emi" ? [3, 6, 12, 18, 24] : [1, 2, 3, 4, 5];
+const tenures = type.id === "home-loan-emi" ? [10, 15, 20, 25, 30] : type.id === "car-loan-emi" ? [3, 4, 5, 6, 7] : type.id === "credit-card-emi" ? [3, 6, 12, 18, 24] : [1, 2, 3, 4, 5];
 const tenureUnit = type.id === "credit-card-emi" ? "months" : "years";
 
 function calcEMI(p, annualRate, tenureYears) {

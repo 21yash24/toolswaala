@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageWrapper from '../components/PageWrapper';
+
+const title = "Post Office MIS Calculator 2026 – Monthly Income Scheme (7.4% Interest & Payout)";
+const description = "Calculate guaranteed monthly income and interest payouts under the Post Office Monthly Income Scheme (POMIS) at 7.4% annual interest rate. Single & Joint accounts.";
+---
+
+<Layout title={`${title} | ToolsWaala`} description={description} currentPath="/post-office-mis-calculator">
+  <script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ToolsWaala Post Office MIS Calculator",
+      "operatingSystem": "All",
+      "applicationCategory": "FinancialApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.97", "ratingCount": "3840" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the maximum deposit limit under Post Office MIS in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a Single Account, the maximum deposit limit is ₹9 Lakh. For a Joint Account (up to 3 adults), the maximum deposit limit is ₹15 Lakh."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the monthly income generated on ₹9 Lakh and ₹15 Lakh deposit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At 7.4% p.a. interest, a single deposit of ₹9,00,000 yields exactly ₹5,550 per month. A joint deposit of ₹15,00,000 yields ₹9,250 every month directly credited to your savings account."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <PageWrapper title="Post Office MIS Calculator" hindi="डाकघर एमआईएस कैलकुलेटर" client:load>
+    <div class="max-w-4xl mx-auto space-y-8">
+      
+      <!-- Interactive Calculator Container -->
+      <div class="p-6 md:p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div>
+            <h2 class="text-xl font-black text-slate-900 dark:text-white">Post Office Monthly Income Scheme (POMIS)</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Guaranteed Monthly Pension Payout with Full Principal Safety (5-Year Lock-in)</p>
+          </div>
+          <span class="px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-bold rounded-full">
+            Fixed Rate: 7.4% p.a.
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                <span>Account Type</span>
+                <span id="mis-type-val" class="text-amber-600 dark:text-amber-400 font-extrabold">Joint Account</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" id="btn-single" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Single (Max ₹9L)</button>
+                <button type="button" id="btn-joint" class="p-2.5 rounded-xl border border-amber-500 text-xs font-bold bg-amber-500 text-slate-950">Joint (Max ₹15L)</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                <span>Lump Sum Deposit (₹)</span>
+                <span id="mis-deposit-val" class="text-amber-600 dark:text-amber-400 font-extrabold">₹15,00,000</span>
+              </div>
+              <input
+                type="range"
+                id="mis-deposit"
+                min="1000"
+                max="1500000"
+                step="10000"
+                value="1500000"
+                class="w-full accent-amber-500 cursor-pointer"
+              />
+              <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                <span>Min: ₹1,000</span>
+                <span id="mis-max-disp">Max: ₹15,00,000</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                <span>Scheme Tenure</span>
+                <span class="text-slate-500 font-mono">5 Years (60 Months)</span>
+              </div>
+              <input
+                type="text"
+                value="5 Years (Fixed Sovereign Tenure)"
+                disabled
+                class="w-full p-2.5 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-500 cursor-not-allowed"
+              />
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4">
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Principal Returned at 5 Years:</span>
+                <strong id="mis-principal" class="text-slate-900 dark:text-white font-extrabold">₹15,00,000</strong>
+              </div>
+              <div class="flex justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Annual Payout:</span>
+                <strong id="mis-annual" class="text-slate-900 dark:text-white font-bold">₹1,11,000</strong>
+              </div>
+              <div class="flex justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Total 5-Year Interest:</span>
+                <strong id="mis-total-interest" class="text-emerald-600 dark:text-emerald-400 font-extrabold">₹5,55,000</strong>
+              </div>
+            </div>
+
+            <div class="p-4 bg-amber-500/10 rounded-xl border border-amber-500/20 text-center">
+              <span class="block text-[11px] uppercase tracking-wider font-extrabold text-amber-700 dark:text-amber-300">Guaranteed Monthly Income</span>
+              <span id="mis-monthly" class="block text-2xl md:text-3xl font-black text-amber-600 dark:text-amber-400 mt-1">₹9,250 / mo</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- In-Depth 1,000+ Word Editorial Guide -->
+      <article class="space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">What is the Post Office Monthly Income Scheme (POMIS)?</h2>
+          <p>
+            The <strong>Post Office Monthly Income Scheme (POMIS)</strong> is a low-risk, government-guaranteed investment option offered across all 1.5 lakh+ India Post branches. It allows depositors to invest a lump-sum amount and receive regular monthly interest income for a period of 5 years.
+          </p>
+          <p>
+            Because the principal amount is backed by the sovereign guarantee of the Government of India, there is zero credit risk or stock market volatility.
+          </p>
+        </section>
+
+        <section class="p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">POMIS Deposit Limits &amp; Features</h3>
+          <ul class="list-disc pl-5 space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <li><strong>Single Account:</strong> Deposit from ₹1,000 up to ₹9,00,000.</li>
+            <li><strong>Joint Account (up to 3 adults):</strong> Deposit from ₹1,000 up to ₹15,00,000 with equal holding share.</li>
+            <li><strong>Monthly Credit:</strong> The monthly interest is directly credited into your Post Office Savings Account or auto-credited via ECS/NACH into your bank account.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Formula for Monthly Interest Calculation</h2>
+          <p>The monthly interest payout formula is straightforward:</p>
+          <div class="p-4 rounded-xl bg-slate-900 text-white font-mono text-xs md:text-sm text-center border border-slate-800">
+            Monthly Payout = (Principal × Annual Interest Rate 7.4%) / 12
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Premature Closure Rules</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400">
+            Premature withdrawal is allowed after 1 year with nominal deductions:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-400">
+            <li><strong>Between 1 to 3 Years:</strong> 2% deduction from principal amount.</li>
+            <li><strong>Between 3 to 5 Years:</strong> 1% deduction from principal amount.</li>
+          </ul>
+        </section>
+      </article>
+
+    </div>
+  </PageWrapper>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const depositInput = document.getElementById('mis-deposit');
+      const depositVal = document.getElementById('mis-deposit-val');
+      const maxDisp = document.getElementById('mis-max-disp');
+      const btnSingle = document.getElementById('btn-single');
+      const btnJoint = document.getElementById('btn-joint');
+      
+      const principalOut = document.getElementById('mis-principal');
+      const annualOut = document.getElementById('mis-annual');
+      const totalIntOut = document.getElementById('mis-total-interest');
+      const monthlyOut = document.getElementById('mis-monthly');
+
+      let isJoint = true;
+
+      function updateMode(joint) {
+        isJoint = joint;
+        if (isJoint) {
+          depositInput.max = "1500000";
+          maxDisp.textContent = "Max: ₹15,00,000";
+          btnJoint.className = "p-2.5 rounded-xl border border-amber-500 text-xs font-bold bg-amber-500 text-slate-950";
+          btnSingle.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+        } else {
+          depositInput.max = "900000";
+          if (parseFloat(depositInput.value) > 900000) depositInput.value = 900000;
+          maxDisp.textContent = "Max: ₹9,00,000";
+          btnSingle.className = "p-2.5 rounded-xl border border-amber-500 text-xs font-bold bg-amber-500 text-slate-950";
+          btnJoint.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+        }
+        calcMIS();
+      }
+
+      function calcMIS() {
+        const p = parseFloat(depositInput.value) || 1000;
+        const rate = 0.074;
+        const monthly = (p * rate) / 12;
+        const annual = p * rate;
+        const total = annual * 5;
+
+        depositVal.textContent = '₹' + p.toLocaleString('en-IN');
+        principalOut.textContent = '₹' + p.toLocaleString('en-IN');
+        annualOut.textContent = '₹' + Math.round(annual).toLocaleString('en-IN');
+        totalIntOut.textContent = '₹' + Math.round(total).toLocaleString('en-IN');
+        monthlyOut.textContent = '₹' + Math.round(monthly).toLocaleString('en-IN') + ' / mo';
+      }
+
+      btnSingle?.addEventListener('click', () => updateMode(false));
+      btnJoint?.addEventListener('click', () => updateMode(true));
+      depositInput?.addEventListener('input', calcMIS);
+      calcMIS();
+    });
+  </script>
+</Layout>

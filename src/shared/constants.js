@@ -52,6 +52,8 @@ export const STUDENT_TOOLS = [
   { id: "age-calculator", path: "/age-calculator", name: "Age Calculator", hindi: "आयु कैलकुलेटर", icon: "🎂", desc: "Calculate exact age in years, months, and days", color: "#8B5CF6", keywords: ["birthday", "date", "exact", "years", "days"] },
   { id: "yt-thumbnail", path: "/youtube-thumbnail-downloader", name: "YT Thumbnail Downloader", hindi: "थंबनेल डाउनलोडर", icon: "▶️", desc: "Download high-quality YouTube video thumbnails", color: "#EF4444", keywords: ["yt", "image", "download", "thumbnail", "video"] },
   { id: "jobs", path: "/job-finder", name: "Job Finder", hindi: "जॉब फाइंडर", icon: "💼", desc: "Latest Sarkari Naukri, Private Jobs & Internships", color: "#3B82F6", keywords: ["career", "employment", "naukri", "private", "govt", "work"] },
+  { id: "jee-predictor", path: "/jee-mains-percentile-calculator", name: "JEE Mains Predictor", hindi: "जेईई मेन परसेंटाइल", icon: "📐", desc: "NTA Marks vs Percentile & AIR Rank Predictor", color: "#06B6D4", keywords: ["jee", "mains", "nta", "percentile", "rank", "iit", "nit"] },
+  { id: "neet-predictor", path: "/neet-marks-to-rank-calculator", name: "NEET Rank Predictor", hindi: "नीट रैंक प्रेडिक्टर", icon: "🩺", desc: "NEET 720 Marks to AIR & Govt MBBS Cutoff", color: "#10B981", keywords: ["neet", "mbbs", "rank", "medical", "score", "aiims"] },
 ];
 
 export const TOOLS = [
@@ -60,6 +62,10 @@ export const TOOLS = [
   { id: "gstin-verify", path: "/gstin-verify", name: "GSTIN Verifier", hindi: "जीएसटीएन सत्यापन", icon: "🛡️", desc: "Instantly verify GST format & extract details", color: "#3F51B5", keywords: ["tax", "gstin", "lookup", "verification", "business"] },
   { id: "qr", path: "/qr-generator", name: "QR Code Generator", hindi: "क्यूआर कोड", icon: "▣", desc: "Custom QR codes for URL, UPI, WhatsApp & more", color: "#2196F3", keywords: ["code", "scan", "link", "upi", "qr", "generator"] },
   { id: "emi", path: "/emi-calculator", name: "EMI Calculator", hindi: "ईएमआई कैलकुलेटर", icon: "🏦", desc: "Home, car, personal & business loan EMI", color: "#9C27B0", keywords: ["loan", "bank", "interest", "mortgage", "finance"] },
+  { id: "ppf", path: "/ppf-calculator", name: "PPF Calculator", hindi: "पीपीएफ कैलकुलेटर", icon: "💰", desc: "15-Year PPF Interest & Tax-Free Maturity Calculator", color: "#10B981", keywords: ["ppf", "tax", "80c", "savings", "post office", "sbi"] },
+  { id: "ssy", path: "/sukanya-samriddhi-calculator", name: "Sukanya Samriddhi (SSY)", hindi: "सुकन्या समृद्धि", icon: "👧", desc: "8.2% Girl Child Savings & Maturity Calculator", color: "#EC4899", keywords: ["ssy", "sukanya", "samriddhi", "girl", "child", "tax free"] },
+  { id: "pomis", path: "/post-office-mis-calculator", name: "Post Office MIS", hindi: "डाकघर एमआईएस", icon: "📮", desc: "7.4% Guaranteed Monthly Income Calculator", color: "#F59E0B", keywords: ["mis", "post office", "monthly", "pension", "income"] },
+  { id: "gratuity", path: "/gratuity-calculator", name: "Gratuity Calculator", hindi: "ग्रेच्युटी कैलकुलेटर", icon: "🏛️", desc: "15/26 Statutory Gratuity Act Formula Calculator", color: "#6366F1", keywords: ["gratuity", "salary", "retirement", "act", "severance"] },
   { id: "gst-calc", path: "/gst-calculator", name: "GST Calculator", hindi: "जीएसटी कैलकुलेटर", icon: "🧮", desc: "Add or remove GST instantly with HSN lookup", color: "#F44336", keywords: ["tax", "percent", "gst", "hsn", "math"] },
   { id: "estimate", path: "/estimate-generator", name: "Estimate Generator", hindi: "अनुमान जनरेटर", icon: "📝", desc: "Create pre-sales quotations with discounts", color: "#4CAF50", keywords: ["quote", "sales", "bill", "invoice", "business"] },
   { id: "legal", path: "/legal-hub", name: "Legal Hub", hindi: "कानूनी हब", icon: "⚖️", desc: "Generate Rent Agreements, NDAs & MSAs", color: "#FF9800", keywords: ["contract", "agreement", "law", "document", "rent", "nda"] },

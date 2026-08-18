@@ -4,7 +4,7 @@
     "name": "Mumbai University (MU)",
     "idx": 1,
     "desc": "Calculate your Mumbai University (MU) CGPA to percentage using the official formula: Percentage = (7.1 × CGPA) + 11.",
-    "faq1": "The formula used by Mumbai University is: Percentage = (7.1 × CGPA) + 11",
+    "faq1": "The formula used by Mumbai University is: Percentage = (7.1 × CGPA) + 11 (for 7-point scale) or (CGPA - 0.5) × 10 for 10-point CBCS scale.",
     "faq2": "A CGPA of 7.0 is equivalent to 60.7% in Mumbai University."
   },
   {
@@ -13,7 +13,7 @@
     "idx": 2,
     "desc": "Convert VTU CGPA to percentage instantly using the official VTU grading formula.",
     "faq1": "VTU uses the formula: Percentage = (CGPA - 0.75) × 10",
-    "faq2": "For campus placements, VTU students usually need above 6.75 CGPA (60%)."
+    "faq2": "For campus placements, VTU students usually need above 6.75 CGPA (60% First Class)."
   },
   {
     "id": "anna-university",
@@ -21,7 +21,7 @@
     "idx": 3,
     "desc": "Anna University CGPA to percentage converter for engineering students in Tamil Nadu.",
     "faq1": "Anna University uses absolute grading. The formula is: Percentage = CGPA × 10",
-    "faq2": "A CGPA of 8.0 equals exactly 80%."
+    "faq2": "A CGPA of 8.0 equals exactly 80% First Class with Distinction."
   },
   {
     "id": "aktu",
@@ -45,11 +45,11 @@
     "idx": 6,
     "desc": "Pune University (Savitribai Phule Pune University) CGPA to percentage calculator.",
     "faq1": "For CGPA >= 6.0, SPPU uses Percentage = (CGPA - 0.75) × 10. Otherwise, it uses CGPA × 8.8.",
-    "faq2": "SPPU's formula has variations depending on the pattern (2015 vs 2019)."
+    "faq2": "SPPU's formula has variations depending on the pattern (2015 vs 2019 credit pattern)."
   },
   {
     "id": "delhi-university",
-    "name": "Delhi University",
+    "name": "Delhi University (DU)",
     "idx": 7,
     "desc": "Delhi University (DU) CGPA to percentage conversion.",
     "faq1": "DU officially uses the formula: Percentage = CGPA × 9.5",
@@ -59,49 +59,49 @@
     "id": "cbse",
     "name": "CBSE Board",
     "idx": 8,
-    "desc": "CBSE Class 10th and 12th CGPA to Percentage Calculator.",
-    "faq1": "CBSE uses the standard formula: Percentage = CGPA × 9.5",
-    "faq2": "To score 95%, you need a perfect 10 CGPA."
+    "desc": "CBSE 10th and 12th CGPA and Grade Point to percentage conversion.",
+    "faq1": "CBSE multiplies CGPA by 9.5 to calculate approximate percentage: Percentage = CGPA × 9.5",
+    "faq2": "A CGPA of 10.0 equals 95% in CBSE."
   },
   {
     "id": "jntuh",
     "name": "JNTU Hyderabad (JNTUH)",
     "idx": 9,
-    "desc": "JNTU Hyderabad (JNTUH) B.Tech CGPA to Percentage Calculator.",
-    "faq1": "JNTUH uses the formula: Percentage = (CGPA - 0.5) × 10",
-    "faq2": "A CGPA of 6.5 in JNTUH corresponds to 60% (First Class)."
+    "desc": "JNTUH B.Tech CGPA to percentage calculator.",
+    "faq1": "JNTUH uses the standard formula: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A CGPA of 7.0 equals 65% in JNTU Hyderabad."
   },
   {
     "id": "gtu",
-    "name": "Gujarat Tech University (GTU)",
+    "name": "GTU (Gujarat)",
     "idx": 10,
-    "desc": "GTU SPI / CPI / CGPA to Percentage Calculator for Diploma & BE.",
-    "faq1": "GTU uses the official formula: Percentage = (SPI / CPI / CGPA - 0.5) × 10",
-    "faq2": "To get First Class with Distinction, GTU requires a CPI of 7.5 or higher."
+    "desc": "Gujarat Technological University (GTU) SPI/CPI to percentage calculator.",
+    "faq1": "GTU formula: Percentage = (CPI / CGPA - 0.5) × 10",
+    "faq2": "First Class in GTU starts from 6.5 CPI (60%)."
   },
   {
     "id": "calicut",
     "name": "Calicut University",
     "idx": 11,
-    "desc": "Calicut University (UOC) Grade Point Average to Percentage Converter.",
-    "faq1": "Calicut University (UOC) uses the 10-point scale: Percentage = CGPA × 10",
-    "faq2": "First Class in Calicut University is awarded at 6.0 CGPA (60%)."
+    "desc": "Calicut University CCSS and CUCBCSS percentage conversion.",
+    "faq1": "Calicut University uses: Percentage = CGPA × 10 (or CCSS grading chart).",
+    "faq2": "Calicut University requires 6.0 CGPA for First Class."
   },
   {
     "id": "jntuk",
     "name": "JNTU Kakinada (JNTUK)",
     "idx": 12,
-    "desc": "JNTU Kakinada (JNTUK) R19 / R20 B.Tech CGPA to Percentage Calculator.",
-    "faq1": "JNTUK R19/R20 regulations use: Percentage = (CGPA - 0.75) × 10",
-    "faq2": "A CGPA of 6.75 in JNTUK corresponds to First Class (60%)."
+    "desc": "JNTUK R16, R19, and R20 regulations CGPA to percentage calculator.",
+    "faq1": "JNTUK calculates percentage as: Percentage = (CGPA - 0.75) × 10",
+    "faq2": "JNTUK First Class with Distinction requires 7.75 CGPA (70%)."
   },
   {
     "id": "osmania",
-    "name": "Osmania University (OU)",
+    "name": "Osmania University",
     "idx": 13,
-    "desc": "Osmania University (OU) CGPA to Percentage Converter for Degree & Engineering.",
-    "faq1": "Osmania University uses the official formula: Percentage = (CGPA - 0.5) × 10",
-    "faq2": "A CGPA of 7.0 is equivalent to 65% in Osmania University."
+    "desc": "Osmania University (OU) CGPA to percentage calculator for engineering and degree courses.",
+    "faq1": "Osmania University formula: Percentage = CGPA × 10",
+    "faq2": "A CGPA of 6.0 equals 60% (First Division) at OU."
   },
   {
     "id": "rgpv",
@@ -128,17 +128,73 @@
     "faq2": "A CGPA of 9.0+ qualifies for First Class with Distinction at SRM."
   },
   {
+    "id": "vit-vellore",
+    "name": "VIT Vellore (VITEEE)",
+    "idx": 17,
+    "desc": "Vellore Institute of Technology (VIT) relative grading CGPA to percentage calculator.",
+    "faq1": "VIT follows 10-point relative grading: Percentage = CGPA × 10",
+    "faq2": "At VIT, maintaining 9.0+ CGPA exempts students from the 75% attendance rule and qualifies for Dean's list."
+  },
+  {
+    "id": "bits-pilani",
+    "name": "BITS Pilani",
+    "idx": 18,
+    "desc": "BITS Pilani, Goa, and Hyderabad CGPA to Percentage Converter.",
+    "faq1": "BITS Pilani uses absolute/relative 10-point scale: Percentage = CGPA × 10",
+    "faq2": "A CGPA of 8.0+ at BITS is considered exceptional for top US/Europe MS & PhD admits."
+  },
+  {
+    "id": "lpu",
+    "name": "Lovely Professional University (LPU)",
+    "idx": 19,
+    "desc": "LPU Punjab CGPA to percentage and placement cutoff conversion.",
+    "faq1": "LPU calculates percentage using: Percentage = CGPA × 10",
+    "faq2": "Most mass recruitment placement drives at LPU require a minimum 6.5 CGPA with zero standing backlogs."
+  },
+  {
+    "id": "cuchd",
+    "name": "Chandigarh University (CU)",
+    "idx": 20,
+    "desc": "Chandigarh University (CU Gharuan) CGPA to Percentage Converter.",
+    "faq1": "Chandigarh University follows: Percentage = CGPA × 10",
+    "faq2": "First Division with Distinction at CU requires a cumulative CGPA of 7.5 or above."
+  },
+  {
+    "id": "amity",
+    "name": "Amity University",
+    "idx": 21,
+    "desc": "Amity University CGPA to Percentage Calculator for all campuses (Noida, Lucknow, Jaipur).",
+    "faq1": "Amity University conversion formula: Percentage = CGPA × 10",
+    "faq2": "A CGPA of 8.5+ at Amity qualifies for academic merit scholarships."
+  },
+  {
+    "id": "thapar",
+    "name": "Thapar University (TIET)",
+    "idx": 22,
+    "desc": "Thapar Institute of Engineering and Technology (TIET) Patiala CGPA Converter.",
+    "faq1": "Thapar University uses the formula: Percentage = CGPA × 10",
+    "faq2": "TIET requires 6.0 CGPA for regular degree completion and 8.5+ for tier-1 campus placements."
+  },
+  {
+    "id": "manipal",
+    "name": "Manipal University (MAHE)",
+    "idx": 23,
+    "desc": "Manipal Academy of Higher Education (MAHE / MIT Manipal) CGPA to Percentage Converter.",
+    "faq1": "MAHE uses the conversion formula: Percentage = CGPA × 10",
+    "faq2": "MIT Manipal First Class with Distinction benchmark is 7.5 CGPA."
+  },
+  {
     "id": "up-board",
     "name": "UP Board (UPMSP)",
-    "idx": 17,
+    "idx": 24,
     "desc": "UP Board High School (10th) & Intermediate (12th) Marks to Percentage Calculator.",
     "faq1": "UP Board calculates percentage by dividing total obtained marks by total maximum marks (600 for 10th, 500 for 12th) and multiplying by 100.",
-    "faq2": "First Division in UP Board is awarded for scoring 60% or higher."
+    "faq2": "First Division in UP Board is awarded for scoring 60% or higher (300/500 in 12th, 360/600 in 10th)."
   },
   {
     "id": "bihar-board",
     "name": "Bihar Board (BSEB)",
-    "idx": 18,
+    "idx": 25,
     "desc": "BSEB Bihar Board 10th Matric & 12th Inter Marks to Percentage Calculator.",
     "faq1": "Bihar Board percentage formula: (Total Obtained Marks ÷ 500) × 100.",
     "faq2": "First Division in BSEB is awarded for scoring 300 marks or more out of 500 (60%)."
@@ -146,7 +202,7 @@
   {
     "id": "mp-board",
     "name": "MP Board (MPBSE)",
-    "idx": 19,
+    "idx": 26,
     "desc": "MP Board Class 10th & 12th Marks & Grade Point Percentage Calculator.",
     "faq1": "MP Board percentage is calculated as: (Total Obtained Marks ÷ Total Maximum Marks) × 100.",
     "faq2": "Passing marks for MP Board theory exams are 33% per subject."
@@ -154,41 +210,137 @@
   {
     "id": "rbse",
     "name": "Rajasthan Board (RBSE)",
-    "idx": 20,
+    "idx": 27,
     "desc": "RBSE Board 10th & 12th Marks to Percentage Calculator.",
     "faq1": "RBSE calculates percentage as: (Obtained Marks ÷ Total Maximum Marks) × 100.",
     "faq2": "First Division in RBSE is awarded for scoring 60% or higher."
   },
   {
     "id": "west-bengal-board",
-    "name": "West Bengal Board (WBCHSE / WBBSE)",
-    "idx": 21,
-    "desc": "WBBSE Madhyamik & WBCHSE Higher Secondary Percentage Calculator.",
-    "faq1": "West Bengal Board percentage formula: (Total Marks Obtained ÷ Total Max Marks) × 100.",
-    "faq2": "First Division in WB Board is awarded for scoring 60% or above."
+    "name": "West Bengal Board (WBBSE/WBCHSE)",
+    "idx": 28,
+    "desc": "WB Madhyamik (10th) and Higher Secondary (12th) marks to percentage calculation.",
+    "faq1": "West Bengal Madhyamik calculates percentage out of 700 marks (best of subjects): (Obtained Marks ÷ 700) × 100.",
+    "faq2": "WBCHSE Class 12 calculates percentage out of top 5 subjects (500 marks)."
   },
   {
     "id": "karnataka-sslc-puc",
-    "name": "Karnataka SSLC & PUC Board",
-    "idx": 22,
-    "desc": "Karnataka KSEAB SSLC (10th) & 2nd PUC (12th) Marks to Percentage Calculator.",
-    "faq1": "Karnataka SSLC percentage formula: (Obtained Marks ÷ 625) × 100. 2nd PUC uses (Obtained Marks ÷ 600) × 100.",
-    "faq2": "Distinction in Karnataka Board is awarded for 85% or higher."
+    "name": "Karnataka SSLC & PUC Board (KSEAB)",
+    "idx": 29,
+    "desc": "Karnataka Class 10 SSLC & 12th 2nd PUC Marks to Percentage Calculator.",
+    "faq1": "Karnataka SSLC percentage formula is: (Total Marks Obtained ÷ 625) × 100.",
+    "faq2": "Karnataka PUC percentage is calculated out of 600 total maximum marks: (Marks ÷ 600) × 100."
+  },
+  {
+    "id": "telangana-board",
+    "name": "Telangana Inter & SSC Board (TS BIE / BSE)",
+    "idx": 30,
+    "desc": "Telangana TS Inter 1st/2nd Year & SSC 10th Marks to Percentage Calculator.",
+    "faq1": "TS Inter 2nd Year percentage is calculated as: (Total Marks Obtained ÷ 1000) × 100 (for MPC/BiPC groups).",
+    "faq2": "Grade A in Telangana Inter requires scoring 75% or higher (750+ marks)."
+  },
+  {
+    "id": "andhra-pradesh-board",
+    "name": "Andhra Pradesh Inter & SSC Board (BIEAP)",
+    "idx": 31,
+    "desc": "Andhra Pradesh AP Inter 1st/2nd Year & 10th Class Marks to Percentage Calculator.",
+    "faq1": "AP Inter percentage formula: (Total Scored Marks ÷ Total Max Marks 1000) × 100.",
+    "faq2": "First Class in AP Inter requires 60% or higher aggregate marks."
+  },
+  {
+    "id": "tamil-nadu-board",
+    "name": "Tamil Nadu SSLC & HSC Board (TN DGE)",
+    "idx": 32,
+    "desc": "Tamil Nadu 10th SSLC & 12th Plus Two (+2) Marks Percentage and Engineering Cutoff Calculator.",
+    "faq1": "Tamil Nadu 12th HSC percentage formula is: (Total Scored Marks ÷ 600) × 100.",
+    "faq2": "Engineering TNEA Cutoff = Maths (out of 100) + Physics/2 (out of 50) + Chemistry/2 (out of 50) = Total out of 200."
+  },
+  {
+    "id": "kerala-board",
+    "name": "Kerala DHSE Plus Two & SSLC",
+    "idx": 33,
+    "desc": "Kerala Higher Secondary (DHSE Plus Two) & SSLC Marks to Percentage and Grade Point Calculator.",
+    "faq1": "Kerala Plus Two calculates total score out of 1200 marks (First Year 600 + Second Year 600): (Obtained Marks ÷ 1200) × 100.",
+    "faq2": "A+ Grade in Kerala Board requires scoring 90% or above in each individual subject."
+  },
+  {
+    "id": "gujarat-board",
+    "name": "Gujarat Board (GSEB)",
+    "idx": 34,
+    "desc": "GSEB Class 10 SSC & Class 12 HSC Science/Commerce Percentile and Percentage Calculator.",
+    "faq1": "Gujarat Board percentage formula: (Total Obtained Marks ÷ Total Maximum Marks) × 100.",
+    "faq2": "GSEB Percentile Rank (PR) indicates the percentage of candidates who scored lower than the candidate."
+  },
+  {
+    "id": "odisha-board",
+    "name": "Odisha CHSE & BSE Board",
+    "idx": 35,
+    "desc": "Odisha CHSE Plus Two (+2) & BSE 10th Matriculation Marks to Percentage Calculator.",
+    "faq1": "Odisha CHSE percentage formula: (Total Scored Marks ÷ 600) × 100.",
+    "faq2": "First Division in CHSE Odisha requires 360 marks or above out of 600 (60%)."
+  },
+  {
+    "id": "jharkhand-board",
+    "name": "Jharkhand Academic Council (JAC Ranchi)",
+    "idx": 36,
+    "desc": "JAC Board Class 10th Matric & 12th Intermediate Marks to Percentage Calculator.",
+    "faq1": "JAC Board percentage is calculated as: (Total Obtained Marks ÷ 500) × 100.",
+    "faq2": "First Division in JAC Board requires 300 marks or more (60%)."
+  },
+  {
+    "id": "assam-board",
+    "name": "Assam Board (AHSEC / SEBA)",
+    "idx": 37,
+    "desc": "Assam HS 12th (AHSEC) and HSLC 10th (SEBA) Marks to Percentage Calculator.",
+    "faq1": "AHSEC Higher Secondary percentage is calculated out of top 5 subjects: (Obtained Marks ÷ 500) × 100.",
+    "faq2": "Star Marks in SEBA HSLC is awarded for scoring 75% or higher aggregate."
   },
   {
     "id": "cbse-10th-result",
-    "name": "CBSE 10th Result Percentage Calculator 2026",
-    "idx": 23,
-    "desc": "Calculate your CBSE Class 10th result percentage from best of 5 subjects or total CGPA.",
-    "faq1": "CBSE Class 10 percentage formula: Add marks of top 5 subjects, divide by 5.",
-    "faq2": "If grades are given in CGPA, multiply CGPA by 9.5 to get your exact percentage."
+    "name": "CBSE 10th Result Board",
+    "idx": 38,
+    "desc": "Official CBSE Class 10th Board result marks and CGPA conversion.",
+    "faq1": "For 5 subjects (500 total): (Marks Scored ÷ 500) × 100. For CGPA to %: CGPA × 9.5.",
+    "faq2": "CBSE awards merit certificates to the top 0.1% of successful candidates in each subject."
   },
   {
     "id": "cbse-12th-result",
-    "name": "CBSE 12th Result Percentage Calculator 2026",
-    "idx": 24,
-    "desc": "Calculate your CBSE Class 12th result percentage for Science, Commerce, and Arts streams.",
-    "faq1": "CBSE Class 12 percentage formula: (Total marks in best 5 main subjects ÷ 500) × 100.",
-    "faq2": "Aggregates for university admission (like DU CUET) usually require top 4 or top 3 subject combinations."
+    "name": "CBSE 12th Result Board",
+    "idx": 39,
+    "desc": "CBSE Class 12th Board Science, Commerce, and Arts Percentage Calculator.",
+    "faq1": "CBSE 12th percentage formula: (Sum of Best 5 Subjects Scored Marks ÷ 500) × 100.",
+    "faq2": "First Division in CBSE 12th is awarded for 60% or higher overall score."
+  },
+  {
+    "id": "iit-bombay",
+    "name": "IIT Bombay",
+    "idx": 40,
+    "desc": "IIT Bombay CPI/CGPA to Percentage conversion and grading standards.",
+    "faq1": "IIT Bombay officially uses: Percentage = CPI × 10 (on 10-point scale).",
+    "faq2": "An IIT Bombay CPI above 8.5 is considered top honors standing."
+  },
+  {
+    "id": "iit-delhi",
+    "name": "IIT Delhi",
+    "idx": 41,
+    "desc": "IIT Delhi CGPA to Percentage converter for B.Tech, M.Tech, and dual degree students.",
+    "faq1": "IIT Delhi formula: Percentage = CGPA × 10",
+    "faq2": "IIT Delhi requires a minimum 6.75 CGPA for First Class degree certification."
+  },
+  {
+    "id": "nit-trichy",
+    "name": "NIT Trichy",
+    "idx": 42,
+    "desc": "National Institute of Technology Trichy (NITT) CGPA to percentage converter.",
+    "faq1": "NIT Trichy formula: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "A CGPA of 8.5+ at NIT Trichy qualifies for Institute gold medal candidacy."
+  },
+  {
+    "id": "nit-surathkal",
+    "name": "NIT Surathkal (NITK)",
+    "idx": 43,
+    "desc": "NITK Surathkal CGPA to Percentage calculation formula and grading system.",
+    "faq1": "NITK Surathkal uses standard formula: Percentage = (CGPA - 0.5) × 10",
+    "faq2": "First Class with Distinction at NITK requires 7.5+ CGPA."
   }
 ]
