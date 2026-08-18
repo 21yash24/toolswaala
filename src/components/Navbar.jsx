@@ -7,17 +7,30 @@ export default function Navbar({ currentPath = "/" }) {
   const [search, setSearch] = useState("");
   
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark-mode');
+    const storedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = storedTheme === 'dark' || (!storedTheme && systemDark) || document.documentElement.classList.contains('dark');
     setDarkMode(isDark);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove('dark-mode');
+    }
   }, []);
 
   const toggleDarkMode = () => {
-    const isDark = !darkMode;
-    setDarkMode(isDark);
-    if (isDark) {
+    const nextDark = !darkMode;
+    setDarkMode(nextDark);
+    if (nextDark) {
+      document.documentElement.classList.add('dark');
       document.documentElement.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
     } else {
+      document.documentElement.classList.remove('dark');
       document.documentElement.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
     }
   };
 
@@ -36,7 +49,7 @@ export default function Navbar({ currentPath = "/" }) {
     : [];
 
   return (
-    <nav style={{ background: BRAND.surface, backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: `1px solid ${BRAND.border}`, width: "100vw" }}>
+    <nav style={{ background: BRAND.surface, backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 100, borderBottom: `1px solid ${BRAND.border}`, width: "100%" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
         <a href="/" aria-label="ToolsWaala Homepage" style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer", textDecoration: "none" }}>
           <div style={{ position: "relative", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -93,11 +106,11 @@ export default function Navbar({ currentPath = "/" }) {
             <a href="/students" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: currentPath.startsWith("/students") || ["/cgpa","/attendance","/percentage","/pomodoro"].some(p => currentPath.includes(p)) ? STUDENT_BRAND.accent : "transparent", color: currentPath.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>🎓 Students</a>
             <a href="/blog" style={{ padding: "8px 18px", fontSize: 13, borderRadius: 10, border: `1px solid rgba(236,72,153,0.4)`, background: currentPath.includes("/blog") ? "#EC4899" : "transparent", color: currentPath.includes("/blog") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700 }}>📰 Blog</a>
           </div>
-          <button className="nav-mobile-hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Navigation Menu" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyCenter: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
+          <button className="nav-mobile-hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Navigation Menu" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${BRAND.border}`, color: BRAND.text, width: 40, height: 40, borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{menuOpen ? "✕" : "☰"}</button>
         </div>
       </div>
       {menuOpen && (
-        <div style={{ background: BRAND.surfaceCard, borderBottom: `1px solid ${BRAND.border}`, padding: "16px 0", maxHeight: "70vh", overflowY: "auto" }} className="fade-in">
+        <div style={{ background: BRAND.surfaceCard, borderBottom: `1px solid ${BRAND.border}`, padding: "16px 0", maxHeight: "80vh", overflowY: "auto" }} className="fade-in">
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px" }}>
             <div style={{ display: "flex", gap: 8, marginBottom: 16, overflowX: "auto", paddingBottom: 8 }}>
               <a href="/" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${BRAND.primary}40`, background: currentPath === "/" ? BRAND.primary : "transparent", color: currentPath === "/" ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>💼 Business</a>
@@ -105,13 +118,31 @@ export default function Navbar({ currentPath = "/" }) {
               <a href="/students" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid ${STUDENT_BRAND.accent}40`, background: currentPath.includes("/students") ? STUDENT_BRAND.accent : "transparent", color: currentPath.includes("/students") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>🎓 Students</a>
               <a href="/blog" onClick={() => setMenuOpen(false)} style={{ padding: "10px 20px", fontSize: 14, borderRadius: 10, border: `1px solid rgba(236,72,153,0.4)`, background: currentPath.includes("/blog") ? "#EC4899" : "transparent", color: currentPath.includes("/blog") ? "white" : BRAND.text, textDecoration: "none", fontWeight: 700, whiteSpace: "nowrap" }}>📰 Blog</a>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 6 }}>
-              {TOOLS.map(t => (
-                <a key={t.id} href={t.path} onClick={() => setMenuOpen(false)}
-                  style={{ background: currentPath === t.path ? "rgba(255,107,0,0.1)" : "transparent", border: "1px solid", borderColor: currentPath === t.path ? "rgba(255,107,0,0.2)" : "transparent", color: currentPath === t.path ? BRAND.primary : BRAND.text, padding: "12px 14px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-                  <span style={{ fontSize: 18 }}>{t.icon}</span> {t.name}
-                </a>
-              ))}
+
+            {/* Student Tools Section */}
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", color: STUDENT_BRAND.accent, letterSpacing: "0.05em", marginBottom: 8, paddingLeft: 4 }}>🎓 Student & Exam Tools</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 6 }}>
+                {STUDENT_TOOLS.map(t => (
+                  <a key={t.id} href={t.path} onClick={() => setMenuOpen(false)}
+                    style={{ background: currentPath === t.path ? "rgba(124,58,237,0.12)" : "rgba(0,0,0,0.02)", border: "1px solid", borderColor: currentPath === t.path ? "rgba(124,58,237,0.3)" : BRAND.border, color: currentPath === t.path ? STUDENT_BRAND.accent : BRAND.text, padding: "10px 12px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontSize: 12, fontWeight: 600, display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+                    <span style={{ fontSize: 16 }}>{t.icon}</span> {t.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Business Tools Section */}
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", color: BRAND.primary, letterSpacing: "0.05em", marginBottom: 8, paddingLeft: 4 }}>💼 Business & Finance Tools</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 6 }}>
+                {TOOLS.map(t => (
+                  <a key={t.id} href={t.path} onClick={() => setMenuOpen(false)}
+                    style={{ background: currentPath === t.path ? "rgba(255,107,0,0.12)" : "rgba(0,0,0,0.02)", border: "1px solid", borderColor: currentPath === t.path ? "rgba(255,107,0,0.3)" : BRAND.border, color: currentPath === t.path ? BRAND.primary : BRAND.text, padding: "10px 12px", borderRadius: 10, cursor: "pointer", textAlign: "left", fontSize: 12, fontWeight: 600, display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+                    <span style={{ fontSize: 16 }}>{t.icon}</span> {t.name}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

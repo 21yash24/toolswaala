@@ -42,11 +42,13 @@ const defaultKeywords = "free educational tools india, small business resources 
     <script is:inline>
       (function() {
         const storedTheme = localStorage.getItem('theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
           document.documentElement.classList.add('dark');
+          document.documentElement.classList.add('dark-mode');
         } else {
           document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove('dark-mode');
         }
       })();
     </script>
