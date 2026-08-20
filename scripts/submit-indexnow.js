@@ -1,27 +1,35 @@
 import fs from 'fs';
+import path from 'path';
 
-const host = "toolswaala.in";
+const host = "www.toolswaala.in";
 const key = "8f9b2c3d4e5f6a7b8c9d0e1f2a3b4c5d";
 const keyLocation = `https://${host}/${key}.txt`;
 
-const pages = [
-  "/", "/cgpa-calculator", "/attendance-calculator", "/percentage-calculator", "/pomodoro-timer",
-  "/bonafide-certificate", "/noc-generator", "/resume-builder", "/sop-generator", "/scholarship-finder",
-  "/study-planner", "/word-counter", "/age-calculator", "/youtube-thumbnail-downloader", "/job-finder",
-  "/upi-payment", "/gst-invoice", "/gstin-verify", "/qr-generator", "/emi-calculator",
-  "/gst-calculator", "/estimate-generator", "/legal-hub", "/salary-slip", "/tax-calculator",
-  "/receipt-maker", "/business-name", "/sip-calculator", "/hra-calculator", "/fd-calculator",
-  "/pdf-tools", "/pdf-tools/compress-pdf", "/pdf-tools/image-to-pdf", "/pdf-tools/pdf-to-jpg",
-  "/pdf-tools/merge-pdf", "/pdf-tools/split-pdf", "/pdf-tools/compress-image", "/pdf-tools/word-to-pdf",
-  "/pdf-tools/pdf-to-word", "/pdf-tools/watermark-pdf", "/mumbai-university-cgpa-calculator",
-  "/vtu-cgpa-calculator", "/anna-university-cgpa-calculator", "/aktu-cgpa-calculator",
-  "/ktu-cgpa-calculator", "/sppu-cgpa-calculator", "/delhi-university-cgpa-calculator",
-  "/cbse-cgpa-calculator", "/jntuh-cgpa-calculator", "/gtu-cgpa-calculator", "/calicut-cgpa-calculator",
-  "/jntuk-cgpa-calculator", "/osmania-cgpa-calculator", "/rgpv-cgpa-calculator", "/bput-cgpa-calculator",
-  "/srm-cgpa-calculator", "/students"
-];
+// Read sitemap XML
+const sitemapPath = path.resolve('dist/sitemap-0.xml');
+let urlList = [];
 
-const urlList = pages.map(p => `https://${host}${p}`);
+if (fs.existsSync(sitemapPath)) {
+  const content = fs.readFileSync(sitemapPath, 'utf8');
+  const matches = content.match(/<loc>(.*?)<\/loc>/g);
+  if (matches) {
+    urlList = matches.map(m => m.replace(/<\/?loc>/g, '').trim());
+  }
+}
+
+if (urlList.length === 0) {
+  urlList = [
+    `https://${host}/`,
+    `https://${host}/cgpa-calculator`,
+    `https://${host}/attendance-calculator`,
+    `https://${host}/gst-invoice`,
+    `https://${host}/tax-calculator`,
+    `https://${host}/legal-hub`,
+    `https://${host}/pdf-tools`
+  ];
+}
+
+console.log(`📡 Preparing IndexNow submission for ${urlList.length} URLs across www.toolswaala.in...`);
 
 const payload = {
   host: host,
@@ -30,17 +38,15 @@ const payload = {
   urlList: urlList
 };
 
-console.log(`Submitting ${urlList.length} URLs to IndexNow (Bing / Yandex)...`);
-
-fetch("https://api.indexnow.org/indexnow", {
+fetch("https://www.bing.com/indexnow", {
   method: "POST",
   headers: { "Content-Type": "application/json; charset=utf-8" },
   body: JSON.stringify(payload)
 }).then(res => {
-  console.log(`IndexNow Submission Status: ${res.status} ${res.statusText}`);
+  console.log(`Bing IndexNow Response: ${res.status} ${res.statusText}`);
   if (res.status === 200 || res.status === 202) {
-    console.log("✅ Successfully pushed all 49 URLs to Bing, Yandex, and IndexNow search engines!");
+    console.log(`🚀 SUCCESS: ${urlList.length} URLs successfully submitted to Bing, Yandex, Seznam & Naver!`);
   }
 }).catch(err => {
-  console.error("IndexNow error:", err);
+  console.error("IndexNow Submission Error:", err);
 });
