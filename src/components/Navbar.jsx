@@ -92,19 +92,20 @@ export default function Navbar({ currentPath = "/" }) {
           
           {/* Logo & Brand Identity */}
           <a href="/" aria-label="ToolsWaala Homepage" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", flexShrink: 0 }}>
-            <div style={{ 
-              width: 36, 
-              height: 36, 
-              borderRadius: 10, 
-              background: "linear-gradient(135deg, #FF6B00, #E05E00)", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center",
-              boxShadow: "0 4px 12px rgba(255, 107, 0, 0.25)",
-              flexShrink: 0
-            }}>
-              <span style={{ fontSize: 18, color: "#ffffff", fontWeight: 900 }}>TW</span>
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="ToolsWaala Logo" 
+              width="36" 
+              height="36" 
+              style={{ 
+                width: 36, 
+                height: 36, 
+                borderRadius: 10, 
+                objectFit: "cover",
+                boxShadow: "0 4px 12px rgba(37, 99, 235, 0.25)",
+                flexShrink: 0
+              }} 
+            />
             <div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <span style={{ color: "var(--app-text)", fontWeight: 900, fontSize: 19, lineHeight: 1, letterSpacing: "-0.03em" }}>Tools</span>
