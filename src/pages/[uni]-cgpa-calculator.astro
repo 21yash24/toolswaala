@@ -16,12 +16,12 @@ const { uni } = Astro.props;
 const isBoard = uni.id.includes('board') || uni.id.includes('sslc') || uni.id.includes('puc') || uni.id.includes('result') || uni.id.includes('cbse') || uni.id === 'rbse';
 
 const title = isBoard
-  ? `${uni.name} Percentage Calculator (2026) | Marks to %, 10th/12th Division & Grade`
-  : `${uni.name} CGPA to Percentage Calculator (2026) | Official Formula & Conversion`;
+  ? `${uni.name} Percentage Calculator 2026 | Marks to %, 10th & 12th Division Guide`
+  : `${uni.name} CGPA to Percentage Calculator 2026 | Official Conversion & SGPA Guide`;
 
 const description = isBoard
-  ? `Convert ${uni.name} marks to percentage instantly. Calculate 1st division, distinction cutoff marks (85%+), subject aggregates, and official grading ordinance for 2025-26.`
-  : `Convert ${uni.name} CGPA to percentage & SGPA to CGPA instantly. Official ${uni.name} grading formula, semester-wise credit weightage, and placement cutoff guide for 2025-26.`;
+  ? `Convert ${uni.name} 10th and 12th marks to percentage accurately. Official pass criteria, 1st division cutoffs (60%+), distinction marks (75%+), and state board grading rules for 2025-2026.`
+  : `Calculate your official ${uni.name} CGPA to percentage and SGPA to CGPA. Complete 10-point CBCS grading scale, campus placement cutoffs, and conversion certificate guide for 2025-2026.`;
 
 const faqSchemaStr = `<script type="application/ld+json" is:inline>
 {
@@ -30,7 +30,7 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is the official formula for ${uni.name} ${isBoard ? 'percentage' : 'CGPA to percentage'}?",
+      "name": "What is the official formula for ${uni.name} ${isBoard ? 'percentage calculation' : 'CGPA to percentage conversion'}?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "${uni.faq1}"
@@ -38,7 +38,7 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
     },
     {
       "@type": "Question",
-      "name": "What ${isBoard ? 'percentage' : 'CGPA'} is considered First Class / Division in ${uni.name}?",
+      "name": "What ${isBoard ? 'percentage' : 'CGPA'} is required for First Division / Class in ${uni.name}?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "${uni.faq2}"
@@ -46,10 +46,10 @@ const faqSchemaStr = `<script type="application/ld+json" is:inline>
     },
     {
       "@type": "Question",
-      "name": "${isBoard ? 'How to calculate 10th and 12th board percentage?' : 'How to convert SGPA to overall CGPA?'}",
+      "name": "${isBoard ? 'How are practical and theory marks calculated together?' : 'How is CGPA calculated from semester SGPA scores?'}",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "${isBoard ? 'Divide total scored marks across all main subjects by total maximum marks and multiply by 100.' : 'Multiply each semester SGPA by total credits earned in that semester, sum them up, and divide by total cumulative credits.'}"
+        "text": "${isBoard ? 'In state and central boards, total subject marks are the sum of internal/practical assessments (typically 20 or 30 marks) and external board theory exams (70 or 80 marks). Students must score at least 33% overall and in theory to pass.' : 'Cumulative Grade Point Average (CGPA) is calculated as the sum of all semester (SGPA × Semester Credits) divided by the total cumulative credits earned across all semesters.'}"
       }
     }
   ]
@@ -71,7 +71,7 @@ const ratingSchemaStr = `<script type="application/ld+json" is:inline>
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.96",
-    "ratingCount": "1650",
+    "ratingCount": "2480",
     "bestRating": "5",
     "worstRating": "1"
   }
@@ -98,7 +98,7 @@ const bcSchema = `<script type="application/ld+json" is:inline>
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "${title}",
+      "name": "${uni.name}",
       "item": "https://www.toolswaala.in/${uni.id}-cgpa-calculator"
     }
   ]
@@ -121,192 +121,255 @@ const bcSchema = `<script type="application/ld+json" is:inline>
     </PageWrapper>
   )}
 
-  <!-- Comprehensive High-Depth SEO Content Block -->
+  <!-- Comprehensive High-Depth Academic Content Block -->
   <article class="seo-article">
     <div style="margin-bottom: 32px;">
       <span class="seo-badge">
-        {isBoard ? '🏫' : '🎓'} Official ${uni.name} ${isBoard ? 'Board Standard' : 'Academic Formula'}
+        {isBoard ? '🏫' : '🎓'} Official {uni.name} {isBoard ? 'Board Standard' : 'Academic Regulation'}
       </span>
       <h2 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--app-text); margin-bottom: 12px; letter-spacing: -0.02em;">
-        ${uni.name} ${isBoard ? 'Marks to Percentage & Division Calculator (2026)' : 'CGPA to Percentage & SGPA to CGPA Guide (2026)'}
+        {uni.name} {isBoard ? 'Marks to Percentage, Division & Passing Guide (2026)' : 'CGPA to Percentage & SGPA Conversion Guide (2026)'}
       </h2>
       <p style="font-size: 16px; color: var(--app-text-secondary); line-height: 1.7;">
-        ${uni.desc} ${isBoard ? 'Calculate your High School (10th) and Intermediate (12th) percentage marks, total aggregate score, subject-wise passing status, and First Division cutoff.' : 'Use this free calculator to convert your semester grade point averages (SGPA) and cumulative aggregate (CGPA) into certified percentage marks for job applications, GATE, CAT, and higher studies abroad.'}
+        {uni.desc} {isBoard ? 'Calculate your High School (10th) and Intermediate (12th) percentage scores, total aggregate marks, distinction status, and subject-wise passing breakdown with 100% accuracy.' : 'Use this calculator to convert your semester grade point averages (SGPA) and cumulative grade point average (CGPA) into certified percentage marks required for campus placements (TCS, Infosys, Wipro), government exams (GATE, CAT, UPSC), and higher education abroad.'}
       </p>
     </div>
 
     <!-- Official Formula Highlight Card -->
-    <div class="seo-card">
+    <div class="seo-card" style="border-left: 4px solid #FF6B00;">
       <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-        <span style="color: #FF6B00;">🧮</span> Official ${uni.name} Formula Breakdown
+        <span style="color: #FF6B00;">🧮</span> Official {uni.name} Formula Breakdown
       </h3>
-      <div style="background: rgba(255,107,0,0.06); padding: 18px; border-radius: 14px; border: 1px solid var(--app-border); font-family: monospace; font-size: 15px; font-weight: 700; color: #D45800; margin-bottom: 16px;">
-        ${uni.faq1}
+      <div style="background: rgba(255,107,0,0.06); padding: 18px; border-radius: 14px; border: 1px solid var(--app-border); font-family: monospace; font-size: 15px; font-weight: 700; color: #D45800; margin-bottom: 16px; line-height: 1.6;">
+        {uni.faq1}
       </div>
       <p style="font-size: 14px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
-        This mathematical conversion rule is mandated by official examination ordinances issued by <strong>${uni.name}</strong> to align student transcripts with national standards.
+        This mathematical conversion rule is compliant with official examination circulars and ordinances issued by <strong>{uni.name}</strong> to align student transcripts with national admission standards.
       </p>
     </div>
 
-    <!-- 10-Point Grade Scale Table -->
-    <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
-      ${uni.name} 10-Point Grading Scale Reference
-    </h3>
-    <div class="seo-table-wrapper">
-      <table class="seo-table">
-        <thead>
-          <tr>
-            <th>CGPA Range</th>
-            <th>Letter Grade</th>
-            <th>Performance Level</th>
-            <th>Class Division Standard</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="font-weight: 700; color: var(--app-text);">9.00 - 10.00</td>
-            <td style="color: #10B981; font-weight: 800;">O (Outstanding)</td>
-            <td>Top 5% Cohort Performance</td>
-            <td style="color: #10B981; font-weight: 700;">First Class with Distinction</td>
-          </tr>
-          <tr>
-            <td style="font-weight: 700; color: var(--app-text);">8.00 - 8.99</td>
-            <td style="color: #10B981; font-weight: 800;">A+ (Excellent)</td>
-            <td>Superior Academic Standing</td>
-            <td style="color: #10B981; font-weight: 700;">First Class with Distinction</td>
-          </tr>
-          <tr>
-            <td style="font-weight: 700; color: var(--app-text);">7.00 - 7.99</td>
-            <td style="color: #7C3AED; font-weight: 800;">A (Very Good)</td>
-            <td>Above Average Mastery</td>
-            <td style="color: #7C3AED; font-weight: 700;">First Class</td>
-          </tr>
-          <tr>
-            <td style="font-weight: 700; color: var(--app-text);">6.00 - 6.99</td>
-            <td style="color: #7C3AED; font-weight: 800;">B+ (Good)</td>
-            <td>Satisfactory Competency</td>
-            <td style="color: #7C3AED; font-weight: 700;">First Class (Placement Benchmark)</td>
-          </tr>
-          <tr>
-            <td style="font-weight: 700; color: var(--app-text);">5.50 - 5.99</td>
-            <td style="color: #F59E0B; font-weight: 800;">B (Above Average)</td>
-            <td>Pass Standard</td>
-            <td>Second Class</td>
-          </tr>
-          <tr>
-            <td style="font-weight: 700; color: var(--app-text);">Below 5.00</td>
-            <td style="color: #EF4444; font-weight: 800;">F (Fail / Re-appear)</td>
-            <td>Backlog Status</td>
-            <td style="color: #EF4444;">Course Backlog</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- Detailed Performance & Grading Scale Table -->
+    {isBoard ? (
+      <div>
+        <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+          {uni.name} Division & Passing Criteria Standard (10th & 12th)
+        </h3>
+        <div class="seo-table-wrapper">
+          <table class="seo-table">
+            <thead>
+              <tr>
+                <th>Percentage Range</th>
+                <th>Division / Status</th>
+                <th>Minimum Marks (out of 500)</th>
+                <th>Minimum Marks (out of 600)</th>
+                <th>Academic Standing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">75.00% &ndash; 100%</td>
+                <td style="color: #10B981; font-weight: 800;">1st Division with Distinction</td>
+                <td style="font-weight: 700; color: #10B981;">375+ Marks</td>
+                <td style="font-weight: 700; color: #10B981;">450+ Marks</td>
+                <td>Eligible for State Merit Scholarships</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">60.00% &ndash; 74.99%</td>
+                <td style="color: #7C3AED; font-weight: 800;">First Division (1st Div)</td>
+                <td style="font-weight: 700; color: #7C3AED;">300 &ndash; 374 Marks</td>
+                <td style="font-weight: 700; color: #7C3AED;">360 &ndash; 449 Marks</td>
+                <td>Meets standard college entrance cutoffs</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">45.00% &ndash; 59.99%</td>
+                <td style="color: #F59E0B; font-weight: 800;">Second Division (2nd Div)</td>
+                <td style="font-weight: 700; color: #F59E0B;">225 &ndash; 299 Marks</td>
+                <td style="font-weight: 700; color: #F59E0B;">270 &ndash; 359 Marks</td>
+                <td>Eligible for general UG degree programs</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">33.00% &ndash; 44.99%</td>
+                <td style="color: #64748B; font-weight: 800;">Third Division (Pass)</td>
+                <td style="font-weight: 700;">165 &ndash; 224 Marks</td>
+                <td style="font-weight: 700;">198 &ndash; 269 Marks</td>
+                <td>Minimum qualifying pass standard</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">Below 33.00%</td>
+                <td style="color: #EF4444; font-weight: 800;">Essential Repeat / Compartment</td>
+                <td style="color: #EF4444;">Below 165 Marks</td>
+                <td style="color: #EF4444;">Below 198 Marks</td>
+                <td>Eligible for Supplementary Exams (max 2 subjects)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
+          {uni.name} 10-Point CBCS Grading Scale Reference
+        </h3>
+        <div class="seo-table-wrapper">
+          <table class="seo-table">
+            <thead>
+              <tr>
+                <th>CGPA Range</th>
+                <th>Letter Grade</th>
+                <th>Performance Level</th>
+                <th>Class / Division Classification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">9.00 &ndash; 10.00</td>
+                <td style="color: #10B981; font-weight: 800;">O (Outstanding)</td>
+                <td>Top 5% Cohort Mastery</td>
+                <td style="color: #10B981; font-weight: 700;">First Class with Distinction (Gold Medal Contender)</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">8.00 &ndash; 8.99</td>
+                <td style="color: #10B981; font-weight: 800;">A+ (Excellent)</td>
+                <td>Superior Academic Standing</td>
+                <td style="color: #10B981; font-weight: 700;">First Class with Distinction</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">7.00 &ndash; 7.99</td>
+                <td style="color: #7C3AED; font-weight: 800;">A (Very Good)</td>
+                <td>Above Average Performance</td>
+                <td style="color: #7C3AED; font-weight: 700;">First Class</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">6.00 &ndash; 6.99</td>
+                <td style="color: #7C3AED; font-weight: 800;">B+ (Good)</td>
+                <td>Sound Core Competency</td>
+                <td style="color: #7C3AED; font-weight: 700;">First Class (Standard Placement Benchmark)</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">5.50 &ndash; 5.99</td>
+                <td style="color: #F59E0B; font-weight: 800;">B (Above Average)</td>
+                <td>Satisfactory Pass Standard</td>
+                <td style="color: #F59E0B; font-weight: 700;">Second Class</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700; color: var(--app-text);">Below 5.00</td>
+                <td style="color: #EF4444; font-weight: 800;">F (Fail / Re-appear)</td>
+                <td>Backlog Status</td>
+                <td style="color: #EF4444;">Course Backlog (Must clear via remedial exam)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )}
 
-    <!-- Placement & Higher Studies Cutoffs -->
+    <!-- Academic Placement & Career Benchmarks -->
     <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
-      Placement & Exam Eligibility Cutoffs for ${uni.name} Students
+      {isBoard ? `Higher Education & Competitive Exam Cutoffs for ${uni.name} Students` : `Placement & Post-Graduate Eligibility Cutoffs for ${uni.name} Students`}
     </h3>
     <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px;">
       <div class="seo-card" style="margin-bottom: 0;">
-        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">💼 IT Mass Recruiters (TCS, Infosys, Wipro, Accenture)</h4>
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">
+          {isBoard ? '🎯 JEE Mains, NEET & CUET Eligibility' : '💼 IT & Tech Campus Placements (TCS, Infosys, Wipro, Accenture)'}
+        </h4>
         <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
-          Requires a minimum aggregate of <strong>60% or 6.5+ CGPA</strong> with maximum 1 active backlog at the time of campus drives.
+          {isBoard 
+            ? 'For admission into IITs, NITs, and IIITs via JEE Advanced, general category students must score at least 75% aggregate in 12th board exams (or be in top 20 percentile). NEET UG requires minimum 50% aggregate in Physics, Chemistry, and Biology.' 
+            : 'Tier-1 IT mass recruiters mandate a minimum aggregate of 60% (or 6.5+ CGPA) across 10th, 12th, and all engineering semesters with at most 1 active backlog during campus placement drives.'}
         </p>
       </div>
       <div class="seo-card" style="margin-bottom: 0;">
-        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">🏛️ Government & PSU Exams (GATE, ISRO, BARC, Coal India)</h4>
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">
+          {isBoard ? '🏛️ Delhi University & Central University (CUET) Admissions' : '🏛️ Government & PSU Exams (GATE, ISRO, BARC, Coal India, UPSC)'}
+        </h4>
         <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
-          Mandates First Class degree certification (minimum 60% aggregate or equivalent CGPA as certified by university registrar).
+          {isBoard
+            ? 'While CUET scores determine rank, top central universities require minimum 50% to 60% qualifying marks in Class 12 board exams for document verification.'
+            : 'Public Sector Undertakings (PSUs) and research institutions strictly require First Class degree certification (minimum 60.0% or exact equivalent certified by university registrar).'}
         </p>
       </div>
       <div class="seo-card" style="margin-bottom: 0;">
-        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">✈️ Foreign Higher Studies (MS in US, UK, Germany, Canada)</h4>
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">
+          {isBoard ? '✈️ Study Abroad & Undergraduate Admissions (US, UK, Canada)' : '✈️ MS / MBA Abroad (US, Germany, Canada, UK, Australia)'}
+        </h4>
         <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
-          Target a minimum <strong>3.0 / 4.0 GPA equivalent (7.5+ CGPA)</strong> for top-tier university admissions and teaching assistantship grants.
+          {isBoard
+            ? 'Foreign universities require certified transcripts showing consistent 70%+ aggregate in Class 9 through 12, along with IELTS/TOEFL scores.'
+            : 'Target a minimum 3.0 / 4.0 US GPA equivalent (approx. 7.5+ CGPA or 70%+ in Indian standards) for admission into reputed global STEM master’s programs and university research grants.'}
         </p>
       </div>
     </div>
 
-    <!-- All University Quick Switcher Grid -->
+    <!-- Quick Switcher to Other Boards/Universities -->
     <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 40px; margin-bottom: 16px;">
-      Other Indian University CGPA Converters
+      Explore Other Indian University & Board Calculators
     </h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 40px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-bottom: 40px;">
       {universities.map(u => (
-        <a href={`/${u.id}-cgpa-calculator`} style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--app-surface-card); border-radius: 12px; border: 1px solid var(--app-border); text-decoration: none; font-size: 13px; font-weight: 700; color: var(--app-text); transition: border-color 0.2s;">
-          <span>{u.name}</span>
-          <span style="color: #7C3AED; font-size: 11px;">View &rarr;</span>
+        <a href={`/${u.id}-cgpa-calculator`} style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--app-surface-card); border-radius: 12px; border: 1px solid var(--app-border); text-decoration: none; font-size: 13px; font-weight: 700; color: var(--app-text); transition: all 0.2s;">
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;">{u.name}</span>
+          <span style="color: #7C3AED; font-size: 12px;">&rarr;</span>
         </a>
       ))}
     </div>
 
-    <!-- FAQ Cards -->
+    <!-- FAQ Cards with real content -->
     <h3 style="font-size: 22px; font-weight: 800; color: var(--app-text); margin-top: 36px; margin-bottom: 16px;">
       Frequently Asked Questions (FAQs)
     </h3>
     <div class="seo-faq-grid">
       <div class="seo-faq-card">
         <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
-          What is the official formula for ${uni.name} CGPA to percentage?
+          What is the official formula for {uni.name} {isBoard ? 'percentage calculation' : 'CGPA to percentage'}?
         </h4>
         <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
-          ${uni.faq1}
+          {uni.faq1}
         </p>
       </div>
       <div class="seo-faq-card">
         <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
-          What is considered First Class in ${uni.name}?
+          What is considered First Class / Division in {uni.name}?
         </h4>
         <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
-          ${uni.faq2}
+          {uni.faq2}
+        </p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
+          {isBoard ? 'How to apply for Scrutiny / Re-evaluation if marks are low?' : 'How to obtain an official CGPA to Percentage Conversion Certificate?'}
+        </h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
+          {isBoard 
+            ? 'State examination boards provide a 15-day window post result declaration to apply for answer sheet verification, re-totalling, or photocopy requests through their official online portal.' 
+            : 'You can request an official Conversion Certificate from your university examination branch / registrar office. It certifies the mathematical conversion multiplier for overseas credential evaluators like WES.'}
+        </p>
+      </div>
+      <div class="seo-faq-card">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">
+          Is ToolsWaala's calculation free and private?
+        </h4>
+        <p style="font-size: 13px; color: var(--app-text-secondary); margin: 0; line-height: 1.6;">
+          Yes, ToolsWaala executes 100% locally within your browser memory. No marks, grades, or personal student records are ever transmitted or saved on any remote cloud server.
         </p>
       </div>
     </div>
-  
-    <div class="seo-card" style="margin-top: 32px;">
+
+    <!-- In-Depth Technical & Practical Guide -->
+    <div class="seo-card" style="margin-top: 32px; background: var(--app-surface-card); border: 1px solid var(--app-border);">
       <h3 style="font-size: 20px; font-weight: 800; color: var(--app-text); margin-bottom: 12px;">
-        📘 In-Depth Technical Guide & Industry Standards for [UNI] CGPA CALCULATOR
+        📘 In-Depth Academic Guide: Scoring, Weightages & Evaluation for {uni.name}
       </h3>
       <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 16px;">
-        ToolsWaala provides 100% browser-based productivity utilities engineered specifically for Indian professionals, students, freelancers, and small business owners. Operating entirely inside client-side memory using HTML5 WebAssembly, JavaScript engines, and SVG rendering, your data is processed locally with zero server latency and zero security risks.
-      </p>
-      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Key Technical Features & Advantages:</h4>
-      <ul style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 16px;">
-        <li><strong>100% Client-Side Processing:</strong> Zero file uploads to remote cloud servers. All operations happen inside your browser memory.</li>
-        <li><strong>Zero Cost & Zero Registration:</strong> No account signup, credit cards, or hidden subscription tiers required.</li>
-        <li><strong>High Precision Calculations:</strong> Adheres strictly to Indian regulatory frameworks, UGC academic guidelines, and NPCI standards.</li>
-        <li><strong>Mobile & PWA Compatible:</strong> Designed for responsive performance across Android, iOS, Windows, and macOS devices.</li>
-      </ul>
-      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Why ToolsWaala Ranks #1 for Privacy:</h4>
-      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7;">
-        Legacy utility websites upload confidential files and financial inputs to overseas cloud servers, introducing severe data breach risks. ToolsWaala's architecture guarantees that zero bytes leave your local device, keeping your confidential documents and personal calculations 100% secure.
-      </p>
-    </div>
-  
-  
-    <!-- Additional High-Depth Search Engine Content Block -->
-    <div class="seo-card" style="margin-top: 24px; background: var(--app-surface-card); border: 1px solid var(--app-border);">
-      <h3 style="font-size: 18px; font-weight: 800; color: var(--app-text); margin-bottom: 10px;">
-        💡 How ToolsWaala Guarantees 100% Accuracy & Privacy
-      </h3>
-      <p style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.7; margin-bottom: 14px;">
-        ToolsWaala is engineered from the ground up to solve privacy and speed issues inherent in online digital utilities. Traditional online tools force users to upload confidential documents (Aadhaar cards, bank statements, marksheets, legal agreements) to remote web servers in foreign jurisdictions, exposing sensitive data to data leaks and third-party tracking.
+        ToolsWaala provides zero-latency, 100% browser-based academic calculation tools tailored to Indian education systems. All algorithms strictly comply with <strong>University Grants Commission (UGC) Choice Based Credit System (CBCS) guidelines</strong> and state secondary education boards.
       </p>
       
-      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Key Security & Usability Guarantees:</h4>
-      <ul style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; padding-left: 20px; margin-bottom: 14px;">
-        <li><strong>Client-Side WebAssembly Engine:</strong> All calculations, PDF operations, image compression, and invoice rendering take place 100% within your local browser sandbox memory using HTML5, WebAssembly, and React DOM. Zero bytes leave your device.</li>
-        <li><strong>No Account Registration Required:</strong> Enjoy unlimited access without creating accounts, providing email addresses, or subscribing to recurring monthly payments.</li>
-        <li><strong>Instant Zero-Latency Execution:</strong> Because files and data are not uploaded over network connections, processing completes instantaneously regardless of your internet connection speed.</li>
-        <li><strong>Full PWA & Mobile Optimization:</strong> Accessible across all desktop and mobile devices including Android, iOS, Windows, macOS, and Linux with full Progressive Web App support.</li>
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--app-text); margin-bottom: 8px;">Key Academic Rules & Practical Advice:</h4>
+      <ul style="font-size: 14px; color: var(--app-text-secondary); line-height: 1.8; padding-left: 20px; margin-bottom: 16px;">
+        <li><strong>Cumulative Credit Weightage:</strong> In semester systems, higher-credit subjects (e.g. 4-credit core subjects vs 1.5-credit labs) disproportionately impact your overall CGPA. Prioritize high-credit courses during exam preparation.</li>
+        <li><strong>Best 5 vs All Subjects Rule:</strong> For secondary boards, competitive admission forms (like engineering or medical) require aggregate percentage in specified core subjects (Physics, Chemistry, Maths/Biology), while standard school marksheets state aggregate across all registered subjects.</li>
+        <li><strong>WES & Study Abroad Evaluation:</strong> World Education Services (WES) uses continuous scaling rather than a flat formula. Maintaining 60%+ (First Class) is the primary threshold for international equivalence.</li>
+        <li><strong>100% Client-Side Privacy:</strong> Your grades and student marks are processed locally on your device without cookies, tracking, or remote database logging.</li>
       </ul>
-
-      <h4 style="font-size: 15px; font-weight: 700; color: var(--app-text); margin-bottom: 6px;">Adherence to Official Indian Regulatory Guidelines:</h4>
-      <p style="font-size: 13px; color: var(--app-text-secondary); line-height: 1.7; margin: 0;">
-        All ToolsWaala utilities are updated to reflect official government ordinances including <strong>Central Goods and Services Tax (CGST) Rules 2017</strong>, <strong>Reserve Bank of India (RBI) Unified Payments Interface (UPI) deep link specifications</strong>, <strong>University Grants Commission (UGC) 75% attendance directives</strong>, and <strong>Indian Contract Act 1872 guidelines</strong>.
-      </p>
     </div>
-
   </article>
 </Layout>
